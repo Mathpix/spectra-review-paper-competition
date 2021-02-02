@@ -1,3 +1,5 @@
+![Logo](logo.png)
+
 # Summary
 
 Make some money summarizing a sub area of ML of your choice.  To compete via a PR which will add a `.md` or `.mmd` to the "submissions" folder.
