@@ -36,6 +36,8 @@ Papers must be submitted as .md (Markdown) or .mmd (Mathpix Markdown) format (TO
 
 ## Prize 
 
+Once we have received the submissions, all papers will be posted publicly on our upcoming Spectra platform for the general public to vote for a winner, who will be announced on March 15th.
+
 The prizes will be determined by the following criteria:
 
 - depth 
@@ -44,12 +46,11 @@ The prizes will be determined by the following criteria:
 - good coverage of the most important literature on a given topic
 
 Prizes:
+
 - 1st place: $5,000
 - 2nd place: $2,000
 - 3rd place: $1,000
 
-Once we have received the submissions, all papers will be posted publicly on our upcoming Spectra platform for the general public to vote for a winner, who will be announced on March 15th.
-
 ## Copyright 
 
-Mathpix Inc. reserves to right to publish all submissions, with proper attribution to the authors of course.  
+Mathpix, Inc. reserves to right to publish all submissions, with proper attribution to the authors of course.  
