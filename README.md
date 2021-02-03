@@ -15,11 +15,11 @@ Deadline for submission: March 3rd, 2021.
 
 ## Why
 
-If you work on cutting edge Machine Learning and AI like we do at Mathpix, then you know how difficult it can be to navigate the flood of new research papers published every month. It is also difficult to assess the real world practicality of papers published on Arxiv. As many ML practitioners know, just because an approach shows some a small improvement on a benchmark dataset, does not actually mean that approach is superior in practice.  
+If you work on cutting edge Machine Learning and AI like we do at Mathpix, then you know how difficult it can be to navigate the flood of new research papers published every month. It is also difficult to assess the real world practicality of papers published on Arxiv. As many ML practitioners know, just because an approach shows a small improvement on a benchmark dataset, does not actually mean that approach is superior in practice.  
 
 Unfortunately, the people with nuanced understanding of state-of-the-art ML research don’t typically have much incentive to break down the pros/cons of cutting edge approaches. Such people usually have their hands full with research and development. The result is that most ML summary work is done by altruistic bloggers. Shouldn’t this work be compensated given how valuable it can be? 
 
-For this reason we are excited to announce the first ever Spectra Research Summary Competition as a way of launching of our upcoming publishing platform, Spectra, where ML researchers and practitioners can make money from writing great ML review content for practitioners, and where practitioners can read content in nice HTML first formats.  
+For this reason we are excited to announce the first ever Spectra Research Summary Competition as a way of launching our upcoming publishing platform, Spectra, where ML researchers and practitioners can make money from writing great ML review content for practitioners, and where practitioners can read content in nice HTML first formats.  
 
 ## Competition Rules
 
