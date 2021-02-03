@@ -25,7 +25,7 @@ For this reason we are excited to announce the first ever Spectra Research Summa
 
 The rules of the competition are as follows:
 
-- Deadline for submission: March 3rd, 2021.
+- Deadline for submission: March 3rd, 2021
 - The research discussed in the review paper need not be new/original research
 - The review paper, however must be original writing and in English
 - The goal of the paper should be to summarize/explain cutting edge approaches in a particular subfield of ML (for example machine translation, text summarization, and image segmentation)
