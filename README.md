@@ -19,7 +19,7 @@ If you work on cutting edge Machine Learning and AI like we do at Mathpix, then 
 
 Unfortunately, the people with nuanced understanding of state-of-the-art ML research don’t typically have much incentive to break down the pros/cons of cutting edge approaches. Such people usually have their hands full with research and development. The result is that most ML summary work is done by altruistic bloggers. Shouldn’t this work be compensated given how valuable it can be? 
 
-For this reason we are excited to announce the first ever Spectra Research Summary Competition as a way of launching our upcoming publishing platform, Spectra, where ML researchers and practitioners can make money from writing great ML review content for practitioners, and where practitioners can read content in nice HTML first formats.  
+For this reason we are excited to announce the first ever Spectra Research Summary Competition as a way of launching our upcoming publishing platform, Spectra, where ML researchers and practitioners can make money by writing great ML review content for practitioners, and where practitioners can read content in a nice HTML first format. 
 
 ## Competition Rules
 
@@ -32,7 +32,7 @@ The rules of the competition are as follows:
 - The target audience is ML practitioners or graduate level researchers who find it tough to keep up with rapidly evolving methods and strategies
 - Papers must be submitted via PR to this public Github repo
 
-Papers must be submitted as .md (Markdown) or .mmd (Mathpix Markdown) format (TODO: add link to blog article explaining MMD).  Links to external code and repos are acceptable and even encouraged, but the writing should stand on its own.  
+Papers must be submitted as .md (Markdown) or .mmd (Mathpix Markdown) format (see [here](https://mathpix.com/docs/mathpix-markdown/how-to-mmd-vscode) on creating .mmd files with VS Code).  Links to external code and repos are acceptable and even encouraged, but the writing should stand on its own.  
 
 ## Prize 
 
