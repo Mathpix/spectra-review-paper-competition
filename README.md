@@ -19,7 +19,7 @@ If you work on cutting edge Machine Learning and AI like we do at Mathpix, then 
 
 Unfortunately, the people with nuanced understanding of state-of-the-art ML research don’t typically have much incentive to break down the pros/cons of cutting edge approaches. Such people usually have their hands full with research and development. The result is that most ML summary work is done by altruistic bloggers. Shouldn’t this work be compensated given how valuable it can be? 
 
-For this reason we are excited to announce the first ever Spectra Research Summary Competition as a way of launching our upcoming publishing platform, Spectra, where ML researchers and practitioners can make money by writing great ML review content for practitioners, and where practitioners can read content in a nice HTML first format. 
+For this reason we are excited to announce the first ever Spectra Review Paper Competition as a way of launching our upcoming publishing platform, Spectra, where ML researchers and practitioners can make money by writing great ML review content for practitioners, and where practitioners can read content in a nice HTML first format. 
 
 ## Competition Rules
 
