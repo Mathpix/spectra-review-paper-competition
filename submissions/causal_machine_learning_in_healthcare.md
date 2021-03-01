@@ -272,6 +272,12 @@ efficient. Even though the approach works with arbitrary models, the
 accuracy of the estimates does depend on the predictive model and some
 model architectures seem to be better suited for explanation models.
 
+[1] Note that the term causality may be misleading in this context.
+Because of that, some researchers use the term "predictive causality",
+meaning a variable contains useful information for predicting another
+(Diebold 2007). Granger himself later used the word "temporal relation"
+instead of causality (C. Granger and Newbold 1986).
+
 # References
 
 Adler, Philip, Casey Falk, Sorelle A. Friedler, Tionney Nix, Gabriel
@@ -412,9 +418,3 @@ Zhang, Yujia, Kuangyan Song, Yiming Sun, Sarah Tan, and Madeleine Udell.
 2019. “"Why Should You Trust My Explanation?" Understanding Uncertainty
 in LIME Explanations.” *arXiv:1904.12991 [Cs, Stat]*, June.
 <http://arxiv.org/abs/1904.12991>.
-
-[1] Note that the term causality may be misleading in this context.
-Because of that, some researchers use the term "predictive causality",
-meaning a variable contains useful information for predicting another
-(Diebold 2007). Granger himself later used the word "temporal relation"
-instead of causality (C. Granger and Newbold 1986).
