@@ -9,7 +9,7 @@ Prizes:
 - 2nd place: $2,000
 - 3rd place: $1,000
 
-Deadline for submission: March 3rd, 2021.
+Deadline for submission: 11:59 PM PST, March 3rd, 2021.
 
 # Details
 
