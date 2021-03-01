@@ -8,10 +8,10 @@ author: Roman Böhringer
 
 Causal inference is core to medicine. In this setting, we generally have
 some covariates (e.g., age, gender, images) about a patient and want to
-answer the counterfactual (Pearl and Mackenzie 2018) question: Which
+answer the counterfactual ([Pearl and Mackenzie 2018](http://bayes.cs.ucla.edu/WHY/)) question: Which
 treatment would lead to the best outcome? The state of the art approach
-to answer this question are randomised controlled trials (RCTs) (Hariton
-and Locascio 2018) in which patients are assigned to the intervention or
+to answer this question are randomised controlled trials (RCTs) ([Hariton
+and Locascio 2018](https://doi.org/10.1111/1471-0528.15199)) in which patients are assigned to the intervention or
 the comparator group at random. If the sample size is large enough, the
 act of randomization ensures that potential confounders (measured and
 unmeasured) are balanced between the groups which allows the attribution
@@ -27,9 +27,9 @@ face several challenges when conducting these trials:
 -   __Costs\/Resources__: RCTs are very expensive and require experts
     and manual labor. In 2013, the average per-patient costs were
     estimated at \$36,500 per trial phase and developing a new medicine
-    required an investment of around \$2.6 billion (“Biopharmaceutical
+    required an investment of around \$2.6 billion ([“Biopharmaceutical
     Industry-Sponsored Clinical Trials: Impact on State Economies”
-    2015).
+    2015](http://phrma-docs.phrma.org/sites/default/files/pdf/biopharmaceutical-industry-sponsored-clinical-trials-impact-on-state-economies.pdf)).
 
 -   __Multiple Treatments__: We often want to compare more than one
     treatment.
@@ -63,11 +63,15 @@ is often not feasible.
 
 ## Framework
 
-We are in the Rubin-Neyman Potential Outcomes Framework (Rubin 2005)
-where the counterfactual outcomes \(Y = [y_0 \ldots y_k]^T\) are the
-outcomes that are (or would be) observed after applying one of \(k\)
-treatments \(t_0, \ldots, t_k\). We use \(t\) to denote which treatment
-is assigned to an individual. The population consists of \(N\) cases
+We are in the Rubin-Neyman Potential Outcomes Framework ([Rubin 2005](https://doi.org/10.1198/016214504000001880))
+in which there are \(k\) counterfactual outcomes \(Y = [y_1 \ldots y_k]^T\) that are (or would be) observed after applying one of \(k\)
+treatments \(t_1, \ldots, t_k\). 
+We use \(t\) to denote which treatment
+is assigned to an individual. For instance, if we would investigate the effect
+of smoking on lung capacity, we would have \(k=2\) (smoking/not smoking). For
+a smoker, we would have \(t=1\) and the counterfactual outcomes might be \(Y=[5l, 6l]\). Note that we can only measure \(y_1\) (i.e., the lung volume when the individual smoked) in this example. \(y_2\) is the lung volume if the patient had never smoked which we cannot measure but want to infer.
+
+The population consists of \(N\) cases
 with pre-treatment covariates \(X\) and we are usually interested in
 estimating:
 
@@ -76,6 +80,9 @@ estimating:
 
 -   Individual Treatment Effect\/Conditional Average Treatment Effect:
     \[ITE_{i,j} = \mathbb{E}[y_{t_j} - y_{t_i} \mid X]\]
+
+The metric to use depends on our research question. ATE allows us to draw conclusions about the whole population: In our previous example, we could infer the average effect of smoking on the lung volume. On the other hand, ITE is useful for personalized recommendations. If we are able to infer it properly, we can decide which treatment is best for a patient based on the values.
+For other research questions (e.g., estimating the difference between two groups of treatments and not the individual treatments), different metrics can be constructed based on the counterfactual outcomes, but ATE and ITE are most common in the literature.
 
 ## Quasi-Experimental Studies
 
@@ -91,8 +98,8 @@ factor and we control for observed confounding by matching cases with
 similar controls. Matching by comparing the covariates can be infeasible
 because \(X\) is high-dimensional in many settings, so a balancing score
 \(b(X)\) is often used in practice. The treatment effects can only be
-identified if certain assumptions hold (Lechner 2001; Rosenbaum and
-Rubin 1983; Rubin 2006):
+identified if certain assumptions hold ([Lechner 2001](https://doi.org/10.1007/978-3-642-57615-7_3); [Rosenbaum and
+Rubin 1983](https://doi.org/10.1093/biomet/70.1.41); [Rubin 2006](https://doi.org/10.1017/CBO9780511810725.033)):
 
 -   __Conditional Independence Assumption__:
     \(Y \perp \!\!\! \perp t \mid b(X)\) (with the special case
@@ -110,24 +117,23 @@ Rubin 1983; Rubin 2006):
     unobserved), which implies that there is no interference between
     units.
 
-These assumptions are generally untestable (Stone 1993), but Pearl
+These assumptions are generally untestable ([Stone 1993](https://www.jstor.org/stable/2346206?seq=1)), but Pearl
 introduced a simple graphical test that can be applied to the causal
 graph (which we need to construct with domain knowledge) for testing if
-a set of variables is sufficient for identification (Pearl 1993).
+a set of variables is sufficient for identification ([Pearl 1993](https://www.jstor.org/stable/2245959?seq=1)).
 
 ## Counterfactual Regression
 
 Given the observational data, we want to train a counterfactual
-estimator that allows us to predict (in Pearl’s \(do\)-notation (Pearl
-and Mackenzie 2018)):
+estimator that allows us to predict (in Pearl’s \(do\)-notation ([Pearl and Mackenzie 2018](http://bayes.cs.ucla.edu/WHY/)):
 \[f(X,t) = p(Y \mid X, do(t=T))\]
 One approach is to learn individual models for the different treatments
 (which can result in asymptotically consistent\/unbiased estimates, e.g.
 using the Double\/Debiased Machine Learning approach introduced by
-Chernozukov et al. (Chernozhukov et al. 2018)), but this introduces
+Chernozukov et al. ([Chernozhukov et al. 2018](https://doi.org/10.1111/ectj.12097)), but this introduces
 additional variance because the control and treated distributions (i.e.
 \(p(x \mid t=0)\) and \(p(x \mid t=1)\)) usually differ. Shalit et al.
-(Shalit, Johansson, and Sontag 2017) upper bound this source of variance
+([Shalit, Johansson, and Sontag 2017](https://arxiv.org/abs/1606.03976)) upper bound this source of variance
 using an Integral Probability Metric (IPM) between the two
 distributions. Based on this bound, they introduce the Counterfactual
 Regression (CFR) and Treatment-Agnostic Representation Network (TARNet)
@@ -138,7 +144,7 @@ to estimate the outcome under treatment\/control. The goal of these
 networks is to minimize the factual loss and the IPM distance at the
 same time.
 
-Schwab et al. (Schwab, Linhardt, and Karlen 2019) extend TARNet to the
+Schwab et al. ([Schwab, Linhardt, and Karlen 2019](http://arxiv.org/abs/1810.00656)) extend TARNet to the
 multiple treatment setting with \(k\) head networks. Furthermore, they
 introduce the mini-batch augmentation method Perfect Match that imputes
 the unobserved counterfactual outcomes by the outcomes of the nearest
@@ -146,7 +152,7 @@ neighbors (using a balancing score to measure distances). This approach
 constructs virtually randomised minibatches that approximate a
 randomised experiment.
 
-Dose-Response Networks (Schwab et al. 2020) are a further extension of
+Dose-Response Networks ([Schwab et al. 2020](https://arxiv.org/abs/1902.00981)) are a further extension of
 the described model architecture where the range of dosages is
 discretized into buckets and a separate head layer is used for every
 bucket. The number of buckets allows to tradeoff predictive performance
@@ -154,13 +160,13 @@ and computational requirements.
 
 For the evaluation of counterfactual regression models that estimate the
 ITE, the precision in estimating heterogenous effects (PEHE) is often
-used, defined as (for binary treatments) (Hill 2011):
+used, defined as (for binary treatments) ([Hill 2011](https://doi.org/10.1198/jcgs.2010.08162)):
 \[\epsilon_{\mathrm{PEHE}}=\frac{1}{N} \sum_{k=1}^{N}\left(\mathbb{E}_{y_{j}(k) \sim \mu_{j}(k)}\left[y_{1}(k)-y_{0}(k)\right]-\mathbb{E}\left[f(X^{(k)}, 1)-f(X^{(k)}, 0)\right]\right)^{2}\]
 Where \(\mu_0\) and \(\mu_1\) are the underlying outcome distributions,
 which are generally not known. There are different techniques to
 estimate the PEHE, such as data simulation or substituting the
 expectation by the outcomes of a similar individual according to a
-distance such as the Mahalanobis distance (Schuler et al. 2018).
+distance such as the Mahalanobis distance ([Schuler et al. 2018](http://arxiv.org/abs/1804.05146)).
 
 # Causal Explanation Models
 
@@ -178,8 +184,8 @@ their reasonableness.
 
 One approach is to train machine-learning models that learn to jointly
 produce accurate predictions and estimations of the feature importance,
-for instance attentive mixture of experts (AME) models (Schwab,
-Miladinovic, and Karlen 2018). The basic idea is to distribute the
+for instance attentive mixture of experts (AME) models ([Schwab,
+Miladinovic, and Karlen 2018](https://arxiv.org/abs/1802.02195)). The basic idea is to distribute the
 features among experts (neural networks with their own
 parameters\/architectures, outputting their topmost feature
 representation \(h_i\) and their contribution \(c_i\) for a given
@@ -191,17 +197,17 @@ attention factor \(a_i\). Because the features are split across experts,
 there is no information leakage across them and the network can only
 increase the contribution of a feature by increasing the expert’s
 attention factor. However, there is generally no guarantee that weights
-accurately represent feature importance (Sundararajan, Taly, and Yan
-2017) and the networks may collapse towards a minima where very few or
-only one expert is used (Bahdanau, Cho, and Bengio 2015; Shazeer et al.
-2017).
+accurately represent feature importance ([Sundararajan, Taly, and Yan
+2017](https://arxiv.org/abs/1703.01365)) and the networks may collapse towards a minima where very few or
+only one expert is used ([Bahdanau, Cho, and Bengio 2015](https://arxiv.org/abs/1409.0473); [Shazeer et al.
+2017](http://arxiv.org/abs/1701.06538)).
 
 Schwab et al. address this problem by introducing an objective function
 that measures the mean Granger-causal error (MGE). In the
 Granger-causality framework, \(X\) causes[1] \(Y\) if the
 prediction of \(Y\) is better when using all available information
-instead of all available information except \(X\) (C. W. J. Granger
-1969). Based on that definition, the (normalized) decrease in error
+instead of all available information except \(X\) ([C. W. J. Granger
+1969](https://doi.org/10.2307/1912791)). Based on that definition, the (normalized) decrease in error
 associated with adding an expert’s information is measured and the
 Granger-causal objective is the Kullback-Leibler divergence between this
 decrease and the models attention factors \(a_i\). With this additional
@@ -213,16 +219,16 @@ attributions.
 ## Comparison
 
 An alternative approach for feature importance estimation is to model
-the impact of local pertubations on the prediction (Adler et al. 2018).
+the impact of local pertubations on the prediction ([Adler et al. 2018](https://doi.org/10.1007/s10115-017-1116-3)).
 The LIME (Local Interpretable Model-agnostic Explanations) algorithm
 does this by sampling in a local region and fitting an interpretable
 model (e.g., a sparse linear model) to these samples, which can help
-understanding and validating the corresponding prediction (Ribeiro,
-Singh, and Guestrin 2016). With multiple LIME explanations, the model as
+understanding and validating the corresponding prediction ([Ribeiro,
+Singh, and Guestrin 2016](https://doi.org/10.1145/2939672.2939778)). With multiple LIME explanations, the model as
 a whole can be examined. SHAP (SHapley Additive exPlanations) calculates
-the local feature importance using Shapley values (Shapley 1953), the
+the local feature importance using Shapley values ([Shapley 1953](https://www.rand.org/content/dam/rand/pubs/research_memoranda/2008/RM670.pdf)), the
 marginal contribution towards the reduction in prediction error
-(Lundberg and Lee 2017). While both of these approaches are
+([Lundberg and Lee 2017](https://arxiv.org/abs/1705.07874)). While both of these approaches are
 model-agnostic, their sampling-based nature is computationally
 demanding. AME shows similar estimation accuracy for the feature
 importances with significantly lower computational requirements.
@@ -244,7 +250,7 @@ intractable.
 
 CXPlain addresses the issue of the fixed model structure and increasing
 MSE that arises when using AME by training a separate explanation model
-and allowing arbitrary predictive models (Schwab and Karlen 2019). The
+and allowing arbitrary predictive models ([Schwab and Karlen 2019](https://arxiv.org/abs/1910.12336)). The
 explanation model treats the predictive models as blackboxes and
 calculates its outputs with and without each input feature. Note that a
 different strategy for obtaining the predictions without a feature is
@@ -260,7 +266,7 @@ producing feature importance estimates is therefore transformed into a
 supervised learning task with a Granger-causal objective function.
 
 Because some feature importance estimates may themselves be very
-unreliable (Zhang et al. 2019), CXPlain additionally provides
+unreliable ([Zhang et al. 2019](http://arxiv.org/abs/1904.12991)), CXPlain additionally provides
 uncertainty estimates for each feature importance estimate. It uses
 bootstrap resampling for that, i.e. training the explanation model on
 different subsets of the data (possibly containing duplicates) and using
@@ -272,11 +278,17 @@ efficient. Even though the approach works with arbitrary models, the
 accuracy of the estimates does depend on the predictive model and some
 model architectures seem to be better suited for explanation models.
 
+# Conclusion
+Although the problem statement of causal machine learning in healthcare is conceptually similar to other applications of causality in machine learning, the complexity is much higher. Much research is currently done on datasets with a few factors of variation and a relatively simple causal graph, such as robotics ([Gondal 2019](http://arxiv.org/abs/1906.03292)) or abstract reasoning on non-convoluted images ([Locatello 2019](http://arxiv.org/abs/1906.03292)). Because of the high complexity in the healthcare domain with very complicated relations and many causal factors, the current approaches often follow the pragmatic, task-solving based approach to causality: Instead of trying to infer all of the causal relationships (which may be very hard or even impossible to do for humans in healthcare), the goal is often to find useful, potentially causal relations that are helpful for solving tasks (that often involve humans).
+
+It will be very interesting to see if we ever achieve a point where we are able to autonomously infer the causal graph in domains with such a high complexity and have enough confidence in the estimate to act upon it without human involvement. This would open up completely new possibilities such as cheap, personalized medicine and treatment procedures.
+
+
 [1] Note that the term causality may be misleading in this context.
 Because of that, some researchers use the term "predictive causality",
 meaning a variable contains useful information for predicting another
-(Diebold 2007). Granger himself later used the word "temporal relation"
-instead of causality (C. Granger and Newbold 1986).
+([Diebold 2007](https://www.sas.upenn.edu/~fdiebold/Textbooks.html)). Granger himself later used the word "temporal relation"
+instead of causality ([C. Granger and Newbold 1986](https://www.sciencedirect.com/book/9780122951831/forecasting-economic-time-series)).
 
 # References
 
