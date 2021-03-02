@@ -1,0 +1,707 @@
+---
+title: Emerging Trends in Federated Learning: From Model Fusion to Federated X Learning
+description: Federated learning is a new learning paradigm that decouples data collection and model training via multi-party computation and model aggregation. As a flexible learning setting, federated learning has the potential to integrate with other learning frameworks. We conduct a focused survey of federated learning in conjunction with other learning algorithms. Specifically, we explore various learning algorithms to improve the vanilla federated averaging algorithm and review model fusion methods such as adaptive aggregation, regularization, clustered methods, and Bayesian methods. Following the emerging trends, we also discuss federated learning in the intersection with other learning paradigms, termed as federated x learning, where x includes multitask learning, meta-learning, transfer learning, unsupervised learning, and reinforcement learning. This survey reviews the state of the art, challenges, and future directions.
+author: Shaoxiong Ji and Teemu Saravirta and Shirui Pan and Guodong Long and Anwar Walid
+---
+
+
+Introduction
+============
+
+Vast quantities of data are required for state-of-the-art machine
+learning algorithms. However, in many scenarios, the data cannot be
+uploaded to a central server or cloud due to sheer volume, privacy, or
+legislative reasons. Federated learning (FL) [McMahan et al., 2017]
+also known as collaborative learning, has been a subject of many
+studies. FL adopts a distributed machine learning architecture with a
+central server for model aggregation, where clients themselves update
+the machine learning model. Clients maintain ownership of their data,
+i.e., upload only the updated model to the central server and not expose
+any of their private data.
+
+The federated learning paradigm addresses several challenges. The first
+challenge is privacy. Local data ownership inherits a basic level of
+privacy. However, federated learning systems can be vulnerable to model
+poisoning [Bagdasaryan et al., 2020]. The second challenge is the
+communication cost for model uploading and downloading. Improving
+communication efficiency is a critical issue [Konečný et al., 2016; Ji et al., 2020]. Centralized network architecture also makes the
+central server suffer from heavy communication workload, calling for a
+decentralized server architecture [He et al., 2019]. The third challenge is
+statistical heterogeneity. Aggregating clients’ models together can
+result in a non-optimal combined model as client data is often *non-IID*
+(independent and identically distributed). Statistical heterogeneity
+introduces a degree of uncertainty into the learning model. Therefore,
+adopting the right aggregation and learning techniques is vital for
+robust implementation. This survey gives a particular focus on how
+different federated learning solutions address statistical
+heterogeneity.
+
+Robust model aggregation has recently garnered considerable attention.
+Traditionally, client contributions are weighed according to their
+sample quantity, while recent research has introduced adaptive weighting
+[Yeganeh et al., 2020; Chen et al., 2020], attentive aggregation
+[Ji et al., 2019b], regularization [Li et al., 2020a], clustering [Briggs et al., 2020], and Bayesian methods [Yurochkin et al., 2019]. Many
+methods generally attempt to derive client characteristics by adjusting
+the relative weights better. Aggregation in the federated setting has
+also addressed fairness [Li et al., 2020c] in taking underrepresented clients
+and classes better into account.
+
+Statistical heterogeneity, or *non-IID data*, leads to difficulties in
+choosing models and performing hyperparameter tuning, as the data
+resides at clients, out of the reach of a preliminary analysis. The edge
+clients provide the supervision signal for supervised machine learning
+models. However, the lack of human annotation or interaction between
+humans and learning systems induces *label scarcity* and leads to a more
+restricted application domain.
+
+Label scarcity is one of the problems emblematic to the federated
+setting. The inability to access client data and the resulting black-box
+updates are tackled by careful selection of the aggregation method and
+supplementary learning paradigms to fit specific real-world scenarios.
+As a result of label scarcity, the semi-supervised and unsupervised
+learning paradigms introduce essential techniques to deal with the
+uncertainty arising from unlabeled data.
+
+#### Taxonomy
+
+To establish critical solutions for problems arising from private,
+non-IID data, we assess the current leading solutions in model fusion
+and how other learning paradigms are incorporated into the federated
+learning scenario. We propose a novel taxonomy of federated learning
+according to the model fusion principle and the connection to other
+learning paradigms. The taxonomy scheme organized as
+below.
+
+-   *Federated Model Fusion*. We categorize the major improvements to
+    the pioneering FedAvg model aggregation algorithm into four
+    subclasses (i.e., adaptive/attentive methods, regularization
+    methods, clustered methods, and Bayesian methods), together with a
+    special focus on fairness.
+
+-   *Federated Learning Paradigms.* We investigate how the various
+    learning paradigms are fitted into the federated learning setting. The learning paradigms include some key
+    supervised learning scenarios such as transfer learning, multitask
+    and meta-learning, and learning algorithms beyond supervised
+    learning such as semi-supervised learning, unsupervised learning,
+    and reinforcement learning.
+
+![Federated learning with other learning algorithms: categorization, conjunctions and representative methods.](fedx.svg)
+
+
+#### Contributions
+
+This survey starts from a novel viewpoint of federated learning by
+coupling federated learning with different learning algorithms. We
+propose a new taxonomy and conduct a timely and focused survey of recent
+advances on solving the heterogeneity challenge. Our survey’s
+distinction compared with other more comprehensive surveys is that we
+focused on the emerging trends of federated model fusion and learning
+paradigms, which are not intensively discussed in previous surveys.
+Besides, we connect these recent advances with real-word applications
+and discuss limitations and future
+directions in this focused context.
+
+Federated Model Fusion 
+======================
+
+Overview
+--------
+
+The goal of federated learning is to minimize the empirical risks over
+local data as
+
+$$\small
+    \min _{\theta} f(\theta)=\sum_{k=1}^{m} p_{k} \mathcal{L}_{k}(\theta)$$
+
+where $\mathcal{L}_{k}$ is the local objective of the $k$-th client and
+$\sum_k p_k = 1$. The widely applied federated learning algorithm, i.e.,
+Federated Averaging (FedAvg) [McMahan et al., 2017], starts with a
+random initialization or warmed-up model of clients followed by local
+training, uploading, server aggregation, and redistribution. The
+learning objective is configured by setting $p_k$ to be
+$\frac{n_k}{\sum_k n_k}$. Federated averaging assumes a regularization
+effect, similar to dropout in neural networks, by randomly selecting a
+fraction of clients on each communication round. Sampling on each round
+leads to faster training without a significant drop in accuracy. Li et
+al.  conducted a theoretical analysis on the convergence of FedAvg
+without strong assumptions and found that sampling and averaging scheme
+affects the convergence. Recent studies investigate some significant
+while less considered problems and explore different possibilities of
+improving vanilla averaging. To mitigate the client drift caused by
+heterogeneity in FedAvg, the SCAFFOLD algorithm [Karimireddy et al., 2020b]
+estimates the client drift as the difference between the update
+directions of the server model and each client model and adopt
+stochastically controlled averaging the correct client drift. Reddi et
+al. [2021]  proposed adaptive optimization algorithms such as Adagrad and Adam
+to improve the standard federated averaging-based optimization with
+convergence guarantees.
+
+Adaptive Weighting
+------------------
+
+The adaptive weighting approach calculates adaptive weighted averaging
+of model parameters as:
+
+$$\small
+    \theta_{t+1}=\sum_{k=1}^{K} \alpha_{k} \cdot \theta_{t}^{(k)},$$
+
+where $\theta_{t}^{(k)}$ is current model parameter of $k$-th client,
+$\theta_{t+1}$ is the updated global model parameter after aggregation,
+and $\alpha_k$ is the adaptive weighting coefficient. Aiming to train a
+low variance global model with non-IID robustness, Yeganeh et al. [2020]
+proposed an adaptive weighting approach called Inverse Distance
+Aggregation (IDA) by extracting meta information from the statistical
+properties of model parameters. Specifically, the weighting coefficient
+with inverse distance is calculated as:
+
+$$\small 
+\alpha_{k}=\left\|\theta_{t}-\theta^{(k)}_{t}\right\|^{-1} / (\sum_{k=1}^{K}\left\|\theta_{t}-\theta^{(k)}_{t}\right\|^{-1}).$$
+
+Considering the time effect during federated communication, Chen et al. [2020]
+proposed temporally weighted aggregation of the local models on the
+server as:
+
+$$\small
+    \theta_{t+1}=\sum_{k=1}^{K} \frac{n_{k}}{n} (\frac{e}{2})^{-\left(t-\mathop{t}^{(k)}\right)} \theta_{t}^{(k)},$$
+
+where $e$ is the natural logarithm, $t$ is the current update round and
+$\mathop{t}^{(k)}$ is the update round of the newest $\theta^{(k)}$.
+
+Attentive Aggregation
+---------------------
+
+The federated averaging algorithm takes the instance ratio of the client
+as the weight to calculate the averaged neural parameters during model
+fusion [McMahan et al., 2017]. In attentive aggregation, the instance
+ratio is replaced by adaptive weights as Eq. 5:
+
+$$\small
+    \theta_{t+1} \leftarrow \theta_{t}-\epsilon \sum_{k=1}^m\alpha_k \nabla \mathcal{L}(\theta_t^{(k)}) ,$$
+
+where $\alpha_k$ is the attention scores for client model parameters.
+FedAtt [Ji et al., 2019b] proposes a simple layer-wise attentive
+aggregation scheme that takes the server model parameter as the query.
+FedAttOpt [Jiang et al., 2020] enhance the attentive aggregation of
+FedAtt by scaled dot product. Like attentive aggregation,
+FedMed [Wu et al., 2020] proposes an adaptive aggregation algorithm using
+Jensen-Shannon divergence as the non-parametric weight estimator. These
+three attentive approaches use centralized aggregation architecture with
+only one shared global model for client model fusion. Huang et al. [2021]
+studied pairwise collaboration between clients and proposed FedAMP with
+attentive message passing among similar personalized cloud models of
+each client.
+
+Regularization Methods
+----------------------
+
+We summarize federated learning algorithms with additional
+regularization terms to client learning objectives or server aggregation
+formulas. One category is to add local constraints for clients.
+FedProx [Li et al., 2020b] adds proximal terms to clients’ objectives to
+regularize local training and ensure convergence in the non-IID setting.
+After removing the proximal term, FedProx degrades to FedAvg. Another
+direction is to conduct federated optimization on the server side.
+Mime [Karimireddy et al., 2020a] adapts conventional centralized optimization
+algorithms into federated learning and uses momentum to reduce client
+drift with only global statistics as
+
+$$\small
+    \mathbf{m}_{t}=(1-\beta) \nabla f_{i}\left(\mathbf{x}_{t-1}\right)+\beta \mathbf{m}_{t-1}$$
+
+$\mathbf{m}_{t-1}$ is a moving average of unbiased gradients computed
+over multiple clients. Federated averaging may lead to class embedding
+collapse to a single point for embedding-based classifiers. To tackle
+the embedding collapse, Yu et al. [2020] studied the federated setting where
+users only have access to a single class, for example, face recognition
+in the mobile phone. They proposed the FedAwS framework with a geometric
+regularization and stochastic negative mining over the server
+optimization to spread class embedding space.
+
+Clustered Methods
+-----------------
+
+We formulate clustered methods as algorithms that take additional steps
+with client clustering before federated aggregation or optimization to
+improve model fusion. One straightforward strategy is the two-stage
+approach, for example, the clustering then aggregation scheme. Briggs et
+al. [2020] propose to take an additional hierarchical clustering for client
+model updates and apply federated averaging for each cluster. Diverting
+client updates to multiple global models from user groups can help
+better capture the heterogeneity of non-IID data. Xie et al. [2020] proposed
+multi-center federated learning, where clients belong to a specific
+cluster, clusters update along with the local model updates, and clients
+also update their belongings to different clusters. The authors
+formulated a joint optimization problem with distance-based multi-center
+loss and proposed the FeSEM algorithm with stochastic expectation
+maximization (SEM) to solve the optimization. Muhammad et al. [2020] proposed
+an active aggregation method with several update steps in their FedFast
+framework going beyond average. The authors worked on recommendation
+systems and improved the conventional federated averaging by maintaining
+user-embedding clusters. They designed a pipelined updating scheme for
+item embeddings, client delegate embeddings, and subordinate user
+embeddings to propagate client updates in the cluster with similar
+clients. Ghosh et al. [2020] formulated clustered federated learning by
+partitioning different user groups with the same learning tasks and
+conducting aggregation within the cluster partition. The authors
+proposed an Iterative Federated Clustering Algorithm (IFCA) with
+alternate cluster identity estimation and model optimization to capture
+the non-IID nature.
+
+Bayesian Methods
+----------------
+
+Bayesian non-parametric machinery is applied to federated deep learning
+by matching and combining neurons for model fusion. Yurochkin et al. [2019]
+proposed probabilistic federated neural matching (PFNM) using a Beta
+Bernoulli Process to model the multi-layer perceptron (MLP) weight
+parameters. Observing the permutation invariance of fully connected
+layers, the proposed FGNM algorithm first matches the neurons of neural
+models of clients to the global neurons. It then aggregates via maximum
+a posteriori estimation of global neurons. However, the authors only
+considered simple MLP architectures. FedMA [Wang et al., 2020b] extends
+PFNM to convolutional and recurrent neural networks by matching and
+averaging hidden elements, specifically, channels for CNNs and hidden
+units for RNNs. It solves the matched averaging objective by iterative
+optimization.
+
+Fairness
+--------
+
+When aggregating the global shared model, FedAvg applies a weighted
+average according to the number of samples that participating clients
+used in their training. However, the model updates can easily skew
+towards an over-represented subgroup of clients where super-users
+provide the majority of samples. Mohri et al. [2019] suggested that valuing
+each sample without clear discrimination is inherently risky as it might
+result in sub-optimal performance for underrepresented clients and
+sought to good-intent fairness to ensure federated training not
+overfitting to some of the specific clients. Instead of the uniform
+distribution in classic federated learning, the authors proposed
+agnostic federated learning (AFL) with minimax fairness, which takes a
+mixture of distributions into account. Nonetheless, the overall tradeoff
+between fairness and performance is still not well explored. Inspired by
+fair resource allocation in wireless networks, the q-fair federated
+learning (q-FFL) [Li et al., 2020c] proposes an optimization algorithm to
+ensure fair performance, i.e., a more uniform distribution of
+performance gained in federated clients. The optimization objective
+(Eq. 7) adjusts the traditional empirical risk objective by
+tunable performance-fairness tradeoff controlled by $q$.
+
+$$\small
+    \min _{\theta} f_{q}(\theta)=\sum_{k=1}^{m} \frac{p_{k}}{q+1} \mathcal{L}_{k}^{q+1}(\theta)$$
+
+The flexible q-FFL also generalizes well to previous methods;
+specifically, it reduces to FedAvg and AFL when the value of $q$ is set
+to $0$ and $\infty$ respectively.
+
+Federated X Learning
+====================
+
+Federated Transfer Learning and Knowledge Distillation
+------------------------------------------------------
+
+Transfer learning focuses on transferring knowledge from one particular
+problem to another, and it has also been integrated into federated
+learning to construct a model from two datasets with different samples
+and feature spaces [Yang et al., 2019]. Liu et al. [2020]  formulated the
+Federated Transfer Learning (FTL) to solve the problem that traditional
+federated learning falters when datasets do not share sufficient common
+features or samples. The authors also enhance the security with
+homomorphic encryption and secret sharing. In real-world applications,
+FedSteg [Yang et al., 2020] applies federated transfer learning for secure
+image steganalysis to detect hidden information. Alawad et al. [2020] utilized
+federated transfer learning without sharing vocabulary for
+privacy-preserving NLP applications for cancer registries.
+
+#### Knowledge Distillation
+
+Given the assumption that clients have sufficient computational
+capacity, federated averaging adopts the same model architecture for
+clients and the server. FedMD [Li and Wang, 2019] couples transfer learning and
+knowledge distillation (KD), where the centralized server does not
+control the architecture of models. It introduces an additional public
+dataset for knowledge distillation, and each client optimizes their
+local models on both public and private data. Strictly speaking,
+transfer learning differs from knowledge distillation; however, the
+FedMD framework puts them under one umbrella. Many technical details are
+only briefly introduced in the original paper of FedMD. Recently, He et
+al. [2020] utilized knowledge distillation with technical solidity to train
+computationally affordable CNNs for edge devices via knowledge
+distillation. The authors proposed the Group Knowledge Transfer (FedGKT)
+framework that optimizes the client and the server model alternatively
+with knowledge distillation loss. Specifically, the larger server model
+takes features from the edge to minimize the gap between periodically
+transferred ground truth and soft label predicted by the edge model, and
+the small model distills knowledge from the larger server model by
+optimizing the KD-loss using private data and soft labels transferred
+back from the server. However, this framework has a potential risk of
+privacy breach as the server holds the ground truth, especially when
+ground truth labels are user’s typing records in the mobile keyboard
+application.
+
+Federated Multitask and Meta Learning {#sec:multitask}
+-------------------------------------
+
+This section takes multitask learning and meta-learning under the same
+category coupled with federated learning, where different clients adopt
+different models at inference time.
+
+#### Federated Multitask Learning
+
+Federated Multitask Learning trains separate models for each client with some shared structure
+between models, where learning from each local dataset at different
+clients is regarded as a separate task. In contrast to federated
+transfer learning between two parties, federated multitask learning
+involves multiple parties and formulates similar tasks clustered with
+specific constraints over model weights. It exploits related tasks for
+more efficient learning to tackle the statistical heterogeneity
+challenge. The Mocha framework [Smith et al., 2017] trains separate yet
+related models for each client by solving a primal-duel optimization. It
+leverages a shared representation across multiple tasks and addresses
+the challenges of data and system heterogeneity. However, the Mocha
+framework is limited to regularized linear models. Caldas et al. [2018]
+further studied the theoretical potential of kernelized federated
+multitask learning to solve the non-linearity. Addressing the suboptimal
+results, Sattler et al. [2020] studied geometric properties of the federated
+loss surface. They proposed a federated multitask framework with
+non-convex generalization to cluster the client population.
+
+#### Federated Meta Learning
+
+Federated Meta Learning aims to train a model that can be quickly adapted into new tasks with
+few training data, where clients serve as a variety of learning tasks.
+The seminal model-agnostic meta-learning (MAML) framework [Finn et al., 2017]
+has been intensively applied to this learning scenario. Several studies
+connect FL and meta-learning, for example, Ji et al. [2019a] proposes a model
+updating algorithm with average difference descent that was inspired by
+the first-order meta-learning algorithm. However, this study focuses on
+applications in the social care domain, which is not feasible in
+practical settings. Jiang et al. [2019] further provided a unified view of
+federated meta-learning to compare MAML and the first-order
+approximation method. Inspired by the connection between federated
+learning and meta-learning, Fallah et al. [2020] adapted MAML into the
+federated framework Per-FedAvg, to learn an initial shared model,
+leading to fast adaption and personalization for each client.
+FedMeta [Yao et al., 2019] proposes a two-stage optimization with a
+controllable meta updating scheme after model aggregation as:
+
+$$\small
+    \theta_{t+1}^{m e t a}=\theta_{t+1}-\eta_{m e t a} \nabla_{\theta_{t+1}} \mathcal{L}\left(\theta_{t+1} ; \mathcal{D}_{m e t a}\right),$$
+
+where $\mathcal{D}_{m e t a}$ is a small set of meta data on the server.
+
+Federated Generative Adversarial Learning
+-----------------------------------------
+
+Generative Adversarial Networks (GANs) consist of two competing models,
+i.e., a generator and a discriminator. The generator learns to produce
+samples approximating the underlying ground-truth distribution. The
+discriminator, usually a binary classifier, tries to distinguish the
+samples produced by the generator from the real samples. A
+straightforward combination with FL is to have the GAN models trained
+locally on clients and the global model fused with different strategies.
+Fan and Liu [Fan and Liu, 2020] studied the synchronization strategies for
+aggregating discriminator and generator networks on the server and
+conducted a series of empirical analyses. Updating clients on each round
+with both the generator and the discriminator models achieves the best
+results; however, it is twice as computationally expensive as just
+syncing the generator. Updating just the generator leads to almost
+equivalent performance in comparison to updating both, whereas updating
+just the discriminator leads to considerably worse performance, closer
+to updating neither. Rasouli et al. [2020] extended the federated GAN with
+different applications and proposed the FedGAN framework to use an
+intermediary for averaging and broadcasting the parameters of the
+generator and discriminator. Furthermore, the authors studied the
+convergence of distributed GANs by connecting the stochastic
+approximation and communication-efficient SGD optimization for GAN and
+federated learning. Augenstein et al. [2020] proposed differentially private
+federated generative models to address the challenges of non-inspectable
+data scenario. GANs are adopted to synthesize realistic examples of the
+private data for data labeling inspection at inference time.
+
+Federated Semi-supervised Learning
+----------------------------------
+
+Private data at a client might be partly or entirely unlabeled.
+Semi-supervised learning sets learning from labeled and unlabeled data,
+with unlabeled data comprising a much larger portion than labeled. When
+combined with federated learning, it leads to a new learning setup,
+i.e., federated semi-supervised learning (FSSL), which is a realistic
+scenario as users may not annotate all the data in their devices.
+Similar to centralized semi-supervised learning, FSSL also utilizes a
+two-part loss function on device with the loss stemming from supervised
+learning $\mathcal{L}_s(\theta)$ and the loss from unsupervised learning
+$\mathcal{L}_u(\theta)$. Jeong et al. [2020] proposed a federated matching
+(FedMatch) framework with inter-client consistency loss to exploit the
+heterogenous knowledge learned by multiple client models. The authors
+showed that learning on both labeled and unlabeled data simultaneously
+may result in the model forgetting what it had learned from labeled
+data. To counter this, the authors decomposed the model parameters
+$\theta$ to two variables $\theta = \psi + \rho$ and utilized a separate
+updating strategy, where only $\psi$ is updated during unsupervised
+learning, and similarly, $\rho$ is updated for supervised learning.
+Semi-supervised learning also couples with teacher-student learning for
+learning from private data. Papernot et al. [2017] put forward a
+semi-supervised approach with a private aggregation of teacher ensembles
+(PATE), an architecture where each client votes on the correct label.
+PATE was shown empirically to particularly beneficial when used in
+conjunction with GANs.
+
+Federated Unsupervised Learning
+-------------------------------
+
+As a result of label scarcity at clients, unsupervised learning offers
+fitting solutions for federated learning. One proposed solution is to
+pretrain unlabeled data to learn useful features and utilize pretrained
+features in downstream tasks in federated learning
+systems [Bram et al., 2020]. In general, there exist two challenges in
+federated unsupervised learning, i.e., the inconsistency of
+representation spaces due to data distribution shift and the
+misalignment of representations due to the lack of unified information
+among clients. FedCA [Zhang et al., 2020] proposes a federated
+contrastive averaging algorithm with the dictionary and alignment
+modules for client representation aggregation and alignment,
+respectively. The local model training utilizes the contrastive loss and
+the server aggregates models and dictionaries from clients. Recently,
+many unsupervised learning methods such as Principal Component Analysis
+(PCA) and unsupervised domain adaptation have been adopted to combine
+with federated learning. Peng et al. [2020] studied the federated unsupervised
+domain adaptation that aligns the shifted domains under federated
+setting with a couple of learning paradigms. Specifically, unsupervised
+domain adaptation is explored by transferring labeled source domain to
+unlabelled target domain, and adversarial adaptation techniques are also
+applied. Grammenos et al. [2020] proposed the federated PCA algorithm with
+differential privacy guarantee. The proposed FPCA method is permutation
+invariant and robust to straggler or fault clients.
+
+Federated Reinforcement Learning
+--------------------------------
+
+In deep reinforcement learning (DRL), the deep learning model gets
+rewards for its actions and learns which actions yield higher rewards.
+Zhuo et al. [2019] introduced reinforcement learning to federated learning
+framework (FedRL), assuming that distributed agents do not share their
+observations. The proposed FedRL architecture has two local models: a
+simple neural network, such as multi-layer perceptron (MLP), and a
+Q-network that utilizes Q-learning to compute the reward for a given
+state and action. The authors provided algorithms on how their model
+works with two clients and suggest that the approach can be extended to
+many clients using the same approach. In the proposed architecture, the
+clients update the local parameters of their respective MLPs first and
+then share the parameters to train these q-networks. Clients work out
+this parameter exchange in a peer-to-peer fashion. Federated
+reinforcement learning can improve federated aggregation to address the
+non-IID challenge, and it also has real-world applications, such as in
+the Internet of Things (IoT). A control framework called Favor [Wang et al., 2020a] improves client selection with reinforcement
+learning to choose the best candidate for federated aggregation. The
+federated reinforcement distillation (FRD) framework [Cha et al., 2020],
+together with its improved variant MixFRD with mixup augmentation,
+utilizes policy distillation for distributed reinforcement learning. In
+the fusion stage of FRD, only proxy experience replay memory (ProxRM)
+with locally averaged policies are shared across agents, aiming to
+preserve privacy. Facing the tradeoff between the aggregator’s pricing
+and the efficiency of edge computing, Zhan et al. 2020  investigated the
+design of incentive mechanism with DRL to promote edge learning.
+
+Applications 
+============
+
+Current publications yield remarkable achievements in some real-world
+applications, while some focus more on using synthetic data and tasks to
+mimic the federation. Some applications have been studied in
+publications reviewed, such as recommendation [Muhammad et al., 2020] and
+image steganalysis [Yang et al., 2020]. There are also many industrial
+applications in the Internet of Things. Applications of cross-silo
+federated learning, including healthcare and financial applications,
+have practical significance. We recommend the survey by Xu et al. [2019] for
+more introduction about research on federated healthcare informatics.
+Applications of cross-device federated learning require human-device
+interaction to provide labels as supervision signals for federated
+learning systems with the widely applied supervised learning methods.
+Mobile keyboard suggestion [McMahan et al., 2017; Ji et al., 2019b]
+is a typical cross-device application in which the user’s typing signal
+acts as supervision. More efforts should be paid to implement practical
+applications under the federated setting.
+
+Challenges and Future Directions 
+================================
+
+In recent years, federated learning has seen drastic growth in terms of
+the amount of research and the breadth of topics. There is still a need
+for comparative studies, especially when assessing which learning
+paradigms should be used with FL.
+
+#### Statistical Heterogeneity
+
+Diverse client patterns and hardware specifications bring heterogeneity
+to federated learning. We consider more about statistical heterogeneity
+as this paper focuses on federated learning algorithms. Federated
+learning coupled with many different architectures and learning
+paradigms widen practical applications and play an essential role in
+modeling heterogeneous data. With various learning and optimization
+algorithms such as multitask learning, meta-learning, transfer learning,
+and alternate optimization techniques, recent advances achieve
+heterogeneity-aware model fusion. Nonetheless, there is still a long way
+to go with heterogeneity. More work focuses on overall performance,
+while providing no performance guarantee for individual devices.
+
+#### Label Scarcity
+
+Current federated learning relies heavily on supervised learning.
+However, in most real-world applications, clients may not have
+sufficient labels or lack interaction between users to provide
+interactive labels. The label scarcity problem makes federated learning
+impractical in many scenarios. The idea of keeping private data
+on-device is fantastic; however, taking the label deficiency into
+consideration is critical in a realistic situation.
+
+#### On-device Personalization
+
+Conventionally, personalization is achieved by additional fine-tuning
+before inference. Recently, more and more research focuses on
+personalization. On-device personalization [Wang et al., 2019] brings
+forward multiple possible scenarios where clients would additionally
+benefit from personalization. Mansour et al. [2020] formulated their
+approaches for personalization, including user clustering, data
+interpolation, and model interpolation. Model-agnostic meta-learning
+aims to learn quick adaptations and also brings the potential to
+personalize to individual devices. The studies of effective formulation
+and metrics to evaluate the personalized performance is missed. The
+underlying essence of personalization and the connections between global
+model learning and personalized on-device training should be addressed.
+
+#### Unsupervised Learning
+
+Current research on federated learning primarily utilizes supervised or
+semi-supervised methods. Due to the label deficiency problem mentioned
+above in the real-world scenario, unsupervised representation learning
+can be the future direction in the federated setting and other learning
+problems.
+
+Conclusion
+==========
+
+This paper conducts a timely and focused survey about federated learning
+coupled with different learning algorithms. The flexibility of FL was
+showcased by presenting a wide range of relevant learning paradigms that
+can be employed within the FL framework. In particular, the
+compatibility was addressed from the standpoint of how learning
+algorithms fit the FL architecture and how they take into account two of
+the critical problems in federated learning: efficient learning and
+statistical heterogeneity.
+
+
+References
+==========
+[Alawad et al., 2020] Mohammed Alawad, Hong-Jun Yoon, Shang Gao, Brent Mumphrey, Xiao-Cheng Wu, Eric B Durbin, Jong Cheol Jeong, Isaac Hands, David Rust, Linda Coyle, et al. Privacy-preserving deep learning nlp models for cancer registries. IEEE TETC, 2020.
+
+[Augenstein et al., 2020] Sean Augenstein, H Brendan McMahan, Daniel Ramage, Swaroop Ramaswamy, Peter Kairouz, Mingqing Chen, Rajiv Mathews, and Blaise Aguera y Arcas. Generative models for effective ml on private, decentralized datasets. In ICLR, 2020.
+
+[Bagdasaryan et al., 2020] Eugene Bagdasaryan, Andreas Veit, Yiqing Hua, Deborah Estrin, and Vitaly Shmatikov. How to backdoor federated learning. In AISTATS, pages 2938–2948. PMLR, 2020.
+
+[Bram et al., 2020] Berlo van Bram, Aaqib Saeed, and Tanir Ozcelebi. Towards federated unsupervised representation learning. In EdgeSys, pages 31–36, 2020.
+
+[Briggs et al., 2020] Christopher Briggs, Zhong Fan, and Peter Andras. Federated learning with hierarchical clustering of local updates to improve training on non-iid data. In IJCNN, 2020.
+
+[Caldas et al., 2018] Sebastian Caldas, Virginia Smith, and Ameet Talwalkar. Federated kernelized multi-task learning. In SysML, 2018.
+
+[Cha et al., 2020] Han Cha, Jihong Park, Hyesung Kim, Mehdi Bennis, and Seong-Lyun Kim. Proxy experience replay: Federated distillation for distributed reinforcement learning. IEEE Intelligent Systems, 2020.
+
+[Chen et al., 2020] Yang Chen, Xiaoyan Sun, and Yaochu Jin. Communication-efﬁcient federated deep learning with layerwise asynchronous model update and temporally weighted aggregation. IEEE TNNLS, 2020.
+
+[Fallah et al., 2020] Alireza Fallah, Aryan Mokhtari, and Asuman Ozdaglar. Personalized federated learning with theoretical guarantees: A model-agnostic meta-learning approach. In NeurIPS, 2020.
+
+[Fan and Liu, 2020] Chenyou Fan and Ping Liu. Federated generative adversarial learning. arXiv preprint arXiv:2005.03793, 2020.
+
+[Finn et al., 2017] Chelsea Finn, Pieter Abbeel, and Sergey Levine. Model-agnostic meta-learning for fast adaptation of deep networks. In ICML, pages 1126–1135, 2017.
+
+[Ghosh et al., 2020] Avishek Ghosh, Jichan Chung, Dong Yin, and Kannan Ramchandran. An efﬁcient framework for clustered federated learning. In NeurIPS, 2020.
+
+[Grammenos et al., 2020] Andreas Grammenos, Rodrigo Mendoza Smith, Jon Crowcroft, and Cecilia Mascolo. Federated principal component analysis. In NeurIPS, 2020.
+
+[He et al., 2019] Chaoyang He, Conghui Tan, Hanlin Tang, Shuang Qiu, and Ji Liu. Central server free federated learning over single-sided trust social networks. arXiv preprint arXiv:1910.04956, 2019.
+
+[He et al., 2020] Chaoyang He, Murali Annavaram, and Salman Avestimehr. Group knowledge transfer: Federated learning of large cnns at the edge. NeurIPS, 2020.
+
+
+[Huang et al., 2021] Yutao Huang, Lingyang Chu, Zirui Zhou, Lanjun Wang, Jiangchuan Liu, Jian Pei, and Yong Zhang. Personalized cross-silo federated learning on noniid data. In AAAI, 2021.
+
+[Jeong et al., 2020] Wonyong Jeong, Jaehong Yoon, Eunho Yang, and Sung Ju Hwang. Federated semi-supervised learning with inter-client consistency. In ICML Workshop, 2020.
+
+[Ji et al., 2019a] Shaoxiong Ji, Guodong Long, Shirui Pan, Tianqing Zhu, Jing Jiang, Sen Wang, and Xue Li. Knowledge transferring via model aggregation for online social care. arXiv preprint arXiv:1905.07665, 2019.
+
+[Ji et al., 2019b] Shaoxiong Ji, Shirui Pan, Guodong Long, Xue Li, Jing Jiang, and Zi Huang. Learning private neural language modeling with attentive aggregation. In IJCNN, 2019.
+
+[Ji et al., 2020] Shaoxiong Ji, Wenqi Jiang, Anwar Walid, and Xue Li. Dynamic sampling and selective masking for communication-efﬁcient federated learning. arXiv preprint arXiv:2003.09603, 2020.
+
+[Jiang et al., 2019] Yihan Jiang, Jakub Konečný, Keith Rush, and Sreeram Kannan. Improving federated learning personalization via model agnostic meta learning. In NeurIPS Workshop, 2019.
+
+[Jiang et al., 2020] Jing Jiang, Shaoxiong Ji, and Guodong Long. Decentralized knowledge acquisition for mobile internet applications. World Wide Web, 2020.
+
+[Karimireddy et al., 2020a] Sai Praneeth Karimireddy, Martin Jaggi, Satyen Kale, Mehryar Mohri, Sashank J Reddi, Sebastian U Stich, and Ananda Theertha Suresh. Mime: Mimicking centralized stochastic algorithms in federated learning. arXiv preprint arXiv:2008.03606, 2020.
+
+[Karimireddy et al., 2020b] Sai Praneeth Karimireddy, Satyen Kale, Mehryar Mohri, Sashank J Reddi, Sebastian U Stich, and Ananda Theertha Suresh. Scaffold: Stochastic controlled averaging for federated learning. In ICML, pages 5132–5143, 2020.
+
+[Konečný et al., 2016] Jakub Konečný, H Brendan McMahan, Felix X Yu, Peter Richt´arik, Ananda Theertha Suresh, and Dave Bacon. Federated learning: Strategies for improving communication efﬁciency. arXiv preprint arXiv:1610.05492, 2016.
+
+[Li and Wang, 2019] Daliang Li and Junpu Wang. FedMD: Heterogenous federated learning via model distillation. In NeurIPS Workshop, 2019.
+
+[Li et al., 2020a] Tian Li, Anit Kumar Sahu, Ameet Talwalkar, and Virginia Smith. Federated learning: Challenges, methods, and future directions. IEEE Signal Processing Magazine, 37(3):50–60, 2020.
+
+[Li et al., 2020b] Tian Li, Anit Kumar Sahu, Manzil Zaheer, Maziar Sanjabi, Ameet Talwalkar, and Virginia Smith. Federated optimization in heterogeneous networks. In MLSys, 2020.
+
+[Li et al., 2020c] Tian Li, Maziar Sanjabi, Ahmad Beirami, and Virginia Smith. Fair resource allocation in federated learning. In ICLR, 2020.
+
+[Li et al., 2020d] Xiang Li, Kaixuan Huang, Wenhao Yang, Shusen Wang, and Zhihua Zhang. On the convergence of fedavg on non-iid data. In ICLR, 2020.
+
+[Liu et al., 2020] Yang Liu, Yan Kang, Chaoping Xing, Tianjian Chen, and Qiang Yang. A secure federated transfer learning framework. IEEE Intelligent Systems, 35:7082, 07 2020.
+
+[Mansour et al., 2020] Yishay Mansour, Mehryar Mohri, Jae Ro, and Ananda Theertha Suresh. Three approaches for personalization with applications to federated learning. arXiv preprint arXiv:2002.10619, 2020.
+
+[McMahan et al., 2017] H Brendan McMahan, Eider Moore, Daniel Ramage, Seth Hampson, et al. Communicationefﬁcient learning of deep networks from decentralized data. In AISTATS, pages 1273–1282, 2017.
+
+[Mohri et al., 2019] Mehryar Mohri, Gary Sivek, and Ananda Theertha Suresh. Agnostic federated learning. In ICML, 2019.
+
+[Muhammad et al., 2020] Khalil Muhammad, Qinqin Wang, Diarmuid O’Reilly-Morgan, Elias Tragos, Barry Smyth, Neil Hurley, James Geraci, and Aonghus Lawlor. FedFast: Going beyond average for faster training of federated recommender systems. In SIGKDD, pages 1234–1242, 2020. 
+
+[Papernot et al., 2017] Nicolas Papernot, Mart´ın Abadi, ´Ulfar Erlingsson, Ian Goodfellow, and Kunal Talwar. Semi-supervised knowledge transfer for deep learning from private training data. In ICLR, 2017.
+
+[Peng et al., 2020] Xingchao Peng, Zijun Huang, Yizhe Zhu, and Kate Saenko. Federated adversarial domain adaptation. In ICLR, 2020.
+
+[Rasouli et al., 2020] Mohammad Rasouli, Tao Sun, and Ram Rajagopal. FedGAN: Federated generative adversarial networks for distributed data. arXiv preprint arXiv:2006.07228, 2020.
+
+[Reddi et al., 2021] Sashank Reddi, Zachary Charles, Manzil Zaheer, Zachary Garrett, Keith Rush, Jakub Konečný, Sanjiv Kumar, and H Brendan McMahan. Adaptive federated optimization. In ICLR, 2021.
+
+[Sattler et al., 2020] Felix Sattler, Klaus-Robert M¨uller, and Wojciech Samek. Clustered federated learning: Modelagnostic distributed multitask optimization under privacy constraints. IEEE TNNLS, 2020.
+
+[Smith et al., 2017] Virginia Smith, Chao-Kai Chiang, Maziar Sanjabi, and Ameet S Talwalkar. Federated multi-task learning. In NIPS, pages 4427–4437, 2017.
+
+[Wang et al., 2019] Kangkang Wang, Rajiv Mathews, Chlo´e Kiddon, Hubert Eichner, Franc¸oise Beaufays, and Daniel Ramage. Federated evaluation of on-device personalization. arXiv preprint arXiv:1910.10252, 2019.
+
+[Wang et al., 2020a] Hao Wang, Zakhary Kaplan, Di Niu, and Baochun Li. Optimizing Federated Learning on NonIID Data with Reinforcement Learning. In IEEE INFOCOM, pages 1698–1707. IEEE, 2020.
+
+[Wang et al., 2020b] Hongyi Wang, Mikhail Yurochkin, Yuekai Sun, Dimitris Papailiopoulos, and Yasaman Khazaeni. Federated learning with matched averaging. In ICLR, 2020.
+
+[Wu et al., 2020] Xing Wu, Zhaowang Liang, and Jianjia Wang. FedMed: A federated learning framework for language modeling. Sensors, 20(14):4048, 2020.
+
+[Xie et al., 2020] Ming Xie, Guodong Long, Tao Shen, Tianyi Zhou, Xianzhi Wang, and Jing Jiang. Multi-center federated learning. arXiv preprint arXiv:2005.01026, 2020.
+
+[Xu and Wang, 2019] Jie Xu and Fei Wang. Federated learning for healthcare informatics. arXiv preprint arXiv:1911.06270, 2019.
+
+[Yang et al., 2019] Qiang Yang, Yang Liu, Tianjian Chen, and Yongxin Tong. Federated machine learning: Concept and applications. ACM TIST, 10(2):12, 2019.
+
+[Yang et al., 2020] Hongwei Yang, Hui He, Weizhe Zhang, and Xiaochun Cao. FedSteg: A Federated Transfer Learning Framework for Secure Image Steganalysis. IEEE TNSE, 2020.
+
+[Yao et al., 2019] Xin Yao, Tianchi Huang, Rui-Xiao Zhang, Ruiyu Li, and Lifeng Sun. Federated learning with unbiased gradient aggregation and controllable meta updating. In NeurIPS Workshop, 2019.
+
+[Yeganeh et al., 2020] Yousef Yeganeh, Azade Farshad, Nassir Navab, and Shadi Albarqouni. Inverse distance aggregation for federated learning with non-iid data. In DCL Workshop at MICCAI, pages 150–159, 2020.
+
+[Yu et al., 2020] Felix X Yu, Ankit Singh Rawat, Aditya Krishna Menon, and Sanjiv Kumar. Federated learning with only positive labels. In ICML, 2020.
+
+[Yurochkin et al., 2019] Mikhail Yurochkin, Mayank Agarwal, Soumya Ghosh, Kristjan Greenewald, Nghia Hoang, and Yasaman Khazaeni. Bayesian nonparametric federated learning of neural networks. In ICML, pages 72527261, 2019.
+
+[Zhan and Zhang, 2020] Yufeng Zhan and Jiang Zhang. An incentive mechanism design for efﬁcient edge learning by deep reinforcement learning approach. In IEEE INFOCOM, pages 2489–2498. IEEE, 2020.
+
+[Zhang et al., 2020] Fengda Zhang, Kun Kuang, Zhaoyang You, Tao Shen, Jun Xiao, Yin Zhang, Chao Wu, Yueting Zhuang, and Xiaolin Li. Federated unsupervised representation learning. arXiv preprint arXiv:2010.08982, 2020. 
+
+[Zhuo et al., 2019] Hankz Hankui Zhuo, Wenfeng Feng, Qian Xu, Qiang Yang, and Yufeng Lin. Federated deep reinforcement learning. arXiv preprint arXiv:1901.08277, 2019.
