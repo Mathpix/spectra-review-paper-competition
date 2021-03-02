@@ -1,0 +1,539 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xl="http://www.w3.org/1999/xlink" version="1.1" viewBox="-128 37 1327 820" width="1327pt" height="820pt" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <metadata> Produced by OmniGraffle 7.0.2 
+    <dc:date>2021-02-26 07:28:43 +0000</dc:date>
+  </metadata>
+  <defs>
+    <marker orient="auto" overflow="visible" markerUnits="strokeWidth" id="FilledArrow_Marker" viewBox="-1 -4 10 8" markerWidth="10" markerHeight="8" color="black">
+      <g>
+        <path d="M 8 0 L 0 -3 L 0 3 Z" fill="currentColor" stroke="currentColor" stroke-width="1"/>
+      </g>
+    </marker>
+    <font-face font-family="Palatino" font-size="21" units-per-em="1000" underline-position="-103.02734" underline-thickness="59.57031" slope="0" x-height="471.1914" cap-height="684.082" ascent="822.7539" descent="-277.34375" font-weight="bold">
+      <font-face-src>
+        <font-face-name name="Palatino-Bold"/>
+      </font-face-src>
+    </font-face>
+    <font-face font-family="Palatino" font-size="16" units-per-em="1000" underline-position="-103.02734" underline-thickness="59.57031" slope="0" x-height="471.1914" cap-height="684.082" ascent="822.7539" descent="-277.34375" font-weight="bold">
+      <font-face-src>
+        <font-face-name name="Palatino-Bold"/>
+      </font-face-src>
+    </font-face>
+    <font-face font-family="Palatino" font-size="16" units-per-em="1000" underline-position="-101.5625" underline-thickness="58.59375" slope="0" x-height="471.1914" cap-height="694.8242" ascent="822.7539" descent="-277.34375" font-weight="500">
+      <font-face-src>
+        <font-face-name name="Palatino-Roman"/>
+      </font-face-src>
+    </font-face>
+    <font-face font-family="Palatino" font-size="16" units-per-em="1000" underline-position="-103.02734" underline-thickness="59.57031" slope="-750" x-height="477.0508" cap-height="684.082" ascent="822.7539" descent="-277.34375" font-style="italic" font-weight="bold">
+      <font-face-src>
+        <font-face-name name="Palatino-BoldItalic"/>
+      </font-face-src>
+    </font-face>
+    <font-face font-family="Palatino" font-size="20" units-per-em="1000" underline-position="-101.5625" underline-thickness="58.59375" slope="0" x-height="471.1914" cap-height="694.8242" ascent="822.7539" descent="-277.34375" font-weight="500">
+      <font-face-src>
+        <font-face-name name="Palatino-Roman"/>
+      </font-face-src>
+    </font-face>
+  </defs>
+  <g stroke="none" stroke-opacity="1" stroke-dasharray="none" fill="none" fill-opacity="1">
+    <title>Canvas 1</title>
+    <g>
+      <title>Layer 1</title>
+      <path d="M 221.91245 592.34864 C 206.37654 620.94375 180.33351 669.3312 164.55296 701.1097" marker-end="url(#FilledArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <path d="M 722.8207 116.60245 C 690.9024 106.046 654.0849 92.67262 627.23025 81.2179" marker-end="url(#FilledArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <path d="M 164.54436 589.001 C 119.93445 601.6393 62.05124 617.7177 15.595618 629.5342" marker-end="url(#FilledArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <path d="M 196.18912 592.34864 C 148.68872 621.19746 67.667835 670.04706 13.724307 700.6371" marker-end="url(#FilledArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <path d="M 455.31924 592.34864 C 489.62415 621.29 548.07276 670.60025 586.6148 703.1163" marker-end="url(#FilledArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <path d="M 887.0543 616.625 C 833.229 640.7675 749.1907 678.5316 689.884 705.51275" marker-end="url(#FilledArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <path d="M 817.7276 284.625 C 783.985 361.86684 676.5417 608.2261 638.4932 700.33975" marker-end="url(#FilledArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <path d="M 66.08107 487.6167 C 42.090316 498.75184 11.376242 512.9808 -15.09859 525.1611" marker-end="url(#FilledArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <path d="M 437.3685 592.34864 C 448.7487 620.07235 466.79986 666.4441 474.16604 698.5456" marker-end="url(#FilledArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <path d="M 415.8043 592.34864 C 401.6464 620.10566 376.7568 666.4453 353.4074 697.6833" marker-end="url(#FilledArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <path d="M 585.6309 393.7367 C 630.1719 338.4067 711 238 711 238 C 711 238 746.9711 196.77162 770.1986 166.48353" marker-end="url(#FilledArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <path d="M 203.69952 136.06552 C 164.86688 116.78526 117.9448 93.29522 85.86426 76.59198" marker-end="url(#FilledArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <path d="M 813.849 378 C 806.0967 428.8508 788.5482 549.37335 786.7148 609.855" marker-end="url(#FilledArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <path d="M 494.1629 433.9755 C 466.6875 429.30274 477.644 389.9657 521.4734 396.67774 C 525.5398 383.5938 576.5075 385.71748 576.1743 396.67774 C 608.1326 382.65943 648.9734 410.61166 621.5796 424.62997 C 654.4508 431.4264 621.1648 468.0447 594.1875 461.92774 C 592.0285 472.12327 543.8012 475.69114 539.5682 461.92774 C 512.2594 476.6264 455.3162 454.0264 494.1629 433.9755 Z" fill="#ff9592"/>
+      <path d="M 494.1629 433.9755 C 466.6875 429.30274 477.644 389.9657 521.4734 396.67774 C 525.5398 383.5938 576.5075 385.71748 576.1743 396.67774 C 608.1326 382.65943 648.9734 410.61166 621.5796 424.62997 C 654.4508 431.4264 621.1648 468.0447 594.1875 461.92774 C 592.0285 472.12327 543.8012 475.69114 539.5682 461.92774 C 512.2594 476.6264 455.3162 454.0264 494.1629 433.9755 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <text transform="translate(502.5 401.30274)" fill="black">
+        <tspan font-family="Palatino" font-size="21" font-weight="bold" x="7.25" y="22" textLength="99.75">Federated </tspan>
+        <tspan font-family="Palatino" font-size="21" font-weight="bold" x="11.336182" y="50" textLength="86.32764">Learning</tspan>
+      </text>
+      <path d="M 202 270 L 360 270 C 364.41828 270 368 273.58172 368 278 L 368 341 C 368 345.41828 364.41828 349 360 349 L 202 349 C 197.58172 349 194 345.41828 194 341 L 194 278 C 194 273.58172 197.58172 270 202 270 Z" fill="#9297ff"/>
+      <path d="M 202 270 L 360 270 C 364.41828 270 368 273.58172 368 278 L 368 341 C 368 345.41828 364.41828 349 360 349 L 202 349 C 197.58172 349 194 345.41828 194 341 L 194 278 C 194 273.58172 197.58172 270 202 270 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <text transform="translate(199 279.5)" fill="black">
+        <tspan font-family="Palatino" font-size="16" font-weight="bold" x="6.324219" y="16" textLength="88.44531">Federated A</tspan>
+        <tspan font-family="Palatino" font-size="16" font-weight="bold" x="93.65234" y="16" textLength="64.02344">veraging</tspan>
+        <tspan font-family="Palatino" font-size="16" font-weight="bold" x="48.77344" y="36" textLength="44.44531">(FedA</tspan>
+        <tspan font-family="Palatino" font-size="16" font-weight="bold" x="92.10156" y="36" textLength="27.125">vg) </tspan>
+        <tspan font-family="Palatino" font-size="16" font-weight="bold" x=".01953125" y="56" textLength="167.96094">[McMahan et al., 2017] </tspan>
+      </text>
+      <path d="M 514 87.625 L 686 87.625 C 690.4183 87.625 694 91.20672 694 95.625 L 694 114.625 C 694 119.04328 690.4183 122.625 686 122.625 L 514 122.625 C 509.5817 122.625 506 119.04328 506 114.625 L 506 95.625 C 506 91.20672 509.5817 87.625 514 87.625 Z" fill="white"/>
+      <path d="M 514 87.625 L 686 87.625 C 690.4183 87.625 694 91.20672 694 95.625 L 694 114.625 C 694 119.04328 690.4183 122.625 686 122.625 L 514 122.625 C 509.5817 122.625 506 119.04328 506 114.625 L 506 95.625 C 506 91.20672 509.5817 87.625 514 87.625 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <text transform="translate(511 95.125)" fill="black">
+        <tspan font-family="Palatino" font-size="16" font-weight="500" x="6.171875" y="16" textLength="42.32031">FedPr</tspan>
+        <tspan font-family="Palatino" font-size="16" font-weight="500" x="48.21094" y="16" textLength="123.61719">ox [Li et al., 2020]</tspan>
+      </text>
+      <path d="M 480.7799 411.6832 C 436.84926 396.2363 382.52535 373.7168 341.48907 353.443" marker-end="url(#FilledArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <path d="M -51 232 L 129 232 C 133.41828 232 137 235.58172 137 240 L 137 271 C 137 275.41828 133.41828 279 129 279 L -51 279 C -55.41828 279 -59 275.41828 -59 271 L -59 240 C -59 235.58172 -55.41828 232 -51 232 Z" fill="white"/>
+      <path d="M -51 232 L 129 232 C 133.41828 232 137 235.58172 137 240 L 137 271 C 137 275.41828 133.41828 279 129 279 L -51 279 C -55.41828 279 -59 275.41828 -59 271 L -59 240 C -59 235.58172 -55.41828 232 -51 232 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <text transform="translate(-54 235.5)" fill="black">
+        <tspan font-family="Palatino" font-size="16" font-weight="500" x=".21484375" y="16" textLength="149.74219">SCAFFOLD [Karimir</tspan>
+        <tspan font-family="Palatino" font-size="16" font-weight="500" x="149.67578" y="16" textLength="40.109375">eddy </tspan>
+        <tspan font-family="Palatino" font-size="16" font-weight="500" x="53.566406" y="36" textLength="78.86719">et al., 2020]</tspan>
+      </text>
+      <path d="M 194.00703 277.6615 C 178.79046 275.30583 162.73083 273.1972 146.838 271.30358" marker-end="url(#FilledArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <path d="M 297 394.25 L 393.92824 394.25 C 398.3465 394.25 401.92824 397.8317 401.92824 402.25 L 401.92824 444.25 C 401.92824 448.6683 398.3465 452.25 393.92824 452.25 L 297 452.25 C 292.58172 452.25 289 448.6683 289 444.25 L 289 402.25 C 289 397.8317 292.58172 394.25 297 394.25 Z" fill="#ffceff"/>
+      <path d="M 297 394.25 L 393.92824 394.25 C 398.3465 394.25 401.92824 397.8317 401.92824 402.25 L 401.92824 444.25 C 401.92824 448.6683 398.3465 452.25 393.92824 452.25 L 297 452.25 C 292.58172 452.25 289 448.6683 289 444.25 L 289 402.25 C 289 397.8317 292.58172 394.25 297 394.25 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <text transform="translate(294 403.25)" fill="black">
+        <tspan font-family="Palatino" font-size="16" font-weight="bold" x="10.135995" y="16" textLength="86.65625">Theoretical </tspan>
+        <tspan font-family="Palatino" font-size="16" font-weight="bold" x="19.475839" y="36" textLength="63.97656">Analysis</tspan>
+      </text>
+      <path d="M 178.25 473.26807 L 279.75 473.26807 C 284.16828 473.26807 287.75 476.8498 287.75 481.26807 L 287.75 512.26807 C 287.75 516.68634 284.16828 520.26807 279.75 520.26807 L 178.25 520.26807 C 173.83172 520.26807 170.25 516.68634 170.25 512.26807 L 170.25 481.26807 C 170.25 476.8498 173.83172 473.26807 178.25 473.26807 Z" fill="white"/>
+      <path d="M 178.25 473.26807 L 279.75 473.26807 C 284.16828 473.26807 287.75 476.8498 287.75 481.26807 L 287.75 512.26807 C 287.75 516.68634 284.16828 520.26807 279.75 520.26807 L 178.25 520.26807 C 173.83172 520.26807 170.25 516.68634 170.25 512.26807 L 170.25 481.26807 C 170.25 476.8498 173.83172 473.26807 178.25 473.26807 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <text transform="translate(175.25 476.76807)" fill="black">
+        <tspan font-family="Palatino" font-size="16" font-weight="500" x="7.363281" y="16" textLength="52.41406">Conver</tspan>
+        <tspan font-family="Palatino" font-size="16" font-weight="500" x="59.496094" y="16" textLength="44.640625">gence </tspan>
+        <tspan font-family="Palatino" font-size="16" font-weight="500" x="4.4375" y="36" textLength="98.625">[Li et al, 2020]</tspan>
+      </text>
+      <path d="M 493.42175 433.83926 C 467.6371 432.85273 437.8549 430.86925 411.79947 428.8829" marker-end="url(#FilledArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <path d="M 309.58982 452.25 C 302.96647 457.3212 295.85664 462.6001 288.6534 467.6776" marker-end="url(#FilledArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <path d="M 208 134.8125 L 338 134.8125 C 342.41828 134.8125 346 138.39422 346 142.8125 L 346 197.75 C 346 202.16828 342.41828 205.75 338 205.75 L 208 205.75 C 203.58172 205.75 200 202.16828 200 197.75 L 200 142.8125 C 200 138.39422 203.58172 134.8125 208 134.8125 Z" fill="#cbcdff"/>
+      <path d="M 208 134.8125 L 338 134.8125 C 342.41828 134.8125 346 138.39422 346 142.8125 L 346 197.75 C 346 202.16828 342.41828 205.75 338 205.75 L 208 205.75 C 203.58172 205.75 200 202.16828 200 197.75 L 200 142.8125 C 200 138.39422 203.58172 134.8125 208 134.8125 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <text transform="translate(205 140.28125)" fill="black">
+        <tspan font-family="Palatino" font-size="16" font-style="italic" font-weight="bold" x="32.578125" y="16" textLength="70.84375">Adaptive/</tspan>
+        <tspan font-family="Palatino" font-size="16" font-style="italic" font-weight="bold" x="34.21875" y="36" textLength="71.5625">Attentive </tspan>
+        <tspan font-family="Palatino" font-size="16" font-style="italic" font-weight="bold" x="24.57422" y="56" textLength="33.78125">Aggr</tspan>
+        <tspan font-family="Palatino" font-size="16" font-style="italic" font-weight="bold" x="58.07422" y="56" textLength="53.35156">egation</tspan>
+      </text>
+      <path d="M 276.7454 270 C 275.09868 253.2004 273.37518 233.42072 272.38604 215.64097" marker-end="url(#FilledArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <path d="M -51 92 L 100 92 C 104.41828 92 108 95.58172 108 100 L 108 119 C 108 123.41828 104.41828 127 100 127 L -51 127 C -55.41828 127 -59 123.41828 -59 119 L -59 100 C -59 95.58172 -55.41828 92 -51 92 Z" fill="white"/>
+      <path d="M -51 92 L 100 92 C 104.41828 92 108 95.58172 108 100 L 108 119 C 108 123.41828 104.41828 127 100 127 L -51 127 C -55.41828 127 -59 123.41828 -59 119 L -59 100 C -59 95.58172 -55.41828 92 -51 92 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <text transform="translate(-54 99.5)" fill="black">
+        <tspan font-family="Palatino" font-size="16" font-weight="500" x="2.8007812" y="16" textLength="151.39844">FedAtt [Ji et al., 2019]</tspan>
+      </text>
+      <path d="M 763 237.625 L 893 237.625 C 897.4183 237.625 901 241.20672 901 245.625 L 901 276.625 C 901 281.04328 897.4183 284.625 893 284.625 L 763 284.625 C 758.5817 284.625 755 281.04328 755 276.625 L 755 245.625 C 755 241.20672 758.5817 237.625 763 237.625 Z" fill="#fffecb"/>
+      <path d="M 763 237.625 L 893 237.625 C 897.4183 237.625 901 241.20672 901 245.625 L 901 276.625 C 901 281.04328 897.4183 284.625 893 284.625 L 763 284.625 C 758.5817 284.625 755 281.04328 755 276.625 L 755 245.625 C 755 241.20672 758.5817 237.625 763 237.625 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <text transform="translate(760 251.125)" fill="black">
+        <tspan font-family="Palatino" font-size="16" font-weight="bold" x="2.8867188" y="16" textLength="10.671875">T</tspan>
+        <tspan font-family="Palatino" font-size="16" font-weight="bold" x="11.785156" y="16" textLength="121.32812">ransfer Learning</tspan>
+      </text>
+      <path d="M 538 545.3486 L 655 545.3486 C 659.4183 545.3486 663 548.93035 663 553.3486 L 663 584.3486 C 663 588.7669 659.4183 592.3486 655 592.3486 L 538 592.3486 C 533.5817 592.3486 530 588.7669 530 584.3486 L 530 553.3486 C 530 548.93035 533.5817 545.3486 538 545.3486 Z" fill="#fffecb"/>
+      <path d="M 538 545.3486 L 655 545.3486 C 659.4183 545.3486 663 548.93035 663 553.3486 L 663 584.3486 C 663 588.7669 659.4183 592.3486 655 592.3486 L 538 592.3486 C 533.5817 592.3486 530 588.7669 530 584.3486 L 530 553.3486 C 530 548.93035 533.5817 545.3486 538 545.3486 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <text transform="translate(535 548.8486)" fill="black">
+        <tspan font-family="Palatino" font-size="16" font-weight="bold" x=".18359375" y="16" textLength="126.63281">Semi-supervised </tspan>
+        <tspan font-family="Palatino" font-size="16" font-weight="bold" x="28.61328" y="36" textLength="65.77344">Learning</tspan>
+      </text>
+      <path d="M 362.4641 545.3486 L 492.4641 545.3486 C 496.8824 545.3486 500.4641 548.93035 500.4641 553.3486 L 500.4641 584.3486 C 500.4641 588.7669 496.8824 592.3486 492.4641 592.3486 L 362.4641 592.3486 C 358.04584 592.3486 354.4641 588.7669 354.4641 584.3486 L 354.4641 553.3486 C 354.4641 548.93035 358.04584 545.3486 362.4641 545.3486 Z" fill="#fffecb"/>
+      <path d="M 362.4641 545.3486 L 492.4641 545.3486 C 496.8824 545.3486 500.4641 548.93035 500.4641 553.3486 L 500.4641 584.3486 C 500.4641 588.7669 496.8824 592.3486 492.4641 592.3486 L 362.4641 592.3486 C 358.04584 592.3486 354.4641 588.7669 354.4641 584.3486 L 354.4641 553.3486 C 354.4641 548.93035 358.04584 545.3486 362.4641 545.3486 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <text transform="translate(359.4641 548.8486)" fill="black">
+        <tspan font-family="Palatino" font-size="16" font-weight="bold" x="16.902344" y="16" textLength="106.19531">Unsupervised </tspan>
+        <tspan font-family="Palatino" font-size="16" font-weight="bold" x="35.11328" y="36" textLength="65.77344">Learning</tspan>
+      </text>
+      <path d="M 171.05324 545.3486 L 298.42824 545.3486 C 302.84652 545.3486 306.42824 548.93035 306.42824 553.3486 L 306.42824 584.3486 C 306.42824 588.7669 302.84652 592.3486 298.42824 592.3486 L 171.05324 592.3486 C 166.63496 592.3486 163.05324 588.7669 163.05324 584.3486 L 163.05324 553.3486 C 163.05324 548.93035 166.63496 545.3486 171.05324 545.3486 Z" fill="#fffecb"/>
+      <path d="M 171.05324 545.3486 L 298.42824 545.3486 C 302.84652 545.3486 306.42824 548.93035 306.42824 553.3486 L 306.42824 584.3486 C 306.42824 588.7669 302.84652 592.3486 298.42824 592.3486 L 171.05324 592.3486 C 166.63496 592.3486 163.05324 588.7669 163.05324 584.3486 L 163.05324 553.3486 C 163.05324 548.93035 166.63496 545.3486 171.05324 545.3486 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <text transform="translate(168.05324 548.8486)" fill="black">
+        <tspan font-family="Palatino" font-size="16" font-weight="bold" x="12.46875" y="16" textLength="112.4375">Reinforcement </tspan>
+        <tspan font-family="Palatino" font-size="16" font-weight="bold" x="33.80078" y="36" textLength="65.77344">Learning</tspan>
+      </text>
+      <path d="M 611.41744 395.53225 C 661.3551 364.54184 734.53305 319.1289 781.7218 289.8444" marker-end="url(#FilledArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <path d="M 601.8341 462.58324 C 609.5812 484.674 607.5144 513.536 603.91596 535.6051" marker-end="url(#FilledArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <path d="M 512.3092 466.36736 C 486.1134 488.6605 454.3908 516.7347 434.64125 537.9716" marker-end="url(#FilledArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <path d="M 486.1136 457.2348 C 424.7052 481.6043 337.0947 516.8093 280.67353 541.3719" marker-end="url(#FilledArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <path d="M 331.07176 42.65137 L 511.07176 42.65137 C 515.49004 42.65137 519.07176 46.23309 519.07176 50.65137 L 519.07176 65.65137 C 519.07176 70.06965 515.49004 73.65137 511.07176 73.65137 L 331.07176 73.65137 C 326.6535 73.65137 323.07176 70.06965 323.07176 65.65137 L 323.07176 50.65137 C 323.07176 46.23309 326.6535 42.65137 331.07176 42.65137 Z" fill="white"/>
+      <path d="M 331.07176 42.65137 L 511.07176 42.65137 C 515.49004 42.65137 519.07176 46.23309 519.07176 50.65137 L 519.07176 65.65137 C 519.07176 70.06965 515.49004 73.65137 511.07176 73.65137 L 331.07176 73.65137 C 326.6535 73.65137 323.07176 70.06965 323.07176 65.65137 L 323.07176 50.65137 C 323.07176 46.23309 326.6535 42.65137 331.07176 42.65137 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <text transform="translate(328.07176 48.15137)" fill="black">
+        <tspan font-family="Palatino" font-size="16" font-weight="500" x="5.0234375" y="16" textLength="84.23438">FedMed [W</tspan>
+        <tspan font-family="Palatino" font-size="16" font-weight="500" x="88.46094" y="16" textLength="92.51562">u et al., 2020]</tspan>
+      </text>
+      <path d="M 329.0151 134.8125 C 355.94293 117.14837 386.27975 96.22971 404.6271 80.33824" marker-end="url(#FilledArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <path d="M 200 152.91013 C 169.21838 145.55631 133.34783 136.94799 102.08531 129.34365" marker-end="url(#FilledArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <path d="M 182 42.25 L 299 42.25 C 303.41828 42.25 307 45.83172 307 50.25 L 307 86.25 C 307 90.66828 303.41828 94.25 299 94.25 L 182 94.25 C 177.58172 94.25 174 90.66828 174 86.25 L 174 50.25 C 174 45.83172 177.58172 42.25 182 42.25 Z" fill="white"/>
+      <path d="M 182 42.25 L 299 42.25 C 303.41828 42.25 307 45.83172 307 50.25 L 307 86.25 C 307 90.66828 303.41828 94.25 299 94.25 L 182 94.25 C 177.58172 94.25 174 90.66828 174 86.25 L 174 50.25 C 174 45.83172 177.58172 42.25 182 42.25 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <text transform="translate(179 48.25)" fill="black">
+        <tspan font-family="Palatino" font-size="16" font-weight="500" x=".421875" y="16" textLength="126.15625">FedAttOpt [Jiang </tspan>
+        <tspan font-family="Palatino" font-size="16" font-weight="500" x="22.066406" y="36" textLength="78.86719">et al., 2020]</tspan>
+      </text>
+      <path d="M 252.28616 134.8125 C 247.10873 124.82062 242.06926 113.90946 238.67116 103.76444" marker-end="url(#FilledArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <path d="M -50.25 142 L 140.67824 142 C 145.09652 142 148.67824 145.58172 148.67824 150 L 148.67824 165 C 148.67824 169.41828 145.09652 173 140.67824 173 L -50.25 173 C -54.66828 173 -58.25 169.41828 -58.25 165 L -58.25 150 C -58.25 145.58172 -54.66828 142 -50.25 142 Z" fill="white"/>
+      <path d="M -50.25 142 L 140.67824 142 C 145.09652 142 148.67824 145.58172 148.67824 150 L 148.67824 165 C 148.67824 169.41828 145.09652 173 140.67824 173 L -50.25 173 C -54.66828 173 -58.25 169.41828 -58.25 165 L -58.25 150 C -58.25 145.58172 -54.66828 142 -50.25 142 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <text transform="translate(-53.25 147.5)" fill="black">
+        <tspan font-family="Palatino" font-size="16" font-weight="500" x="10.225839" y="16" textLength="176.47656">ASTW [Chen et al., 2020]</tspan>
+      </text>
+      <path d="M 34 357.0625 L 159 357.0625 C 163.41828 357.0625 167 360.64422 167 365.0625 L 167 407.0625 C 167 411.4808 163.41828 415.0625 159 415.0625 L 34 415.0625 C 29.581722 415.0625 26 411.4808 26 407.0625 L 26 365.0625 C 26 360.64422 29.581722 357.0625 34 357.0625 Z" fill="#cbcdff"/>
+      <path d="M 34 357.0625 L 159 357.0625 C 163.41828 357.0625 167 360.64422 167 365.0625 L 167 407.0625 C 167 411.4808 163.41828 415.0625 159 415.0625 L 34 415.0625 C 29.581722 415.0625 26 411.4808 26 407.0625 L 26 365.0625 C 26 360.64422 29.581722 357.0625 34 357.0625 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <text transform="translate(31 366.0625)" fill="black">
+        <tspan font-family="Palatino" font-size="16" font-style="italic" font-weight="bold" x="31.71875" y="16" textLength="51.84375">Cluster</tspan>
+        <tspan font-family="Palatino" font-size="16" font-style="italic" font-weight="bold" x="83.28125" y="16" textLength="20">ed </tspan>
+        <tspan font-family="Palatino" font-size="16" font-style="italic" font-weight="bold" x="34.38672" y="36" textLength="62.22656">Methods</tspan>
+      </text>
+      <path d="M 197.75586 347.78264 C 189.45275 350.44632 181.099 353.02462 172.93737 355.5296" marker-end="url(#FilledArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <path d="M -119 460 L -10 460 C -5.581722 460 -2 463.5817 -2 468 L -2 495 C -2 499.4183 -5.581722 503 -10 503 L -119 503 C -123.41828 503 -127 499.4183 -127 495 L -127 468 C -127 463.5817 -123.41828 460 -119 460 Z" fill="white"/>
+      <path d="M -119 460 L -10 460 C -5.581722 460 -2 463.5817 -2 468 L -2 495 C -2 499.4183 -5.581722 503 -10 503 L -119 503 C -123.41828 503 -127 499.4183 -127 495 L -127 468 C -127 463.5817 -123.41828 460 -119 460 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <text transform="translate(-122 461.5)" fill="black">
+        <tspan font-family="Palatino" font-size="16" font-weight="500" x="3.6601562" y="16" textLength="111.67969">FL+HC [Briggs </tspan>
+        <tspan font-family="Palatino" font-size="16" font-weight="500" x="20.066406" y="36" textLength="74.86719">et al. 2020]</tspan>
+      </text>
+      <path d="M 56.40405 415.0625 C 38.540373 427.6538 17.07447 442.34066 -2.844744 454.8062" marker-end="url(#FilledArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <path d="M 391 194.5 L 508 194.5 C 512.4183 194.5 516 198.08172 516 202.5 L 516 244.5 C 516 248.91828 512.4183 252.5 508 252.5 L 391 252.5 C 386.5817 252.5 383 248.91828 383 244.5 L 383 202.5 C 383 198.08172 386.5817 194.5 391 194.5 Z" fill="#cbcdff"/>
+      <path d="M 391 194.5 L 508 194.5 C 512.4183 194.5 516 198.08172 516 202.5 L 516 244.5 C 516 248.91828 512.4183 252.5 508 252.5 L 391 252.5 C 386.5817 252.5 383 248.91828 383 244.5 L 383 202.5 C 383 198.08172 386.5817 194.5 391 194.5 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <text transform="translate(388 203.5)" fill="black">
+        <tspan font-family="Palatino" font-size="16" font-style="italic" font-weight="bold" x="7.707031" y="16" textLength="111.58594">Regularization </tspan>
+        <tspan font-family="Palatino" font-size="16" font-style="italic" font-weight="bold" x="30.38672" y="36" textLength="62.22656">Methods</tspan>
+      </text>
+      <path d="M 354.01844 270 C 362.4632 265.51773 371.0757 260.98272 379.5179 256.59042" marker-end="url(#FilledArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <path d="M 485.4258 194.5 C 510.52587 174.3092 543.78737 147.70073 568.2342 128.68716" marker-end="url(#FilledArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <path d="M 564 148 L 703 148 C 707.4183 148 711 151.58172 711 156 L 711 192 C 711 196.41828 707.4183 200 703 200 L 564 200 C 559.5817 200 556 196.41828 556 192 L 556 156 C 556 151.58172 559.5817 148 564 148 Z" fill="white"/>
+      <path d="M 564 148 L 703 148 C 707.4183 148 711 151.58172 711 156 L 711 192 C 711 196.41828 707.4183 200 703 200 L 564 200 C 559.5817 200 556 196.41828 556 192 L 556 156 C 556 151.58172 559.5817 148 564 148 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <text transform="translate(561 154)" fill="black">
+        <tspan font-family="Palatino" font-size="16" font-weight="500" x="1.2851562" y="16" textLength="106.60156">Mime [Karimir</tspan>
+        <tspan font-family="Palatino" font-size="16" font-weight="500" x="107.60547" y="16" textLength="40.109375">eddy </tspan>
+        <tspan font-family="Palatino" font-size="16" font-weight="500" x="33.066406" y="36" textLength="78.86719">et al., 2020]</tspan>
+      </text>
+      <path d="M 516 205.22468 C 525.88786 202.52694 536.2901 199.69838 546.76977 196.8633" marker-end="url(#FilledArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <path d="M 200 162.19854 C 186.80968 160.9124 172.72513 159.64003 158.54826 158.52495" marker-end="url(#FilledArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <path d="M -109 292 L 130.07176 292 C 134.49004 292 138.07176 295.58172 138.07176 300 L 138.07176 315 C 138.07176 319.41828 134.49004 323 130.07176 323 L -109 323 C -113.41828 323 -117 319.41828 -117 315 L -117 300 C -117 295.58172 -113.41828 292 -109 292 Z" fill="white"/>
+      <path d="M -109 292 L 130.07176 292 C 134.49004 292 138.07176 295.58172 138.07176 300 L 138.07176 315 C 138.07176 319.41828 134.49004 323 130.07176 323 L -109 323 C -113.41828 323 -117 319.41828 -117 315 L -117 300 C -117 295.58172 -113.41828 292 -109 292 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <text transform="translate(-112 297.5)" fill="black">
+        <tspan font-family="Palatino" font-size="16" font-weight="500" x="4.7624425" y="16" textLength="235.54688">FedFast [Muhammad et al., 2020]</tspan>
+      </text>
+      <path d="M 69.276635 357.0625 C 60.401006 347.99784 50.334967 338.11473 40.653183 329.4792" marker-end="url(#FilledArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <path d="M 415.36086 293.15137 L 502.36086 293.15137 C 506.77914 293.15137 510.36086 296.7331 510.36086 301.15137 L 510.36086 337.15137 C 510.36086 341.56965 506.77914 345.15137 502.36086 345.15137 L 415.36086 345.15137 C 410.9426 345.15137 407.36086 341.56965 407.36086 337.15137 L 407.36086 301.15137 C 407.36086 296.7331 410.9426 293.15137 415.36086 293.15137 Z" fill="#cbcdff"/>
+      <path d="M 415.36086 293.15137 L 502.36086 293.15137 C 506.77914 293.15137 510.36086 296.7331 510.36086 301.15137 L 510.36086 337.15137 C 510.36086 341.56965 506.77914 345.15137 502.36086 345.15137 L 415.36086 345.15137 C 410.9426 345.15137 407.36086 341.56965 407.36086 337.15137 L 407.36086 301.15137 C 407.36086 296.7331 410.9426 293.15137 415.36086 293.15137 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <text transform="translate(412.36086 299.15137)" fill="black">
+        <tspan font-family="Palatino" font-size="16" font-style="italic" font-weight="bold" x="13.601562" y="16" textLength="69.796875">Bayesian </tspan>
+        <tspan font-family="Palatino" font-size="16" font-style="italic" font-weight="bold" x="15.386719" y="36" textLength="62.22656">Methods</tspan>
+      </text>
+      <path d="M 368 317.4141 C 377.62197 318.03432 387.53733 318.5768 397.46294 318.98375" marker-end="url(#FilledArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <path d="M 544 225.375 L 674 225.375 C 678.4183 225.375 682 228.95672 682 233.375 L 682 260.375 C 682 264.79328 678.4183 268.375 674 268.375 L 544 268.375 C 539.5817 268.375 536 264.79328 536 260.375 L 536 233.375 C 536 228.95672 539.5817 225.375 544 225.375 Z" fill="white"/>
+      <path d="M 544 225.375 L 674 225.375 C 678.4183 225.375 682 228.95672 682 233.375 L 682 260.375 C 682 264.79328 678.4183 268.375 674 268.375 L 544 268.375 C 539.5817 268.375 536 264.79328 536 260.375 L 536 233.375 C 536 228.95672 539.5817 225.375 544 225.375 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <text transform="translate(541 226.875)" fill="black">
+        <tspan font-family="Palatino" font-size="16" font-weight="500" x="3.3710938" y="16" textLength="66.99219">PFNM [Y</tspan>
+        <tspan font-family="Palatino" font-size="16" font-weight="500" x="68.92578" y="16" textLength="15.96875">ur</tspan>
+        <tspan font-family="Palatino" font-size="16" font-weight="500" x="84.61328" y="16" textLength="52.015625">ochkin </tspan>
+        <tspan font-family="Palatino" font-size="16" font-weight="500" x="28.566406" y="36" textLength="78.86719">et al., 2019]</tspan>
+      </text>
+      <path d="M 508.01295 295.48975 C 523.18276 288.18707 539.9621 280.10955 555.41516 272.67052" marker-end="url(#FilledArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <path d="M 730.25 111.57568 L 847.25 111.57568 C 851.6683 111.57568 855.25 115.1574 855.25 119.57568 L 855.25 150.57568 C 855.25 154.99396 851.6683 158.57568 847.25 158.57568 L 730.25 158.57568 C 725.8317 158.57568 722.25 154.99396 722.25 150.57568 L 722.25 119.57568 C 722.25 115.1574 725.8317 111.57568 730.25 111.57568 Z" fill="#8efb92"/>
+      <path d="M 730.25 111.57568 L 847.25 111.57568 C 851.6683 111.57568 855.25 115.1574 855.25 119.57568 L 855.25 150.57568 C 855.25 154.99396 851.6683 158.57568 847.25 158.57568 L 730.25 158.57568 C 725.8317 158.57568 722.25 154.99396 722.25 150.57568 L 722.25 119.57568 C 722.25 115.1574 725.8317 111.57568 730.25 111.57568 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <text transform="translate(727.25 125.07568)" fill="black">
+        <tspan font-family="Palatino" font-size="16" font-weight="bold" x="14.410156" y="16" textLength="94.17969">Applications</tspan>
+      </text>
+      <path d="M 831 42.25 L 982 42.25 C 986.4183 42.25 990 45.83172 990 50.25 L 990 77.25 C 990 81.66828 986.4183 85.25 982 85.25 L 831 85.25 C 826.5817 85.25 823 81.66828 823 77.25 L 823 50.25 C 823 45.83172 826.5817 42.25 831 42.25 Z" fill="white"/>
+      <path d="M 831 42.25 L 982 42.25 C 986.4183 42.25 990 45.83172 990 50.25 L 990 77.25 C 990 81.66828 986.4183 85.25 982 85.25 L 831 85.25 C 826.5817 85.25 823 81.66828 823 77.25 L 823 50.25 C 823 45.83172 826.5817 42.25 831 42.25 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <text transform="translate(828 43.75)" fill="black">
+        <tspan font-family="Palatino" font-size="16" font-weight="500" x="10.828125" y="16" textLength="139.34375">Image Steganalysis </tspan>
+        <tspan font-family="Palatino" font-size="16" font-weight="500" x="16.695312" y="36" textLength="16">[Y</tspan>
+        <tspan font-family="Palatino" font-size="16" font-weight="500" x="31.226562" y="36" textLength="109.07812">ang et al., 2020]</tspan>
+      </text>
+      <path d="M 1009.5 42.65137 L 1189.5 42.65137 C 1193.9183 42.65137 1197.5 46.23309 1197.5 50.65137 L 1197.5 81.65137 C 1197.5 86.06965 1193.9183 89.65137 1189.5 89.65137 L 1009.5 89.65137 C 1005.0817 89.65137 1001.5 86.06965 1001.5 81.65137 L 1001.5 50.65137 C 1001.5 46.23309 1005.0817 42.65137 1009.5 42.65137 Z" fill="white"/>
+      <path d="M 1009.5 42.65137 L 1189.5 42.65137 C 1193.9183 42.65137 1197.5 46.23309 1197.5 50.65137 L 1197.5 81.65137 C 1197.5 86.06965 1193.9183 89.65137 1189.5 89.65137 L 1009.5 89.65137 C 1005.0817 89.65137 1001.5 86.06965 1001.5 81.65137 L 1001.5 50.65137 C 1001.5 46.23309 1005.0817 42.65137 1009.5 42.65137 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <text transform="translate(1006.5 46.15137)" fill="black">
+        <tspan font-family="Palatino" font-size="16" font-weight="500" x="30.445312" y="16" textLength="133.10938">Recommendation  </tspan>
+        <tspan font-family="Palatino" font-size="16" font-weight="500" x="4.84375" y="36" textLength="176.3125">[Muhammad et al., 2020]</tspan>
+      </text>
+      <path d="M 832.5844 111.57568 C 845.117 104.74181 858.6943 97.22673 870.9418 90.20783" marker-end="url(#FilledArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <path d="M 855.25 120.9997 C 896.1696 112.29806 949.4824 100.8883 995.8666 90.72614" marker-end="url(#FilledArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <path d="M 68.92824 449.125 L 144.92824 449.125 C 149.34652 449.125 152.92824 452.7067 152.92824 457.125 L 152.92824 480.1382 C 152.92824 484.55646 149.34652 488.1382 144.92824 488.1382 L 68.92824 488.1382 C 64.50996 488.1382 60.92824 484.55646 60.92824 480.1382 L 60.92824 457.125 C 60.92824 452.7067 64.50996 449.125 68.92824 449.125 Z" fill="#cbcdff"/>
+      <path d="M 68.92824 449.125 L 144.92824 449.125 C 149.34652 449.125 152.92824 452.7067 152.92824 457.125 L 152.92824 480.1382 C 152.92824 484.55646 149.34652 488.1382 144.92824 488.1382 L 68.92824 488.1382 C 64.50996 488.1382 60.92824 484.55646 60.92824 480.1382 L 60.92824 457.125 C 60.92824 452.7067 64.50996 449.125 68.92824 449.125 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <text transform="translate(65.92824 458.6316)" fill="black">
+        <tspan font-family="Palatino" font-size="16" font-style="italic" font-weight="bold" x="11.222656" y="16" textLength="59.55469">Fairness</tspan>
+      </text>
+      <path d="M -119 528.75 L -27 528.75 C -22.581722 528.75 -19 532.3317 -19 536.75 L -19 565.75 C -19 570.1683 -22.581722 573.75 -27 573.75 L -119 573.75 C -123.41828 573.75 -127 570.1683 -127 565.75 L -127 536.75 C -127 532.3317 -123.41828 528.75 -119 528.75 Z" fill="white"/>
+      <path d="M -119 528.75 L -27 528.75 C -22.581722 528.75 -19 532.3317 -19 536.75 L -19 565.75 C -19 570.1683 -22.581722 573.75 -27 573.75 L -119 573.75 C -123.41828 573.75 -127 570.1683 -127 565.75 L -127 536.75 C -127 532.3317 -123.41828 528.75 -119 528.75 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <text transform="translate(-122 531.25)" fill="black">
+        <tspan font-family="Palatino" font-size="16" font-weight="500" x="6.9921875" y="16" textLength="31.117188">AFL</tspan>
+        <tspan font-family="Palatino" font-size="16" font-weight="500" x="37.523438" y="16" textLength="57.484375"> [Mohri </tspan>
+        <tspan font-family="Palatino" font-size="16" font-weight="500" x="9.566406" y="36" textLength="78.86719">et al., 2019]</tspan>
+      </text>
+      <path d="M 24 543 L 111 543 C 115.41828 543 119 546.5817 119 551 L 119 578 C 119 582.4183 115.41828 586 111 586 L 24 586 C 19.581722 586 16 582.4183 16 578 L 16 551 C 16 546.5817 19.581722 543 24 543 Z" fill="white"/>
+      <path d="M 24 543 L 111 543 C 115.41828 543 119 546.5817 119 551 L 119 578 C 119 582.4183 115.41828 586 111 586 L 24 586 C 19.581722 586 16 582.4183 16 578 L 16 551 C 16 546.5817 19.581722 543 24 543 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <text transform="translate(21 544.5)" fill="black">
+        <tspan font-family="Palatino" font-size="16" font-weight="500" x="5.542969" y="16" textLength="41.859375">q-FFL</tspan>
+        <tspan font-family="Palatino" font-size="16" font-weight="500" x="46.816406" y="16" textLength="44.640625"> [Li et </tspan>
+        <tspan font-family="Palatino" font-size="16" font-weight="500" x="11.082031" y="36" textLength="70.83594">al., 2020b]</tspan>
+      </text>
+      <path d="M 255.6615 349 C 228.43788 378.53116 185.48894 417.8538 152.10148 443.21935" marker-end="url(#FilledArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <path d="M 115.90531 488.1382 C 117.6209 501.839 114.6346 519.5082 107.36534 534.3994" marker-end="url(#FilledArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <path d="M -119 343.5 L -32 343.5 C -27.581722 343.5 -24 347.08172 -24 351.5 L -24 378.5 C -24 382.9183 -27.581722 386.5 -32 386.5 L -119 386.5 C -123.41828 386.5 -127 382.9183 -127 378.5 L -127 351.5 C -127 347.08172 -123.41828 343.5 -119 343.5 Z" fill="white"/>
+      <path d="M -119 343.5 L -32 343.5 C -27.581722 343.5 -24 347.08172 -24 351.5 L -24 378.5 C -24 382.9183 -27.581722 386.5 -32 386.5 L -119 386.5 C -123.41828 386.5 -127 382.9183 -127 378.5 L -127 351.5 C -127 347.08172 -123.41828 343.5 -119 343.5 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <text transform="translate(-122 345)" fill="black">
+        <tspan font-family="Palatino" font-size="16" font-weight="500" x="5.40625" y="16" textLength="86.1875">FeSEM [Xie </tspan>
+        <tspan font-family="Palatino" font-size="16" font-weight="500" x="7.066406" y="36" textLength="78.86719">et al., 2020]</tspan>
+      </text>
+      <path d="M 25.999993 377.8163 C 12.791301 376.24607 -1.0037277 374.5895 -14.169207 372.97954" marker-end="url(#FilledArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <path d="M -51 41 L 149.92824 41 C 154.34652 41 157.92824 44.58172 157.92824 49 L 157.92824 64 C 157.92824 68.41828 154.34652 72 149.92824 72 L -51 72 C -55.41828 72 -59 68.41828 -59 64 L -59 49 C -59 44.58172 -55.41828 41 -51 41 Z" fill="white"/>
+      <path d="M -51 41 L 149.92824 41 C 154.34652 41 157.92824 44.58172 157.92824 49 L 157.92824 64 C 157.92824 68.41828 154.34652 72 149.92824 72 L -51 72 C -55.41828 72 -59 68.41828 -59 64 L -59 49 C -59 44.58172 -55.41828 41 -51 41 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <text transform="translate(-54 46.5)" fill="black">
+        <tspan font-family="Palatino" font-size="16" font-weight="500" x="1.1320888" y="16" textLength="63.578125">FedAMP</tspan>
+        <tspan font-family="Palatino" font-size="16" font-weight="500" x="64.42896" y="16" textLength="141.36719"> [Huang et al., 2021]</tspan>
+      </text>
+      <path d="M -51 188 L 144.92824 188 C 149.34652 188 152.92824 191.58172 152.92824 196 L 152.92824 211 C 152.92824 215.41828 149.34652 219 144.92824 219 L -51 219 C -55.41828 219 -59 215.41828 -59 211 L -59 196 C -59 191.58172 -55.41828 188 -51 188 Z" fill="white"/>
+      <path d="M -51 188 L 144.92824 188 C 149.34652 188 152.92824 191.58172 152.92824 196 L 152.92824 211 C 152.92824 215.41828 149.34652 219 144.92824 219 L -51 219 C -55.41828 219 -59 215.41828 -59 211 L -59 196 C -59 191.58172 -55.41828 188 -51 188 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <text transform="translate(-54 193.5)" fill="black">
+        <tspan font-family="Palatino" font-size="16" font-weight="500" x="10.167245" y="16" textLength="30.21875">IDA</tspan>
+        <tspan font-family="Palatino" font-size="16" font-weight="500" x="39.510995" y="16" textLength="20"> [Y</tspan>
+        <tspan font-family="Palatino" font-size="16" font-weight="500" x="58.042245" y="16" textLength="133.71875">eganeh et al., 2020]</tspan>
+      </text>
+      <path d="M 200 189.51284 C 187.85344 191.96026 175.25318 194.25386 162.70934 196.30572" marker-end="url(#FilledArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <path d="M 783.0718 433 L 905.0718 433 C 909.49 433 913.0718 436.5817 913.0718 441 L 913.0718 472 C 913.0718 476.4183 909.49 480 905.0718 480 L 783.0718 480 C 778.6535 480 775.0718 476.4183 775.0718 472 L 775.0718 441 C 775.0718 436.5817 778.6535 433 783.0718 433 Z" fill="#fffecb"/>
+      <path d="M 783.0718 433 L 905.0718 433 C 909.49 433 913.0718 436.5817 913.0718 441 L 913.0718 472 C 913.0718 476.4183 909.49 480 905.0718 480 L 783.0718 480 C 778.6535 480 775.0718 476.4183 775.0718 472 L 775.0718 441 C 775.0718 436.5817 778.6535 433 783.0718 433 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <text transform="translate(780.0718 436.5)" fill="black">
+        <tspan font-family="Palatino" font-size="16" font-weight="bold" x="19.355469" y="16" textLength="93.28906">Multitask &amp; </tspan>
+        <tspan font-family="Palatino" font-size="16" font-weight="bold" x="10.449219" y="36" textLength="107.10156">Meta Learning</tspan>
+      </text>
+      <path d="M 864 569.625 L 1015 569.625 C 1019.4183 569.625 1023 573.2067 1023 577.625 L 1023 608.625 C 1023 613.0433 1019.4183 616.625 1015 616.625 L 864 616.625 C 859.5817 616.625 856 613.0433 856 608.625 L 856 577.625 C 856 573.2067 859.5817 569.625 864 569.625 Z" fill="#fffecb"/>
+      <path d="M 864 569.625 L 1015 569.625 C 1019.4183 569.625 1023 573.2067 1023 577.625 L 1023 608.625 C 1023 613.0433 1019.4183 616.625 1015 616.625 L 864 616.625 C 859.5817 616.625 856 613.0433 856 608.625 L 856 577.625 C 856 573.2067 859.5817 569.625 864 569.625 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <text transform="translate(861 573.125)" fill="black">
+        <tspan font-family="Palatino" font-size="16" font-weight="bold" x="38.058594" y="16" textLength="84.88281">Generative </tspan>
+        <tspan font-family="Palatino" font-size="16" font-weight="bold" x=".9492188" y="36" textLength="155.10156">Adversarial Learning</tspan>
+      </text>
+      <path d="M 634.9596 439.30776 C 666.8201 443.18264 704.4095 447.48697 739.6488 450.8562 C 740.1604 445.38004 751.1122 446.40324 750.6006 451.8794 C 755.54215 452.3298 760.4188 452.7583 765.2071 453.1609" marker-end="url(#FilledArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <path d="M 616.74486 458.60577 C 644.3891 472.0142 679.1573 488.68515 715.6102 505.68313 C 717.9298 500.6962 727.9053 505.3361 725.5857 510.32305 C 746.0407 519.8129 766.8651 529.3215 787.1185 538.3412 C 789.3477 533.3132 799.4065 537.7729 797.1773 542.8009 C 816.4988 551.3279 835.1438 559.32176 852.2687 566.32725" marker-end="url(#FilledArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <path d="M 857 162.75 L 966 162.75 C 970.4183 162.75 974 166.33172 974 170.75 L 974 197.75 C 974 202.16828 970.4183 205.75 966 205.75 L 857 205.75 C 852.5817 205.75 849 202.16828 849 197.75 L 849 170.75 C 849 166.33172 852.5817 162.75 857 162.75 Z" fill="white"/>
+      <path d="M 857 162.75 L 966 162.75 C 970.4183 162.75 974 166.33172 974 170.75 L 974 197.75 C 974 202.16828 970.4183 205.75 966 205.75 L 857 205.75 C 852.5817 205.75 849 202.16828 849 197.75 L 849 170.75 C 849 166.33172 852.5817 162.75 857 162.75 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <text transform="translate(854 164.25)" fill="black">
+        <tspan font-family="Palatino" font-size="16" font-weight="500" x="8.082031" y="16" textLength="28.476562">FTL</tspan>
+        <tspan font-family="Palatino" font-size="16" font-weight="500" x="35.972656" y="16" textLength="74.94531"> [Liu et al, </tspan>
+        <tspan font-family="Palatino" font-size="16" font-weight="500" x="38.835938" y="36" textLength="37.328125">2020]</tspan>
+      </text>
+      <path d="M 1017.5 182 L 1134.5 182 C 1138.9183 182 1142.5 185.58172 1142.5 190 L 1142.5 217 C 1142.5 221.41828 1138.9183 225 1134.5 225 L 1017.5 225 C 1013.0817 225 1009.5 221.41828 1009.5 217 L 1009.5 190 C 1009.5 185.58172 1013.0817 182 1017.5 182 Z" fill="white"/>
+      <path d="M 1017.5 182 L 1134.5 182 C 1138.9183 182 1142.5 185.58172 1142.5 190 L 1142.5 217 C 1142.5 221.41828 1138.9183 225 1134.5 225 L 1017.5 225 C 1013.0817 225 1009.5 221.41828 1009.5 217 L 1009.5 190 C 1009.5 185.58172 1013.0817 182 1017.5 182 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <text transform="translate(1014.5 183.5)" fill="black">
+        <tspan font-family="Palatino" font-size="16" font-weight="500" x="2.4296875" y="16" textLength="76.515625">FedSteg [Y</tspan>
+        <tspan font-family="Palatino" font-size="16" font-weight="500" x="77.47656" y="16" textLength="47.09375">ang et </tspan>
+        <tspan font-family="Palatino" font-size="16" font-weight="500" x="30.507812" y="36" textLength="61.984375">al., 2020]</tspan>
+      </text>
+      <path d="M 763 331 L 872 331 C 876.4183 331 880 334.58172 880 339 L 880 370 C 880 374.4183 876.4183 378 872 378 L 763 378 C 758.5817 378 755 374.4183 755 370 L 755 339 C 755 334.58172 758.5817 331 763 331 Z" fill="#fffecb"/>
+      <path d="M 763 331 L 872 331 C 876.4183 331 880 334.58172 880 339 L 880 370 C 880 374.4183 876.4183 378 872 378 L 763 378 C 758.5817 378 755 374.4183 755 370 L 755 339 C 755 334.58172 758.5817 331 763 331 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <text transform="translate(760 334.5)" fill="black">
+        <tspan font-family="Palatino" font-size="16" font-weight="bold" x="15.277344" y="16" textLength="88.44531">Knowledge </tspan>
+        <tspan font-family="Palatino" font-size="16" font-weight="bold" x="15.300781" y="36" textLength="88.39844">Distillation </tspan>
+      </text>
+      <path d="M 1013.5 242 L 1185.5 242 C 1189.9183 242 1193.5 245.58172 1193.5 250 L 1193.5 273 C 1193.5 277.41828 1189.9183 281 1185.5 281 L 1013.5 281 C 1009.0817 281 1005.5 277.41828 1005.5 273 L 1005.5 250 C 1005.5 245.58172 1009.0817 242 1013.5 242 Z" fill="white"/>
+      <path d="M 1013.5 242 L 1185.5 242 C 1189.9183 242 1193.5 245.58172 1193.5 250 L 1193.5 273 C 1193.5 277.41828 1189.9183 281 1185.5 281 L 1013.5 281 C 1009.0817 281 1005.5 277.41828 1005.5 273 L 1005.5 250 C 1005.5 245.58172 1009.0817 242 1013.5 242 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <text transform="translate(1010.5 251.5)" fill="black">
+        <tspan font-family="Palatino" font-size="16" font-weight="500" x="2.4296875" y="16" textLength="173.14062">FedGKT [He et al., 2020]</tspan>
+      </text>
+      <path d="M 878.5276 334.3739 C 923.4005 319.57537 984.4184 299.45245 1030.9664 284.1015" marker-end="url(#FilledArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <path d="M 629.0387 407.9556 C 664.9214 397.3858 708.4611 384.6578 745.5996 374.0827" marker-end="url(#FilledArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <path d="M 900.7544 243.6501 C 932.7777 236.17112 968.9054 227.87154 1000.0027 220.7686" marker-end="url(#FilledArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <path d="M 853.5252 237.625 C 862.1547 229.6802 871.8793 220.72715 880.8634 212.45583" marker-end="url(#FilledArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <path d="M 391 106.07568 L 487.92824 106.07568 C 492.3465 106.07568 495.92824 109.6574 495.92824 114.07568 L 495.92824 156.07568 C 495.92824 160.49396 492.3465 164.07568 487.92824 164.07568 L 391 164.07568 C 386.5817 164.07568 383 160.49396 383 156.07568 L 383 114.07568 C 383 109.6574 386.5817 106.07568 391 106.07568 Z" fill="white"/>
+      <path d="M 391 106.07568 L 487.92824 106.07568 C 492.3465 106.07568 495.92824 109.6574 495.92824 114.07568 L 495.92824 156.07568 C 495.92824 160.49396 492.3465 164.07568 487.92824 164.07568 L 391 164.07568 C 386.5817 164.07568 383 160.49396 383 156.07568 L 383 114.07568 C 383 109.6574 386.5817 106.07568 391 106.07568 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <text transform="translate(388 115.07568)" fill="black">
+        <tspan font-family="Palatino" font-size="16" font-weight="500" x="7.686776" y="16" textLength="38.78125">FedA</tspan>
+        <tspan font-family="Palatino" font-size="16" font-weight="500" x="45.28834" y="16" textLength="41.742188">wS [Y</tspan>
+        <tspan font-family="Palatino" font-size="16" font-weight="500" x="85.59303" y="16" textLength="13.648438">u </tspan>
+        <tspan font-family="Palatino" font-size="16" font-weight="500" x="12.030526" y="36" textLength="78.86719">et al., 2020]</tspan>
+      </text>
+      <path d="M 435.43443 194.5 C 432.73923 187.8907 430.20973 180.7562 428.4395 173.78484" marker-end="url(#FilledArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <path d="M 980 343.25 L 1185.5 343.25 C 1189.9183 343.25 1193.5 346.83172 1193.5 351.25 L 1193.5 370 C 1193.5 374.4183 1189.9183 378 1185.5 378 L 980 378 C 975.5817 378 972 374.4183 972 370 L 972 351.25 C 972 346.83172 975.5817 343.25 980 343.25 Z" fill="white"/>
+      <path d="M 980 343.25 L 1185.5 343.25 C 1189.9183 343.25 1193.5 346.83172 1193.5 351.25 L 1193.5 370 C 1193.5 374.4183 1189.9183 378 1185.5 378 L 980 378 C 975.5817 378 972 374.4183 972 370 L 972 351.25 C 972 346.83172 975.5817 343.25 980 343.25 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <text transform="translate(977 350.625)" fill="black">
+        <tspan font-family="Palatino" font-size="16" font-weight="500" x="14.65625" y="16" textLength="182.1875">Mocha [Smith et al., 2017]</tspan>
+      </text>
+      <path d="M 1025.75 390.0625 L 1185.5 390.0625 C 1189.9183 390.0625 1193.5 393.6442 1193.5 398.0625 L 1193.5 429.0625 C 1193.5 433.4808 1189.9183 437.0625 1185.5 437.0625 L 1025.75 437.0625 C 1021.3317 437.0625 1017.75 433.4808 1017.75 429.0625 L 1017.75 398.0625 C 1017.75 393.6442 1021.3317 390.0625 1025.75 390.0625 Z" fill="white"/>
+      <path d="M 1025.75 390.0625 L 1185.5 390.0625 C 1189.9183 390.0625 1193.5 393.6442 1193.5 398.0625 L 1193.5 429.0625 C 1193.5 433.4808 1189.9183 437.0625 1185.5 437.0625 L 1025.75 437.0625 C 1021.3317 437.0625 1017.75 433.4808 1017.75 429.0625 L 1017.75 398.0625 C 1017.75 393.6442 1021.3317 390.0625 1025.75 390.0625 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <text transform="translate(1022.75 393.5625)" fill="black">
+        <tspan font-family="Palatino" font-size="16" font-weight="500" x="20.699219" y="16" textLength="124.9375">Kernelized FMTL</tspan>
+        <tspan font-family="Palatino" font-size="16" font-weight="500" x="145.05078" y="16" textLength="4"> </tspan>
+        <tspan font-family="Palatino" font-size="16" font-weight="500" x="14.5" y="36" textLength="136.75">[Caldas et al., 2018]</tspan>
+      </text>
+      <path d="M 1017.5 449.125 L 1185.5 449.125 C 1189.9183 449.125 1193.5 452.7067 1193.5 457.125 L 1193.5 475.875 C 1193.5 480.2933 1189.9183 483.875 1185.5 483.875 L 1017.5 483.875 C 1013.0817 483.875 1009.5 480.2933 1009.5 475.875 L 1009.5 457.125 C 1009.5 452.7067 1013.0817 449.125 1017.5 449.125 Z" fill="white"/>
+      <path d="M 1017.5 449.125 L 1185.5 449.125 C 1189.9183 449.125 1193.5 452.7067 1193.5 457.125 L 1193.5 475.875 C 1193.5 480.2933 1189.9183 483.875 1185.5 483.875 L 1017.5 483.875 C 1013.0817 483.875 1009.5 480.2933 1009.5 475.875 L 1009.5 457.125 C 1009.5 452.7067 1013.0817 449.125 1017.5 449.125 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <text transform="translate(1014.5 456.5)" fill="black">
+        <tspan font-family="Palatino" font-size="16" font-weight="500" x="3.4492188" y="16" textLength="30.015625">CFL</tspan>
+        <tspan font-family="Palatino" font-size="16" font-weight="500" x="32.878906" y="16" textLength="137.67188"> [Sattler et al., 2020]</tspan>
+      </text>
+      <path d="M 894.6392 433 C 928.6819 417.4042 974.0621 397.05713 1011.7363 381.70306" marker-end="url(#FilledArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <path d="M 913.0718 441.49606 C 941.497 435.64985 975.3649 429.09786 1007.9758 423.80804" marker-end="url(#FilledArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <path d="M 913.0718 459.5506 C 939.0265 460.665 969.5501 461.9384 999.6037 463.106" marker-end="url(#FilledArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <path d="M 1076.5 503.25 L 1185.5 503.25 C 1189.9183 503.25 1193.5 506.8317 1193.5 511.25 L 1193.5 542.25 C 1193.5 546.6683 1189.9183 550.25 1185.5 550.25 L 1076.5 550.25 C 1072.0817 550.25 1068.5 546.6683 1068.5 542.25 L 1068.5 511.25 C 1068.5 506.8317 1072.0817 503.25 1076.5 503.25 Z" fill="white"/>
+      <path d="M 1076.5 503.25 L 1185.5 503.25 C 1189.9183 503.25 1193.5 506.8317 1193.5 511.25 L 1193.5 542.25 C 1193.5 546.6683 1189.9183 550.25 1185.5 550.25 L 1076.5 550.25 C 1072.0817 550.25 1068.5 546.6683 1068.5 542.25 L 1068.5 511.25 C 1068.5 506.8317 1072.0817 503.25 1076.5 503.25 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <text transform="translate(1073.5 506.75)" fill="black">
+        <tspan font-family="Palatino" font-size="16" font-weight="500" x="6.832031" y="16" textLength="75.67969">FedMeta [ </tspan>
+        <tspan font-family="Palatino" font-size="16" font-weight="500" x="82.23047" y="16" textLength="10.671875">Y</tspan>
+        <tspan font-family="Palatino" font-size="16" font-weight="500" x="91.43359" y="16" textLength="20.734375">ao </tspan>
+        <tspan font-family="Palatino" font-size="16" font-weight="500" x="18.066406" y="36" textLength="78.86719">et al., 2019]</tspan>
+      </text>
+      <path d="M 875.8125 503.25 L 1003.1875 503.25 C 1007.6058 503.25 1011.1875 506.8317 1011.1875 511.25 L 1011.1875 542.25 C 1011.1875 546.6683 1007.6058 550.25 1003.1875 550.25 L 875.8125 550.25 C 871.3942 550.25 867.8125 546.6683 867.8125 542.25 L 867.8125 511.25 C 867.8125 506.8317 871.3942 503.25 875.8125 503.25 Z" fill="white"/>
+      <path d="M 875.8125 503.25 L 1003.1875 503.25 C 1007.6058 503.25 1011.1875 506.8317 1011.1875 511.25 L 1011.1875 542.25 C 1011.1875 546.6683 1007.6058 550.25 1003.1875 550.25 L 875.8125 550.25 C 871.3942 550.25 867.8125 546.6683 867.8125 542.25 L 867.8125 511.25 C 867.8125 506.8317 871.3942 503.25 875.8125 503.25 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <text transform="translate(872.8125 506.75)" fill="black">
+        <tspan font-family="Palatino" font-size="16" font-weight="500" x="24.714844" y="16" textLength="23.648438">Per</tspan>
+        <tspan font-family="Palatino" font-size="16" font-weight="500" x="48.08203" y="16" textLength="44.109375">-FedA</tspan>
+        <tspan font-family="Palatino" font-size="16" font-weight="500" x="90.72266" y="16" textLength="21.9375">vg </tspan>
+        <tspan font-family="Palatino" font-size="16" font-weight="500" x=".828125" y="36" textLength="131.71875">[Fallah et al., 2020]</tspan>
+      </text>
+      <path d="M 913.0718 469.54875 C 958.6597 480.07224 1015.1182 494.93515 1059.146 506.87296" marker-end="url(#FilledArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <path d="M 868.7249 480 C 874.5728 485.3834 881.0336 491.1927 887.6109 496.8564" marker-end="url(#FilledArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <path d="M 1017.5 292 L 1185.5 292 C 1189.9183 292 1193.5 295.58172 1193.5 300 L 1193.5 319 C 1193.5 323.41828 1189.9183 327 1185.5 327 L 1017.5 327 C 1013.0817 327 1009.5 323.41828 1009.5 319 L 1009.5 300 C 1009.5 295.58172 1013.0817 292 1017.5 292 Z" fill="white"/>
+      <path d="M 1017.5 292 L 1185.5 292 C 1189.9183 292 1193.5 295.58172 1193.5 300 L 1193.5 319 C 1193.5 323.41828 1189.9183 327 1185.5 327 L 1017.5 327 C 1013.0817 327 1009.5 323.41828 1009.5 319 L 1009.5 300 C 1009.5 295.58172 1013.0817 292 1017.5 292 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <text transform="translate(1014.5 299.5)" fill="black">
+        <tspan font-family="Palatino" font-size="16" font-weight="500" x="4.761719" y="16" textLength="164.47656">FedMD [ Li et al., 2019]</tspan>
+      </text>
+      <path d="M 880 347.7402 C 924.4904 342.7328 984.4012 335.58004 1031.0024 328.514" marker-end="url(#FilledArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <path d="M 1039.807 647 L 1178.807 647 C 1183.2253 647 1186.807 650.5817 1186.807 655 L 1186.807 686 C 1186.807 690.4183 1183.2253 694 1178.807 694 L 1039.807 694 C 1035.3887 694 1031.807 690.4183 1031.807 686 L 1031.807 655 C 1031.807 650.5817 1035.3887 647 1039.807 647 Z" fill="white"/>
+      <path d="M 1039.807 647 L 1178.807 647 C 1183.2253 647 1186.807 650.5817 1186.807 655 L 1186.807 686 C 1186.807 690.4183 1183.2253 694 1178.807 694 L 1039.807 694 C 1035.3887 694 1031.807 690.4183 1031.807 686 L 1031.807 655 C 1031.807 650.5817 1035.3887 647 1039.807 647 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <text transform="translate(1036.807 650.5)" fill="black">
+        <tspan font-family="Palatino" font-size="16" font-weight="500" x="17.234375" y="16" textLength="114.53125">Sync. Strategies </tspan>
+        <tspan font-family="Palatino" font-size="16" font-weight="500" x="4.484375" y="36" textLength="136.03125">[Fan and Liu, 2020]</tspan>
+      </text>
+      <path d="M 1055.5 575.125 L 1185.5 575.125 C 1189.9183 575.125 1193.5 578.7067 1193.5 583.125 L 1193.5 614.125 C 1193.5 618.5433 1189.9183 622.125 1185.5 622.125 L 1055.5 622.125 C 1051.0817 622.125 1047.5 618.5433 1047.5 614.125 L 1047.5 583.125 C 1047.5 578.7067 1051.0817 575.125 1055.5 575.125 Z" fill="white"/>
+      <path d="M 1055.5 575.125 L 1185.5 575.125 C 1189.9183 575.125 1193.5 578.7067 1193.5 583.125 L 1193.5 614.125 C 1193.5 618.5433 1189.9183 622.125 1185.5 622.125 L 1055.5 622.125 C 1051.0817 622.125 1047.5 618.5433 1047.5 614.125 L 1047.5 583.125 C 1047.5 578.7067 1051.0817 575.125 1055.5 575.125 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <text transform="translate(1052.5 578.625)" fill="black">
+        <tspan font-family="Palatino" font-size="16" font-weight="500" x="4.609375" y="16" textLength="130.78125">FedGAN [Rasouli </tspan>
+        <tspan font-family="Palatino" font-size="16" font-weight="500" x="28.566406" y="36" textLength="78.86719">et al., 2020]</tspan>
+      </text>
+      <path d="M 935 708 L 1107 708 C 1111.4183 708 1115 711.5817 1115 716 L 1115 747 C 1115 751.4183 1111.4183 755 1107 755 L 935 755 C 930.5817 755 927 751.4183 927 747 L 927 716 C 927 711.5817 930.5817 708 935 708 Z" fill="white"/>
+      <path d="M 935 708 L 1107 708 C 1111.4183 708 1115 711.5817 1115 716 L 1115 747 C 1115 751.4183 1111.4183 755 1107 755 L 935 755 C 930.5817 755 927 751.4183 927 747 L 927 716 C 927 711.5817 930.5817 708 935 708 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <text transform="translate(932 711.5)" fill="black">
+        <tspan font-family="Palatino" font-size="16" font-weight="500" x="26.046875" y="16" textLength="66.15625">DP-FedA</tspan>
+        <tspan font-family="Palatino" font-size="16" font-weight="500" x="90.73438" y="16" textLength="65.21875">vg-GAN </tspan>
+        <tspan font-family="Palatino" font-size="16" font-weight="500" x="2.3945312" y="36" textLength="9.328125">[ </tspan>
+        <tspan font-family="Palatino" font-size="16" font-weight="500" x="11.136719" y="36" textLength="164.46875">Augenstein et al., 2020]</tspan>
+      </text>
+      <path d="M 993.8846 616.625 C 1012.4692 624.7605 1033.432 634.052 1052.723 642.8675" marker-end="url(#FilledArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <path d="M 1023 598.0036 C 1027.8625 598.246 1032.7525 598.4805 1037.6133 598.7022" marker-end="url(#FilledArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <path d="M 948.0954 616.625 C 956.7213 639.3118 970.759 673.89345 985.1405 699.47234" marker-end="url(#FilledArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <path d="M 734 619.75 L 851 619.75 C 855.4183 619.75 859 623.3317 859 627.75 L 859 663.75 C 859 668.1683 855.4183 671.75 851 671.75 L 734 671.75 C 729.5817 671.75 726 668.1683 726 663.75 L 726 627.75 C 726 623.3317 729.5817 619.75 734 619.75 Z" fill="white"/>
+      <path d="M 734 619.75 L 851 619.75 C 855.4183 619.75 859 623.3317 859 627.75 L 859 663.75 C 859 668.1683 855.4183 671.75 851 671.75 L 734 671.75 C 729.5817 671.75 726 668.1683 726 663.75 L 726 627.75 C 726 623.3317 729.5817 619.75 734 619.75 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <text transform="translate(731 625.75)" fill="black">
+        <tspan font-family="Palatino" font-size="16" font-weight="500" x="5.050781" y="16" textLength="9.664062">P</tspan>
+        <tspan font-family="Palatino" font-size="16" font-weight="500" x="13.246094" y="16" textLength="12.445312">A</tspan>
+        <tspan font-family="Palatino" font-size="16" font-weight="500" x="24.51172" y="16" textLength="97.4375">TE [Papernot </tspan>
+        <tspan font-family="Palatino" font-size="16" font-weight="500" x="22.066406" y="36" textLength="78.86719">et al., 2017]</tspan>
+      </text>
+      <path d="M 713.75 709.5 L 847.25 709.5 C 851.6683 709.5 855.25 713.0817 855.25 717.5 L 855.25 748.5 C 855.25 752.9183 851.6683 756.5 847.25 756.5 L 713.75 756.5 C 709.3317 756.5 705.75 752.9183 705.75 748.5 L 705.75 717.5 C 705.75 713.0817 709.3317 709.5 713.75 709.5 Z" fill="white"/>
+      <path d="M 713.75 709.5 L 847.25 709.5 C 851.6683 709.5 855.25 713.0817 855.25 717.5 L 855.25 748.5 C 855.25 752.9183 851.6683 756.5 847.25 756.5 L 713.75 756.5 C 709.3317 756.5 705.75 752.9183 705.75 748.5 L 705.75 717.5 C 705.75 713.0817 709.3317 709.5 713.75 709.5 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <text transform="translate(710.75 713)" fill="black">
+        <tspan font-family="Palatino" font-size="16" font-weight="500" x="4.53125" y="16" textLength="9.664062">P</tspan>
+        <tspan font-family="Palatino" font-size="16" font-weight="500" x="12.726562" y="16" textLength="12.445312">A</tspan>
+        <tspan font-family="Palatino" font-size="16" font-weight="500" x="23.992188" y="16" textLength="114.97656">TE-G [Papernot </tspan>
+        <tspan font-family="Palatino" font-size="16" font-weight="500" x="30.316406" y="36" textLength="78.86719">et al., 2017]</tspan>
+      </text>
+      <path d="M 656.1761 592.2628 C 662.29415 594.6632 668.64874 597.1565 675.1208 599.6958 C 677.12964 594.5758 687.3697 598.59354 685.3609 603.71355 C 697.085 608.31355 708.9851 612.9826 720.3822 617.4543" marker-end="url(#FilledArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <path d="M 616.5809 592.34864 C 627.6701 605.10456 642.47624 621.8127 658.72774 639.2788 C 662.7408 635.5178 670.2624 643.54344 666.24935 647.3045 C 680.4143 662.30676 695.3758 677.5056 709.7324 690.93014 C 713.45265 686.8793 721.55405 694.3196 717.8338 698.3704 C 719.6126 699.9728 721.3776 701.5409 723.1258 703.0707" marker-end="url(#FilledArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <path d="M 918.2494 616.625 C 894.6911 641.3008 857.7488 677.5782 827.7995 703.1368" marker-end="url(#FilledArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <path d="M 564 636 L 686 636 C 690.4183 636 694 639.5817 694 644 L 694 675 C 694 679.4183 690.4183 683 686 683 L 564 683 C 559.5817 683 556 679.4183 556 675 L 556 644 C 556 639.5817 559.5817 636 564 636 Z" fill="white"/>
+      <path d="M 564 636 L 686 636 C 690.4183 636 694 639.5817 694 644 L 694 675 C 694 679.4183 690.4183 683 686 683 L 564 683 C 559.5817 683 556 679.4183 556 675 L 556 644 C 556 639.5817 559.5817 636 564 636 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <text transform="translate(561 639.5)" fill="black">
+        <tspan font-family="Palatino" font-size="16" font-weight="500" x="1.8164062" y="16" textLength="128.36719">FedMatch [ Jeong </tspan>
+        <tspan font-family="Palatino" font-size="16" font-weight="500" x="24.566406" y="36" textLength="78.86719">et al., 2020]</tspan>
+      </text>
+      <path d="M 593.557 592.3486 C 592.7086 602.6379 592.28414 614.91816 593.4287 626.2151" marker-end="url(#FilledArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <path d="M 1010 102 L 1168 102 C 1172.4183 102 1176 105.58172 1176 110 L 1176 152 C 1176 156.41828 1172.4183 160 1168 160 L 1010 160 C 1005.5817 160 1002 156.41828 1002 152 L 1002 110 C 1002 105.58172 1005.5817 102 1010 102 Z" fill="white"/>
+      <path d="M 1010 102 L 1168 102 C 1172.4183 102 1176 105.58172 1176 110 L 1176 152 C 1176 156.41828 1172.4183 160 1168 160 L 1010 160 C 1005.5817 160 1002 156.41828 1002 152 L 1002 110 C 1002 105.58172 1005.5817 102 1010 102 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <text transform="translate(1007 111)" fill="black">
+        <tspan font-family="Palatino" font-size="16" font-weight="500" x="1.1445312" y="16" textLength="113.78125">Mobile Keyboar</tspan>
+        <tspan font-family="Palatino" font-size="16" font-weight="500" x="114.64453" y="16" textLength="52.21094">d Next </tspan>
+        <tspan font-family="Palatino" font-size="16" font-weight="500" x="21.35547" y="36" textLength="16">W</tspan>
+        <tspan font-family="Palatino" font-size="16" font-weight="500" x="35.88672" y="36" textLength="15.054688">or</tspan>
+        <tspan font-family="Palatino" font-size="16" font-weight="500" x="50.660156" y="36" textLength="91.98438">d Suggestion</tspan>
+      </text>
+      <path d="M 855.25 141.06391 C 896.4362 141.6114 947.9392 139.62424 992.1112 137.27453" marker-end="url(#FilledArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <path d="M 415.36086 708.25 L 532.36086 708.25 C 536.77914 708.25 540.36086 711.8317 540.36086 716.25 L 540.36086 749.75 C 540.36086 754.1683 536.77914 757.75 532.36086 757.75 L 415.36086 757.75 C 410.9426 757.75 407.36086 754.1683 407.36086 749.75 L 407.36086 716.25 C 407.36086 711.8317 410.9426 708.25 415.36086 708.25 Z" fill="white"/>
+      <path d="M 415.36086 708.25 L 532.36086 708.25 C 536.77914 708.25 540.36086 711.8317 540.36086 716.25 L 540.36086 749.75 C 540.36086 754.1683 536.77914 757.75 532.36086 757.75 L 415.36086 757.75 C 410.9426 757.75 407.36086 754.1683 407.36086 749.75 L 407.36086 716.25 C 407.36086 711.8317 410.9426 708.25 415.36086 708.25 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <text transform="translate(412.36086 713)" fill="black">
+        <tspan font-family="Palatino" font-size="16" font-weight="500" x="2.4765625" y="16" textLength="41.804688">FURL</tspan>
+        <tspan font-family="Palatino" font-size="16" font-weight="500" x="43.69531" y="16" textLength="80.828125"> [van Berlo </tspan>
+        <tspan font-family="Palatino" font-size="16" font-weight="500" x="22.066406" y="36" textLength="78.86719">et al., 2020]</tspan>
+      </text>
+      <path d="M 244 705.5 L 383 705.5 C 387.4183 705.5 391 709.0817 391 713.5 L 391 747 C 391 751.4183 387.4183 755 383 755 L 244 755 C 239.58172 755 236 751.4183 236 747 L 236 713.5 C 236 709.0817 239.58172 705.5 244 705.5 Z" fill="white"/>
+      <path d="M 244 705.5 L 383 705.5 C 387.4183 705.5 391 709.0817 391 713.5 L 391 747 C 391 751.4183 387.4183 755 383 755 L 244 755 C 239.58172 755 236 751.4183 236 747 L 236 713.5 C 236 709.0817 239.58172 705.5 244 705.5 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <text transform="translate(241 710.25)" fill="black">
+        <tspan font-family="Palatino" font-size="16" font-weight="500" x="3.4609375" y="16" textLength="42.35156">FPCA</tspan>
+        <tspan font-family="Palatino" font-size="16" font-weight="500" x="44.9375" y="16" textLength="100.60156"> [Grammenos </tspan>
+        <tspan font-family="Palatino" font-size="16" font-weight="500" x="33.066406" y="36" textLength="78.86719">et al., 2020]</tspan>
+      </text>
+      <path d="M 570.5 709.5 L 679.5 709.5 C 683.9183 709.5 687.5 713.0817 687.5 717.5 L 687.5 753.5 C 687.5 757.9183 683.9183 761.5 679.5 761.5 L 570.5 761.5 C 566.0817 761.5 562.5 757.9183 562.5 753.5 L 562.5 717.5 C 562.5 713.0817 566.0817 709.5 570.5 709.5 Z" fill="white"/>
+      <path d="M 570.5 709.5 L 679.5 709.5 C 683.9183 709.5 687.5 713.0817 687.5 717.5 L 687.5 753.5 C 687.5 757.9183 683.9183 761.5 679.5 761.5 L 570.5 761.5 C 566.0817 761.5 562.5 757.9183 562.5 753.5 L 562.5 717.5 C 562.5 713.0817 566.0817 709.5 570.5 709.5 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <text transform="translate(567.5 715.5)" fill="black">
+        <tspan font-family="Palatino" font-size="16" font-weight="500" x="1.9765625" y="16" textLength="46.171875">UFDA</tspan>
+        <tspan font-family="Palatino" font-size="16" font-weight="500" x="47.27344" y="16" textLength="69.75"> [ Peng et </tspan>
+        <tspan font-family="Palatino" font-size="16" font-weight="500" x="26.507812" y="36" textLength="61.984375">al., 2020]</tspan>
+      </text>
+      <path d="M 389.1765 592.3486 C 375.5889 600.68836 360.10908 610.1895 345.7657 618.9931" marker-end="url(#FilledArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <path d="M 549 297.65137 L 655 297.65137 C 659.4183 297.65137 663 301.2331 663 305.65137 L 663 332.65137 C 663 337.06965 659.4183 340.65137 655 340.65137 L 549 340.65137 C 544.5817 340.65137 541 337.06965 541 332.65137 L 541 305.65137 C 541 301.2331 544.5817 297.65137 549 297.65137 Z" fill="white"/>
+      <path d="M 549 297.65137 L 655 297.65137 C 659.4183 297.65137 663 301.2331 663 305.65137 L 663 332.65137 C 663 337.06965 659.4183 340.65137 655 340.65137 L 549 340.65137 C 544.5817 340.65137 541 337.06965 541 332.65137 L 541 305.65137 C 541 301.2331 544.5817 297.65137 549 297.65137 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <text transform="translate(546 299.15137)" fill="black">
+        <tspan font-family="Palatino" font-size="16" font-weight="500" x="4.4453125" y="16" textLength="53.91406">FedMA</tspan>
+        <tspan font-family="Palatino" font-size="16" font-weight="500" x="57.484375" y="16" textLength="25.328125"> [W</tspan>
+        <tspan font-family="Palatino" font-size="16" font-weight="500" x="81.34375" y="16" textLength="30.210938">ang </tspan>
+        <tspan font-family="Palatino" font-size="16" font-weight="500" x="16.566406" y="36" textLength="78.86719">et al., 2020]</tspan>
+      </text>
+      <path d="M 510.36087 319.20954 C 517.09995 319.21544 524.1008 319.2208 531.0994 319.22504" marker-end="url(#FilledArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <path d="M 244 624.1743 L 350 624.1743 C 354.41828 624.1743 358 627.75604 358 632.1743 L 358 665.6743 C 358 670.0926 354.41828 673.6743 350 673.6743 L 244 673.6743 C 239.58172 673.6743 236 670.0926 236 665.6743 L 236 632.1743 C 236 627.75604 239.58172 624.1743 244 624.1743 Z" fill="white"/>
+      <path d="M 244 624.1743 L 350 624.1743 C 354.41828 624.1743 358 627.75604 358 632.1743 L 358 665.6743 C 358 670.0926 354.41828 673.6743 350 673.6743 L 244 673.6743 C 239.58172 673.6743 236 670.0926 236 665.6743 L 236 632.1743 C 236 627.75604 239.58172 624.1743 244 624.1743 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <text transform="translate(241 628.9243)" fill="black">
+        <tspan font-family="Palatino" font-size="16" font-weight="500" x="1.6132812" y="16" textLength="50.125">FedCA</tspan>
+        <tspan font-family="Palatino" font-size="16" font-weight="500" x="50.86328" y="16" textLength="63.52344"> [ Zhang </tspan>
+        <tspan font-family="Palatino" font-size="16" font-weight="500" x="16.566406" y="36" textLength="78.86719">et al., 2020]</tspan>
+      </text>
+      <path d="M 827.183 284.625 C 826.6672 295.64196 825.8535 308.99626 824.5991 321.171" marker-end="url(#FilledArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <path d="M -119 401.75 L -17.5 401.75 C -13.081722 401.75 -9.5 405.3317 -9.5 409.75 L -9.5 436.75 C -9.5 441.1683 -13.081722 444.75 -17.5 444.75 L -119 444.75 C -123.41828 444.75 -127 441.1683 -127 436.75 L -127 409.75 C -127 405.3317 -123.41828 401.75 -119 401.75 Z" fill="white"/>
+      <path d="M -119 401.75 L -17.5 401.75 C -13.081722 401.75 -9.5 405.3317 -9.5 409.75 L -9.5 436.75 C -9.5 441.1683 -13.081722 444.75 -17.5 444.75 L -119 444.75 C -123.41828 444.75 -127 441.1683 -127 436.75 L -127 409.75 C -127 405.3317 -123.41828 401.75 -119 401.75 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <text transform="translate(-122 403.25)" fill="black">
+        <tspan font-family="Palatino" font-size="16" font-weight="500" x="5.308594" y="16" textLength="38.078125">IFCA</tspan>
+        <tspan font-family="Palatino" font-size="16" font-weight="500" x="42.51172" y="16" textLength="63.67969"> [ Ghosh </tspan>
+        <tspan font-family="Palatino" font-size="16" font-weight="500" x="14.316406" y="36" textLength="78.86719">et al., 2020]</tspan>
+      </text>
+      <path d="M 25.999993 402.41725 C 17.456891 404.38103 8.720111 406.3814 .15403245 408.33096" marker-end="url(#FilledArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <path d="M 93 625.4243 L 190.96412 625.4243 C 195.3824 625.4243 198.96412 629.00604 198.96412 633.4243 L 198.96412 664.4243 C 198.96412 668.8426 195.3824 672.4243 190.96412 672.4243 L 93 672.4243 C 88.58172 672.4243 85 668.8426 85 664.4243 L 85 633.4243 C 85 629.00604 88.58172 625.4243 93 625.4243 Z" fill="white"/>
+      <path d="M 93 625.4243 L 190.96412 625.4243 C 195.3824 625.4243 198.96412 629.00604 198.96412 633.4243 L 198.96412 664.4243 C 198.96412 668.8426 195.3824 672.4243 190.96412 672.4243 L 93 672.4243 C 88.58172 672.4243 85 668.8426 85 664.4243 L 85 633.4243 C 85 629.00604 88.58172 625.4243 93 625.4243 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <text transform="translate(90 628.9243)" fill="black">
+        <tspan font-family="Palatino" font-size="16" font-weight="500" x="5.028935" y="16" textLength="46.796875">FedRL</tspan>
+        <tspan font-family="Palatino" font-size="16" font-weight="500" x="51.23987" y="16" textLength="51.69531"> [Zhuo </tspan>
+        <tspan font-family="Palatino" font-size="16" font-weight="500" x="12.548466" y="36" textLength="78.86719">et al., 2019]</tspan>
+      </text>
+      <path d="M 101 710 L 202.5 710 C 206.91828 710 210.5 713.5817 210.5 718 L 210.5 747 C 210.5 751.4183 206.91828 755 202.5 755 L 101 755 C 96.58172 755 93 751.4183 93 747 L 93 718 C 93 713.5817 96.58172 710 101 710 Z" fill="white"/>
+      <path d="M 101 710 L 202.5 710 C 206.91828 710 210.5 713.5817 210.5 718 L 210.5 747 C 210.5 751.4183 206.91828 755 202.5 755 L 101 755 C 96.58172 755 93 751.4183 93 747 L 93 718 C 93 713.5817 96.58172 710 101 710 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <text transform="translate(98 712.5)" fill="black">
+        <tspan font-family="Palatino" font-size="16" font-weight="500" x="8.21875" y="16" textLength="66.32031">Favor [W</tspan>
+        <tspan font-family="Palatino" font-size="16" font-weight="500" x="73.07031" y="16" textLength="30.210938">ang </tspan>
+        <tspan font-family="Palatino" font-size="16" font-weight="500" x="14.316406" y="36" textLength="78.86719">et al., 2020]</tspan>
+      </text>
+      <path d="M -119 705.5 L 40.75 705.5 C 45.16828 705.5 48.75 709.0817 48.75 713.5 L 48.75 742.5 C 48.75 746.9183 45.16828 750.5 40.75 750.5 L -119 750.5 C -123.41828 750.5 -127 746.9183 -127 742.5 L -127 713.5 C -127 709.0817 -123.41828 705.5 -119 705.5 Z" fill="white"/>
+      <path d="M -119 705.5 L 40.75 705.5 C 45.16828 705.5 48.75 709.0817 48.75 713.5 L 48.75 742.5 C 48.75 746.9183 45.16828 750.5 40.75 750.5 L -119 750.5 C -123.41828 750.5 -127 746.9183 -127 742.5 L -127 713.5 C -127 709.0817 -123.41828 705.5 -119 705.5 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <text transform="translate(-122 708)" fill="black">
+        <tspan font-family="Palatino" font-size="16" font-weight="500" x=".9882812" y="16" textLength="83.24219">DRL-based </tspan>
+        <tspan font-family="Palatino" font-size="16" font-weight="500" x="83.64453" y="16" textLength="36.5625">Aggr</tspan>
+        <tspan font-family="Palatino" font-size="16" font-weight="500" x="119.92578" y="16" textLength="48.83594">egator </tspan>
+        <tspan font-family="Palatino" font-size="16" font-weight="500" x="20.128906" y="36" textLength="125.49219">[Zhan et al., 2020]</tspan>
+      </text>
+      <path d="M -119 623.25 L -2 623.25 C 2.418278 623.25 6 626.8317 6 631.25 L 6 660.25 C 6 664.6683 2.418278 668.25 -2 668.25 L -119 668.25 C -123.41828 668.25 -127 664.6683 -127 660.25 L -127 631.25 C -127 626.8317 -123.41828 623.25 -119 623.25 Z" fill="white"/>
+      <path d="M -119 623.25 L -2 623.25 C 2.418278 623.25 6 626.8317 6 631.25 L 6 660.25 C 6 664.6683 2.418278 668.25 -2 668.25 L -119 668.25 C -123.41828 668.25 -127 664.6683 -127 660.25 L -127 631.25 C -127 626.8317 -123.41828 623.25 -119 623.25 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <text transform="translate(-122 625.75)" fill="black">
+        <tspan font-family="Palatino" font-size="16" font-weight="500" x="5.285156" y="16" textLength="116.42969">FRD &amp; MixFRD </tspan>
+        <tspan font-family="Palatino" font-size="16" font-weight="500" x="3.0742188" y="36" textLength="116.85156">[Cha et al., 2020]</tspan>
+      </text>
+      <path d="M 205.32085 592.3486 C 195.15756 600.5974 183.71459 610.0304 173.32048 618.9385" marker-end="url(#FilledArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <path d="M 670 37.825684 L 803.5 37.825684 C 807.9183 37.825684 811.5 41.407406 811.5 45.825684 L 811.5 70.47705 C 811.5 74.89533 807.9183 78.47705 803.5 78.47705 L 670 78.47705 C 665.5817 78.47705 662 74.89533 662 70.47705 L 662 45.825684 C 662 41.407406 665.5817 37.825684 670 37.825684 Z" fill="white"/>
+      <path d="M 670 37.825684 L 803.5 37.825684 C 807.9183 37.825684 811.5 41.407406 811.5 45.825684 L 811.5 70.47705 C 811.5 74.89533 807.9183 78.47705 803.5 78.47705 L 670 78.47705 C 665.5817 78.47705 662 74.89533 662 70.47705 L 662 45.825684 C 662 41.407406 665.5817 37.825684 670 37.825684 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <text transform="translate(667 48.15137)" fill="black">
+        <tspan font-family="Palatino" font-size="16" font-weight="500" x="6.285156" y="16" textLength="126.92969">Internet of Things</tspan>
+      </text>
+      <path d="M 777.2751 111.57568 C 773.1569 103.7478 768.1974 94.91714 762.8514 86.65743" marker-end="url(#FilledArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <path d="M 550.82176 38.25 L 630.25 38.25 C 634.6683 38.25 638.25 41.83172 638.25 46.25 L 638.25 69.25 C 638.25 73.66828 634.6683 77.25 630.25 77.25 L 550.82176 77.25 C 546.4035 77.25 542.82176 73.66828 542.82176 69.25 L 542.82176 46.25 C 542.82176 41.83172 546.4035 38.25 550.82176 38.25 Z" fill="white"/>
+      <path d="M 550.82176 38.25 L 630.25 38.25 C 634.6683 38.25 638.25 41.83172 638.25 46.25 L 638.25 69.25 C 638.25 73.66828 634.6683 77.25 630.25 77.25 L 550.82176 77.25 C 546.4035 77.25 542.82176 73.66828 542.82176 69.25 L 542.82176 46.25 C 542.82176 41.83172 546.4035 38.25 550.82176 38.25 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <text transform="translate(547.82176 47.75)" fill="black">
+        <tspan font-family="Palatino" font-size="16" font-weight="500" x="4.229745" y="16" textLength="69.58594">Healthcar</tspan>
+        <tspan font-family="Palatino" font-size="16" font-weight="500" x="73.53443" y="16" textLength="7.6640625">e</tspan>
+      </text>
+      <text transform="translate(377 774)" fill="black">
+        <tspan font-family="Palatino" font-size="20" font-weight="500" x="47.77539" y="20" textLength="55.234375">S. Ji, T</tspan>
+        <tspan font-family="Palatino" font-size="20" font-weight="500" x="101.53516" y="20" textLength="284.1797">. Saravirta, S. Pan, G. Long, and </tspan>
+        <tspan font-family="Palatino" font-size="20" font-weight="500" x="384.9824" y="20" textLength="45.55664">A. W</tspan>
+        <tspan font-family="Palatino" font-size="20" font-weight="500" x="428.7031" y="20" textLength="91.21094">alid. Emer</tspan>
+        <tspan font-family="Palatino" font-size="20" font-weight="500" x="519.5625" y="20" textLength="59.13086">ging tr</tspan>
+        <tspan font-family="Palatino" font-size="20" font-weight="500" x="578.3418" y="20" textLength="242.1582">ends in federated learning: </tspan>
+        <tspan font-family="Palatino" font-size="20" font-weight="500" x="96.16406" y="46" textLength="19.023438">Fr</tspan>
+        <tspan font-family="Palatino" font-size="20" font-weight="500" x="114.83594" y="46" textLength="439.1699">om model fusion to federated x learning. arXiv pr</tspan>
+        <tspan font-family="Palatino" font-size="20" font-weight="500" x="553.6543" y="46" textLength="261.8457">eprint arXiv:2102.12920, 2021.</tspan>
+        <tspan font-family="Palatino" font-size="20" font-weight="500" x="514.58203" y="72" textLength="119.76562">https://arxiv</tspan>
+        <tspan font-family="Palatino" font-size="20" font-weight="500" x="632.13086" y="72" textLength="23.81836">.or</tspan>
+        <tspan font-family="Palatino" font-size="20" font-weight="500" x="655.59766" y="72" textLength="164.90234">g/abs/2102.12920 </tspan>
+      </text>
+    </g>
+  </g>
+</svg>
