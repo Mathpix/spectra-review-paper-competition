@@ -6,7 +6,7 @@ author: Jintang Li
 
 # Introduction
 
-Graph Neural Networks (GNNs) have received a considerable amount of attention in recent years, which has achieved excellent performance in many graph analysis tasks such as node classification, link prediction, and graph clustering. However, more and more researches have pointed out the *vulnerability* of GNNs, that is, they are easily affected by several will-designed inputs. As shown in Fig.1, slightly modifying the existence of either edges or nodes may lead to the wrong prediction of the target node. Such unreliable results provide the opportunity for attackers to exploit these vulnerabilities and restrict the applications of GNNs.
+Graph Neural Networks (GNNs) have received a considerable amount of attention in recent years, which has achieved excellent performance in many graph analysis tasks such as node classification, link prediction, and graph clustering. However, more and more researches have pointed out the *vulnerability* of GNNs, that is, they are easily affected by several well-designed inputs. As shown in Fig.1, slightly modifying the existence of either edges or nodes may lead to the wrong prediction of the target node. Such unreliable results provide the opportunity for attackers to exploit these vulnerabilities and restrict the applications of GNNs.
 
 <p align="center"> <img src="https://github.com/EdisonLeeeee/Introduction_to_graph_adversarial_learning/blob/main/demo.jpg" />
 <p align="center"><em>Fig. 1. A misclassification of the target caused by a small perturbations of the graph structure and node features</em></p>
@@ -102,6 +102,13 @@ $$
 
 For the sake of brevity, we only introduce several important metrics frequently adopted in this area, and there are more practical evaluation metrics to be developed[11].
 
+# Real-World Example 
+So far, the research on graph adversarial learning is just emerging and has no practical application yet. Nevertheless, it is a promising field and has many potential application scenarios, such as *recommender system*, where the user-item relationship can be modeled as a graph. By injecting some fake users into the system to promote some goods/items or maliciously constructing a co-vision graph, a malicious attacker can easily destroy the system. This is refer to *data poisoning attack* or *promotion/demotion attack*[26-30]. Fig.2 is an example of an attacker constructing a co-vision graph to mislead the recommendation and promote/demote certain products.
+
+<p align="center"> <img src="https://github.com/EdisonLeeeee/Introduction_to_graph_adversarial_learning/blob/main/attack.png" /> <p align="center"><em>Fig. 2.  A small perturbations on co-vision graph to mislead the recommendation and promote/demote certain products.</em></p>
+
+
+
 # Open Problems
 So far, there are more than 190 works towards this area[21]. Despite a surge of works on the graph adversarial learning, there still exist several problems to solve.
  + **Benchmarking Tools**. For benchmarking GNN models, there are several tools such as PyG[22], DGL[23]. For adversarial learning on image domain, there are foolbox[24], cleverhans[25]. However, implementing new methods towards the area is tedious, there should be more toolboxes being developed.
@@ -193,6 +200,18 @@ Classification against Topology Attack with Randomized Smoothing
 [24] https://github.com/bethgelab/foolbox
 
 [25] https://github.com/cleverhans-lab/cleverhans
+
+[26] Yang G, Gong N Z, Cai Y. Fake Co-visitation Injection Attacks to Recommender Systems[C]. NDSS, 2017.
+
+[27] Liu Z. Adversarial Item Promotion: Vulnerabilities at the Core of Top-N Recommenders that Use Images to Address Cold Start[J]. arXiv preprint arXiv:2006.01888, 2020.
+
+[28] Lin C, Chen S, Li H, et al. Attacking Recommender Systems with Augmented User Profiles[C]. CIKM, 2020.
+
+[29] Wadhwa S, Agrawal S, Chaudhari H, et al. Data Poisoning Attacks against Differentially Private Recommender Systems[C]. SIGIR, 2020.
+
+[30] Zhang H, Li Y, Ding B, et al. Practical Data Poisoning Attack against Next-Item Recommendation[C]. WWW, 2020.
+
+
 
 
 
