@@ -10,7 +10,7 @@ A common belief is that deep learning was popularized when AlexNet won the Image
 
 To understand the hidden factors, I analyzed CVPR (a top-tier conference for computer vision) and ICML (a top-tier conference for machine learning). I calculated the proportion of papers whose abstract contain the word “deep”, from 2012 to 2019.
 
-![deep_percent](imgs/deep_percent.png)
+![deep_percent](images/deep_percent.png)
 
 Prior to 2012, just a few papers (basically from Hinton's group) mentioned "deep". After AlexNet in 2012, the percentage started to go up. However, few people noticed that, **there is another turning point in 2014**, when the percentage started to grow rapidly.
 
@@ -29,17 +29,17 @@ When we talk about transfer learning, we mean the practice of fine-tuning pre-tr
 
 The fine-tuning pipeline (in the figure below) is extremely simple. In computer vision, practitioners often choose an ImageNet pre-trained model, remove the last fully connected layer, add a randomly initialized layer, and then start fine-tuning. Intuitively, the last fully-connected layer is task-specific, and cannot be reused in a new task. So **the status quo of transfer learning is simply to copy pre-trained weight as initialization**.
 
-![image-20210302094122303](imgs/image-20210302094122303.png)
+![image-20210302094122303](images/image-20210302094122303.png)
 
 It is straightforward to copy the weight of bottonm layers. But, **can we further re-use the top fc layer?** Actually, after counting the percentage of parameters in the discarded fc layer, I found that they took up a decent amount of total parameters! For popular NLP models like BERT, **the fc layer can take up to 21% of total parameters**!
 
-![image-20210302094509559](imgs/image-20210302094509559.png)
+![image-20210302094509559](images/image-20210302094509559.png)
 
 # Re-use the Discarded FC Layer to Improve Transfer Learning
 
 I will directly dive into the code implementation to explain the idea behind the paper. A figure is also available in the below to illustrate the procedure.
 
-![image-20210302100806490](imgs/image-20210302100806490.png)
+![image-20210302100806490](images/image-20210302100806490.png)
 
 Say we have an input dataset ${\{x_i\}}_{i=1}^n$. By feeding the dataset into a pre-trained model ($F_{\bar{\theta}}$), we can get features ${\{f_i\}}_{i=1}^n$. Typically this is the end of transfer learning: the final fc layer ($G_{\theta_s}$) of the pre-trained model is discarded and the features are fed into a randomly initialized fc layer ($H_{\theta_t}$) to get predictions ${\{\hat{y}^t_i\}}_{i=1}^n$ (we use subscript/superscript "t" to denote target dataset, and use "s" to denote the source/pre-training dataset). Then the labels from target dataset ${\{{y}^t_i\}}_{i=1}^n$ can supervise the predictions to calculate the loss function needed for training neural networks. That's the whole story of naive fine-tuning.
 
@@ -78,7 +78,7 @@ This is a simplified version of my NeurIPS 2020 paper [Co-Tuning for Transfer Le
 
 We present parts of the experimental results in the below. Compared to baseline fine-tune (naive transfer learning), the Co-Tuning method can greatly improve the classification performance, especially when the proportion of available data (sampling rates) is small.
 
-![image-20210302105820881](imgs/image-20210302105820881.png)
+![image-20210302105820881](images/image-20210302105820881.png)
 
 In Stanford Cars dataset with sampling rate of 15%, baseline fine-tuning accuracy is 36.77% and Co-Tuning improves the accuracy to 46.02%, bringing in **up to 20% relative improvement**!
 
