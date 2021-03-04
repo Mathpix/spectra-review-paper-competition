@@ -5,7 +5,7 @@ layout: layout.njk
 <div class="header-inner">
     All Submissions
 </div>
-<div class="articles">
+<div class="articles page-content">
     <div class="articles-wrapper">
         {%- for page in collections.pages -%}
             {% if page.data.title and page.data.description and page.data.author and page.url %}
