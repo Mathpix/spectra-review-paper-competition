@@ -1,5 +1,5 @@
 ---
-title: Co-Tuning: An easy but effective trick to improve transfer learning
+title: "Co-Tuning: An easy but effective trick to improve transfer learning"
 description: Transfer learning is very popular in the deep learning community but the practice stays rather naive (copy weight as initialization). Co-Tuning is a recently proposed technique to improve transfer learning, which is easy to implement and effective to a wide variety of tasks.
 author: Kaichao You
 ---
