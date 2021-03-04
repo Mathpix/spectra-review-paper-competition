@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg width="16" height="16" viewBox="171 120 16 16" xmlns="http://www.w3.org/2000/svg">
+  <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" fill="#2227d1" x="171" y="120">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16">
+      <path paint-order="stroke fill markers" fill-rule="evenodd" d="M3 0h10c1.659 0 3 1.341 3 3v10c0 1.659-1.341 3-3 3H3c-1.66 0-3-1.341-3-3V3C0 1.34 1.34 0 3 0z"/>
+      <path fill="white" paint-order="stroke fill markers" fill-rule="evenodd" d="M 3.175 2.958 L 2.969 3.083 L 2.969 11.125 L 6.095 14.317 L 12.194 10.869 L 12.194 1.551 L 3.175 2.958 Z M 11.831 10.569 L 6.204 8.215 L 6.204 8.127 L 11.831 2.124 L 11.831 10.569 Z M 3.335 3.29 L 3.348 3.296 L 3.348 3.264 L 5.907 4.484 L 5.907 8.037 L 3.347 10.769 L 3.334 3.291 Z M 6.204 4.485 L 11.42 2.158 L 6.204 7.72 L 6.204 4.484 Z M 11.052 2.032 L 6.058 4.263 L 3.649 3.149 L 11.052 2.033 Z M 3.147 3.17 L 3.143 3.175 L 3.117 3.162 L 3.122 3.158 L 3.147 3.169 Z M 5.907 8.446 L 5.907 13.732 L 3.39 11.127 L 5.906 8.445 Z M 6.204 13.85 L 6.204 8.498 L 11.677 10.788 L 6.204 13.849 Z" style=""/>
+    </svg>
+  </svg>
+</svg>

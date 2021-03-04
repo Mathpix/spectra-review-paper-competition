@@ -1,0 +1,387 @@
+body,
+html {
+  width: 100%;
+  height: 100%;
+}
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+@-ms-viewport {
+  width: device-width;
+}
+body {
+  margin: 0;
+  color: #1e2029;
+  font-size: 14px;
+  line-height: normal;
+}
+hr {
+  box-sizing: content-box;
+  height: 0;
+  overflow: visible;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-top: 0;
+  margin-bottom: 0.5em;
+  color: rgba(0, 0, 0, 0.85);
+  font-weight: 500;
+}
+p {
+  margin-top: 0;
+  margin-bottom: 1em;
+}
+dl,
+ol,
+ul {
+  margin-top: 0;
+  margin-bottom: 1em;
+}
+ol ol,
+ol ul,
+ul ol,
+ul ul {
+  margin-bottom: 0;
+}
+dt {
+  font-weight: 500;
+}
+dd {
+  margin-bottom: 0.5em;
+  margin-left: 0;
+}
+blockquote {
+  margin: 0 0 1em;
+}
+dfn {
+  font-style: italic;
+}
+b,
+strong {
+  font-weight: bolder;
+}
+small {
+  font-size: 80%;
+}
+sub,
+sup {
+  position: relative;
+  font-size: 75%;
+  line-height: 0;
+  vertical-align: baseline;
+}
+sub {
+  bottom: -0.25em;
+}
+sup {
+  top: -0.5em;
+}
+a {
+  color: #0b93ff;
+  text-decoration: none;
+  background-color: transparent;
+  outline: none;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+a:hover {
+  color: #33aaff;
+}
+a:active {
+  color: #0070d9;
+}
+a:active,
+a:hover {
+  text-decoration: none;
+  outline: 0;
+}
+a[disabled] {
+  color: rgba(0, 0, 0, 0.25);
+  cursor: not-allowed;
+  pointer-events: none;
+}
+code,
+kbd,
+pre,
+samp {
+  font-size: 1em;
+}
+pre {
+  margin-top: 0;
+  margin-bottom: 1em;
+  overflow: auto;
+}
+figure {
+  margin: 0 0 1em;
+}
+img {
+  vertical-align: middle;
+  border-style: none;
+}
+svg:not(:root) {
+  overflow: hidden;
+}
+table {
+  border-collapse: collapse;
+}
+caption {
+  padding-top: 0.75em;
+  padding-bottom: 0.3em;
+  color: rgba(0, 0, 0, 0.45);
+  text-align: left;
+  caption-side: bottom;
+}
+th {
+  text-align: inherit;
+}
+
+@import url('https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,500');
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700');
+@import url('https://fonts.googleapis.com/css?family=Inconsolata');
+@import url('https://cdn.mathpix.com/fonts/cmu.css');
+
+#preview {
+    font-family: 'Georgia', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap");
+
+* {
+  box-sizing: border-box;
+}
+body,
+html {
+  color: #000;
+  font-family: "Source Sans Pro", sans-serif;
+  height: 100vh;
+}
+header {
+  background: #f2f2f5;
+  border-bottom: 1px solid #dadbe3;
+}
+footer {
+  background: #f2f2f5;
+  border-top: 1px solid #dadbe3;
+}
+a {
+  text-decoration: none;
+}
+.footer {
+  max-width: 1200px;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  padding: 30px 0;
+}
+.footer a {
+  padding: 0 5px;
+}
+.navbar {
+  max-width: 1200px;
+  margin: auto;
+}
+.navbar-wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+.navbar-wrapper-title {
+  text-decoration: none;
+  padding-bottom: 8px;
+  padding-top: 12px;
+  display: flex;
+  align-items: center;
+}
+.navbar-wrapper-title .text {
+  font-weight: 600;
+  color: #000;
+  font-size: 20px;
+  padding: 0 0 0 10px;
+}
+.navbar-nav {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+}
+.navbar-nav .nav-item-about {
+  margin-right: 20px;
+}
+.navbar-nav .nav-item-about a {
+  color: #68687f;
+}
+.navbar-nav .nav-item-submit {
+  background-color: #2227d1;
+  display: flex;
+  align-items: center;
+  padding: 5px 15px;
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgba(103, 103, 103, 0.5);
+}
+.navbar-nav .nav-item-submit a {
+  color: #ffffff;
+  font-weight: 600;
+}
+.header-inner {
+  max-width: 1200px;
+  margin: auto;
+  border-bottom: 1px solid #dadbe3;
+  padding-top: 30px;
+  padding-bottom: 5px;
+  color: #000000;
+  font-size: 18px;
+}
+.articles {
+  max-width: 800px;
+  margin: auto;
+}
+.articles-wrapper {
+  margin-top: 60px;
+}
+.articles-item {
+  margin-bottom: 50px;
+  color: #000000;
+}
+.articles-item-title {
+  font-weight: 600;
+  font-size: 26px;
+}
+.articles-item-title a {
+  color: #000000;
+}
+.articles-item-author {
+  color: #68687f;
+  font-size: 14px;
+}
+.articles-item-description {
+  line-height: 130%;
+  font-size: 16px;
+  margin-top: 16px;
+}
+.articles-item-title,
+.articles-item-author,
+.articles-item-description {
+  margin-bottom: 0.6em;
+}
+.article {
+  max-width: 800px;
+  margin: auto;
+}
+.article-wrapper {
+  margin-top: 60px;
+}
+.article-title {
+  font-weight: 600;
+  font-size: 32px;
+}
+.article-title a {
+  color: #000000;
+}
+.article-author {
+  color: #68687f;
+  font-size: 14px;
+}
+.article-content {
+  line-height: 130%;
+  font-size: 16px;
+  margin-top: 16px;
+}
+.article-content h1,
+.article-content h2,
+.article-content h3,
+.article-content h4,
+.article-content h5,
+.article-content h6 {
+  color: #000;
+  font-weight: 600;
+  margin-top: 28px;
+  margin-bottom: 20px;
+}
+.article-content #preview {
+  box-sizing: content-box;
+  line-height: 1.3;
+}
+.article-title,
+.article-author,
+.article-content {
+  margin-bottom: 0.6em;
+}
+.about {
+  max-width: 800px;
+  margin: auto;
+}
+.about-wrapper {
+  margin-top: 60px;
+}
+.about-banner {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
+  align-items: flex-start;
+}
+.about-banner p {
+  font-size: 60px;
+  margin-left: 10px;
+}
+.about-title {
+  font-weight: 600;
+  font-size: 32px;
+  text-align: center;
+}
+.about-title a {
+  color: #000000;
+}
+.about-content {
+  line-height: 130%;
+  font-size: 16px;
+  margin-top: 16px;
+}
+.about-content h1,
+.about-content h2,
+.about-content h3,
+.about-content h4,
+.about-content h5,
+.about-content h6 {
+  color: #000;
+  font-weight: 600;
+  margin-top: 28px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+.about-content #preview {
+  box-sizing: content-box;
+  line-height: 1.3;
+}
+.about-title,
+.about-author,
+.about-content {
+  margin-bottom: 0.6em;
+}
+.math-inline mjx-container {
+  display: inline-block !important;
+}
+.math-block {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+mjx-container[jax="SVG"][display="true"] {
+  display: flex;
+  justify-content: center;
+  flex: 1;
+}
+.math-block p {
+  flex-shrink: 1;
+}
+.math-block mjx-container {
+  margin: 0 !important;
+}
+.math-error {
+  background-color: yellow;
+  color: red;
+}

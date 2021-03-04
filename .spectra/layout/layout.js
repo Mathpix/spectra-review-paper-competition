@@ -1,1 +1,1 @@
-module.exports = 'layout.njk'
+module.exports = 'submission.njk'

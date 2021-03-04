@@ -2,15 +2,25 @@
 layout: layout.njk
 ---
 
-{%- for page in collections.pages -%}
-    {% if page.data.title and page.url %}
-        <h4>
-            <a href="{{ page.url }}">{{ page.data.title }}</a>
-        </h4>
-        {% if page.data.description%}
-            <p>{{page.data.description}}</p>
-        {% endif %}
-
-    {% endif %}
-
-{%- endfor -%}
+<div class="header-inner">
+    All Submissions
+</div>
+<div class="articles">
+    <div class="articles-wrapper">
+        {%- for page in collections.pages -%}
+            {% if page.data.title and page.data.description and page.data.author and page.url %}
+                <div class="articles-item">
+                    <div class="articles-item-title">
+                        <a href="{{ page.url }}">{{ page.data.title }}</a>
+                    </div>
+                    <p class="articles-item-author">
+                        {{ page.data.author }}
+                    </p>
+                    <p class="articles-item-description">
+                        {{page.data.description}}
+                    </p>
+                </div>
+            {% endif %}
+        {%- endfor -%}
+    </div>
+</div>

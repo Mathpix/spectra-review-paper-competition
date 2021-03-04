@@ -87,7 +87,7 @@ module.exports = function (config) {
   md = initMathpixMarkdown(md, getMmdOptions);
   md.use(mathpixMarkdownPlugin, {});
 
-  config.setTemplateFormats(["md", "mmd", "png", "gif", "jpg", "jpeg", "pdf", "svg", "njk"]);
+  config.setTemplateFormats(["md", "mmd", "png", "gif", "jpg", "jpeg", "pdf", "svg", "njk", "css"]);
 
   config.setLibrary("md", md);
   config.setLibrary("mmd", md);
