@@ -51,6 +51,14 @@ Prizes:
 - 2nd place: $2,000
 - 3rd place: $1,000
 
+## View Submissions Locally
+
+```
+npm install -g @mathpix/spectra
+git clone git@github.com:Mathpix/spectra-review-paper-competition.git
+spectra build spectra-review-paper-competition spectra-review-paper-competition-html --serve
+```
+
 ## Copyright 
 
 Mathpix, Inc. reserves to right to publish all submissions, with proper attribution to the authors of course.  
