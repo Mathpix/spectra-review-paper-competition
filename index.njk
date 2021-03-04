@@ -1,0 +1,16 @@
+---
+layout: layout.njk
+---
+
+{%- for page in collections.pages -%}
+    {% if page.data.title and page.url %}
+        <h4>
+            <a href="{{ page.url }}">{{ page.data.title }}</a>
+        </h4>
+        {% if page.data.description%}
+            <p>{{page.data.description}}</p>
+        {% endif %}
+
+    {% endif %}
+
+{%- endfor -%}
