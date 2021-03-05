@@ -42,11 +42,7 @@ So we need to understand what is the Encoder-Decoder Network then we can move on
 \section{Encoder-Decoder Network}
 The encoder is build by modifying the CNN architechture ResNet-18 and we set the stride of all convolutional layers in ResNet-18 to 1 in order to extract the more precise features and avoid the neglecting features.The other settings are same as in [1] .Max pooling layers are used for down-sampling and dropout layers are used to lessen the network over fitting.The detailed network configuration is shown in the table I.
   
-  
-\begin{figure}[H]
-\includegraphics[width=8cm]{images/enc.jpeg}
-\centering
-\end{figure}
+![](images/enc.jpeg)
   
 \textbf{Variables and their Meanings}
 \begin{itemize}
@@ -59,7 +55,7 @@ The encoder is build by modifying the CNN architechture ResNet-18 and we set the
 \end{itemize}
 
 
-                           Table I(detailed Network Configuration)
+Table I(detailed Network Configuration)
 
 $$
 \begin{array}{c c}
@@ -203,7 +199,8 @@ $$
 \hline
 \end{array}
 $$
-                                         Table II[5]
+
+Table II[5]
                                                                                 
 It can be seen from \textbf{Table II},the results with a fixed height normalization are slightly better than zero padding on the CHROME 2016 data set but worse on CHROME 2014.Whereas Scale Augmentation outperforms the other two methods which shows that Scale Augmentation is more effective than the other two methods.The model trained with Scale Augmentation could extract par  subsection{Effect of Drop Attention}
 Comparative experiments were performed with and without the Drop Attention to verify its effectiveness.The results are shown in \textbf{Table III}.
@@ -221,7 +218,8 @@ $$
 \hline
 \end{array}
 $$
-                                       Table III[5]
+
+Table III[5]
 
 As shown above in \textbf{Table III} when the experiment was performed with the Drop Attention Module, the accuracy improves by 1.42\% on CROHME 2016 and 2.1\% on CROHME 2014.The drop attention module trains model generating better predictions when attention neglects the key features.The Drop Attention model was implemented during the training phase of subsequent experiments to improve the performance of the proposed model.
 \subsection{Comparison with proposed methods}
