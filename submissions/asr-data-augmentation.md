@@ -1,6 +1,6 @@
 ---
 title: Data Augmentation in Automatic Speech Recognition
-description: Recent advancements in augmenting audio data for autometic speech recognition.
+description: An overview of recent advancements in data augmentation for automatic speech recognition.
 author: Heng-Jui Chang
 ---
 

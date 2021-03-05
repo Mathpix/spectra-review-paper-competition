@@ -1,7 +1,7 @@
 ---
 title: Towards continual task learning in artificial neural networks 
 
-description: Critical appraisal of prominent current approaches to alleviating catastrophic forgetting in neural networks, drawing on inspiration from neuroscience
+description: Critical appraisal of prominent current approaches to alleviating catastrophic forgetting in neural networks, drawing on inspiration from neuroscience.
 
 author: David McCaffary
 ---
