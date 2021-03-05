@@ -14,9 +14,9 @@ Several successful data augmentation techniques for ASR have been proposed in th
 
 Here, we introduce the speed perturbation method proposed by Ko et al. [5]. This method stretches or squeezes the duration of audio signals. This operation is done by changing the sample rate of audio waveforms.
 
-Assume the audio signal in the time domain is represented as \[x(t)\]. Then, we change the sample rate by a factor of \[\alpha\], that is, changing the signal to \[x(\alpha t)\]. This results in the duration of the audio signal is squeezed by a factor of \[\alpha\]. If \[\alpha > 1\], the duration of the signal is shortened, and the signal energy is shifted towards higher frequencies.
+Assume the audio signal in the time domain is represented as \(x(t)\). Then, we change the sample rate by a factor of \(\alpha\), that is, changing the signal to \(x(\alpha t)\). This results in the duration of the audio signal is squeezed by a factor of \(\alpha\). If \(\alpha > 1\), the duration of the signal is shortened, and the signal energy is shifted towards higher frequencies.
 
-They set \[\alpha\] to \[0.9\], \[1.0\], and \[1.1\] in their experiments, augmenting the dataset by a factor of three. Overall, the authors showed that this method had improved the WERs of HMM-DNN ASR models by 0.3% to 6.7% in different datasets.
+They set \(\alpha\) to \(0.9\), \(1.0\), and \(1.1\) in their experiments, augmenting the dataset by a factor of three. Overall, the authors showed that this method had improved the WERs of HMM-DNN ASR models by 0.3% to 6.7% in different datasets.
 
 
 # SpecAugment
