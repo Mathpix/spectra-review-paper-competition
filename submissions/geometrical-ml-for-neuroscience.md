@@ -3,6 +3,7 @@ title: Advances in machine learning using geometry provide new tools for computa
 description: A geometrical perspective proves efficient in developing machine learning tools for computational neuroscience.
 author: Pierre Orhan
 breaks: false
+image: https://user-images.githubusercontent.com/38761938/109557765-d0d3d400-7ad8-11eb-850e-af14fdd64dc2.png
 ---
 
 # Review: advances in machine learning using geometry provide new tools for computational neuroscientist

@@ -2,6 +2,7 @@
 title: "Co-Tuning: An easy but effective trick to improve transfer learning"
 description: Transfer learning is a popular method in the deep learning community, but it is usually implemented naively (eg. copying weights as initialization). Co-Tuning is a recently proposed technique to improve transfer learning that is easy to implement, and effective to a wide variety of tasks.
 author: Kaichao You
+image: https://spectra.pub/ml/images/deep_percent.png
 ---
 
 # A Story About Transfer Learning

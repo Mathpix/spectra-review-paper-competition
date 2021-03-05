@@ -2,6 +2,7 @@
 title: Machine-learning Online Optimisation for Evaporative Cooling in Cold-atom Experiments
 description: As quantum systems become increasingly complex, optimisation algorithms are becoming a requirement for high-precision experiments. Machine-learning online optimisation offers an alternative to theoretical models, relying instead on experimental observations to continuously update an internal surrogate model. Two online optimisation techniques are reviewed in this paper in the context of evaporative cooling for the efficient and high-quality production of Bose-Einstein condensates (BEC). These two methods prioritise different stages of cooling with one focused on optimising experimental settings and the other on improving image acquisition. 
 author: Rachel Wang
+image: https://spectra.pub/ml/images/coolramp.png
 ---
 
 

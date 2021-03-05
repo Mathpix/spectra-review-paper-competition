@@ -3,6 +3,7 @@ title: Adversarial Learning on Graph
 description: This review gives an introduction to Adversarial Machine Learning on graph-structured data, including several recent papers and research ideas in this field. This review is based on our paper "A Survey of Adversarial Learning on Graph".  
 author: Jintang Li
 breaks: false
+image: https://spectra.pub/ml/images/graph-adversarial.jpg
 ---
 
 # Introduction
