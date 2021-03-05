@@ -9,7 +9,7 @@ breaks: false
 
 Graph Neural Networks (GNNs) have received a considerable amount of attention in recent years, which has achieved excellent performance in many graph analysis tasks such as node classification, link prediction, and graph clustering. However, more and more researches have pointed out the *vulnerability* of GNNs, that is, they are easily affected by several well-designed inputs. As shown in Fig.1, slightly modifying the existence of either edges or nodes may lead to the wrong prediction of the target node. Such unreliable results provide the opportunity for attackers to exploit these vulnerabilities and restrict the applications of GNNs.
 
-<p align="center"> <img src="https://github.com/EdisonLeeeee/Introduction_to_graph_adversarial_learning/blob/main/demo.jpg" />
+![](images/graph-adversarial.jpg)
 <p align="center"><em>Fig. 1. A misclassification of the target caused by a small perturbations of the graph structure and node features</em></p>
 
 To resist such attacks, multiple methods have been explored in the literature including adversarial training[1], transfer learning[2], employing Gaussian distributions to represent nodes[3], recovering potential adversarial perturbations[4], and allocating reliable queries. Accordingly, there are a line of studies proposed to further exploit the vulnerabilities of GNNs[7-10], leading to the arms race in graph adversarial
@@ -106,7 +106,8 @@ For the sake of brevity, we only introduce several important metrics frequently 
 # Real-World Example 
 So far, the research on graph adversarial learning is just emerging and has no practical application yet. Nevertheless, it is a promising field and has many potential application scenarios, such as *recommender system*, where the user-item relationship can be modeled as a graph. By injecting some fake users into the system to promote some goods/items or maliciously constructing a co-vision graph, a malicious attacker can easily destroy the system. This is refer to *data poisoning attack* or *promotion/demotion attack*[26-30]. Fig.2 is an example of an attacker constructing a co-vision graph to mislead the recommendation and promote/demote certain products.
 
-<p align="center"> <img src="https://github.com/EdisonLeeeee/Introduction_to_graph_adversarial_learning/blob/main/attack.png" /> <p align="center"><em>Fig. 2.  A small perturbations on co-vision graph to mislead the recommendation and promote/demote certain products.</em></p>
+![](images/attack.png)
+<p align="center"><em>Fig. 2.  A small perturbations on co-vision graph to mislead the recommendation and promote/demote certain products.</em></p>
 
 
 
