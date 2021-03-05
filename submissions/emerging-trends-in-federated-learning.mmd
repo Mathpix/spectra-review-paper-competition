@@ -122,7 +122,7 @@ $\frac{n_k}{\sum_k n_k}$. Federated averaging assumes a regularization
 effect, similar to dropout in neural networks, by randomly selecting a
 fraction of clients on each communication round. Sampling on each round
 leads to faster training without a significant drop in accuracy. Li et
-al.  conducted a theoretical analysis on the convergence of FedAvg
+al. [2020d] conducted a theoretical analysis on the convergence of FedAvg
 without strong assumptions and found that sampling and averaging scheme
 affects the convergence. Recent studies investigate some significant
 while less considered problems and explore different possibilities of
@@ -169,7 +169,7 @@ Attentive Aggregation
 The federated averaging algorithm takes the instance ratio of the client
 as the weight to calculate the averaged neural parameters during model
 fusion [McMahan et al., 2017]. In attentive aggregation, the instance
-ratio is replaced by adaptive weights as Eq. 5:
+ratio is replaced by adaptive weights as:
 
 $$\theta_{t+1} \leftarrow \theta_{t}-\epsilon \sum_{k=1}^m\alpha_k \nabla \mathcal{L}(\theta_t^{(k)}) ,$$
 
@@ -278,10 +278,9 @@ fair resource allocation in wireless networks, the q-fair federated
 learning (q-FFL) [Li et al., 2020c] proposes an optimization algorithm to
 ensure fair performance, i.e., a more uniform distribution of
 performance gained in federated clients. The optimization objective
-(Eq. 7) adjusts the traditional empirical risk objective by
-tunable performance-fairness tradeoff controlled by $q$.
-
 $$\min _{\theta} f_{q}(\theta)=\sum_{k=1}^{m} \frac{p_{k}}{q+1} \mathcal{L}_{k}^{q+1}(\theta)$$
+adjusts the traditional empirical risk objective by
+tunable performance-fairness tradeoff controlled by $q$.
 
 The flexible q-FFL also generalizes well to previous methods;
 specifically, it reduces to FedAvg and AFL when the value of $q$ is set
@@ -332,7 +331,7 @@ privacy breach as the server holds the ground truth, especially when
 ground truth labels are user’s typing records in the mobile keyboard
 application.
 
-Federated Multitask and Meta Learning {#sec:multitask}
+Federated Multitask and Meta Learning
 -------------------------------------
 
 This section takes multitask learning and meta-learning under the same
