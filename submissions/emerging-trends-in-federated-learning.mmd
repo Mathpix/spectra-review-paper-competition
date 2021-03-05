@@ -110,8 +110,7 @@ Overview
 The goal of federated learning is to minimize the empirical risks over
 local data as
 
-$$\small
-    \min _{\theta} f(\theta)=\sum_{k=1}^{m} p_{k} \mathcal{L}_{k}(\theta)$$
+$$\min _{\theta} f(\theta)=\sum_{k=1}^{m} p_{k} \mathcal{L}_{k}(\theta)$$
 
 where $\mathcal{L}_{k}$ is the local objective of the $k$-th client and
 $\sum_k p_k = 1$. The widely applied federated learning algorithm, i.e.,
@@ -142,8 +141,7 @@ Adaptive Weighting
 The adaptive weighting approach calculates adaptive weighted averaging
 of model parameters as:
 
-$$\small
-    \theta_{t+1}=\sum_{k=1}^{K} \alpha_{k} \cdot \theta_{t}^{(k)},$$
+$$\theta_{t+1}=\sum_{k=1}^{K} \alpha_{k} \cdot \theta_{t}^{(k)},$$
 
 where $\theta_{t}^{(k)}$ is current model parameter of $k$-th client,
 $\theta_{t+1}$ is the updated global model parameter after aggregation,
@@ -154,15 +152,13 @@ Aggregation (IDA) by extracting meta information from the statistical
 properties of model parameters. Specifically, the weighting coefficient
 with inverse distance is calculated as:
 
-$$\small 
-\alpha_{k}=\left\|\theta_{t}-\theta^{(k)}_{t}\right\|^{-1} / (\sum_{k=1}^{K}\left\|\theta_{t}-\theta^{(k)}_{t}\right\|^{-1}).$$
+$$\alpha_{k}=\left\|\theta_{t}-\theta^{(k)}_{t}\right\|^{-1} / (\sum_{k=1}^{K}\left\|\theta_{t}-\theta^{(k)}_{t}\right\|^{-1}).$$
 
 Considering the time effect during federated communication, Chen et al. [2020]
 proposed temporally weighted aggregation of the local models on the
 server as:
 
-$$\small
-    \theta_{t+1}=\sum_{k=1}^{K} \frac{n_{k}}{n} (\frac{e}{2})^{-\left(t-\mathop{t}^{(k)}\right)} \theta_{t}^{(k)},$$
+$$\theta_{t+1}=\sum_{k=1}^{K} \frac{n_{k}}{n} (\frac{e}{2})^{-\left(t-\mathop{t}^{(k)}\right)} \theta_{t}^{(k)},$$
 
 where $e$ is the natural logarithm, $t$ is the current update round and
 $\mathop{t}^{(k)}$ is the update round of the newest $\theta^{(k)}$.
@@ -175,8 +171,7 @@ as the weight to calculate the averaged neural parameters during model
 fusion [McMahan et al., 2017]. In attentive aggregation, the instance
 ratio is replaced by adaptive weights as Eq. 5:
 
-$$\small
-    \theta_{t+1} \leftarrow \theta_{t}-\epsilon \sum_{k=1}^m\alpha_k \nabla \mathcal{L}(\theta_t^{(k)}) ,$$
+$$\theta_{t+1} \leftarrow \theta_{t}-\epsilon \sum_{k=1}^m\alpha_k \nabla \mathcal{L}(\theta_t^{(k)}) ,$$
 
 where $\alpha_k$ is the attention scores for client model parameters.
 FedAtt [Ji et al., 2019b] proposes a simple layer-wise attentive
@@ -205,8 +200,7 @@ Mime [Karimireddy et al., 2020a] adapts conventional centralized optimization
 algorithms into federated learning and uses momentum to reduce client
 drift with only global statistics as
 
-$$\small
-    \mathbf{m}_{t}=(1-\beta) \nabla f_{i}\left(\mathbf{x}_{t-1}\right)+\beta \mathbf{m}_{t-1}$$
+$$\mathbf{m}_{t}=(1-\beta) \nabla f_{i}\left(\mathbf{x}_{t-1}\right)+\beta \mathbf{m}_{t-1}$$
 
 $\mathbf{m}_{t-1}$ is a moving average of unbiased gradients computed
 over multiple clients. Federated averaging may lead to class embedding
@@ -287,8 +281,7 @@ performance gained in federated clients. The optimization objective
 (Eq. 7) adjusts the traditional empirical risk objective by
 tunable performance-fairness tradeoff controlled by $q$.
 
-$$\small
-    \min _{\theta} f_{q}(\theta)=\sum_{k=1}^{m} \frac{p_{k}}{q+1} \mathcal{L}_{k}^{q+1}(\theta)$$
+$$\min _{\theta} f_{q}(\theta)=\sum_{k=1}^{m} \frac{p_{k}}{q+1} \mathcal{L}_{k}^{q+1}(\theta)$$
 
 The flexible q-FFL also generalizes well to previous methods;
 specifically, it reduces to FedAvg and AFL when the value of $q$ is set
@@ -385,8 +378,7 @@ leading to fast adaption and personalization for each client.
 FedMeta [Yao et al., 2019] proposes a two-stage optimization with a
 controllable meta updating scheme after model aggregation as:
 
-$$\small
-    \theta_{t+1}^{m e t a}=\theta_{t+1}-\eta_{m e t a} \nabla_{\theta_{t+1}} \mathcal{L}\left(\theta_{t+1} ; \mathcal{D}_{m e t a}\right),$$
+$$\theta_{t+1}^{m e t a}=\theta_{t+1}-\eta_{m e t a} \nabla_{\theta_{t+1}} \mathcal{L}\left(\theta_{t+1} ; \mathcal{D}_{m e t a}\right),$$
 
 where $\mathcal{D}_{m e t a}$ is a small set of meta data on the server.
 
