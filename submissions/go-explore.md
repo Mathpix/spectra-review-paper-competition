@@ -1,6 +1,6 @@
 ---
-title: Go-Explore
-description: Go-Explore is family of Reinforcement Learning algorithms tackling hard-explore tasks.
+title: "Go-Explore: Reinforcement Learning Algorithms Tackling Hard-Explore Tasks"
+description: A new family of reinforcement learning algorithms, Go-Explore, surpasses all previous approaches on hard-explore Atari games by addressing detachment and derailment.
 author: Guy Leroy
 ---
 
