@@ -1,5 +1,15 @@
 ![Logo](logo.png)
 
+## Updates
+
+### March 4th, 2021
+
+We are updating the deadline for this competition to March 15th 11:59 PM PST.  In the meantime we will be working on editing submissions and publishing them.  You can read the current submissions at the new website for this competition:
+
+https://spectra.pub
+
+If you find an article interesting, let us know via email or Twitter (@MathpixApp) so that we can take this information into account when deciding the competition winners.
+
 # Overview
 
 Make some money summarizing a research area of ML of your choice.  To compete, submit a PR to this repo which will add a `.md` or `.mmd` to the "submissions" folder.  See [here](./submissions/example.md) to see what a sample submission looks like.
