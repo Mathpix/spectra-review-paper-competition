@@ -1,0 +1,177 @@
+---
+Title: Invariant Information Clustering
+Description: a principled clustering objective based on maximizing Mutual Information (MI) between paired data samples under a bottleneck, equivalent to distilling their shared abstract content (co-clustering), that tends to avoid degenerate clustering solutions.
+Author: Tyler Darwin
+Based on: X. Ji, J. F. Henriques, and A. Vedaldi. Invariant information clustering for unsupervised image classification and segmentation. In Proceedings of the IEEE International Conference on Computer Vision, pages 9865–9874, 2019.
+---
+
+\title{Invariant Information Clustering: Tuning Mass Equalization over Prediction Reinforcement for few Ground-Truth Classes to Avoid Clustering Degeneracy}
+
+\begin{abstract}
+Invariant Information Clustering (IIC) presents a principled clustering objective based on maximizing Mutual Information (MI) between paired data samples under a bottleneck, equivalent to distilling their shared abstract content (co-clustering), that tends to avoid degenerate clustering solutions [15]. IIC can be "written as a convolution in the case of segmentation" [15], or pixel-wise classification into perceptually if not semantically meaningful regions. This method may be "trained end-to-end and without any labels", while remaining "robust to noisy data from unknown or distractor classes" [15] through auxiliary over-clustering. The driving motivation is to produce cluster assignments that "persist through spatio-temporal or non-material distortion" [15], such as geometric or photometric transformations, by training a "bottlenecked" convolutional neural network to distill shared abstract content that is invariant to different perturbations that leave the original image content intact. "Information is the only criteria used" [15]. The MI loss naturally balances prediction reinforcement of pixel-wise class labels with mass equalization of cluster assignments, "preventing degenerate clustering solutions that other methods are susceptible to" [15], in which one cluster may dominate or some clusters may disappear during iterative training. As a result, IIC does not need to re-initialize clusters to avoid degeneracy, nor does it require cumbersome pipelines for feature post-processing, like feature whitening or PCA [21]. However, for small numbers of ground-truth classes, one can introduce a tunable coefficient to the MI loss, skewing the natural balance of entropy terms to discourage premature prediction reinforcement of cluster assignments, as minimizing conditional entropy encourages certainty in the probabilistic pixel-wise cluster assignments. Furthermore, scaling the prediction entropy term encourages mass equalization and thereby imparts sustained tolerance to ambiguous clustering solutions, as when a single cluster dominates in a perceptually, but not semantically meaningful way.
+\end{abstract}
+
+\section{Introduction}
+Why does segmenting images into perceptually meaningful regions, or clusters often degenerate when using k-means mechanisms in a continuous latent space, that is end-to-end "learned" to represent a given input data distribution? Assume that we want to segment images into clusters that are "finely detailed", "locally consistent", and "coherent across all images" [15]. What principled objective grounded in information theory would naturally avoid degenerate clustering, obviating the need for re-initializing clusters or performing other pre-processing steps, like feature whitening or PCA, as seen in deep clustering methods that use k-means style mechanisms for refining the feature centroids [2]? Invariant Information Clustering (IIC) presents such a method, that can be trained "end-to-end and without any labels" [15].
+
+Let us first investigate the theoretical rationale for degenerate clustering solutions. Assume a generic convolutional neural network (CNN) was trained end-to-end to optimize a given loss, and the metric of interest is how well does the differentiably-programmed framework digest the image's content to yield clusters of nearby or perceptually coherent regions, that are not necessarily semantically meaningful. Let the myopic loss reflect the main training objective of creating intermediate feature representations, or continuous latent spaces of more and more abstract content, so as to synthesize inductive biases for transfer to other vision-related tasks. Assume semantic clustering is a proxy task or auxiliary goal. Why would clustering degeneracy tend to happen if using k-means with representation learning [2], insofar as a single cluster tends to dominate the continuous latent space or clusters tend to disappear as segmentation predictions are reinforced during model training [15]?
+
+Assume the k-means is conducted in a bounded continuous space that approximates the underlying manifold, or lower-dimensional structure of the data. In local areas of the approximate mapping of the manifold, neighboring input examples may seem linearly related, or share a linear embedding as a distance metric. Let us refer to these sub-manifolds and their preservation as visually consistent regions that are coherent across all images as secondary to the main training objective: synthesizing inductive biases into a continuous representative space for transfer to other vision-related tasks. During training, diversity of inductive biases is not necessarily encouraged, as dominant inductive biases are reinforced for their predictive value, and these corresponding, linearly-embedded sub-manifolds may coalesce into a single linearly-embedded manifold, or disappear due to lack of predictive value in terms of the myopic training loss. Degenerate clustering tends to arise as a result.
+
+\section{Conceptual Background and Literature Review}
+The proposed method, called Invariant Information Clustering (IIC) uses information as the only criteria, so that the main training objective aligns with the metric of interest. In other words, IIC encodes probabilistic pixel-wise classification into perceptually meaningful regions as the primary training objective. IIC is motivated by the concept of shared abstract content between paired data examples, "generated using random transformations and spatial proximity" [15], that can be discerned by maximizing mutual information through an information bottleneck. For example, given different images of the same object, "rather than merely minimizing representation distance, as done for [deep clustering with k-means style mechanisms to refine feature centroids [2, 8]]", this MI loss preserves what abstract content is shared while distilling which disentangled but visually consistent CNN features to ignore [15]. "The effect is to learn a [pixel-wise classification] function that partitions the data such that clusters are closed to the [perturbations] without dropping clusters" [15]. Perturbations train the information bottleneck to persistently perceive shared abstract content despite these visual distortions, building invariances to local spatial dislocations and other non-material transformations, whether geometric or photometric, "that leave the content of the image intact" [15].
+
+Furthermore, IIC may be trained "end-to-end and without any labels" [15]. Note that training a "neural network [denoted ${\Phi}$] with a small output capacity (often called a "bottleneck", [so as to maximize mutual information between paired data samples] has the effect of discarding instance specific details from the data" [15]. The method is robust to "noisy data with unknown or distractor classes (present in STL10 [3] [a version of ImageNet [5] specifically designed as a benchmark for unsupervised clustering])" [15]. To resolve the issue of distractor classes, this pixel-wise classifier employs "an auxiliary output layer that is parallel to the main output layer, training to produce an over-clustering (i.e. same loss function but greater number of clusters than the ground truth) that is ignored at test time." [15] Specifically, "since the auxiliary over-clustering head outputs predictions over a larger number of clusters than the ground truth, whilst still maintaining a predictor that is matched to ground truth number of clusters (the main head), [the auxiliary over-clustering head] can be useful in general for increasing expressivity in the learned feature representation, even for datasets where there are not distractor classes [2]" [15].
+
+Other related works have built on the "information bottleneck principle" [7] to produce cluster assignments. In particular, the idea of "optimizing for function outputs to be persistent through spatio-temporal or non-material distortions is ... shared by IIC with several works, including exemplars [6], IMSAT [10], ... and optimizing for features to be invariant to local image transformations [20, 11]" [15]. In  a sense, IMSAT [10] and DeepINFOMAX [9], which respectively "maximize mutual information between data and its representation" [15] or "between spatially-preserved features and compact features" [15], both "combine information with other criteria, whereas in [IIC] information is the only criteria used. Furthermore, both IMSAT and DeepINFOMAX compute mutual information over continuous random variables, which requires complex estimators [1], whereas IIC does so for discrete variables with simple and exact computations" [15]. Note that information as computed in DeepINFOMAX is between a given data sample $x$ and a deterministic function, $f(x)$ of it, which is "in principle the same as entropy; in contrast, IIC does not trivially reduce to entropy" [15].
+
+\section{Proposed Approach}
+In practice, whether for the unsupervised or semi-supervised clustering approach that involves fine-tuning after initial optimization of bottleneck parameters in an unsupervised manner, the end-to-end trainable process of distilling shared abstract content between image patches and their spatial neighbors involves "perturbing the entire image" [15] to do so efficiently. Furthermore, \enqoute{any number or combination of these [geometric and photometric perturbations] can be chained and [the corresponding invariances] learned simultaneously} [15]. Often a "bilinear resampler" [12] is employed to "ensure indices of the original image and transformed image class probability tensors line up, meaning that predictions from patches that are intended to be paired together do so" [15]. "All vectors may be paired at once by applying the reverse transformation $g^{-1}$ to the tensor $\Phi\left(gx\right)$, as $\left[g^{-1} \Phi(g x)\right]_{u}=\Phi_{g(u)}(g x)$ ... $g^{-1}$ only needs to undo geometric [perturbations, not photometric ones]. The segmentation objective is thus:
+
+\begin{align}
+    &\max_{\Phi} \frac{1}{\left|T\right|} \sum_{t\in T} I\left(P_{t}\right),\\
+    &P_{t}=\frac{1}{n|G||\Omega|} \sum_{i=1}^{n} \sum_{g \in G}\underbrace{\sum_{u \in \Omega} \Phi_{u}\left(x_{i}\right) \cdot\left[g^{-1} \Phi\left(g x_{i}\right)\right]_{u+t}^{T}}_{convolution}.
+\end{align}
+
+Hence the goal to maximize information between each patch label $\Phi_{u}\left(x_i\right)$ and the patch label $\left[g^{-1} \Phi\left(g x_{i}\right)\right]_{u+t}$ of its transformed neighbor patch is in turn averaged over all neighbor displacements $t\in T$" [15]. To implement in code according to the methods in [15], let one batch of image pairs yield two network outputs, $\mathbf{y} = \Phi\left(x\right)$ and $\mathbf{y}^{\prime} = \Phi\left(gx\right)$ where $\mathbf{y},\mathbf{y}^{\prime} \in \mathcal{R}^{n\times C\times H\times W}$. Then, invert any geometrical transforms in $g, \mathbf{y}^{\prime} \leftarrow g^{-1}\mathbf{y}^{\prime}.$ Finally, "swap the first two dimensions of each $\mathbf{y}$ and $\mathbf{y}^{\prime}$, computing $\mathbf{P} = \mathbf{y}*\mathbf{y}^{\prime}$ (a $2D$ convolution with padding $d$ in both dimensions, and normalizing the result to produce $\mathbf{P}\in [0,1]^{C\times C\times (2d+1)\times (2d+1)}$" [15]. Note that:
+
+\begin{align}
+\mathbf{P}=\frac{1}{n} \sum_{i=1}^{n} \Phi\left(\mathbf{y}\right) \cdot \Phi\left(\mathbf{y}^{\prime}\right)^{\top}.
+\end{align}
+
+"The marginals $\mathbf{P}_{c}=P(z=c)$ and $\mathbf{P}_{c^{\prime}}=P\left(z^{\prime}=c^{\prime}\right)$ can be obtained by summing over the rows and columns of this matrix. As we generally consider symmetric problems, where for each $\left(\mathbf{y}, \mathbf{y}^{\prime}\right)$ we also have $\left(\mathbf{y}^{\prime}, \mathbf{y}\right), \mathbf{P}$ is symmetrized using $\left(\mathbf{P}+\mathbf{P}^{\top}\right) / 2 .$" [15]
+
+"Now the objective function [to maximize mutual information between paired data samples] can be computed by plugging the matrix $\mathbf{P}$ into the expression for mutual information [16], which results in the formula" [15]:
+
+\begin{align}
+I\left(z, z^{\prime}\right)=I(\mathbf{P})=\sum_{c=1}^{C} \sum_{c^{\prime}=1}^{C} \mathbf{P}_{c c^{\prime}} \cdot \ln \frac{\mathbf{P}_{c c^{\prime}}}{\mathbf{P}_{c} \cdot \mathbf{P}_{c^{\prime}}}.
+\end{align}
+
+\subsection{Overview of Experiment}
+Rather than "test on STL10, which is ImageNet adapted for unsupervised clustering" [15], let us modify and analyze the given protocol for studying COCO-Stuff-3 and a 3-label variant of Potsdam, "formed by merging each of the three pairs [of categories: roads and cars, vegetation and trees, and buildings and clutter]" [15]. Note that COCO-Stuff-3 is a "subset of COCO-Stuff with only sky, ground, and plants labelled" [15]. 
+
+For the COCO-Stuff-3 dataset, "input images are shrunk... and cropped... Sobel pre-processing is applied for data augmentation, and predictions for non-stuff pixels are ignored" [15]. Sobel filtering was found to "discourage clustering based on trivial cues such as color, and encourage using more meaningful cues such as shape... Additionally, for data augmentation, [the authors] repeat images within each batch $r$ times... to encourage greater distillation since there are more [pairings of the original image with different transformations of it, or] examples of which visual details to ignore" [15]. 
+
+Specifically, the authors of [15] set $r\in [1,5]$ for all experiments, and rescale and crop images "for training (prior to applying transforms $g$, consisting of random additive and multiplicative color transformations and horizontal flipping)" [15]. For the three-class datasets, let us follow the authors' lead by allowing only one image repeat within each batch (i.e. $r=1$) for efficiency purposes. 
+
+For IIC, there is a main output head with $k=k_{gt}$, and an auxiliary over-clustering head with $k>k_{gt}$. For unsupervised clustering, IIC only "needs to learn a discrete map between $k$ and $k_{gt}$" [15]. Not only does the over-clustering make this method robust to "noisy data from unknown or distractor classes" [15], but also generally tends to "increase the expressivity of the learned representation" [15]. This learned representation makes the method robust by encoding invariances into the information-theoretic measure of shared abstract content, regardless of whether distractor classes are present.
+
+\subsection{Avoiding clustering degeneracy}
+Let us further investigate how this approach, that leverages an information bottleneck, tends to naturally avoid degenerate clustering solutions. Recall that clustering degeneracy is defined as when a single cluster dominates and other clusters tend to disappear, or when the reinforcement of predicting pixel-wise assignments into perceptually meaningful regions, does not correspond with the intended task of assigning pixels to \textit{semantically} meaningful regions. In particular, let us "consider inserting a coefficient, $\lambda \ge 1$, into the definition of mutual information [16]":
+
+\begin{align}
+\label{optionalCoefficient1} 
+I_{\lambda}\left(z, z^{\prime}\right) &=\sum_{c=1}^{C} \sum_{c^{\prime}=1}^{C} \mathbf{P}_{c c^{\prime}} \cdot \ln \frac{\mathbf{P}_{c c^{\prime}}}{\mathbf{P}_{c}^{\lambda} \cdot \mathbf{P}_{c^{\prime}}^{\lambda}} \\
+\label{optionalCoefficient2}
+&=I_{1}\left(z, z^{\prime}\right)+(\lambda-1) \cdot\left(H(z)+H\left(z^{\prime}\right)\right). \\
+\label{predictionEntropy}
+H(z)&=-\sum_{c=1}^{C} \mathbf{P}_{c} \cdot \ln \mathbf{P}_{c}
+\end{align}
+
+"For $\lambda = 1$, this reduces to the standard mutual information definition. However, inserting an exponent of $\lambda > 1$ into the denominator of Equation \ref{optionalCoefficient1} translates into prioritizing the maximization of prediction entropy... Recall that maximizing mutual information entails maximizing entropy and minimizing conditional entropy" [14].
+
+By increasing the magnitude of the coefficient, $\lambda \ge 1$, we would expect IIC to tolerate ambivalent clustering solutions for longer periods of training. Increasing $\lambda$ de-emphasizes the effect of minimizing conditional entropy [4], which encourages certainty in the pixel-wise classifications. In other words, for few ground-truth classes, this tunable coefficient can be increased in order to encourage more mass-equalized assignment of pixels to perceptually meaningful regions, thereby limiting prediction reinforcement or emphasis of a single dominant cluster. 
+
+Before exploring the experimental results, recall that IIC does not need to re-initialize clusters to avoid degeneracy [15], nor does it require cumbersome pipelines for feature post-processing, like feature whitening or PCA [21]. In contrast, deep clustering methods with k-means style mechanisms for refining the feature centroid [2] are susceptible to such degenerate clustering solutions, as reasoned about in the Introduction.
+
+\section{Discussion of Experiment}
+Let us define an experiment. Allow one sample repeat during data augmentation, and instantiate just one randomly initialized final layer, or sub-head; let $r=1,h=1$, respectively. (Please refer to the caption of Figure \ref{fig:IICablation} in the Appendix, corresponding to Table 2 of [15] on Ablations of IIC, to further understand these parameters.) We wish to tune $\lambda$ on the 3-class datasets, namely COCO-Stuff-3 and Potsdam-6 with merged classes (merging "buildings with clutter, trees with vegetation, and roads with cars" [15]).
+
+Would it make sense to create a hyper-parameter schedule [17] for $\lambda$, with reasonably high initial value? At what point does the information bottleneck of IIC degenerate into assigning pixel-wise clusters of equal mass or number of pixels, regardless of context? More specifically, we wish to find what is the least upper bound on $\lambda$ for each of the 3-class datasets. 
+
+Note a limitation of IIC: random affine transformations were found to be less effective than horizontal flipping with random crops [14], as distilling shared abstract content between paired data samples was too difficult in the presence of such scaling and skewing. Is it plausible that using such a hyper-parameter schedule [17] for $\lambda$ would make this method robust enough to learn invariances to such geometric distortions that scale and skew the image content, rather than just flip and center crop it? The non-material distortions caused by random affine transformations of the image content may induce degenerate clustering otherwise, in which one cluster dominates and assignments are not "locally consistent" nor "coherent across all images" [15].
+
+The intended experimentation on datasets with few ground-truth classes, such as Potsdam-3 or COCO-Stuff-3, to investigate this topic of a hyper-parameter schedule [17], establishing an upper bound on $\lambda$ without trivially reducing to entropy like DeepINFOMAX [9], or even investigating if $\lambda < 1$ and tolerance to ambivalent clustering solutions should be attenuated late in the training process was unsuccessful. I simply ran out of time, and lacked sufficient experience with PyTorch [19] on a GPU-instanced server to do so (see Figure \ref{fig:paperspace} of the Appendix).
+
+Note that one of the main parameters that the authors of [15] tune is a least upper bound for $k$, the number of output channels for over-clustering (See Figure \ref{fig:expDetails} in Appendix for further explanation and per-experiment details [14]). I would also have been curious to explore the interplay between $k$ and $\lambda$. However, the interplay of making learned feature representation of the information bottleneck, $\Phi$ become less expressive by restricting the number of output channels, $k$ for auxiliary over-clustering, and how that would interact with prioritizing mass equalization (i.e. increasing $\lambda$) of cluster assignments so as to increasing the method's tolerance to possibly degenerate clustering scenarios was not explored.
+
+\section{Motivating Extensions}
+This inquiry was originally motivated by its use for segmenting video in real-time during a colonoscopy, to help the gastro-enterologist identify pre-cancerous lesions or inflammatory polyps, based on their texture and other perceptually meaningful cues. Ideally, the clusters would persist through spatio-temporal perturbations, such as blurring from dexterous manipulation of the endoscope, as it is guided by a white light and pinhole camera feed situated in the steerable head. This relates to ongoing pre-clinical research that pends IRB approval for the latest design iteration.
+
+Another reasonable extension of this unsupervised clustering technique, that does so in a principled way grounded in information theory, would be to form a joint probability for pixel-wise cluster assignments, accounting for the probability that the given pixel was imaged correctly. In essence, the joint probability would describe the uncertainty of classification to the raw object space, rather than the imaging domain. For instance, this joint distribution over the object's localization in space as well as its semantic clustering assignment could be created for the application of super-resolved microscopy at the single-molecule scale [18]. Mazidi, Hesam, et al. [18] create such a complementary probability distribution for downstream tasks that require precise localization of each pixel of the imaged object under high-resolution inspection. In particular, Mazidi (and the other students supervised by Professor Matthew Lew) leverage the idea that pixels should be stable to computational perturbations, effectively simulating each spatial location's image capture many times, while adhering to the physical constraints and limitations of the given imaging mode [18]. This localization confidence can be efficiently computed in an unsupervised manner, or without training data, so as to complement downstream tasks like unsupervised image classification and segmentation [15]. 
+
+Note that the authors of IIC introduced a tunable coefficient, $\lambda \ge 1$ to prioritize mass equalization and thereby avoid clustering degeneracy for cases with few ground-truth classes. In light of this joint distribution, the concept of mass-equalization could be revisited, as each pixel's mass could be scaled by the confidence of its correct localization. In other words, rather than a cluster's probability mass strictly corresponding to number of assigned pixels, prioritizing mass-equalization could be framed in terms of the mass of each pixel as weighted by the credibility that the corresponding spatial co-ordinates were imaged correctly and precisely.
+
+\section{Conclusion}
+The driving motivation of IIC is to produce cluster assignments that "persist through spatio-temporal or non-material distortion" [15], such as geometric or photometric transformations, by training a "bottlenecked" convolutional neural network to distill shared abstract content that is invariant to different perturbations that leave the original image content intact. The MI loss naturally balances prediction reinforcement of pixel-wise class labels with mass equalization of cluster assignments, "preventing degenerate clustering solutions that other methods are susceptible to" [15], in which one cluster may dominate or some clusters may disappear during iterative training. Unlike "deep clustering methods [i.e. representation learning] with k-means style mechanisms to refine feature centroids" [15], IIC does not need to re-initialize clusters to avoid degeneracy, nor does it require cumbersome pipelines for feature post-processing, like feature whitening or PCA [21]. However, for small numbers of ground-truth classes, one can introduce a tunable coefficient to the MI loss, skewing the natural balance of entropy terms to discourage premature prediction reinforcement of cluster assignments, as minimizing conditional entropy encourages certainty in the probabilistic pixel-wise cluster assignments. Furthermore, scaling the prediction entropy term encourages mass equalization and thereby imparts sustained tolerance to ambiguous clustering solutions, as when a single cluster dominates in a perceptually, but not semantically meaningful way.
+
+The intended experimentation on datasets with few ground-truth classes, such as Potsdam-3 or COCO-Stuff-3, to investigate this topic of a hyper-parameter schedule [17], establishing an upper bound on $\lambda$ without trivially reducing to entropy like DeepINFOMAX [9], or even investigating if $\lambda < 1$ and tolerance to ambivalent clustering solutions should be attenuated late in the training process was unsuccessful. Furthermore, the interplay of making learned feature representation of the information bottleneck, $\Phi$ become less expressive by restricting the number of output channels for auxiliary over-clustering, and how that would interact with prioritizing mass equalization of cluster assignments by skewing the MI loss towards entropy, so as to increase the method's tolerance to possibly degenerate clustering scenarios was not explored.
+
+\section{Acknowledgements}
+Thank you to Xu Ji and his team at the University of Oxford for creating supplementary materials [14] and providing an open-source implementation of IIC [13] in PyTorch [19], TensorFlow, and Python 3.
+
+\section{References}
+\begin{enumerate}
+\item M. I. Belghazi, A. Baratin, S. Rajeswar, S. Ozair, Y. Bengio, A. Courville, and R. D. Hjelm. Mine: mutual information neural estimation. arXiv preprint arXiv:1801.04062, 2018.
+\item M. Caron, P. Bojanowski, A. Joulin, and M. Douze. Deep clustering for unsupervised learning of visual features. In Proceedings of the European Conference on Computer Vision (ECCV), pages 132–149, 2018.
+\item A. Coates, A. Ng, and H. Lee. An analysis of single-layer networks in unsupervised feature learning. In Proceedings of the fourteenth international conference on artificial intelligence and statistics, pages 215–223, 2011.
+\item T. M. Cover and J. A. Thomas. Entropy, relative entropy and mutual information. Elements of information theory, 2:1–55, 1991.
+\item J. Deng, W. Dong, R. Socher, L.-J. Li, K. Li, and L. FeiFei. Imagenet: A large-scale hierarchical image database. In 2009 IEEE conference on computer vision and pattern recognition, pages 248–255. Ieee, 2009.
+\item A. Dosovitskiy, P. Fischer, J. T. Springenberg, M. Riedmiller, and T. Brox. Discriminative unsupervised feature learning with exemplar convolutional neural networks. IEEE transactions on pattern analysis and machine intelligence, 38(9):1734–1747, 2015.
+\item N. Friedman, O. Mosenzon, N. Slonim, and N. Tishby. Multivariate information bottleneck. arXiv preprint arXiv:1301.2270, 2013.
+\item P. Haeusser, J. Plapp, V. Golkov, E. Aljalbout, and D. Cremers. Associative deep clustering: Training a classification network with no labels. In German Conference on Pattern Recognition, pages 18–32. Springer, 2018.
+\item R. D. Hjelm, A. Fedorov, S. Lavoie-Marchildon, K. Grewal, P. Bachman, A. Trischler, and Y. Bengio. Learning deep representations by mutual information estimation and maximization. arXiv preprint arXiv:1808.06670, 2018.
+\item W. Hu, T. Miyato, S. Tokui, E. Matsumoto, and M. Sugiyama. Learning discrete representations via information maximizing self-augmented training. arXiv preprint arXiv:1702.08720, 2017.
+\item K. Y. Hui. Direct modeling of complex invariances for visual object features. In International conference on machine learning, pages 352–360, 2013.
+\item M. Jaderberg, K. Simonyan, A. Zisserman, et al. Spatial transformer networks. Advances in neural information processing systems, 28:2017–2025, 2015.
+\item X. Ji. https://github.com/xu-ji/iic (version b7602b7), 2019.
+\item X. Ji, J. F. Henriques, and A. Vedaldi. Invariant information clustering for unsupervised image classification and segmentation: Supplementary material. IIC, 51804(51804):36660–36660.
+\item X. Ji, J. F. Henriques, and A. Vedaldi. Invariant information clustering for unsupervised image classification and segmentation. In Proceedings of the IEEE International Conference on Computer Vision, pages 9865–9874, 2019.
+\item E. G. Learned-Miller. Entropy and mutual information. Department of Computer Science, University of Massachusetts, Amherst, 2013.
+\item M. MacKay, P. Vicol, J. Lorraine, D. Duvenaud, and R. Grosse. Self-tuning networks: Bilevel optimization of hyperparameters using structured best-response functions. arXiv preprint arXiv:1903.03088, 2019.
+\item H. Mazidi, T. Ding, A. Nehorai, and M. D. Lew. Measuring localization confidence for quantifying accuracy and heterogeneity in single-molecule super-resolution microscopy. In Single Molecule Spectroscopy and Superresolution Imaging XIII, volume 11246, page 1124611. International Society for Optics and Photonics, 2020.
+\item A. Paszke, S. Gross, S. Chintala, G. Chanan, E. Yang, Z. DeVito, Z. Lin, A. Desmaison, L. Antiga, and A. Lerer. Automatic differentiation in pytorch. 2017.
+\item K. Sohn and H. Lee. Learning invariant representations with local transformations. arXiv preprint arXiv:1206.6418, 2012.
+\item J. Xie, R. Girshick, and A. Farhadi. Unsupervised deep embedding for clustering analysis. In International conference on machine learning, pages 478–487, 2016.
+\end{enumerate}
+
+\section{Appendix}
+\subsection{Ablation studies, segmentation benchmarking, base model architectures}
+\begin{figure}[h]
+\includegraphics[width=0.5\textwidth]{https://cdn.mathpix.com/snip/images/e94wUE8SK-M-sFZ8N5JSXXdtgMl5uEy5aOwRLEDwxcs.original.fullsize.png}
+\caption{Ablation study of IIC [15]: (a) no auxiliary over-clustering, decreasing the expressivity of the learned representation, (b) a single sub-head, or less robust approach that does not repeat the training procedure for more than one randomly initialized instantiation of the final layer, (c) no sample repeats during data augmentation, so worse distillation given less examples of which visual details to ignore, and (d) unlabelled data segment ignored at cost of not exploiting inherently robust behavior to noisy data with unknown or distractor classes.}
+\label{fig:IICablation}
+\end{figure}
+
+\begin{figure}[h]
+\includegraphics[width=0.5\textwidth]{https://cdn.mathpix.com/snip/images/390EjIQRbHh906ROZmxScJjEqGNd8afvGfOWyb1gQgA.original.fullsize.png}
+\caption{Unsupervised segmentation benchmarks [15]: comparing IIC with deep clustering baselines that use k-means style mechanisms to refining feature centroids.}
+\end{figure}
+
+\begin{table}[h]
+\begin{array}{c|c|c} {\text { A }} & \text { B } & \text { C } \\
+\hline 1 \times \text { Conv@64 } & 1 \times \text { Conv@64 } & 1 \times \text { Conv@64 } \\
+ 3 \times \text { BasicBlock@64}  & 1 \times \text { MaxPool } & 1 \times \text { Conv@128 } \\
+ 4 \times \text { BasicBlock@128 } & 1 \times \text { Conv@128 } & 1 \times \text { MaxPool } \\
+ 6 \times \text { BasicBlock@256 } & 1 \times \text { MaxPool } & 2 \times \text { Conv@256 } \\
+ 3 \times \text { BasicBlock@512 } & 1 \times \text { Conv@256 } & 2 \times \text { Conv@512 } \\
+ 1 \times \text { AvgPool} & 1 \times \text { MaxPool } &  \\
+ & 1 \times \text{ Conv@512 } &  
+\end{array}
+\caption{Architecture bases b, showing layer type and output channels [14]. Pooling layers do not change channel size. Convolutional layers have filter size 3 or 5 and stride 1 or 2. The models used are standard ResNet and VGG-style networks. Implementations are given in the code. (See figure below, or Table 2 from supplementary document [14], for more details about model architecture.)}
+\end{table}
+
+\begin{figure}[h]
+\includegraphics[width=0.5\textwidth]{https://cdn.mathpix.com/snip/images/Hi0jWG916PfvQggP7VJgWPnXM6AUl3KOuJva--ABDWE.original.fullsize.png}
+\caption{Per experiment details for unsupervised and semi-supervised clustering objective [14]. Note that one of the main parameters that the authors of [15] tune is a least upper bound for k, the number of output channels for over-clustering. Not shown is the tuning of the number of labels used to find a mapping from k to ground-truth number of clusters for evaluation of semi-supervised clustering methods.}
+\label{fig:expDetails}
+\end{figure}
+
+\begin{figure}[h]
+\includegraphics[width=0.5\textwidth]{https://cdn.mathpix.com/snip/images/RmalBbRwjxkVjc4raxDoxE4OPz4qJtj3g5BXTJowgcw.original.fullsize.png}
+\caption{Example counts upon partitioning the datasets into training and test sets, for the the semantic segmentation task [14]. Note the size of the train/test split for Potsdam-3 and COCO-Stuff-3, in particular.}
+\end{figure}
+
+\subsection{GPU cloud instance on Paperspace}
+
+\begin{figure}[h]
+\includegraphics[width=0.5\textwidth]{https://cdn.mathpix.com/snip/images/Wb-aHvT_WBfyhAjONxPyy6vze05986JH0Z5bq6-OU74.original.fullsize.png}
+\caption{My personal setup on Paperspace: a free P5000 GPU instance with PyTorch. The console shown here marks the beginning of downloading necessary trained models.}
+\label{fig:paperspace}
+\end{figure}
+
+
+Ideally, Potsdam-3 and COCO-Stuff-3 would have been analyzed and modified on this instance. Not shown in Figure \ref{fig:paperspace} is the download of POTSDAM; note that pairs of classes are merged to form Potsdam-3. 
+
+All relevant commands to run the experiments can be found at: \url{https://github.com/xu-ji/IIC/blob/master/examples/commands.txt} by tuning $\texttt{-- lamb\textunderscore B 1.5}$, which corresponds to $\lambda = 1.5$, as contextualized by Equation \ref{optionalCoefficient1}.
+
