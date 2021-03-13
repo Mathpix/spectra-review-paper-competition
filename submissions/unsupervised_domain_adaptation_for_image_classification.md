@@ -35,13 +35,13 @@ What we want to do is to construct a model that can transfer the knowledge it ca
 
 In that precise context we call this objective **Unsupervised Domain Adaptation**.
 
-One common way to achieve that goal consists in finding a way to embed our two datasets in a feature space where their distribution look similar so that, our model can learn on general and transferable features rather than task-specific features.
+One common method to achieve that goal consists in finding a way to embed our two datasets in a feature space where their distribution look similar so that, our model can learn on general and transferable features rather than task-specific features.
 
 <p align="center">
 <img src="https://i.imgur.com/ewUJYEP.png" width="800">
 </p>
 
-Now the big question is : How are going to find such a relevant embedding ?
+Now the big question is : How are we going to find such a relevant embedding ?
 
 ## 2 - Achieving unsupervised domain adaptation with adversarial learning
 ---
@@ -51,9 +51,9 @@ In 2015, a research team from Russia <a href='http://proceedings.mlr.press/v37/g
 <img src="https://i.imgur.com/wP6q8QZ.png" width="800">
 </p>
 
-So that they could extract relevant features from the input images they proposed to use convolutions for instance since it's a very powerful tool for extracting patterns in images.  Now, on top of having a part in their architecture dedicated to the classification of the observations based on these extracted features, they proposed also to add a part dedicated to the discrimination between the source and the target.
+So that they could extract relevant features from the input images they proposed to use convolutions for instance since it's a very powerful tool for extracting patterns in images. Then, on top of having a part in their architecture dedicated to the classification of the observations based on these extracted features, they proposed also to add a part dedicated to the discrimination between the source and the target based on these same features.
 
-Basically they considered a domain classifier which had for role to identify which observation was coming from the source and which observation was coming from the target based on the extracted features.  What they proposed is simply to maximize the loss of this domain classifier during the learning phase so that, we end up with a feature representation of our images where it will perform badly.  Concretely, when this loss is high it means that it can't  separate easily the source and the target images in our feature space because their distributions within this space are too close.
+Basically they considered a domain classifier which had for role to identify which observation was coming from the source and which observation was coming from the target based on the extracted features.  What they proposed is simply to maximize the loss of this domain classifier during the learning phase so that, they end up with a feature representation of the input images where it can't separate easily the source from the target images hopefully because they are too close.
 
 Hence, to foster the creation of a feature space relevant for the image classification and the domain adaptation, they proposed to train their model using a loss function of that form :
 
@@ -61,9 +61,9 @@ Hence, to foster the creation of a feature space relevant for the image classifi
 <img src="https://i.imgur.com/m3ePw3A.png" width="400">
 </p>
 
-and so the creation of a relevant embedding for an image is done by backpropagation using this loss. 
+and then, the creation of a relevant embedding for an image is done by backpropagating the network using this loss. 
 
-Concretely the adaptation loss can be assimilated in some sense as a similarity measure between our two distributions. When it is minimized it means that the source and target distributions are too close that they are not easily separable. Now it exists numerous ways to assess the proximity between two distributions and we could think about replacing that adaptation loss with a specific metric dedicated to that purpose.
+With a more closer look, the adaptation loss can be assimilated in some sense as a similarity measure between our two distributions. When it is minimized it means that the source and target distributions are so close that they are not easily separable. Now it exists numerous ways to assess the proximity between two distributions and we could think about replacing that adaptation loss with a specific metric dedicated to that purpose.
 
 ## 3 - Achieving unsupervised domain adaptation with the Maximum Mean Discrepancy
 
@@ -87,9 +87,9 @@ Now, one could think about generalizing this distance using a  "well-chosen" fun
 <img src="https://i.imgur.com/SU7aeCz.png" width="400">
 </p>
 
-I precise well-chosen because there is no guarantee that for any  candidate function space, that distance will be minimized precisely when the two distributions are equal. Proposing G={1|(X<t), t real} we end up with the first distance based on the c.d.f. and we know that this is a relevant choice. We could also think about proposing G={exp(Xt), t real} that leads to the supremum of the difference between the moment generating function of our two distributions. When it exists, the moment generating function characterizes completely the distribution to which it is associated and hence this choice is also relevant for assessing the proximity between our two distributions.
+I precise well-chosen because there is no guarantee that for any  candidate function space, that distance will be minimized precisely when the two distributions are equal. Proposing G={1|(X<t), t real} we end up with the first distance based on the c.d.f. and we know that this is a relevant choice. We could also think about proposing G={exp(Xt), t real} that leads to the supremum of the difference between the moment generating function of our two distributions. When it exists, the moment generating function characterizes completely the distribution to which it is associated and hence this choice is also relevant for assessing the proximity between two distributions.
 
-What is the link with kernels ? Positive semi-definite kernels enable to go from a feature space to an Hilbert space of function H. 
+What is the link with kernels ? Kernels enable to go from a feature space to an Hilbert space of function H. 
 
 <p align="center">
 <img src="https://i.imgur.com/0x9k2g1.png" width="700">
@@ -120,11 +120,11 @@ The choice of a convex combination of gaussian kernels for the MMD is not innocu
 
 The two strategies described before revealed to be rather satisfying for achieving unsupervised domain adaptation on standard benchmarks. In this part, I propose to give some applications where they can be applied to solve real-word problems.
 
-- In healthcare, when we are trying to detect diseases or fractures using scans, we struggle to build a relevant model working for all the hospitals. Why ? Simply because each hospital has its own scanning devices and MRI protocols and hence, in some sense, we can consider that each hospital is producing scans from a specific distribution different from the distributions of all the others.   Thus training a predictive model based on scans from a single hospital will work only for that specific hospital.  However, there is no tremendous variation between the scans distributions of hospitals and it is in fact practicable to use a domain adaptative strategy for solving that problem.  The french start-up [Azmed](https://azmed.co/)  already uses that kind of strategy in order to propose a model able to detect fractures in radiography which works for every radiography center.
+- In healthcare, when we are trying to detect diseases or fractures using scans, we struggle to build a relevant model working for all the hospitals. Why ? Simply because each hospital has its own scanning devices and MRI protocols and hence, in some sense, we can consider that each hospital is producing scans from a specific distribution different from the distributions of all the others. Hence, training a predictive model based on scans from a single hospital will work only for that specific hospital.  However, there is no tremendous variation between the scans distributions of hospitals and it is in fact practicable to use a domain adaptative strategy for solving that problem.  The french start-up [Azmed](https://azmed.co/)  already uses that kind of strategy in order to propose a model able to detect fractures in radiography which works for every radiography center.
 
-- When we are doing topic identification with images, we typically use a dataset made of pictures about a specific field. For instance, we can construct a dataset of film posters or a dataset of video games posters. Now, a model trained on film posters may not perform well on video games posters and yet, the elements in the posters may be close or the same. In that kind of situation, using a domain adaptative strategy can help to transfer the knowledge from the film posters to the video game posters.
+- When we are doing topic identification with images, we typically use a dataset made of pictures about a specific field. For instance, we can construct a dataset of movie posters or a dataset of video games posters. Now, a model trained on movie posters may not perform well on video games posters and yet, the elements in the posters may be close or the same. In that kind of situation, using a domain adaptative strategy can help to transfer the knowledge from the movie posters to the video game posters.
 
-- Today, we are familiar with the generation of fake contents that look genuine.  With [thispersondoesnotexist](http://thispersondoesnotexist.com) you can generate as many artifical faces as you want and they look real. Since the generation of realistic fake contents brings a lot of concerns, it could be interesting to design a fake detector for spotting them. However, this is not possible to construct a database with all the kind of artificial contents and hence we can't a priori develop a detector that can detect all the artificial pictures. For example, if you are training a fake detector with fake faces from [thispersondoesnotexist](http://thispersondoesnotexist.com) , it is likely to be inefficient to detect fake cats from  [thiscatdoesnotexist](http://thiscatdoesnotexist.com). However, using a domain adaptative strategy it's possible to transfer the knowledge we can get from faces to cats. 
+- Today, we are familiar with the generation of fake contents that look genuine.  With [thispersondoesnotexist](http://thispersondoesnotexist.com) you can generate as many artifical faces as you want and they look real. Since the generation of realistic fake contents brings a lot of concerns, it could be interesting to design a fake detector for spotting them. However, this is not possible to construct a database with all the kind of artificial contents and hence we can't a priori develop a detector that can detect all the artificial pictures. For example, if you are training a fake detector with fake faces from [thispersondoesnotexist](http://thispersondoesnotexist.com) , it is likely to be inefficient to detect fake cats from  [thiscatdoesnotexist](http://thiscatdoesnotexist.com). However, using a domain adaptative strategy we may solve that problem since human and cat faces share common features.
 
 - Sometimes, if we train a ML model with a certain base and we evaluate it with a noisy version of this base, it is already enough to disturb the model and making it inefficient on this noisy version. This scenario is classical in adversarial learning when we consider that an attacker wants precisely to perturb the prediction of a predictive model. In a case like that, domain adaptation could help to mitigate this attack.
 
@@ -132,7 +132,7 @@ The two strategies described before revealed to be rather satisfying for achievi
 ## 5 - Conclusion
 ---
 
-Classical machine models are too dependent to their training distribution to the point where they can become inefficient with observations coming from a slight variation  of this distribution. To overcome this hurdle it is common to collect and label data from the new distribution on which we want to evaluate the model so that we can re-train it. However, collecting and labelling data is often time consuming and re-training the model can also take some times. That's why we proposed in this review to discuss about **domain adaptative** strategies enabling to help a model to generalize its learning to distributions close to its training distribution.
+Classical machine models are too dependent to their training distribution to the point where they can become inefficient with observations coming from a slight variation  of this distribution. To overcome this hurdle it is common to collect and label data from the new distribution on which we want to evaluate the model so that we can re-train it. However, collecting and labelling data is often time consuming and re-training the model can also take some times. In this review we discussed about **domain adaptative** strategies enabling to help an image classifier to generalize its learning to distributions close to its training distribution without fine-tuning.
 
 The classical way to proceed for acheving domain adaptation consists in mapping the source and the target distributions in a space where they look similar so that the model can rely on transferable features for its predictions. We have discussed here about two interesting strategies proposed in 2015 enabling to achieve that goal.  To the extent when it answers to a real and crucal need in the industry, this topic is still current and since then, other strategies have been proposed (see  [[4]](https://arxiv.org/pdf/1603.04779.pdf) for instance).  
 
