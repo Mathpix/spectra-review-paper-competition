@@ -97,7 +97,7 @@ What is the link with kernels ? Kernels enable to go from a feature space to an 
 
 If we consider as our candidate function space for our distance, all the functions within this Hilbert space in the unit sphere, we end up with a metric that we call the **Maximum Mean Discrepancy (MMD)**. According to the kernel that we choose, this metric can be relevant to assessing the proximity of two distributions. It's the case for instance for the gaussian kernel and notably, the MMD between two distributions associated to a gaussian kernel is minimized when they are equal.
 
-More details about the MMD can be found  in [[2]]((https://arxiv.org/abs/1605.09522))
+More details about the MMD can be found  in [[2]](https://arxiv.org/abs/1605.09522)
 
 In 2015, a research team from China proposed a domain adaptative image classifier using the Maximum Mean Discrepancy [[3]](https://arxiv.org/pdf/1502.02791.pdf) associated to a convex combination of gaussian kernels. 
 
@@ -124,7 +124,7 @@ The two strategies described before revealed to be rather satisfying for achievi
 
 - When we are doing topic identification with images, we typically use a dataset made of pictures about a specific field. For instance, we can construct a dataset of movie posters or a dataset of video games posters. Now, a model trained on movie posters may not perform well on video games posters and yet, the elements in the posters may be close or the same. In that kind of situation, using a domain adaptative strategy can help to transfer the knowledge from the movie posters to the video game posters.
 
-- Today, we are familiar with the generation of fake contents that look genuine.  With [thispersondoesnotexist](http://thispersondoesnotexist.com) you can generate as many artifical faces as you want and they look real. Since the generation of realistic fake contents brings a lot of concerns, it could be interesting to design a fake detector for spotting them. However, this is not possible to construct a database with all the kind of artificial contents and hence we can't a priori develop a detector that can detect all the artificial pictures. For example, if you are training a fake detector with fake faces from [thispersondoesnotexist](http://thispersondoesnotexist.com) , it is likely to be inefficient to detect fake cats from  [thiscatdoesnotexist](http://thiscatdoesnotexist.com). However, using a domain adaptative strategy we may solve that problem since human and cat faces share common features.
+- Today, we are familiar with the generation of fake contents that look genuine.  With [thispersondoesnotexist](http://thispersondoesnotexist.com) you can generate as many artifical faces as you want and they look real. Since the generation of realistic fake contents brings a lot of concerns, it could be interesting to design a fake detector for spotting them. However, this is not possible to construct a database with all the kind of artificial contents and hence we can't a priori develop a detector that can detect all the artificial pictures. In that situation domain adaptative strategies could help to mitigate this problem. For example, if you are training a fake detector with fake faces from [thispersondoesnotexist](http://thispersondoesnotexist.com) , it is likely to be inefficient to detect fake cats from  [thiscatdoesnotexist](http://thiscatdoesnotexist.com). Nevertheless, using a domain adaptative strategy we may solve that issue since human and cat faces share common features.
 
 - Sometimes, if we train a ML model with a certain base and we evaluate it with a noisy version of this base, it is already enough to disturb the model and making it inefficient on this noisy version. This scenario is classical in adversarial learning when we consider that an attacker wants precisely to perturb the prediction of a predictive model. In a case like that, domain adaptation could help to mitigate this attack.
 
@@ -141,6 +141,9 @@ At last, we can also mention a classical extension of domain adaptation which is
 ## References 
 ---
 [1] Yaroslav  Ganin  and  Victor  Lempitsky. [Unsupervised  domain  adaptation  by  backpropagation](http://proceedings.mlr.press/v37/ganin15.pdf).  In *International conference on machine learning, pages 1180–1189. PMLR, 2015.*
+
 [2] Krikamol Muandet et al. [Kernel Mean Embedding of Distributions: A Review and Beyond](https://arxiv.org/abs/1605.09522) 2016.
+
 [3] Mingsheng Long, Yue Cao, Jianmin Wang, and Michael Jordan. [Learning transferable features with deep adaptation networks](https://arxiv.org/pdf/1502.02791.pdf).  In *International conference on machine learning, pages 97–105. PMLR, 2015.*
+
 [4] Yanghao Li et al. [Revisiting Batch Normalization For Practical Domain Adaptation](https://arxiv.org/pdf/1603.04779.pdf)  2016
