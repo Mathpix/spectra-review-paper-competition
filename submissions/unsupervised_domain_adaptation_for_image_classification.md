@@ -5,10 +5,6 @@ author: Rony Abecidan
 image : https://i.imgur.com/QIMBX6L.png
 ---
 
-# About Unsupervised Domain Adaptation for Image Classification
----
-##### Author : Rony Abecidan
-
 ## Introduction 
 ---
 The bulk of machine learning models present one common problem : they have all a tendancy to rely too strongly to the distribution of the data on which they have been trained. As a result if the distribution of the test data is not close to the one of the train data, our models are likely to be inefficient in the test phase. 
