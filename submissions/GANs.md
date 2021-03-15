@@ -42,18 +42,40 @@ minimax game
 \end{equation}
 ](https://render.githubusercontent.com/render/math?math=%5Cdisplaystyle+%5Cbegin%7Bequation%7D%0A%5Cmin+_%7BG%7D+%5Cmax+_%7BD%7D+V%28D%2C+G%29%3D%5Cmathbb%7BE%7D_%7B%5Cboldsymbol%7Bx%7D+%5Csim+p_%7B%5Cmathrm%7Bdata%7D%7D%28%5Cboldsymbol%7Bx%7D%29%7D%5B%5Clog+D%28%5Cboldsymbol%7Bx%7D%29%5D%2B%5Cmathbb%7BE%7D_%7B%5Cboldsymbol%7Bz%7D+%5Csim+p_%7B%5Cboldsymbol%7Bz%7D%7D%28%5Cboldsymbol%7Bz%7D%29%7D%5B%5Clog+%281-D%28G%28%5Cboldsymbol%7Bz%7D%29%29%29%5D%0A%5Cend%7Bequation%7D%0A)
 
+That minimax game corresponds to a saddle point optimization problem. In practice, the minmax game is often reformulated into two loss functions:
+
 ![\begin{equation}
 \begin{array}{l}\mathcal{L}_{D}^{G A N}=\max _{D} \mathbb{E}_{x_{r} \sim p_{r}(x)}\left[\log D\left(x_{r}\right)\right]+\mathbb{E}_{x_{g} \sim p_{g}(x)}\left[\log \left(1-D\left(x_{g}\right)\right)\right] \\ \mathcal{L}_{G}^{G A N}=\min _{G} \mathbb{E}_{x_{g} \sim p_{g}(x)}\left[\log \left(1-D\left(x_{g}\right)\right)\right]\end{array}
 \end{equation}
 ](https://render.githubusercontent.com/render/math?math=%5Cdisplaystyle+%5Cbegin%7Bequation%7D%0A%5Cbegin%7Barray%7D%7Bl%7D%5Cmathcal%7BL%7D_%7BD%7D%5E%7BG+A+N%7D%3D%5Cmax+_%7BD%7D+%5Cmathbb%7BE%7D_%7Bx_%7Br%7D+%5Csim+p_%7Br%7D%28x%29%7D%5Cleft%5B%5Clog+D%5Cleft%28x_%7Br%7D%5Cright%29%5Cright%5D%2B%5Cmathbb%7BE%7D_%7Bx_%7Bg%7D+%5Csim+p_%7Bg%7D%28x%29%7D%5Cleft%5B%5Clog+%5Cleft%281-D%5Cleft%28x_%7Bg%7D%5Cright%29%5Cright%29%5Cright%5D+%5C%5C+%5Cmathcal%7BL%7D_%7BG%7D%5E%7BG+A+N%7D%3D%5Cmin+_%7BG%7D+%5Cmathbb%7BE%7D_%7Bx_%7Bg%7D+%5Csim+p_%7Bg%7D%28x%29%7D%5Cleft%5B%5Clog+%5Cleft%281-D%5Cleft%28x_%7Bg%7D%5Cright%29%5Cright%29%5Cright%5D%5Cend%7Barray%7D%0A%5Cend%7Bequation%7D%0A)
 
-That minimax game corresponds to a saddle point optimization problem. While it can be solved with gradient-descent, several fallbacks exist. 
+To make it concrete, below is how one would formulate both losses in Tensorflow Keras:
+
+```python
+def d_loss(real_output, generated_output):
+    """The discriminator loss function."""
+    bce = tf.keras.losses.BinaryCrossentropy(from_logits=True)
+    return bce(tf.ones_like(real_output), real_output) + bce(
+        tf.zeros_like(generated_output), generated_output
+    )
+def g_loss(generated_output):
+    """The Generator loss function."""
+    bce = tf.keras.losses.BinaryCrossentropy(from_logits=True)
+    return bce(tf.ones_like(generated_output), generated_output)
+```
+
+Notably, in practice, the generator loss function ![$\log (1-D(G(\boldsymbol{z})))$](https://render.githubusercontent.com/render/math?math=%5Cdisplaystyle+%24%5Clog+%281-D%28G%28%5Cboldsymbol%7Bz%7D%29%29%29%24)
+ is formulated in its non-saturating form, as Goodfellow et. al. first
+
+
+ While it can be solved with gradient-descent, several fallbacks exist. 
 
 1. **The Helvetica scenario** [1] G is trained too much without updating D. 
 2. D is too strong compared to G. It becomes too trivial for G to distinguish real from fake. D's gradients are close to zero and G is not provided with any more training guidance.
 3. **mode collapse** [3]. G learns probabilities over limited modes of the original data distribution. It thus produces images from a certain set instead of a diversity of images.
 
 Kullback Leibler, Jensen Shannon. (FILL)
+
 
 
 ```python
