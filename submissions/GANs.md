@@ -20,8 +20,13 @@ This motivates
 
 In the following ... (FILL)
 
+> 4.5 years of GAN progress on face generation.
+> https://pbs.twimg.com/media/Dw6ZIOlX4AMKL9J?format=jpg&name=large
+> &mdash; Ian Goodfellow (@goodfellow_ian)
+> [January 15, 2019](https://twitter.com/goodfellow_ian/status/1084973596236144640?ref_src=twsrc%5Etfw)
 
-<blockquote class="twitter-tweet"><p lang="en" dir="ltr">4.5 years of GAN progress on face generation. <a href="https://t.co/kiQkuYULMC">https://t.co/kiQkuYULMC</a> <a href="https://t.co/S4aBsU536b">https://t.co/S4aBsU536b</a> <a href="https://t.co/8di6K6BxVC">https://t.co/8di6K6BxVC</a> <a href="https://t.co/UEFhewds2M">https://t.co/UEFhewds2M</a> <a href="https://t.co/s6hKQz9gLz">https://t.co/s6hKQz9gLz</a> <a href="https://t.co/F9Dkcfrq8l">pic.twitter.com/F9Dkcfrq8l</a></p>&mdash; Ian Goodfellow (@goodfellow_ian) <a href="https://twitter.com/goodfellow_ian/status/1084973596236144640?ref_src=twsrc%5Etfw">January 15, 2019</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">4.5 years of GAN progress on face generation. <a href="https://t.co/kiQkuYULMC">https://t.co/kiQkuYULMC</a> <a href="https://t.co/S4aBsU536b">https://t.co/S4aBsU536b</a> <a href="https://t.co/8di6K6BxVC">https://t.co/8di6K6BxVC</a> <a href="https://t.co/UEFhewds2M">https://t.co/UEFhewds2M</a> <a href="https://t.co/s6hKQz9gLz">https://t.co/s6hKQz9gLz</a> <a href="https://t.co/F9Dkcfrq8l">pic.twitter.com/F9Dkcfrq8l</a></p>&mdash; Ian Goodfellow (@goodfellow_ian) <a href="https://twitter.com/goodfellow_ian/status/1084973596236144640?ref_src=twsrc%5Etfw">January 15, 2019</a></blockquote>
 
 ## the basic concept
 
