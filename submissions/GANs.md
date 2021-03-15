@@ -101,22 +101,35 @@ VAE GANs VS ALI [2]
 
 
 [1] [Ian J. Goodfellow, Jean Pouget-Abadie, Mehdi Mirza, Bing Xu, David Warde-Farley, Sherjil Ozair, Aaron Courville, Yoshua Bengio: “Generative Adversarial Networks”, 2014](https://arxiv.org/pdf/1406.2661.pdf)
+
 [2] [Vincent Dumoulin, Ishmael Belghazi, Ben Poole, Olivier Mastropietro, Alex Lamb, Martin Arjovsky, Aaron Courville: “Adversarially Learned Inference”, 2016](http://arxiv.org/abs/1606.00704)
+
 [3] [Xin Yi, Ekta Walia, Paul Babyn : "Generative adversarial network in medical imaging: A review", Medical Image Analysis, Volume 58, 2019, 101552, ISSN 1361-8415, https://doi.org/10.1016/j.media.2019.101552](https://www.sciencedirect.com/science/article/pii/S1361841518308430)
+
 [4] Mao, X., Li, Q., Xie, H., Lau, R.Y., Wang, Z., 2016. Least squares generative
 adversarial networks.
+
 [5] Nowozin, S., Cseke, B., Tomioka, R., 2016. f-gan: Training generative neural
 samplers using variational divergence minimization, in: Advances in Neural
 Information Processing Systems, pp. 271–279.
+
 [6] Miyato, T., Kataoka, T., Koyama, M., Yoshida, Y., 2018. Spectral normalization
 for generative adversarial networks.
+
 [7] Arjovsky, M., Chintala, S., Bottou, L., 2017. Wasserstein gan.
+
 [8] Gulrajani, I., Ahmed, F., Arjovsky, M., Dumoulin, V., Courville, A., 2017.
 Improved training of wasserstein gans
+
 [9] Springenberg, J.T., 2015. Unsupervised and semi-supervised learning with categorical generative adversarial networks.
+
 [10] Zhao, J., Mathieu, M., LeCun, Y., 2016. Energy-based generative adversarial
 network.
+
 [11] Berthelot, D., Schumm, T., Metz, L., 2017. Began: boundary equilibrium generative adversarial networks.
+
 [12] Donahue, J., Krähenbühl, P., Darrell, T., 2016. Adversarial feature learning.
+
 [13] Xi Chen, Yan Duan, Rein Houthooft, John Schulman, Ilya Sutskever, Pieter Abbeel: “InfoGAN: Interpretable Representation Learning by Information Maximizing Generative Adversarial Nets”, 2016
+
 [14] Odena, A., Olah, C., Shlens, J., 2016. Conditional image synthesis with auxiliary classifier gans.
