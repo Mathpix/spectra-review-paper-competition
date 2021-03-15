@@ -5,20 +5,15 @@ author: Gabriel Bénédict
 breaks: false
 ---
 
-Oftentimes, only the most graphical (image / video) Artificial Intelligence advances are filtered out to the mainstream media. Generative Adverdsarial Networks (GANs) play an important role in that tip-of-the-iceberg phenomenon because they are most of the time related to images but also because they illustrate the potential of AI for creativity (e.g. https://www.thispersondoesnotexist.com/). Or at least some impression of creativity that is sufficient to blur the line between human and AI creation. Turing test (FILL)
+Oftentimes, only the most graphical (image / video) Artificial Intelligence advances are filtered out to the mainstream media. Generative Adverdsarial Networks (GANs) play an important role in that tip-of-the-iceberg phenomenon because they are most of the time related to images but also because they illustrate the potential of AI for creativity (e.g. https://www.thispersondoesnotexist.com/). Or at least some impression of creativity that is sufficient to blur the line between human and AI creation.
 
-Some of these tip-of-the-iceberg tasks are *next video frame prediction* [26], *image super-resolution* [27], *generative image manipulation* (image editing and creation with minimal brush strokes) [28], *introspective adversarial networks* [29] (photo-editor-like features), *image-to-image translation* [30] (e.g. satellite images to maps, design sketches to clothing, etc.), *photorealistic images from a semantic layout* (e.g. here is grass, here are mountains and a tree is in the middle). 
+Some of these tip-of-the-iceberg tasks are *next video frame prediction* [26], *image super-resolution* [27], *generative image manipulation* (image editing and creation with minimal brush strokes) [28], *introspective adversarial networks* [29] (photo-editor-like features), *image-to-image translation* [30] (e.g. satellite images to maps, design sketches to clothing, etc.), *photorealistic images from a semantic layout* [31] (e.g. "draw grass on the bottom, mountains in the middle and a tree in the foreground"). 
 
 
-Generative Adverdsarial Networks (GANs) are relatively trivial to comprehend but they are hard to tune. The following is an attempt at showing all the ways GANs have evolved towards the most iterations.
+Generative Adverdsarial Networks (GANs) are relatively trivial to comprehend but they are hard to tune. In addition to the complexities of GANs hyperparametrization at training time, GANs often have downstream tasks that are related to creativity and therefore hard to benchmark. This is admittedly why several influential GAN papers remain unpublished. These elements coupled with a general hype around GAN papers, make it difficult for the practitioner to choose the right GAN for the right purpose and to tune its hyperparameters.
 
-In addition to the complexities of GANs hyperparametrization at training time, GANs often have downstream tasks that are related to creativity and therefore hard to benchmark. This is admittedly why several influential GAN papers remain unpublished. 
+This motivates the following text: an attempt at a short explanation of GANs and at producing a non-exhaustive account of the way GANs have evolved towards the most recent research iterations.
 
-These elements coupled with a general hype around GAN papers, make it difficult for the researcher to choose and hyperparameter-tune the right GAN for the right purpose.
-
-This motivates 
-
-In the following ... (FILL)
 
 > 4.5 years of GAN progress on face generation.  
 > https://arxiv.org/abs/1406.2661 https://arxiv.org/abs/1511.06434 https://arxiv.org/abs/1606.07536 https://arxiv.org/abs/1710.10196 https://arxiv.org/abs/1812.04948  
@@ -27,11 +22,9 @@ In the following ... (FILL)
 > [January 15, 2019](https://twitter.com/goodfellow_ian/status/1084973596236144640?ref_src=twsrc%5Etfw)
 
 
-<blockquote class="twitter-tweet"><p lang="en" dir="ltr">4.5 years of GAN progress on face generation. <a href="https://t.co/kiQkuYULMC">https://t.co/kiQkuYULMC</a> <a href="https://t.co/S4aBsU536b">https://t.co/S4aBsU536b</a> <a href="https://t.co/8di6K6BxVC">https://t.co/8di6K6BxVC</a> <a href="https://t.co/UEFhewds2M">https://t.co/UEFhewds2M</a> <a href="https://t.co/s6hKQz9gLz">https://t.co/s6hKQz9gLz</a> <a href="https://t.co/F9Dkcfrq8l">pic.twitter.com/F9Dkcfrq8l</a></p>&mdash; Ian Goodfellow (@goodfellow_ian) <a href="https://twitter.com/goodfellow_ian/status/1084973596236144640?ref_src=twsrc%5Etfw">January 15, 2019</a></blockquote>
+## The Original Generative Adversarial Network
 
-## the basic concept
-
-A generative model $G$ creating synthetic samples is paired with a discriminative model $D$ that estimates the probability of that synthetic data to be created by $G$ or to be a sample of the original data.
+A generative model $G$ creating synthetic samples is paired with a discriminative model $D$ that estimates the probability of that synthetic data to be created by $G$ or to be a sample of the original data. In the original GAN paper, both G and D are feedforward neural networks.
 
 The police VS robber analogy is mentioned in the original work but the art forger VS art inspector analogy is seemingly more fitting:  (Sharon Zhou analogy)
 
@@ -39,25 +32,14 @@ $G$ must maximize the probability of $D$ making a mistake. $D$
 
 > The generative model can be thought of as analogous to a team of counterfeiters, trying to produce fake currency and use it without detection, while the discriminative model is analogous to the police, trying to detect the counterfeit currency. Competition in this game drives both teams to improve their methods until the counterfeits are indistiguishable from the genuine articles. [Goodfellow et. al.](https://arxiv.org/pdf/1406.2661.pdf)
 
-
-
-
-In the original GAN paper, both G and D are Multi Layer Perceptrons (MLP).
-
-GANs can be said to be from the field of adversarial learning, but it is different from adversarial networks (FILL)
-
-## the mathematical formulation
-
-original formulation
-
-minimax game. G aims to maximize the overlap between the distribution of the original data and the ditsribution of the fake data. Applying cross-entropy on point estimates is only an approximation and will be later improved upon with Wasserstein GANs (see below).
+minimax game. G aims to maximize the overlap between the distribution of the original data and the distribution of the fake data. Applying cross-entropy on point estimates is only an approximation and will be later improved upon with Wasserstein GANs (see below).
 
 ![\begin{equation}
 \min _{G} \max _{D} V(D, G)=\mathbb{E}_{\boldsymbol{x} \sim p_{\mathrm{data}}(\boldsymbol{x})}[\log D(\boldsymbol{x})]+\mathbb{E}_{\boldsymbol{z} \sim p_{\boldsymbol{z}}(\boldsymbol{z})}[\log (1-D(G(\boldsymbol{z})))]
 \end{equation}
 ](https://render.githubusercontent.com/render/math?math=%5Cdisplaystyle+%5Cbegin%7Bequation%7D%0A%5Cmin+_%7BG%7D+%5Cmax+_%7BD%7D+V%28D%2C+G%29%3D%5Cmathbb%7BE%7D_%7B%5Cboldsymbol%7Bx%7D+%5Csim+p_%7B%5Cmathrm%7Bdata%7D%7D%28%5Cboldsymbol%7Bx%7D%29%7D%5B%5Clog+D%28%5Cboldsymbol%7Bx%7D%29%5D%2B%5Cmathbb%7BE%7D_%7B%5Cboldsymbol%7Bz%7D+%5Csim+p_%7B%5Cboldsymbol%7Bz%7D%7D%28%5Cboldsymbol%7Bz%7D%29%7D%5B%5Clog+%281-D%28G%28%5Cboldsymbol%7Bz%7D%29%29%29%5D%0A%5Cend%7Bequation%7D%0A)
 
-That minimax game corresponds to a saddle point optimization problem. The optimum of the game corresponds to the Nash Equilibrium: from this point onwards, none of the two players, would benefit from a change in the player's strategies (see also image below).  
+That minimax game corresponds to a saddle point optimization problem. The optimum of the game corresponds to the Nash Equilibrium: from this point onwards, none of the two players, would benefit from a change in the players' strategies (see also image below).  
 
 ![](https://drek4537l1klr.cloudfront.net/langr/Figures/03fig03_alt.jpg)
 
@@ -84,7 +66,7 @@ def gen_loss(generated_output):
 ```
 
 In practice, the output being a binary indicator (encoding the real / fake nature of the data), the sigmoid activation function is used. Notably, the generator loss function ![min \log (1-D(G(\boldsymbol{z})))](https://render.githubusercontent.com/render/math?math=%5Ctextstyle+min+%5Clog+%281-D%28G%28%5Cboldsymbol%7Bz%7D%29%29%29)
- is formulated in its non-saturating form ![max \log D(G(\boldsymbol{z}))](https://render.githubusercontent.com/render/math?math=%5Ctextstyle+max+%5Clog+D%28G%28%5Cboldsymbol%7Bz%7D%29%29), as Goodfellow et. al. first proposed [1]. Saturation refers to the phenomenon where the optimization surface (sigmoid function here) is steep and estimates too quickly converge towards low or high extremes. At these extremes, the loss function is relatively flat and the gradient is close to zero, thus gradient descent does .
+ is formulated in its non-saturating form ![max \log D(G(\boldsymbol{z}))](https://render.githubusercontent.com/render/math?math=%5Ctextstyle+max+%5Clog+D%28G%28%5Cboldsymbol%7Bz%7D%29%29), as Goodfellow et. al. first proposed [1]. Saturation refers to the phenomenon where the optimization surface (sigmoid function here) is steep and estimates too quickly converge towards low or high extremes. At these extremes, the loss function is relatively flat and the gradient is close to zero, thus gradient descent only results in minimal steps.
 
 
  While it can be solved with gradient-descent, several fallbacks exist. 
@@ -95,38 +77,6 @@ In practice, the output being a binary indicator (encoding the real / fake natur
 4. training a GAN corresponds to finding a **Nash Equilibrium** of a non-convex game with continuous high dimensional parameters. Gradient descent, as a way to find a minimum in a loss / cost function, is only a rough approximation to the Nash Equilibrium [18, 19]
 
 Kullback Leibler, Jensen Shannon. (FILL)
-
-
-
-```python
-def build_generator(input_shape):
-    """Defines the generator keras.Model.
-    Args:
-        input_shape: the desired input shape (e.g.: (latent_space_size))
-    Returns:
-        G: The generator model
-    """
-    inputs = tf.keras.layers.Input(input_shape)
-    net = tf.keras.layers.Dense(units=64, activation=tf.nn.elu, name="fc1")(inputs)
-    net = tf.keras.layers.Dense(units=64, activation=tf.nn.elu, name="fc2")(net)
-    net = tf.keras.layers.Dense(units=1, name="G")(net)
-    G = tf.keras.Model(inputs=inputs, outputs=net)
-    return G
-
-
-def build_disciminator(input_shape):
-    """Defines the discriminator keras.Model.
-    Args:
-        input_shape: the desired input shape (e.g.: (the generator output shape))
-    Returns:
-        D: the discriminator model
-    """
-    inputs = tf.keras.layers.Input(input_shape)
-    net = tf.keras.layers.Dense(units=32, activation=tf.nn.elu, name="fc1")(inputs)
-    net = tf.keras.layers.Dense(units=1, name="D")(net)
-    D = tf.keras.Model(inputs=inputs, outputs=net)
-    return D
-```
 
 ## tips and trics to train a GAN
 
@@ -211,6 +161,15 @@ As hinted at in the introduction, this is the most challenging task, since GANs 
 While asking humans to evaluate *reals* from *fakes* seems like a sensible idea (effectively with HYPE [35]), most common measures are Inception Score (higher is better), Fréchet Inception Distance (lower is better). Recently, Costa et. al. proposed to measure *quality diversity* [21].
 
 Alternatively, an independent critique network can be trained from scratch at GAN evaluation time to compare a holdout set of groundtruth data with the GAN generated data [22, 23, 24].
+
+## Outlook
+
+Over the course of this summary, we have seen how the original GAN was formulated and its associated drawbacks. While the subsequent GAN iterations partly tackled these original drawbacks, GANs started being used for different modes (image, text, sound, video) and for different tasks (image superresolution, image style transfer, etc.). Most recently, GANs was caught in the trends of transformers and self-supervision. In the domain of evaluation, progress has been slower in comparison, and a lot remains to be researched.
+
+---
+
+
+For further in-depth reading and learning, we found the coursera class [Generative Adversarial Networks (GANs) Specialization](https://www.coursera.org/specializations/generative-adversarial-networks-gans?ranMID=40328&ranEAID=SAyYsTvLiGQ&ranSiteID=SAyYsTvLiGQ-jsl.a4ThyS7B6Pg5_AQbMQ&siteID=SAyYsTvLiGQ-jsl.a4ThyS7B6Pg5_AQbMQ&utm_content=10&utm_medium=partners&utm_source=linkshare&utm_campaign=SAyYsTvLiGQ) from DeepLearning.AI (all assignments can be found [here](https://github.com/amanchadha/coursera-gan-specialization)) and the book [GANs in Action](https://www.manning.com/books/gans-in-action). 
 
 ## References
 
