@@ -52,6 +52,7 @@ minimax game. G aims to maximize the overlap between the distribution of the ori
 That minimax game corresponds to a saddle point optimization problem. The optimum of the game corresponds to the Nash Equilibrium: from this point onwards, none of the two players, would benefit from a change in the player's strategies (see also image below).  
 
 ![](https://drek4537l1klr.cloudfront.net/langr/Figures/03fig03_alt.jpg)
+
 *(Source: Goodfellow, 2019, www.iangoodfellow.com/slides/2019-05-07.pdf.)*
 
 In practice, the minmax game is often reformulated into two loss functions:
