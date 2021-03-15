@@ -21,6 +21,8 @@ This motivates
 In the following ... (FILL)
 
 
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">4.5 years of GAN progress on face generation. <a href="https://t.co/kiQkuYULMC">https://t.co/kiQkuYULMC</a> <a href="https://t.co/S4aBsU536b">https://t.co/S4aBsU536b</a> <a href="https://t.co/8di6K6BxVC">https://t.co/8di6K6BxVC</a> <a href="https://t.co/UEFhewds2M">https://t.co/UEFhewds2M</a> <a href="https://t.co/s6hKQz9gLz">https://t.co/s6hKQz9gLz</a> <a href="https://t.co/F9Dkcfrq8l">pic.twitter.com/F9Dkcfrq8l</a></p>&mdash; Ian Goodfellow (@goodfellow_ian) <a href="https://twitter.com/goodfellow_ian/status/1084973596236144640?ref_src=twsrc%5Etfw">January 15, 2019</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
 ## the basic concept
 
 A generative model $G$ creating synthetic samples is paired with a discriminative model $D$ that estimates the probability of that synthetic data to be created by $G$ or to be a sample of the original data.
