@@ -19,7 +19,7 @@ To make the readers clear with the task and the terminologies associated with th
 
 <center>
 
-<img src="../images/scene_graph/image_retrieval_paper.png" width="60%" title="hover text" align="center">
+<img src="../images/scene_graph/image_retrieval_paper.png" width="60%" title="scene graph" align="center">
 
 **Figure 1:** An example of a scene graph taken from [21]. The scene graph encodes objects ("girl"), attributes ("girl is blonde") and relationships ("girl holding racket").
 </center>
@@ -27,12 +27,12 @@ To make the readers clear with the task and the terminologies associated with th
 
 ## 2. Scene Graph Definition
 Before proceeding further, we would like to formally define the term *Scene Graph* and the various components associated with it.
-A *Scene Graph* is a graphical data structure that describes the contents of a scene. A scene graph encodes object instances, attributes of objects, and relationships between objects. Given a set of object classes $C$, a set of attribute types $A$, and a set of relationship types $R$, we define a scene graph $G$ to be a tuple $G = (O, E)$ where $O = (o 1 , ..., o n )$ is a set of objects and $E ⊆ O × R × O$ is a set of edges. Each object has the form $o_i = (c_i , A_i ) ~ where ~ c_i ∈ C$ is the class of the object and $A i ⊆ A$ are the attributes of the object. **In the subsequent sections, we will be following the above-mentioned notations/symbols for the various components of a scene graph unless stated otherwise.**
+A *Scene Graph* is a graphical data structure that describes the contents of a scene. A scene graph encodes object instances, attributes of objects, and relationships between objects. Given a set of object classes $C$, a set of attribute types $A$, and a set of relationship types $R$ , we define a scene graph $G~$ to be a tuple $G = (O, E)~$ where $O = (o 1 , ..., o n )~$ is a set of objects and $E ⊆ O × R × O~$ is a set of edges. Each object has the form $o_i = (c_i , A_i ) ~ where ~ c_i ∈ C~$ is the class of the object and $A i ⊆ A~$ are the attributes of the object. **In the subsequent sections, we will be following the above-mentioned notations/symbols for the various components of a scene graph unless stated otherwise.**
 
 We will now outline the general pipeline followed by most of the previous works to give the readers a basic understanding of the various components of the Scene Graph Generation process. A diagrammatic representation for the whole process can also be seen in Fig. 2.
     
 <center>
-<img src="../images/scene_graph/pipeline-1.png" width="100%" title="hover text" align="center">
+<img src="../images/scene_graph/pipeline-1.png" width="100%" title="pipeline" align="center">
 
 **Figure 2:** A basic pipeline for the scene graph generation process, adapted from [47]. Given an image, an RPN block (a) is used to extract the object proposals along with their features, that are used to create a candidate graph (b). After the generation of a candidate graph, a feature refining module ( c ) is used to refine the features further. Once the refinement is done, a scene graph (d) is inferred according to the node and edge features. Subsequently, the model is trained using a loss function on the dataset.
 </center>
@@ -57,7 +57,7 @@ With the node and edge features refined, we move onto inferring the final scene 
 ## 3. Taxonomy of scene graph generation models
 Scene Graph Generation, being a relatively new research field, hasn’t seen many enormous break-throughs till now. Rather than concrete structural changes in the model architecture, most of the research in this field can be classified in the terms of the problem that they are mainly addressing in the SGG task . The four problems in the task that the past literature has majorly targeted, thus becoming the basis of our classification, are *Efficient Graph Features Refinement*, *Efficient Graph Generation*, *Long-tailed Dataset Distribution* and *Efficient Loss Function Definition*. As summarized in Table 1, many works have targeted two or more of the problems specified at the same time.
 <center>
-<img src="../images/scene_graph/taxonomy_table.png" width="100%" title="hover text" align="center">
+<img src="../images/scene_graph/taxonomy_table.png" width="100%" title="taxonomy" align="center">
 
 **Table 1:** Taxonomy for the various Scene Graph Generation (SGG) methods. The tick in a particular
 column represents the problem that the method tries to target through its main contributions.
@@ -94,7 +94,7 @@ Where $h_i$ and $h_j$ are hidden state of subject and object respectively and $h
 
 
 <center>
-<img src="../images/scene_graph/pipeline_iterative.png" width="70%" title="hover text" align="center">
+<img src="../images/scene_graph/pipeline_iterative.png" width="70%" title="iterative message passing" align="center">
 
 **Figure 3** The figures represent the feature refining steps for [47]. The figure represents the Feature Refining Module proposed in [47], with major concentration on the message pooling module for information interchange between the node and edge GRUs
 
@@ -116,20 +116,20 @@ This kind of strong dependence assumption helps the model to capture the global 
 <br></br>      
 
 <center>
-<img src="../images/scene_graph/pipeline_VCTree.png" width="100%" title="hover text" align="center">
+<img src="../images/scene_graph/pipeline_VCTree.png" width="100%" title="VCTree" align="center">
 
 **Figure 4** The framework of the VCTree model [43]. Visual features are extracted from proposals, and a dynamic VCTree is constructed using a learnable score matrix. The tree structure is used to encode the object-level visual context, which will be decoded for each specific end-task. In context encoding ( c ), the right branches (blue) indicate parallel contexts, and left ones (red) indicate hierarchical contexts. Parameters in stages ( c ) \& (d) are trained by supervised learning, while those in stage (b) use REINFORCE with a self-critic baseline.      
 
 </center>      
       
 <br></br>      
-One of the underlying problems with these feature representations discussed so far is the lack of discriminative power between hierarchical relations in these. To solve this problem, [43] proposed a tree structure encoding for the node and edge features for both the SGG and VQA task, having it explicitly encode any hierarchical and parallel relations between objects in its structure. To construct the tree, a score matrix S is first calculated to approximate the validity between object-pairs, with $S_{ij} = \sigma (MLP( x_i, x_j))$ where $x_i$ and $x_j$ are visual features of the object pair, after which Prim’s algorithm is applied to obtain a Minimum Spanning Tree (MST). Once the multi-branch tree is constructed, it is converted into an equivalent binary tree *VCTree*, an equivalent left-child and right-sibling tree (as can also be seen in Fig. 4(c)), which is done for discrimination between the hierarchical and parallel relations. Now, for encoding the context and refining these features, BiTreeLSTM [42], is used in the following way:
+One of the underlying problems with these feature representations discussed so far is the lack of discriminative power between hierarchical relations in these. To solve this problem, [43] proposed a tree structure encoding for the node and edge features for both the SGG and VQA task, having it explicitly encode any hierarchical and parallel relations between objects in its structure. To construct the tree, a score matrix S is first calculated to approximate the validity between object-pairs, with $S_{ij} = \sigma (MLP( x_i, x_j))~$ where $x_i~$ and $x_j~$ are visual features of the object pair, after which Prim’s algorithm is applied to obtain a Minimum Spanning Tree (MST). Once the multi-branch tree is constructed, it is converted into an equivalent binary tree *VCTree*, an equivalent left-child and right-sibling tree (as can also be seen in Fig. 4( c )), which is done for discrimination between the hierarchical and parallel relations. Now, for encoding the context and refining these features, BiTreeLSTM [42], is used in the following way:
 
 \begin{equation}
     D = BiTreeLSTM(\{{z}_i\}_{i=1,2,...,n}),
 \end{equation}
 
-where ${z}_i$ is the input node feature, and $D=[{d}_1,{d}_2,...,{d}_n]$ is the encoded object-level visual context. Each ${d}_i=[\vec{h}_i;\overset{\leftarrow}{h}_i]$ is a concatenation of the hidden states from both TreeLSTM [42] directions:
+where ${z}_i$ is the input node feature, and $D=[{d}_1,{d}_2,...,{d}_n]~$ is the encoded object-level visual context. Each ${d}_i=[\vec{h}_i;\overset{\leftarrow}{h}_i]$ is a concatenation of the hidden states from both TreeLSTM [42] directions:
 
 \begin{equation}
 \vec{{h}}_i = TreeLSTM({z}_i,\vec{{h}}_{p})
@@ -139,18 +139,18 @@ where ${z}_i$ is the input node feature, and $D=[{d}_1,{d}_2,...,{d}_n]$ is the 
 \overset{\leftarrow}{h}_i = TreeLSTM({z}_i,[ \overset{\leftarrow}{h}_{l};\overset{\leftarrow}{h}_{r} ]),
 \end{equation}
 
-where  $\vec{}$  and  $\overset{\leftarrow}{}$ denote the top-down and bottom-up directions, and $p,l,r$ denote parent, left child, and right child of node $i$.
+where  $\vec{}~$  and  $\overset{\leftarrow}{}~$ denote the top-down and bottom-up directions, and $p,l,r~$ denote parent, left child, and right child of node $i$.
 
-For Object Context Encoding,  $z_i$ in Eq. 3 is set to $[{x}_i;{W}_1 {\hat{c}}_i]$, a concatenation of object visual features and embedded class probabilities, where ${W}_1$ is the embedding matrix for the label distribution ${\hat{c}}_i$. The Relation Context Encoding is done by putting $z_i$ to be $d_i$ (features encoding object context) that has just been obtained using object context encoding step.
+For Object Context Encoding,  $z_i~$ in Eq. 3 is set to $[{x}_i;{W}_1 {\hat{c}}_i]$, a concatenation of object visual features and embedded class probabilities, where ${W}_1~$ is the embedding matrix for the label distribution ${\hat{c}}_i$. The Relation Context Encoding is done by putting $z_i~$ to be $d_i~$ (features encoding object context) that has just been obtained using object context encoding step.
 
-Once the embeddings are created, decoding takes place, with the object class of a node dependant on its parent. For relationship extraction, three pairwise features are extracted for each object pair, namely context feature, bounding box feature, and RoIAlign feature, and the final predicate classification is done by combining all of them. Since the score matrix $S$ is not fully differentiable w.r.t the end task loss, a *hybrid learning* strategy is followed, which combines policy gradient based reinforcement learning for the parameters $\theta$ of $S$ in the tree construction and supervised learning for the rest of the parameters.
+Once the embeddings are created, decoding takes place, with the object class of a node dependant on its parent. For relationship extraction, three pairwise features are extracted for each object pair, namely context feature, bounding box feature, and RoIAlign feature, and the final predicate classification is done by combining all of them. Since the score matrix $S~$ is not fully differentiable w.r.t the end task loss, a *hybrid learning* strategy is followed, which combines policy gradient based reinforcement learning for the parameters $\theta~$ of $S~$ in the tree construction and supervised learning for the rest of the parameters.
 
 
 ### 3.2 Efficient Graph Generation Task
-***Motivation*** $~$ While a good refinement module is of paramount importance in the SGG task, the creation of an efficient graph structure serves high importance. For the initialization of features, the most basic approach is to assume the creation of a fully connected graph once the object proposals are found, which means with $n$ number of detected objects, there will be $n(n − 1)$ candidate relations. As is evident, the number of relation proposals present in a scene will quickly overshoot as the number of objects increases even slightly. Also, since not all objects will always have any significant relationship between them, having so many relationship proposals is redundant for model performance. We will look at some of the past work specifically trying to target this problem.      
+***Motivation*** $~$ While a good refinement module is of paramount importance in the SGG task, the creation of an efficient graph structure serves high importance. For the initialization of features, the most basic approach is to assume the creation of a fully connected graph once the object proposals are found, which means with $n$ number of detected objects, there will be $n(n − 1)~$ candidate relations. As is evident, the number of relation proposals present in a scene will quickly overshoot as the number of objects increases even slightly. Also, since not all objects will always have any significant relationship between them, having so many relationship proposals is redundant for model performance. We will look at some of the past work specifically trying to target this problem.      
 <br></br>      
 <center>
-<img src="../images/scene_graph/pipeline_factorizable-1.png" width="100%" title="hover text" align="center">
+<img src="../images/scene_graph/pipeline_factorizable-1.png" width="100%" title="Factorizable Net" align="center">
 
  **Figure 5** Pipeline of *Factorizable-Net* [25]. (1) RPN is used for object region proposals, which shares the base CNN with other parts. (2) Given the region proposal, objects are grouped into pairs to build up a fully-connected graph, where each pair of objects are connected with two directed edges. (3) Edges that refer to similar phrase regions are merged into subgraphs, and a more concise connection graph is generated. (4) ROI-Pooling is employed to obtain the corresponding features~(2-D feature maps for subgraph and feature vectors for objects). (5) Messages are passed between subgraph and object features along with the factorized connection graph for feature refinement. (6) Objects are predicted from the object features and predicates are inferred based on the object features as well as the subgraph features. Green, red and yellow items refer to the subgraph, object and predicate respectively.
 
@@ -161,7 +161,7 @@ Once the embeddings are created, decoding takes place, with the object class of 
 ***Methodology*** $~$ One of the naive ways to solve the problem can be to remove some relationship edges randomly, which can undoubtedly solve the excessive number of relationships problem. However this can lead to a decrease in accuracy because of the removal of some important relationships due to its random nature. Hence, *Factorizable Net* [25] was proposed, and as the name suggests, it outlined a technique to break the main graph into several subgraphs based on some common features (see Fig. 5). Rather than having a relationship proposal between every object, a subgraph is proposed as a relationship feature vector for a group of objects. For the creation of subgraphs, union box for two objects is taken and this box is given a confidence score as the product of the scores of two object proposals. Non-Max Suppression [14] is then applied to get the representative box and a merged subgraph is formed, containing a unified feature representation for a number of objects. Furthermore, the edge features are represented by 2-D maps, while the object features are still represented as 1-D vectors, prompting [25] to introduce a novel *Spatial-weighted Message Passing* (SMP) structure for message passing and also a *Spatial-sensitive Relation Inference* (SRI) module to infer the predicate in the form of a 1D vector. The functioning of both of these can be seen in Fig. 6.
 <br></br>      
 <center>
-<img src="../images/scene_graph/factorizable_modules-1.png" width="100%" title="hover text" align="center">
+<img src="../images/scene_graph/factorizable_modules-1.png" width="100%" title="Factorizable Net Modules" align="center">
 
 **Figure 6** Left: SMP structure for object/subgraph feature refining. Right: SRI Module for predicate recognition. Green, red and yellow refer to the subgraphs, objects, and predicates respectively. $\odot$ denotes the dot product, while $\oplus$ and $\otimes$ denote the element-wise sum and product, respectively.
 </center>
@@ -174,16 +174,16 @@ While the above technique focuses on reducing the number of relations by not ign
 ***Motivation*** $~$ While the presence of large-scale datasets such as Visual Genome [24] has undoubtedly been a huge turning point for the SGG task, it has come with some of its own problems, one of the major ones being the presence of a *long-tailed distribution* in the dataset. This refers to the presence of an uneven number of relationship instances in the dataset, with some of the simpler relations having many more instances (head) than more complex (and more informative) ones (tail). Consequently, while the network may be able to get good accuracy on paper, it might still fail to instigate diversity in its predictions, leading to performance deterioration in various downstream tasks such as VQA, image captioning, etc. The long-tail can be due to various reasons, one of the basic ones being the presence of certain *bias* in human annotators towards simpler relationships such as *near, on, has*, etc instead of more complex ones such as *standing on, sitting on*, etc. A representation of this long-tail problem in the Visual Genome dataset can be seen in Fig. 7.
 <br></br>      
 <center>
-<img src="../images/scene_graph/long_tail_problem-1.png" width="100%" title="hover text" align="center">
+<img src="../images/scene_graph/long_tail_problem-1.png" width="100%" title="Long-tail problem" align="center">
 
 **Figure 7:** Visual Relationships have a long tail (left) of infrequent relationships. Current models only focus on the top 50 relationships (middle) in the Visual Genome dataset, which all have thousands of labeled instances. This ignores more than 98% of the relationships with few labeled instances (right, top/table).
 </center>
 <br></br>  
 
-***Methodology*** $~$ The suggestion of the presence of such a bias in the Visual Genome dataset was first presented in [52]. While their work does not directly solve the problem of bias presence, and rather focuses on designing a refining scheme to utilize this as we have already seen in Section 3.1, it did report a very shocking baselines: *given object detections*, *predict the most frequent relation between object pairs with the given labels*, *as seen in the training set*. While the baseline seems pretty simple, it did prove to be pretty powerful by improving on previous state-of-the-art by an average of 3:6% relative improvement across evaluation settings. This clearly indicates a certain bias in the dataset towards some particular relation types, with a class imbalance being pretty apparent. With their technique, while they were able to beat their own baseline by capturing a better global context, it did not explicitly target these *tail relationship classes*.
+***Methodology*** $~$ The suggestion of the presence of such a bias in the Visual Genome dataset was first presented in [52]. While their work does not directly solve the problem of bias presence, and rather focuses on designing a refining scheme to utilize this as we have already seen in Section 3.1, it did report a very shocking baselines: *given object detections*, *predict the most frequent relation between object pairs with the given labels*, *as seen in the training set*. While the baseline seems pretty simple, it did prove to be pretty powerful by improving on previous state-of-the-art by an average of 3.6% relative improvement across evaluation settings. This clearly indicates a certain bias in the dataset towards some particular relation types, with a class imbalance being pretty apparent. With their technique, while they were able to beat their own baseline by capturing a better global context, it did not explicitly target these *tail relationship classes*.
 
 
-While the above model worked on using statistical information to get the desired result, few-shot learning and semi-supervised techniques have also been used in various literature works to treat the dataset imbalance. [9] and [11] enlist some ways to solve the long-tail problem in the SGG task by taking inspiration from the recent advances in semi-supervised and few-shot learning techniques. [9] proposes a semi-supervised approach by using image-agnostic features such as object labels and relative spatial object locations from a very small set of labeled relationship instances to assign probabilistic labels to relationships in unlabelled images. For this, image-agnostic features are extracted from objects in the labeled set $D_p$, and the object proposals from unlabeled set $D_U$. To capture the image-agnostic rules that define a relationship, heuristics are generated over these features with the help of decision trees. Labels are predicted using these heuristics, producing a matrix $\Lambda \in \mathbb{R}^{J \times |D_U|}$  of predictions for the unlabeled relationships, where $J$ is the number of decision trees. A factor graph-based generative model [32,46,36] learns the accuracies of each heuristic to combine their individual labels, and outputs a probabilistic label for each object pair. Finally, these probabilistic labels can be used to train a scene graph prediction model. Also, a noise-aware empirical risk minimizer is used instead of a normal cross-entropy loss to take into account the errors in the training annotations.
+While the above model worked on using statistical information to get the desired result, few-shot learning and semi-supervised techniques have also been used in various literature works to treat the dataset imbalance. [9] and [11] enlist some ways to solve the long-tail problem in the SGG task by taking inspiration from the recent advances in semi-supervised and few-shot learning techniques. [9] proposes a semi-supervised approach by using image-agnostic features such as object labels and relative spatial object locations from a very small set of labeled relationship instances to assign probabilistic labels to relationships in unlabelled images. For this, image-agnostic features are extracted from objects in the labeled set $D_p$, and the object proposals from unlabeled set $D_U$. To capture the image-agnostic rules that define a relationship, heuristics are generated over these features with the help of decision trees. Labels are predicted using these heuristics, producing a matrix $\Lambda \in \mathbb{R}^{J \times |D_U|}~$  of predictions for the unlabeled relationships, where $J~$ is the number of decision trees. A factor graph-based generative model [32,46,36] learns the accuracies of each heuristic to combine their individual labels, and outputs a probabilistic label for each object pair. Finally, these probabilistic labels can be used to train a scene graph prediction model. Also, a noise-aware empirical risk minimizer is used instead of a normal cross-entropy loss to take into account the errors in the training annotations.
 
 While the above technique used a model to label unlabeled data, [11] proposes a way to utilize the recent advances in few-shot learning for learning object representations from frequent categories and using these for few-shot prediction of rare classes. This is done by using a mechanism to create object representations that encode relationships afforded by the object. The idea is if a subject representation is transformed by a specific predicate, the resulting object representation should be close to other objects that afford similar relationships with the subject. For example, if we transform the subject, *person*, with the predicate *riding*, the resulting object representation should be close to the representations of objects that can be ridden and also at the same time be spatially below the subject. For such transformations, we deal with predicates as functions, dividing it into two individual functions: a forward function that transforms the *subject* representation into *object* and an inverse function that transforms the *object* representation back into *subject*. Each of these is further divided into two components: a spatial component ($f_{sem,p}$) that transforms attention over the image space and a semantic component ($f_{spa,p}$) that operates over the object features.
 
@@ -191,7 +191,7 @@ While all of the above techniques required training from scratch to solve the pr
 <br></br>      
 <center>
 
-<img src="../images/scene_graph/causal.png" width="100%" title="hover text" align="center">
+<img src="../images/scene_graph/causal.png" width="100%" title="Unbiased scene graph using counterfactual reasoning" align="center">
 
 **Figure 8:** (Left) Represents the visual example of the framework proposed in [44]; (Right) Represents the causal graphs of the normal and counterfactual scene.
 
@@ -215,7 +215,7 @@ problems, *Entity Instance Confusion*, which occurs when a model confuses multip
 the same type of entity (e.g. multiple cups) and *Proximal Relationship Ambiguity*, arising when
 multiple subject-predicate-object triplets occur in close proximity with the same predicate and the
 model struggles to infer the correct subject-object pairings (e.g. mis-pairing musicians and their
-instruments). The losses explicitly force the model to disambiguate related and unrelated instances through margin constraints specific to each type of confusion. The losses are defined over an affinity term $\Phi(s, o)$, interpreted as the probability that subject $s$ and object $o$ have some relation. For this, three separate contrastive losses are defined as follows:
+instruments). The losses explicitly force the model to disambiguate related and unrelated instances through margin constraints specific to each type of confusion. The losses are defined over an affinity term $\Phi(s, o)$, interpreted as the probability that subject $s~$ and object $o~$ have some relation. For this, three separate contrastive losses are defined as follows:
 
 1. *Class-Agnostic Loss* Used for contrasting positive/negative pairs regardless of their relation and adds contrastive supervision for generic cases. For a subject indexed by $i$ and an object indexed by $j$, the margins to maximize can be written as: \begin{equation}
     \begin{aligned}
@@ -235,13 +235,13 @@ instruments). The losses explicitly force the model to disambiguate related and 
     where $N$ is the number of annotated entities and $\alpha_1$ is the margin threshold.
 
 
-2. *Entity Class Aware Loss* Used for solving the *Entity Instance Confusion* and can be taken as an extension of the above loss where class $c$ is defined when populating positive and negative sets $V+$ and $V−$. Hence the margins are defined in a similar way as Eq. 7, where rather than $V$, $V^{c}$ is used to refer to class instances. Also, the definition of $L_2$ is pretty similar to Eq. 8, taking into account the margins specified here.
+2. *Entity Class Aware Loss* Used for solving the *Entity Instance Confusion* and can be taken as an extension of the above loss where class $c$ is defined when populating positive and negative sets $V+~$ and $V−$. Hence the margins are defined in a similar way as Eq. 7, where rather than $V$, $V^{c}~$ is used to refer to class instances. Also, the definition of $L_2~$ is pretty similar to Eq. 8, taking into account the margins specified here.
 
 3. *Predicate Class Aware Loss* Used for solving the *Proximal Relationship Ambiguity problem*
 and can be taken as an extension of the above two losses where relationship e is defined
 when populating positive and negative sets $V+$ and $V−$. Hence the margins are defined in a
-similar way as Eq. 7, where rather than $V$, $V^e$ is used to refer to a set of subject-object pairs
-where ground truth predicate between $s_i$ and $o_j$ is $e$. Also, the definition of $L_3$ is pretty
+similar way as Eq. 7, where rather than $V$, $V^e~$ is used to refer to a set of subject-object pairs
+where ground truth predicate between $s_i$ and $o_j~$ is $e$. Also, the definition of $L_3~$ is pretty
 similar to Eq. 8, taking into account the margins specified here.
 
 
@@ -249,14 +249,14 @@ A linear combination of all these losses, along with a standard cross-entropy ma
 <br></br>      
 <center>
 
-<img src="../images/scene_graph/counterfactual.png" width="100%" title="hover text" align="center">
+<img src="../images/scene_graph/counterfactual.png" width="100%" title="Counterfactual critic Multi-Agent Training" align="center">
 
 **Figure 9:** (a) presents examples of the problem targeted in [7]; (b) presents the procedure for calculating the counterfactual baseline CB.
 
 </center>
 <br></br>      
 
-For a *graph coherent* training objective, each detected object is modeled as an agent whose action is to predict the object class labels $v^t$. An LSTM is used to encode the *history* of each agent, whose hidden state $h_i^t$ can be treated as a partially-observable environment state. Based on the policy gradient theorem, the gradient is given by :
+For a *graph coherent* training objective, each detected object is modeled as an agent whose action is to predict the object class labels $v^t$. An LSTM is used to encode the *history* of each agent, whose hidden state $h_i^t~$ can be treated as a partially-observable environment state. Based on the policy gradient theorem, the gradient is given by :
 
 \begin{equation}
 \nabla_{\theta} J \approx \sum^n_{i=1} \nabla_{\theta} \log {p}^t_i (v^T_i|h^T_i; \theta) R(H^T, V^T)
@@ -264,13 +264,13 @@ For a *graph coherent* training objective, each detected object is modeled as an
     
 where $R(H^T, V^T)$ is the real graph-level reward (Recall@K or SPICE).
 
-To incorporate local sensitive signals to the objective, a counterfactual critic approach is used, where the individual contribution of an agent is represented by subtracting counterfactual baseline $\text{CB}^i(H^T, V^T) = \sum {p}^T_i(\tilde{v}^T_i) R(H^T, (V^T_{-i}, \tilde{v}^T_i))$ from the global reward $R(H^T, V^T)$ to get the disentangled contribution of the action- of an agent $i$,
+To incorporate local sensitive signals to the objective, a counterfactual critic approach is used, where the individual contribution of an agent is represented by subtracting counterfactual baseline $\text{CB}^i(H^T, V^T) = \sum {p}^T_i(\tilde{v}^T_i) R(H^T, (V^T_{-i}, \tilde{v}^T_i))~$ from the global reward $R(H^T, V^T)~$ to get the disentangled contribution of the action- of an agent $i$,
 
 \begin{equation}
 A^i(H^T, V^T) = R(H^T, V^T) - \text{CB}^i(H^T, V^T).
 \end{equation}
 
-Here $A^i(H^T, V^T)$  can be considered as the *advantage* and $\text{CB}^i(H^T, V^T)$ can be regarded as a *baseline* in policy gradient methods. A visual representation of CB model can also be seen in Fig. 9. Hence the gradient becomes 
+Here $A^i(H^T, V^T)~$ can be considered as the *advantage* and $\text{CB}^i(H^T, V^T)~$ can be regarded as a *baseline* in policy gradient methods. A visual representation of CB model can also be seen in Fig. 9. Hence the gradient becomes 
 
 \begin{equation}
 \nabla_{\theta}J \approx \sum^n_{i=1} \nabla_{\theta} \log {p}^t_i (v^T_i|h^T_i; \theta) A^i(H^T, V^T)
@@ -285,7 +285,7 @@ Finally, the cross-entropy losses are also incorporated in the overall gradient 
 Having dealt with the problem of Scene Graph Generation, the obvious question that comes into the reader’s mind is "*why go through such trouble to create scene graphs to represent visual relationships in a scene?*". Hence to make sense of all the work to improve the performance in the generation task, we are now going to delve into the various applications of scene graphs and how their rich representational power has been used to solve various downstream tasks such as VQA, Image Captioning, and many others.
 
 ### 4.1 Semantic Image Retrieval
-Retrieving images by describing their contents is one of the most exciting applications of computer vision. An ideal system would allow people to search for images by specifying not only objects ("man" and "boat"), but also structured *relationships* ("man on boat") and attributes ("boat is white"). However as pointed out in [21], bringing this level of semantic reasoning to real-world scenes involves two main challenges: (1) interactions between objects in a scene can be highly complex, going beyond simple pairwise relations, and (2) the assumption of a closed universe where all classes are known beforehand does not hold.
+Retrieving images by describing their contents is one of the most exciting applications of computer vision. An ideal system would allow people to search for images by specifying not only objects ("man" and "boat"), but also structured *relationships* ("man on boat") and attributes ("boat is white"). However as pointed out in [21], bringing this level of semantic reasoning to real-world scenes involves two main challenges: **(1)** interactions between objects in a scene can be highly complex, going beyond simple pairwise relations, and **(2)** the assumption of a closed universe where all classes are known beforehand does not hold.
 
 Hence to tackle these problems, [21] proposes the use of scene graphs for the task. Replacing textual queries (used for retrieval) with scene graphs allows the queries to represent the visual relationships in a scene in an explicit way rather than relying on unstructured text for the task. The paper introduced a novel Conditional Random Field (CRF) model for retrieving the image from a given scene graph, outperforming retrieval methods based on low-level visual features.
 
@@ -299,7 +299,7 @@ With the rich representational power of scene graphs and the dense & explicit re
 To exploit these advantages, [45] proposes a novel technique to solve this task by representing both the question and the image given by the user in the form of graphs. The training dataset used, being a synthetic one, already has object label information and their relationships for the scene graph to be a direct input, while the given question was parsed to form a graph. Thereafter, simple embeddings are generated for both nodes and edges of both the graphs and the features are then refined iteratively using a GRU. At the same time, pre-GRU embeddings are used to generate attention weights, which are used to align specific words in the question with particular elements of the scene. Once the attention weights and refined features are obtained, the weights are applied to the corresponding pairwise combinations of question and scene features. Finally with the help of non-linearities and weight vector layers, the sum of weighted features over the scene and question elements are taken step-by-step. This leads to the eventual generation of the answer vector, containing scores for the possible answers. The entire process can be seen in Fig. 10.
 <br></br>      
 <center>
-<img src="../images/scene_graph/vqa_pipeline-1.png" width="100%" title="hover text" align="center">
+<img src="../images/scene_graph/vqa_pipeline-1.png" width="100%" title="VQA pipeline" align="center">
 
 **Figure 10:** A pipeline for [45] on using scene graphs for VQA. The input is provided as a description of the scene and a parsed question. A recurrent unit (GRU) is associated with each node of both the graphs that updates the representation of each node over multiple iterations. Features from all object and all words are combined (concatenated) pairwise and they are weighted with a form of attention. This effectively matches elements between the question and the scene. The weighted sum of features is passed through a final classifier that predicts scores over a fixed set of candidate answers.
 </center>
@@ -336,7 +336,7 @@ While almost all the SGG techniques report their results on these three paramete
 
 One of them is *SGGen+* [49], which proposes to not only consider the triplets counted by SGGen, but also the recall of singletons and pairs (if any) ,i.e., it doesn’t penalize small mismatches much. For example, for a ground truth triplet *< boy − wearing − shoes >*, if *boy* is replaced with *man*, the SGGen score will be zero due to triplet mismatching, whereas in the case of SGGen+ it will be non-zero because of the correct classification of atleast the predicate and object. Another modification suggested is that of *Mean Recall@k*, abbreviated as *mR@k* [8,43] which tries to counter the problem of Long-tailed Dataset Distribution discussed earlier in Section 3. If one method performs well on several most frequent relationships, it can achieve a high *R@k* score, which makes it insufficient to measure performance on all relationships. This is where *mean R@k* shines, as it first computes the *R@k* for samples of each relationship and then averages over all relationships to obtain *mR@K*, and hence giving a more comprehensive performance evaluation for all relationships.
 
-However, *we don’t use* *SGGen+* and *Mean Recall@K *in Table 2 because the performance results of various models on these metrics are not available
+However, *we don’t use* *SGGen+* and *Mean Recall@K* in Table 2 because the performance results of various models on these metrics are not available
 
 ***Comparison*** The performance of the various SGG methods on Visual Genome [24], measured using the metrics described above, can be seen in Table 2. As can be clearly seen, the performance of all the methods with no-graph constraint is much better than ones with a graph constraint. Also, a clear decrease in the recall values as we move from PredClS to SGCls to SGGen indicates an eventual increase in the complexity of the respective metrics. While the earlier techniques such as iterative message passing [47] and MSDN [26] may have laid the groundwork for further work, their lower performance can clearly be attributed to their rudimentary message passing scheme. Even with a meagre improvement in accuracy reported by Graph R-CNN [49] and Factorizable Net [25], they are still able to reduce their inference time, with Factorizable Net reporting upto 3× speed boost as compared to earlier techniques. The poor performance by [16,9,11] can be explained by the fact that the usage of external knowledge, semi-supervised learning and few-shot learning gives a huge bump to the accuracy only when there is a limited annotated dataset. Hence, while all these three techniques outperform the other techniques on very less amount of data, their methodology does not lead to that big of a performance boost when dealing with the whole dataset. The clear winner in this "*performance race*" is evidently the usage of a modified loss function [53,7] and incorporating statistical dependencies [52,8,43] in the model.
 
@@ -344,7 +344,7 @@ However, *we don’t use* *SGGen+* and *Mean Recall@K *in Table 2 because the pe
 However, one thing to keep in mind here is the fact that many of these techniques used only the *most frequent relationships* found in the dataset. This clearly is detrimental for the various downstream tasks that a scene graph can be used for and severely limits its applicability on real-world problems. Also, the usage of *Recall@k* instead of *mean Recall@k* severely handicaps the model’s performance and incorporates a bias in the end result as has been described earlier. The technique proposed in [44], which had the main contribution of more diverse predictions by removing the bias in predictions, report its results using only *mean R@k* (which is also why we were not able to report its results in the main table) and also *beats all the other models in this evaluation metric*. Furthermore, the other techniques using semi-supervised and few-shot learning methods [9,11], while performing poorly on *R@k*, would see a big bump in their accuracy when using *mean R@k* because of their main target being the tail classes, and have even reported to perform much better if the performance on just these infrequent classes is considered. Apart from this, the values reported in the table clearly indicate that the performance in scene graph generation is still far from human-level performance.
 
 <center>
-<img src="../images/scene_graph/results_table.png" width="100%" title="hover text" align="center">
+<img src="../images/scene_graph/results_table.png" width="100%" title="Performance Comparison" align="center">
 
 **Table 2:** Comparison on Visual Genome3 [24]. Results in the table are presented in their original work setting. Graph constraints refer to a single predicate prediction per object pair whereas, in the no-graph constraint setting, multiple predicates can be detected for each object pair.
 </center>
