@@ -64,10 +64,8 @@ def g_loss(generated_output):
     return bce(tf.ones_like(generated_output), generated_output)
 ```
 
-Notably, in practice, the generator loss function ![\begin{equation}
-\log (1-D(G(\boldsymbol{z})))
-\end{equation}](https://render.githubusercontent.com/render/math?math=%5Cdisplaystyle+%5Cbegin%7Bequation%7D%0A%5Clog+%281-D%28G%28%5Cboldsymbol%7Bz%7D%29%29%29%0A%5Cend%7Bequation%7D)
- is formulated in its non-saturating form, as Goodfellow et. al. first
+Notably, in practice, the generator loss function ![min \log (1-D(G(\boldsymbol{z})))](https://render.githubusercontent.com/render/math?math=%5Ctextstyle+min+%5Clog+%281-D%28G%28%5Cboldsymbol%7Bz%7D%29%29%29)
+ is formulated in its non-saturating form ![max \log D(G(\boldsymbol{z}))](https://render.githubusercontent.com/render/math?math=%5Ctextstyle+max+%5Clog+D%28G%28%5Cboldsymbol%7Bz%7D%29%29), as Goodfellow et. al. first proposed. Saturation refers to the phenomenon where the optimization surface is steep and estimates gradually oscillate towards low and high extremes.
 
 
  While it can be solved with gradient-descent, several fallbacks exist. 
