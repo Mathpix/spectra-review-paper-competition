@@ -49,11 +49,42 @@ minimax game
 
 That minimax game corresponds to a saddle point optimization problem. While it can be solved with gradient-descent, several fallbacks exist. 
 
-1. *The Helvetica scenario* [1] G is trained too much without updating D. 
+1. **The Helvetica scenario** [1] G is trained too much without updating D. 
 2. D is too strong compared to G. It becomes too trivial for G to distinguish real from fake. D's gradients are close to zero and G is not provided with any more training guidance.
-3. *mode collapse* [3]. G learns probabilities over limited modes of the original data distribution. It thus produces images from a certain set instead of a diversity of images.
+3. **mode collapse** [3]. G learns probabilities over limited modes of the original data distribution. It thus produces images from a certain set instead of a diversity of images.
 
 Kullback Leibler, Jensen Shannon. (FILL)
+
+
+```python
+def build_generator(input_shape):
+    """Defines the generator keras.Model.
+    Args:
+        input_shape: the desired input shape (e.g.: (latent_space_size))
+    Returns:
+        G: The generator model
+    """
+    inputs = tf.keras.layers.Input(input_shape)
+    net = tf.keras.layers.Dense(units=64, activation=tf.nn.elu, name="fc1")(inputs)
+    net = tf.keras.layers.Dense(units=64, activation=tf.nn.elu, name="fc2")(net)
+    net = tf.keras.layers.Dense(units=1, name="G")(net)
+    G = tf.keras.Model(inputs=inputs, outputs=net)
+    return G
+
+
+def build_disciminator(input_shape):
+    """Defines the discriminator keras.Model.
+    Args:
+        input_shape: the desired input shape (e.g.: (the generator output shape))
+    Returns:
+        D: the discriminator model
+    """
+    inputs = tf.keras.layers.Input(input_shape)
+    net = tf.keras.layers.Dense(units=32, activation=tf.nn.elu, name="fc1")(inputs)
+    net = tf.keras.layers.Dense(units=1, name="D")(net)
+    D = tf.keras.Model(inputs=inputs, outputs=net)
+    return D
+```
 
 ## tips and trics to train a GAN
 
@@ -83,7 +114,11 @@ ACGAN [14] proposes to concatenate class labels to the input to further improve 
 
 ### L_G
 
+The original feed-forward neural network for G, can be replaced with a variational autoencoder (VAEGAN [15])
 
+### conditional GAN
+
+Conditional GANs rely on feeding auxiliary information to the network. This can be an image (pix2pix)
 
 ## what if you have less labels: semi / self-supervision
 
@@ -133,3 +168,8 @@ network.
 [13] Xi Chen, Yan Duan, Rein Houthooft, John Schulman, Ilya Sutskever, Pieter Abbeel: “InfoGAN: Interpretable Representation Learning by Information Maximizing Generative Adversarial Nets”, 2016
 
 [14] Odena, A., Olah, C., Shlens, J., 2016. Conditional image synthesis with auxiliary classifier gans.
+
+[15] Larsen, A.B.L., Sønderby, S.K., Larochelle, H., Winther, O., 2015. Autoencoding beyond pixels using a learned similarity metric.
+
+[16] Isola, P., Zhu, J.Y., Zhou, T., Efros, A.A., 2016. Image-to-image translation
+with conditional adversarial networks.
