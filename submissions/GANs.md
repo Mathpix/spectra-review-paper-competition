@@ -21,7 +21,7 @@ This motivates
 In the following ... (FILL)
 
 > 4.5 years of GAN progress on face generation.
-> https://pbs.twimg.com/media/Dw6ZIOlX4AMKL9J?format=jpg&name=large
+> ![](https://pbs.twimg.com/media/Dw6ZIOlX4AMKL9J?format=jpg&name=large)
 > &mdash; Ian Goodfellow (@goodfellow_ian)
 > [January 15, 2019](https://twitter.com/goodfellow_ian/status/1084973596236144640?ref_src=twsrc%5Etfw)
 
