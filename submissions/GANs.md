@@ -1,16 +1,17 @@
 ---
-title: GANs
-description: GANs and their current impacts 
+title: Generative Adversarial Networks
+description: Generative Adversarial Networks and their impacts 
 author: Gabriel Bénédict
 breaks: false
 ---
 
+# Introduction
+
 Oftentimes, only the most graphical (image / video) Artificial Intelligence advances are filtered out to the mainstream media. Generative Adverdsarial Networks (GANs) play an important role in that tip-of-the-iceberg phenomenon because they are most of the time related to images but also because they illustrate the potential of AI for creativity (e.g. https://www.thispersondoesnotexist.com/). Or at least some impression of creativity that is sufficient to blur the line between human and AI creation.
 
-Some of these tip-of-the-iceberg tasks are *next video frame prediction* [26], *image super-resolution* [27], *generative image manipulation* (image editing and creation with minimal brush strokes) [28], *introspective adversarial networks* [29] (photo-editor-like features), *image-to-image translation* [30] (e.g. satellite images to maps, design sketches to clothing, etc.), *photorealistic images from a semantic layout* [31] (e.g. "draw grass on the bottom, mountains in the middle and a tree in the foreground"). 
+GANs have impressed the broader public with some tip-of-the-iceberg tasks such as *next video frame prediction* [26], *image super-resolution* [27], *generative image manipulation* (image editing and creation with minimal brush strokes) [28], *introspective adversarial networks* [29] (photo-editor-like features), *image-to-image translation* [30] (e.g. satellite images to maps, design sketches to clothing, etc.), *photorealistic images from a semantic layout* [31, 41] (e.g. "draw grass on the bottom, mountains in the middle and a tree in the foreground"). 
 
-
-Generative Adverdsarial Networks (GANs) are relatively trivial to comprehend but they are hard to tune. In addition to the complexities of GANs hyperparametrization at training time, GANs often have downstream tasks that are related to creativity and therefore hard to benchmark. This is admittedly why several influential GAN papers remain unpublished. These elements coupled with a general hype around GAN papers, make it difficult for the practitioner to choose the right GAN for the right purpose and to tune its hyperparameters.
+GANs are relatively trivial to comprehend but they are hard to tune. In addition to the complexities of GANs hyperparametrization at training time, GANs often have downstream tasks that are related to creativity and are therefore hard to benchmark. This is admittedly why several influential GAN papers remain unpublished. These elements coupled with a general publication storm around the subject of GANs, make it difficult for the practitioner to choose the right GAN for the right purpose and to tune its hyperparameters.
 
 This motivates the following text: an attempt at a short explanation of GANs and at producing a non-exhaustive account of the way GANs have evolved towards the most recent research iterations.
 
@@ -22,17 +23,13 @@ This motivates the following text: an attempt at a short explanation of GANs and
 > [January 15, 2019](https://twitter.com/goodfellow_ian/status/1084973596236144640?ref_src=twsrc%5Etfw)
 
 
-## The Original Generative Adversarial Network
+# The Original Generative Adversarial Network
 
-A generative model $G$ creating synthetic samples is paired with a discriminative model $D$ that estimates the probability of that synthetic data to be created by $G$ or to be a sample of the original data. In the original GAN paper, both G and D are feedforward neural networks.
+A generative model G creating synthetic samples is paired with a discriminative model D that estimates the probability of that synthetic data to be created by G or to be a sample of the original data. In the original GAN paper, both G and D are feedforward neural networks.
 
-The police VS robber analogy is mentioned in the original work but the art forger VS art inspector analogy is seemingly more fitting:  (Sharon Zhou analogy)
+> "The generative model can be thought of as analogous to a team of counterfeiters, trying to produce fake currency and use it without detection, while the discriminative model is analogous to the police, trying to detect the counterfeit currency. Competition in this game drives both teams to improve their methods until the counterfeits are indistiguishable from the genuine articles." [Goodfellow et. al.](https://arxiv.org/pdf/1406.2661.pdf)
 
-$G$ must maximize the probability of $D$ making a mistake. $D$ 
-
-> The generative model can be thought of as analogous to a team of counterfeiters, trying to produce fake currency and use it without detection, while the discriminative model is analogous to the police, trying to detect the counterfeit currency. Competition in this game drives both teams to improve their methods until the counterfeits are indistiguishable from the genuine articles. [Goodfellow et. al.](https://arxiv.org/pdf/1406.2661.pdf)
-
-minimax game. G aims to maximize the overlap between the distribution of the original data and the distribution of the fake data. Applying cross-entropy on point estimates is only an approximation and will be later improved upon with Wasserstein GANs (see below).
+The police VS robber abalogy corresponds to a minimax game, where G aims to maximize the overlap between the distribution of the original data and the distribution of the fake data. Applying cross-entropy on point estimates is only an approximation and will be later improved upon with Wasserstein GANs (see below).
 
 ![\begin{equation}
 \min _{G} \max _{D} V(D, G)=\mathbb{E}_{\boldsymbol{x} \sim p_{\mathrm{data}}(\boldsymbol{x})}[\log D(\boldsymbol{x})]+\mathbb{E}_{\boldsymbol{z} \sim p_{\boldsymbol{z}}(\boldsymbol{z})}[\log (1-D(G(\boldsymbol{z})))]
@@ -93,7 +90,7 @@ a little outdated: https://github.com/soumith/ganhacks#authors
 
 different tasks, different modalities
 
-## GAN variants
+# GAN variants
 
 In order to tackle the several fallbacks from the vanilla GAN above, variants of GANs have been proposed. They propose to change the loss in D or G, but also often change the architecture of the model.
 
@@ -154,7 +151,7 @@ VAE GANs VS ALI [2]
 
 Given their popularity, GANs are now predominantly coupled with other recent methods. This includes self-supervision (BigBIGAN [32]), attention-based models (SAGAN [33, 39]). These GAN types are among the state-of-the-art in terms of performance. But performance is a non-trivial concept with GANs, as described in the following.
 
-## Evaluating GANs
+# Evaluating GANs
 
 As hinted at in the introduction, this is the most challenging task, since GANs have most often a creative downstream task (generating fake people, fake music, etc.). In other words, the loss function of GANs tell little about model performance linked to the creative downstream task. For classification, a low loss on a test set suggests an accurate model, but a low loss on D and G is only a sign that training has converged to a saddle point and has stopped.
 
@@ -162,14 +159,14 @@ While asking humans to evaluate *reals* from *fakes* seems like a sensible idea 
 
 Alternatively, an independent critique network can be trained from scratch at GAN evaluation time to compare a holdout set of groundtruth data with the GAN generated data [22, 23, 24].
 
-## Outlook
+# Outlook
 
-Over the course of this summary, we have seen how the original GAN was formulated and its associated drawbacks. While the subsequent GAN iterations partly tackled these original drawbacks, GANs started being used for different modes (image, text, sound, video) and for different tasks (image superresolution, image style transfer, etc.). Most recently, GANs was caught in the trends of transformers and self-supervision. In the domain of evaluation, progress has been slower in comparison, and a lot remains to be researched.
+Over the course of this summary, we have seen how the original GAN was formulated and its associated drawbacks. While the subsequent GAN iterations partly tackled these original drawbacks, GANs started being used for different modes (image, text, sound, video) and for different tasks (image superresolution, image style transfer, etc.). Most recently, GANs was caught in the trends of transformers and self-supervision. In the domain of evaluation, progress has been slower in comparison, and a lot remains to be discovered.
 
 ---
 
 
-For further in-depth reading and learning, we found the coursera class [Generative Adversarial Networks (GANs) Specialization](https://www.coursera.org/specializations/generative-adversarial-networks-gans?ranMID=40328&ranEAID=SAyYsTvLiGQ&ranSiteID=SAyYsTvLiGQ-jsl.a4ThyS7B6Pg5_AQbMQ&siteID=SAyYsTvLiGQ-jsl.a4ThyS7B6Pg5_AQbMQ&utm_content=10&utm_medium=partners&utm_source=linkshare&utm_campaign=SAyYsTvLiGQ) from DeepLearning.AI (all assignments can be found [here](https://github.com/amanchadha/coursera-gan-specialization)) and the book [GANs in Action](https://www.manning.com/books/gans-in-action). 
+For further in-depth reading and learning, see the coursera class [Generative Adversarial Networks (GANs) Specialization](https://www.coursera.org/specializations/generative-adversarial-networks-gans?ranMID=40328&ranEAID=SAyYsTvLiGQ&ranSiteID=SAyYsTvLiGQ-jsl.a4ThyS7B6Pg5_AQbMQ&siteID=SAyYsTvLiGQ-jsl.a4ThyS7B6Pg5_AQbMQ&utm_content=10&utm_medium=partners&utm_source=linkshare&utm_campaign=SAyYsTvLiGQ) from DeepLearning.AI (all assignments can be found [here](https://github.com/amanchadha/coursera-gan-specialization)) and the book [GANs in Action](https://www.manning.com/books/gans-in-action). 
 
 ## References
 
@@ -261,3 +258,5 @@ with conditional adversarial networks.
 [39] Oliehoek, F., Savani, R., Gallego, J., van der Pol, E. and Gross, R., Beyond Local Nash Equilibria for Adversarial Networks. 2018.
 
 [40] Grnarova, P., Levy, K.Y., Lucchi, A., Hofmann, T. and Krause, A., An Online Learning Approach to Generative Adversarial Networks, 2017. CoRR, Vol abs/1706.03269.
+
+[41] Taesung Park, Ming-Yu Liu, Ting-Chun Wang, Jun-Yan Zhu, Semantic Image Synthesis with Spatially-Adaptive Normalization, CVPR 2019
