@@ -1,17 +1,17 @@
 ---
 title: Generative Adversarial Networks
-description: Generative Adversarial Networks and their impacts 
+description: Generative Adversarial Networks, their variants and their evaluation 
 author: Gabriel Bénédict
 breaks: false
 ---
 
 # Introduction
 
-Oftentimes, only the most graphical (image / video) Artificial Intelligence advances are filtered out to the mainstream media. Generative Adverdsarial Networks (GANs) play an important role in that tip-of-the-iceberg phenomenon because they are most of the time related to images but also because they illustrate the potential of AI for creativity (e.g. https://www.thispersondoesnotexist.com/). Or at least some impression of creativity that is sufficient to blur the line between human and AI creation.
+Oftentimes, only the most graphical Artificial Intelligence advances (image / video) are filtered out to the mainstream media. Generative Adverdsarial Networks (GANs) play an important role in that tip-of-the-iceberg phenomenon because they are most of the time related to images but also because they illustrate the potential of AI for creativity (e.g. https://www.thispersondoesnotexist.com/). Or at least some impression of creativity that is sufficient to blur the line between human and AI creation.
 
 GANs have impressed the broader public with some tip-of-the-iceberg tasks such as *next video frame prediction* [26], *image super-resolution* [27], *generative image manipulation* (image editing and creation with minimal brush strokes) [28], *introspective adversarial networks* [29] (photo-editor-like features), *image-to-image translation* [30] (e.g. satellite images to maps, design sketches to clothing, etc.), *photorealistic images from a semantic layout* [31, 41] (e.g. "draw grass on the bottom, mountains in the middle and a tree in the foreground"). 
 
-GANs are relatively trivial to comprehend but they are hard to tune. In addition to the complexities of GANs hyperparametrization at training time, GANs often have downstream tasks that are related to creativity and are therefore hard to benchmark. This is admittedly why several influential GAN papers remain unpublished. These elements coupled with a general publication storm around the subject of GANs, make it difficult for the practitioner to choose the right GAN for the right purpose and to tune its hyperparameters.
+GANs are relatively trivial to comprehend but they are hard to tune. In addition to the complexities of GANs hyperparametrization at training time, GANs often have downstream tasks that are related to creativity and are therefore hard to benchmark. This is admittedly why several influential GAN papers remain unpublished. These elements coupled with a general authorship storm around the subject of GANs, make it difficult for the practitioner to choose the right GAN for the right purpose and to tune its hyperparameters.
 
 This motivates the following text: an attempt at a short explanation of GANs and at producing a non-exhaustive account of the way GANs have evolved towards the most recent research iterations.
 
@@ -77,17 +77,6 @@ The last point is a lot less common [42] and is thus not a major concern in late
 
 Kullback Leibler, Jensen Shannon. (FILL)
 
-## tips and trics to train a GAN
-
-
-[18] (FILL)
-
-
-[large scale GAN for image synthesis](https://openreview.net/pdf?id=B1xsqj09Fm)
-
-
-
-different tasks, different modalities
 
 # GAN variants
 
@@ -97,7 +86,7 @@ In order to tackle the several challenges from the vanilla GAN above, variants o
 
 *(Most common GAN tasks, source: https://paperswithcode.com/method/patchgan)*
 
-### Changes in the loss function
+## Changes in the loss function
 
 Instead of binary cross-entropy loss, some proposed to use least-square [4], f-divergence [5], hinge loss [6] and finally Wasserstein distance [7, 8, 20]. WassersteinGANs (WGANs) correct for mode collapse and for imbalances between D and G. WGANs creations also quickly became more convincing to the human eye, leading to a strong preference among researchers in the past years. In 2019, Lipschitz GANs (LGANs [51]) are shown to outperform WGANs.
 
@@ -106,9 +95,9 @@ While the challenges of the *Helvetica scneario* and *mode collapse* (see above)
 Aside from dealing with the training challenges of GANs, other tasks emerged. Instead of the original task of distinguishing real from fake data, some proposed class prediction (CATGAN [9] or EBGAN [10] and BEGAN [11] with autoencoders) or latent representation (ALI [2], BiGAN [12], InfoGAN [13]).
 
 
-### Changes in the architecture
+## Changes in the architecture
 
-In an attempt to build meaningful latent representations as with ALI, the original feed-forward neural network for G, can be replaced with a variational autoencoder (VAEGAN [15]). Alternatively, both D and G can be replaced by CNNs, as they are specialized at modelling images (DCGANs [17]). Later on it is discovered that feeding patches of images as input to a GAN can sometimes outperform traditional CNN GANs (PatchGAN [16]). VEAGANs, DCGANs and PatchGANs are still very close to the original GAN in terms of the training task: creating fake images.
+In an attempt to build meaningful latent representations as with ALI, the original feed-forward neural network for G, can be replaced with a variational autoencoder (VAEGAN [15]). Alternatively, both D and G can be replaced by CNNs, as they are specialized at modelling images (DCGANs [17]). Later on, it is discovered that feeding patches of images as input to a GAN can sometimes outperform traditional CNN GANs (PatchGAN [16]). VEAGANs, DCGANs and PatchGANs are still very close to the original GAN in terms of the training task: creating fake images.
 
 Quickly after its inception by Goodfellow et. al., researchers expressed the desire to see GAN perform other tasks than creation. Chronologically, the next proposed task is classification and relies on feeding auxiliary information to the network. This practice becomes known as Conditional GANs (CGANs). Multiple inputs allow CGANs to perform a multitude of tasks but can also at times improve the original creation task. Different from CGANs, where generation is conditioned on the label p(y|x), labels can also be concatenated to the data p(y,x) (e.g. ACGAN [14]). Humans found that p(y|x) and p(y,x) both outperformed the original GANs [18]. There are now three categories of models, namely GANs with no labels (unsupervised), GANs trained with labels (supervised) and CGANs trained conditioned on labels.
 
@@ -116,24 +105,24 @@ Other than labels, images are commonly added as conditional input to CGANs. pix2
 
 Style-based generator architectures (StyleGANs) represent the next iteration, where an intermediary latent space is used to scale and shift the normalized image for each convolution layer [34], closely followed by StyleGAN2 in 2019 [50]. StyleGAN2 is famously capable to produce high definition images of *fake* individuals.
 
+![](https://i.imgur.com/4UFBpTp.jpg)
+
+*(Source: [3])*
+
 ## GANs catching on the recent trends
 
 Given their popularity, GANs are now predominantly coupled with other recent methods. In the case where less or no labels are available, self-supervision (BigBIGAN [32]) is now prevalent. On the other hand, attention-based models attribute importance to distanced features within an image to better contextualize representation (SAGAN [33, 39]). In February 2021, in the lineage of attention-based models, transGAN proposes to discard CNNs altogether and replace them with two transformers for D and G. transGAN establishes new state-of-the-art results [52].
 
 These recent GAN types claim the state-of-the-art in terms of performance. But performance is a non-trivial concept with GANs, as described in the following.
 
-![](https://i.imgur.com/4UFBpTp.jpg)
-
-*(Source: [3])*
-
 
 # Evaluating GANs
 
-As hinted at in the introduction, this is the most challenging task, since GANs have most often a creative downstream task (generating fake people, fake music, etc.). In other words, the loss function of GANs tell little about model performance linked to the creative downstream task. For classification, a low loss on a test set suggests an accurate model, but a low loss on D and G is only a sign that training has converged to a saddle point and has stopped.
+As hinted at in the introduction, this is the most challenging task, since GANs have most often a creative downstream task (generating fake people, fake music, etc.). In other words, the loss function of GANs tell little about model performance. For classification, a low loss on a test set suggests an accurate model, but a low loss on D and G is only a sign that training has converged to a saddle point and has stopped.
 
 While asking humans to evaluate *reals* from *fakes* seems like a sensible idea (effectively with HYPE [35]), its is a costly and time-intensive process. Alternatively, an independent critique network can be trained from scratch at GAN evaluation time to compare a holdout set of groundtruth data with the GAN generated data [22, 23, 24]. 
 
-Most common non-human evaluation metrics found in recent papers claiming the state-of-the-art are Inception Score (higher is better) and Fréchet Inception Distance (lower is better) [18, 54]. Both measures are criticized for focusing on *sample quality* without capturing *sample diversity* (in other words, the metrics are not capable of detecting a *mode collapse*, as described above) [55, 56]. Recently, Costa et. al. proposed to measure *quality diversity* [21], in reaction to high-performance GANs that optimize for both quality and diversity [53].
+Most common non-human evaluation metrics found in recent papers claiming the state-of-the-art are *Inception Score* (higher is better) and *Fréchet Inception Distance* (lower is better) [18, 54]. Both measures are criticized for focusing on *sample quality* without capturing *sample diversity* (in other words, the metrics are not capable of detecting a *mode collapse*, as described above) [55, 56]. Recently, Costa et. al. proposed to measure *quality diversity* [21], in reaction to high-performance GANs that optimize for both quality and diversity [53].
 
 # Outlook
 
