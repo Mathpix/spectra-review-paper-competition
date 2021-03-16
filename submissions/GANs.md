@@ -132,11 +132,11 @@ For further in-depth reading and learning, see the Coursera class [Generative Ad
 ## References
 
 
-[1] [Ian J. Goodfellow, Jean Pouget-Abadie, Mehdi Mirza, Bing Xu, David Warde-Farley, Sherjil Ozair, Aaron Courville, Yoshua Bengio: “Generative Adversarial Networks”, 2014](https://arxiv.org/pdf/1406.2661.pdf)
+[1] Ian J. Goodfellow, Jean Pouget-Abadie, Mehdi Mirza, Bing Xu, David Warde-Farley, Sherjil Ozair, Aaron Courville, Yoshua Bengio: “Generative Adversarial Networks”, 2014
 
-[2] [Vincent Dumoulin, Ishmael Belghazi, Ben Poole, Olivier Mastropietro, Alex Lamb, Martin Arjovsky, Aaron Courville: “Adversarially Learned Inference”, 2016](http://arxiv.org/abs/1606.00704)
+[2] Vincent Dumoulin, Ishmael Belghazi, Ben Poole, Olivier Mastropietro, Alex Lamb, Martin Arjovsky, Aaron Courville: “Adversarially Learned Inference”, 2016
 
-[3] [Xin Yi, Ekta Walia, Paul Babyn : "Generative adversarial network in medical imaging: A review", Medical Image Analysis, Volume 58, 2019, 101552, ISSN 1361-8415, https://doi.org/10.1016/j.media.2019.101552](https://www.sciencedirect.com/science/article/pii/S1361841518308430)
+[3] Xin Yi, Ekta Walia, Paul Babyn : "Generative adversarial network in medical imaging: A review", Medical Image Analysis, Volume 58, 2019, 101552, ISSN 1361-8415
 
 [4] Mao, X., Li, Q., Xie, H., Lau, R.Y., Wang, Z., 2016. Least squares generative
 adversarial networks.
@@ -222,7 +222,7 @@ with conditional adversarial networks.
 
 [41] Taesung Park, Ming-Yu Liu, Ting-Chun Wang, Jun-Yan Zhu, Semantic Image Synthesis with Spatially-Adaptive Normalization, CVPR 2019
 
-[42] Goodfellow, Ian, https://www.iangoodfellow.com/slides/2016-12-04-NIPS.pdf
+[42] Goodfellow, Ian, Generative Adversarial Networks (GANs), NIPS 2016 Tutorial Slides, https://www.iangoodfellow.com/slides/2016-12-04-NIPS.pdf
 
 [43] Milletari, F., Navab, N., Ahmadi, S.A., 2016. V-net: Fully convolutional neural
 networks for volumetric medical image segmentation, in: 3D Vision (3DV),
