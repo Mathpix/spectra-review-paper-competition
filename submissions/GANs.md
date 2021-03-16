@@ -31,10 +31,10 @@ A generative model G creating synthetic samples is paired with a discriminative 
 
 The police VS robber abalogy corresponds to a minimax game, where G aims to maximize the overlap between the distribution of the original data and the distribution of the fake data. Applying cross-entropy on point estimates is only an approximation and will be later improved upon with Wasserstein GANs (see below).
 
-![\begin{equation}
+![\begin{equation*}
 \min _{G} \max _{D} V(D, G)=\mathbb{E}_{\boldsymbol{x} \sim p_{\mathrm{data}}(\boldsymbol{x})}[\log D(\boldsymbol{x})]+\mathbb{E}_{\boldsymbol{z} \sim p_{\boldsymbol{z}}(\boldsymbol{z})}[\log (1-D(G(\boldsymbol{z})))]
-\end{equation}
-](https://render.githubusercontent.com/render/math?math=%5Cdisplaystyle+%5Cbegin%7Bequation%7D%0A%5Cmin+_%7BG%7D+%5Cmax+_%7BD%7D+V%28D%2C+G%29%3D%5Cmathbb%7BE%7D_%7B%5Cboldsymbol%7Bx%7D+%5Csim+p_%7B%5Cmathrm%7Bdata%7D%7D%28%5Cboldsymbol%7Bx%7D%29%7D%5B%5Clog+D%28%5Cboldsymbol%7Bx%7D%29%5D%2B%5Cmathbb%7BE%7D_%7B%5Cboldsymbol%7Bz%7D+%5Csim+p_%7B%5Cboldsymbol%7Bz%7D%7D%28%5Cboldsymbol%7Bz%7D%29%7D%5B%5Clog+%281-D%28G%28%5Cboldsymbol%7Bz%7D%29%29%29%5D%0A%5Cend%7Bequation%7D%0A)
+\end{equation*}
+](https://render.githubusercontent.com/render/math?math=%5Cdisplaystyle+%5Cbegin%7Bequation%2A%7D%0A%5Cmin+_%7BG%7D+%5Cmax+_%7BD%7D+V%28D%2C+G%29%3D%5Cmathbb%7BE%7D_%7B%5Cboldsymbol%7Bx%7D+%5Csim+p_%7B%5Cmathrm%7Bdata%7D%7D%28%5Cboldsymbol%7Bx%7D%29%7D%5B%5Clog+D%28%5Cboldsymbol%7Bx%7D%29%5D%2B%5Cmathbb%7BE%7D_%7B%5Cboldsymbol%7Bz%7D+%5Csim+p_%7B%5Cboldsymbol%7Bz%7D%7D%28%5Cboldsymbol%7Bz%7D%29%7D%5B%5Clog+%281-D%28G%28%5Cboldsymbol%7Bz%7D%29%29%29%5D%0A%5Cend%7Bequation%2A%7D%0A)
 
 That minimax game corresponds to a saddle point optimization problem. The optimum of the game corresponds to the Nash Equilibrium: from this point onwards, none of the two players, would benefit from a change in the players' strategies (see also image below).  
 
@@ -44,10 +44,9 @@ That minimax game corresponds to a saddle point optimization problem. The optimu
 
 In practice, the minmax game is often reformulated into two loss functions:
 
-![\begin{equation}
-\begin{array}{l}\mathcal{L}_{D}^{G A N}=\max _{D} \mathbb{E}_{x_{r} \sim p_{r}(x)}\left[\log D\left(x_{r}\right)\right]+\mathbb{E}_{x_{g} \sim p_{g}(x)}\left[\log \left(1-D\left(x_{g}\right)\right)\right] \\ \mathcal{L}_{G}^{G A N}=\min _{G} \mathbb{E}_{x_{g} \sim p_{g}(x)}\left[\log \left(1-D\left(x_{g}\right)\right)\right]\end{array}
-\end{equation}
-](https://render.githubusercontent.com/render/math?math=%5Cdisplaystyle+%5Cbegin%7Bequation%7D%0A%5Cbegin%7Barray%7D%7Bl%7D%5Cmathcal%7BL%7D_%7BD%7D%5E%7BG+A+N%7D%3D%5Cmax+_%7BD%7D+%5Cmathbb%7BE%7D_%7Bx_%7Br%7D+%5Csim+p_%7Br%7D%28x%29%7D%5Cleft%5B%5Clog+D%5Cleft%28x_%7Br%7D%5Cright%29%5Cright%5D%2B%5Cmathbb%7BE%7D_%7Bx_%7Bg%7D+%5Csim+p_%7Bg%7D%28x%29%7D%5Cleft%5B%5Clog+%5Cleft%281-D%5Cleft%28x_%7Bg%7D%5Cright%29%5Cright%29%5Cright%5D+%5C%5C+%5Cmathcal%7BL%7D_%7BG%7D%5E%7BG+A+N%7D%3D%5Cmin+_%7BG%7D+%5Cmathbb%7BE%7D_%7Bx_%7Bg%7D+%5Csim+p_%7Bg%7D%28x%29%7D%5Cleft%5B%5Clog+%5Cleft%281-D%5Cleft%28x_%7Bg%7D%5Cright%29%5Cright%29%5Cright%5D%5Cend%7Barray%7D%0A%5Cend%7Bequation%7D%0A)
+![\begin{equation*}
+\begin{array}{l}\mathcal{L}_{D}=\max _{D} \mathbb{E}_{\boldsymbol{x} \sim p_{\mathrm{data}}(\boldsymbol{x})}\left[\log D\left(\boldsymbol{x}\right)\right]+\mathbb{E}_{\boldsymbol{z} \sim p_{\boldsymbol{z}}(\boldsymbol{z})}\left[\log \left(1-D\left(\boldsymbol{x}\right)\right)\right] \\ \mathcal{L}_{G}=\min _{G} \mathbb{E}_{\boldsymbol{z} \sim p_{\boldsymbol{z}}(\boldsymbol{z})}\left[\log \left(1-D\left(\boldsymbol{x}\right)\right)\right]\end{array}
+\end{equation*}](https://render.githubusercontent.com/render/math?math=%5Cdisplaystyle+%5Cbegin%7Bequation%2A%7D%0A%5Cbegin%7Barray%7D%7Bl%7D%5Cmathcal%7BL%7D_%7BD%7D%3D%5Cmax+_%7BD%7D+%5Cmathbb%7BE%7D_%7B%5Cboldsymbol%7Bx%7D+%5Csim+p_%7B%5Cmathrm%7Bdata%7D%7D%28%5Cboldsymbol%7Bx%7D%29%7D%5Cleft%5B%5Clog+D%5Cleft%28%5Cboldsymbol%7Bx%7D%5Cright%29%5Cright%5D%2B%5Cmathbb%7BE%7D_%7B%5Cboldsymbol%7Bz%7D+%5Csim+p_%7B%5Cboldsymbol%7Bz%7D%7D%28%5Cboldsymbol%7Bz%7D%29%7D%5Cleft%5B%5Clog+%5Cleft%281-D%5Cleft%28%5Cboldsymbol%7Bx%7D%5Cright%29%5Cright%29%5Cright%5D+%5C%5C+%5Cmathcal%7BL%7D_%7BG%7D%3D%5Cmin+_%7BG%7D+%5Cmathbb%7BE%7D_%7B%5Cboldsymbol%7Bz%7D+%5Csim+p_%7B%5Cboldsymbol%7Bz%7D%7D%28%5Cboldsymbol%7Bz%7D%29%7D%5Cleft%5B%5Clog+%5Cleft%281-D%5Cleft%28%5Cboldsymbol%7Bx%7D%5Cright%29%5Cright%29%5Cright%5D%5Cend%7Barray%7D%0A%5Cend%7Bequation%2A%7D)
 
 To make it concrete, below is how one would formulate both losses in Tensorflow Keras ([source](https://github.com/zurutech/gans-from-theory-to-production/blob/master/2.%20GANs%20in%20Tensorflow/2.1.%20Writing%20a%20GAN%20from%20scratch.ipynb)):
 
@@ -75,10 +74,7 @@ While over-saturation can be controlled for (see above), several major training 
 
 The last point is a lot less common [42] and is thus not a major concern in later GAN iterations. The following section summarizes the different GAN variants that either tackled these challenges or addressed new ones.
 
-Kullback Leibler, Jensen Shannon. (FILL)
-
-
-# GAN variants
+# GAN Variants
 
 In order to tackle the several challenges from the vanilla GAN above, variants of GANs have been proposed. They propose to change the loss in D or G, but also often change the architecture of the model. The descriptions below focus on GANs for images, because the most important findings emerged in that context. GANs are however capable of modeling various modalities, such as video and text, but also music (GANSynth [25]) or DNA [36].
 
@@ -86,7 +82,7 @@ In order to tackle the several challenges from the vanilla GAN above, variants o
 
 *(Most common GAN tasks, source: https://paperswithcode.com/method/patchgan)*
 
-## Changes in the loss function
+## Changes in the Loss Function
 
 Instead of binary cross-entropy loss, some proposed to use least-square [4], f-divergence [5], hinge loss [6] and finally Wasserstein distance [7, 8, 20]. WassersteinGANs (WGANs) correct for mode collapse and for imbalances between D and G. WGANs creations also quickly became more convincing to the human eye, leading to a strong preference among researchers in the past years. In 2019, Lipschitz GANs (LGANs [51]) are shown to outperform WGANs.
 
@@ -95,7 +91,7 @@ While the challenges of the *Helvetica scneario* and *mode collapse* (see above)
 Aside from dealing with the training challenges of GANs, other tasks emerged. Instead of the original task of distinguishing real from fake data, some proposed class prediction (CATGAN [9] or EBGAN [10] and BEGAN [11] with autoencoders) or latent representation (ALI [2], BiGAN [12], InfoGAN [13]).
 
 
-## Changes in the architecture
+## Changes in the Architecture
 
 In an attempt to build meaningful latent representations as with ALI, the original feed-forward neural network for G, can be replaced with a variational autoencoder (VAEGAN [15]). Alternatively, both D and G can be replaced by CNNs, as they are specialized at modelling images (DCGANs [17]). Later on, it is discovered that feeding patches of images as input to a GAN can sometimes outperform traditional CNN GANs (PatchGAN [16]). VEAGANs, DCGANs and PatchGANs are still very close to the original GAN in terms of the training task: creating fake images.
 
@@ -109,7 +105,7 @@ Style-based generator architectures (StyleGANs) represent the next iteration, wh
 
 *(Source: [3])*
 
-## GANs catching on the recent trends
+## GANs Catching on Recent Trends
 
 Given their popularity, GANs are now predominantly coupled with other recent methods. In the case where less or no labels are available, self-supervision (BigBIGAN [32]) is now prevalent. On the other hand, attention-based models attribute importance to distanced features within an image to better contextualize representation (SAGAN [33, 39]). In February 2021, in the lineage of attention-based models, transGAN proposes to discard CNNs altogether and replace them with two transformers for D and G. transGAN establishes new state-of-the-art results [52].
 
