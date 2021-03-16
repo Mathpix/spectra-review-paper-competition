@@ -126,7 +126,7 @@ KE may make it possible for deep learning practitioners to train deep networks o
 
 [1] Taha,Shrivastava, Davis.Knowledge Evolution in Neural Networks.arXiv preprint arXiv :2103.05152, 2021
 
-[2] Vivek Ramanujan, Mitchell Wortsman, Aniruddha Kembhavi, Ali Farhadi, and Mohammad Rastegari. What’s hiddenin a randomly weighted neural network? In CVPR, 2020.
+[2] Vivek Ramanujan, Mitchell Wortsman, Aniruddha Kembhavi, Ali Farhadi, and Mohammad Rastegari. What’s hidden in a randomly weighted neural network? In CVPR, 2020.
 
 [3] Jonathan Frankle and Michael Carbin. The lottery ticket hypothesis: Finding sparse, trainable neural networks. arXiv preprint arXiv:1803.03635, 2018. 
 
