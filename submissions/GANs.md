@@ -5,6 +5,12 @@ author: Gabriel Bénédict
 breaks: false
 ---
 
+> 4.5 years of GAN progress on face generation.  
+> https://arxiv.org/abs/1406.2661 https://arxiv.org/abs/1511.06434 https://arxiv.org/abs/1606.07536 https://arxiv.org/abs/1710.10196 https://arxiv.org/abs/1812.04948  
+> ![](https://pbs.twimg.com/media/Dw6ZIOlX4AMKL9J?format=jpg&name=small)  
+> &mdash; Ian Goodfellow (@goodfellow_ian)  
+> [January 15, 2019](https://twitter.com/goodfellow_ian/status/1084973596236144640?ref_src=twsrc%5Etfw)
+
 # Introduction
 
 Oftentimes, only the most graphical Artificial Intelligence advances (image / video) are filtered out to the mainstream media. Generative Adverdsarial Networks (GANs) play an important role in that tip-of-the-iceberg phenomenon because they are most of the time related to images but also because they illustrate the potential of AI for creativity (e.g. https://www.thispersondoesnotexist.com/). Or at least some impression of creativity that is sufficient to blur the line between human and AI creation.
@@ -14,14 +20,6 @@ GANs have impressed the broader public with some tip-of-the-iceberg tasks such a
 GANs are relatively trivial to comprehend but they are hard to tune. In addition to the complexities of GANs hyperparametrization at training time, GANs often have downstream tasks that are related to creativity and are therefore hard to benchmark. This is admittedly why several influential GAN papers remain unpublished. These elements coupled with a general authorship storm around the subject of GANs, make it difficult for the practitioner to choose the right GAN for the right purpose and to tune its hyperparameters.
 
 This motivates the following text: an attempt at a short explanation of GANs and at producing a non-exhaustive account of the way GANs have evolved towards the most recent research iterations.
-
-
-> 4.5 years of GAN progress on face generation.  
-> https://arxiv.org/abs/1406.2661 https://arxiv.org/abs/1511.06434 https://arxiv.org/abs/1606.07536 https://arxiv.org/abs/1710.10196 https://arxiv.org/abs/1812.04948  
-> ![](https://pbs.twimg.com/media/Dw6ZIOlX4AMKL9J?format=jpg&name=small)  
-> &mdash; Ian Goodfellow (@goodfellow_ian)  
-> [January 15, 2019](https://twitter.com/goodfellow_ian/status/1084973596236144640?ref_src=twsrc%5Etfw)
-
 
 # The Original Generative Adversarial Network
 
@@ -188,7 +186,7 @@ with conditional adversarial networks.
 [24] Ishaan Gulrajani, Colin Raffel, and Luke Metz. Towards GAN Benchmarks Which Require Generalization, ICLR, 2019
 
 
-[25] Jesse Engel and Kumar Krishna Agrawal and Shuo Chen and Ishaan Gulrajani and Chris Donahue and Adam Roberts, GANSynth: Adversarial Neural Audio Synthesis, 2019, https://openreview.net/pdf?id=H1xQVn09FX
+[25] Jesse Engel and Kumar Krishna Agrawal and Shuo Chen and Ishaan Gulrajani and Chris Donahue and Adam Roberts, GANSynth: Adversarial Neural Audio Synthesis, 2019
 
 [26] William Lotter, Gabriel Kreiman, David Cox, Deep Predictive Coding Networks for Video Prediction and Unsupervised Learning, 2017
 
