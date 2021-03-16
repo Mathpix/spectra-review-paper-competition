@@ -100,7 +100,9 @@ $sparsity =1-{\frac{H^F}{N}} =1-{\frac{s_rC_o\times s_rC_i}{C_o\times C_i}} ={(1
 
 #### Example Network
 
-The network architecture presented in Figure 6, highlights the KE + KELS technique                                                                                                                                     ![5.png](images/ke_5.png)
+The network architecture presented in Figure 6, highlights the KE + KELS technique  
+
+![5.png](images/ke_5.png)
 
 *Figure 6: ResNet18 & Fit-ResNet18 with $s_r=0.5$*
 
