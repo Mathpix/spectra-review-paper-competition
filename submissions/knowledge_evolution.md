@@ -113,13 +113,13 @@ It’s very clear from the networks presented above that KE+KELS significantly r
 
 * The binary mask is initialized once and for all.  The authors  iterated on the idea of having to modify the binary mask for each generation
 * The paper focuses on KE + KELS as this requires no specialized hardware or sparse linear algebra libraries
-* KE works seamless for both regression and classification tasks 
+* KE works seamlessly with both regression and classification tasks 
 * Since the paper introduces KE and WELS, which themselves are variants of pruning techiques, the paper also disucess in detail how they relate to other pruning techniques.
 
 
 ## 4.0 Conclusion 
 
-KE may make it possible for deep learning practitioners to train deep networks on relatively small datasets. This makes Knowledge Evolution a potential strong option for medical or navigation applications; i.e. where datasets are expensive and hard to collect. KE chooses a random inferior network (fit hypothesis) and evolves its knowledge across multiple generations. To enhance performance (training and inference ), KE uses the KELS approach to      split the network into 2 subnetworks. An alternative generalized approach (WELS) exists but requires specialized hardware and linear algebra libraries for efficient training. KE works seamlessly with metric learning (regression) and classification tasks. KE therefore perfectly infuses Michael Gazzaniga idea of Gene transfer in Machine Learning by depending on a small a dataset to evolve knowledge while preserving the quality of the model. 
+KE may make it possible for deep learning practitioners to train deep networks on relatively small datasets. This makes Knowledge Evolution a potential strong option for medical or navigation applications; i.e. where datasets are expensive and hard to collect. KE chooses a random inferior network (fit hypothesis) and evolves its knowledge across multiple generations. To enhance performance (training and inference ), KE uses the KELS approach to      split the network into 2 subnetworks. An alternative generalized approach (WELS) exists but requires specialized hardware and linear algebra libraries for efficient training. KE works seamlessly with metric learning (regression) and classification tasks. KE therefore perfectly infuses Michael Gazzaniga idea of Gene transfer in Machine Learning by depending on a small dataset to evolve knowledge while preserving the quality of the model. 
 
 
 ## 5.0 References
