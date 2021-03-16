@@ -12,7 +12,7 @@ In this review, we study several approaches towards explainable AI systems and p
 a taxonomy of how one can think about diverse approaches towards post-hoc explainability from a data modalities perspective. We present the most widely adopted quantitative evaluation measures to validate explanations. Finally, we conclude with a discussion addressing open questions and recommend a path to the development and adoption of explainable methods for safety-critical or mission-critical applications. The objective is to provide to the reader a guide to map a black-box model to a set of compatible post-hoc explanation methods.<a href="#ref-footnote"><sup>1</sup></a>
 
 \begin{figure}[h]
-\includegraphics[width=0.5\textwidth, center]{../images/explanation.svg}
+\includegraphics[width=0.5\textwidth, center]{images/explanation.svg}
 \caption{A pipeline for Post-hoc Explanation. The goal is to make the user understand the predictions of ML models, which is achieved through explanations. For this, we make use of an explanation method, which is nothing more than an algorithm that generates explanations.}
 \label{S-1}
 \end{figure}
@@ -27,7 +27,7 @@ Broadly speaking, there exist two methods of explaining post-hoc explanations. *
 to model outcomes. While *global explanations* focus on the model and provide an understanding of the decision process, it connotes some sense of understanding of the mechanism by which the model works. Post-hoc explanations are *model-agnostic* in nature, as these are not tied to a particular type of ML model and separates prediction from explanation.
 
 \begin{figure}[h]
-\includegraphics[width=0.5\textwidth, center]{../images/explanation-types.svg}
+\includegraphics[width=0.5\textwidth, center]{images/explanation-types.svg}
 \caption{List of popular approaches for Post-hoc Explanation.}
 \label{S-2}
 \end{figure}
@@ -65,7 +65,7 @@ an importance value for a particular prediction and fairly attributes the predic
 In many scientific problems, we have access to different modalities of data. Specifically, for this review, we consider the modalities -- tabular, text, image, and time-series data, to understand the need for explainability and recognize possibly unique challenges presented by them when constructing explanations in each of these cases. Figure \ref{S-3} provides a visual walkthrough of post-hoc explanations for different modalities.
 
 \begin{figure}[h]
-\includegraphics[width=1.\textwidth, center]{../images/modalities.svg}
+\includegraphics[width=1.\textwidth, center]{images/modalities.svg}
 \caption{Examples of Post-hoc explanations for different modalities.}
 \label{S-3}
 \end{figure}
@@ -203,7 +203,7 @@ Next, we dive into how to effectively evaluate the generated explanations. The f
 context of the explanation’s end tasks. The second evaluation approach is human-grounded, using human evaluation metrics on simplified tasks. The final evaluation metric is functionally grounded evaluation, without human subjects. We refer the reader to Figure \ref{S-4} for an overview of different evaluation strategies.
 
 \begin{figure}[h]
-\includegraphics[width=1.\textwidth, center]{../images/evaluating-explanations.svg}
+\includegraphics[width=1.\textwidth, center]{images/evaluating-explanations.svg}
 \caption{Evaluating measures for different explanations. These evaluations can be group under the broader -- Processing, Representation, and Explanation Producing types.}
 \label{S-4}
 \end{figure}
