@@ -7,7 +7,7 @@ author: Christopher Dzuwa
 
 ![main.png](./images/ke_main.png)
 
-*Nasa Mars Rovers Family Portrait (Image credit: NASA/JPL-Caltech)*
+*Nasa's Mars Rovers Family Portrait (Image credit: NASA/JPL-Caltech)*
 
 ## 1.0 Introduction
 
@@ -15,7 +15,7 @@ In his book titled **The Mind’s Past (1998)**, Michael Gazzaniga wrote: “The
 
 Gene transfer is the      passing on of genetic information (knowledge) from parent to offspring. Although the parent might have inferior knowledge, this knowledge evolves into superior knowledge across generations. Generally, offsprings tend to have superior knowledge to       their parents. This phenomenon has been studied in different fields and is an active area of research in deep learning. The paper on knowledge evolution in neural networks adopts       this concept and applies       it to deep networks to help them learn better and become superior to previous generations. The knowledge of the deep network is infused into a subnetwork (fit hypothesis) which is trained for   ***g***   generations.
 
-**Frankle** [3] describes a neural network as a set of hypotheses(subnetworks). Among these subnetworks, there exists a network that approximately describes      the original dense network(lottery ticket winner). Building on Girshock’s work, **Ramanujan** [2] proposes a method for sampling the optimal subnetwork from an untrained network, which shows similar or superior results to a trained network with the same number of parameters. On the other hand Knowledge Evolution (KE)[1], the concept that underpins this review propagates the random selection of a subnetwork (fit hypothesis, $H^F$) whose knowledge evolves across multiple generations. The fit hypothesis is trained for ***g*** generations until a      desired accuracy is achieved     . This subnetwork is a slim independent network with a small inference cost. KE can be applied to both vanilla convNets and modern residual ConvNets and achieve the state of the art results. Figue 1 illustrates the split network. 
+**Frankle** [3] describes a neural network as a set of hypotheses(subnetworks). Among these subnetworks, there exists a network that approximately describes      the original dense network(lottery ticket winner). Building on Frankle’s work, **Ramanujan** [2] proposes a method for sampling the optimal subnetwork from an untrained network, which shows similar or superior results to a trained network with the same number of parameters. On the other hand **Knowledge Evolution (KE)**[1], the concept that underpins this review propagates the random selection of a subnetwork (fit hypothesis, $H^F$) whose knowledge evolves across multiple generations. The fit hypothesis is trained for ***g*** generations until a      desired accuracy is achieved     . This subnetwork is a slim independent network with a small inference cost. KE can be applied to both vanilla convNets and modern residual ConvNets and achieve the state of the art results. Figue 1 illustrates the split network. 
 
 
 ![1.png](images/ke_1.png)
@@ -100,7 +100,9 @@ $sparsity =1-{\frac{H^F}{N}} =1-{\frac{s_rC_o\times s_rC_i}{C_o\times C_i}} ={(1
 
 #### Example Network
 
-The network architecture presented in table 1, highlights the KE + KELS technique                                                                                                                                     ![5.png](images/5.png)
+The network architecture presented in Figure 6, highlights the KE + KELS technique                                                                                                                                     ![5.png](images/5.png)
+
+*Figure 6: ResNet18 & Fit-ResNet18 with $s_r=0.5$*
 
 It’s very clear from the networks presented above that KE+KELS significantly reduces the number of parameters thereby      reducing the number of operations. But since the training has to be done for n generations, the training time might usually be more than that for the dense network. The      trade-off is that this gives a better inference cost.
 
