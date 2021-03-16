@@ -1,0 +1,402 @@
+---
+title: Demystifying Post-hoc Explainability for ML models
+description: The widespread use of black-box models in AI has increased the need for explanation methods that reveal how these mysterious models arrive at concrete decisions. We will describe the problem, prominent solutions, and example applications for each of these approaches, as well as their vulnerabilities and flaws. We hope to have a enriching and an informative introduction to post-hoc machine learning explainability.
+author: Nickil Maveli
+images: https://spectra.pub/ml/images/explanation.svg
+---
+\section{Introduction}
+As machine learning becomes more widely used in high-stakes situations that affect people's livelihoods, there have been increasing calls to "open the black-box" and make machine learning algorithms more understandable. The needs of end-users must be carefully considered when providing useful explanations. This has led to the emergence of a subfield in AI called \textit{eXplainable AI} (XAI). Rather than trying to create models that are inherently interpretable, there has been a recent explosion of work on "Explainable ML", where a second (post-hoc) model is created to explain the first black-box model. One of the main criteria is intrinsic vs. post-hoc. This criterion is used for distinguishing whether interpretability is achieved through constraints imposed on the complexity of the ML model (intrinsic) or by applying methods that analyze the model after training (post hoc) (<a href="#Carvalho et al., 2019">Carvalho et al., 2019</a>). If you can build an interpretable model which is also adequately
+accurate for your setting, DO IT! Otherwise, \textit{post-hoc explanations} come to the rescue which is going to be the topic of discussion here!
+
+In this review, we study several approaches towards explainable AI systems and provide
+a taxonomy of how one can think about diverse approaches towards post-hoc explainability from a data modalities perspective. We present the most widely adopted quantitative evaluation measures to validate explanations. Finally, we conclude with a discussion addressing open questions and recommend a path to the development and adoption of explainable methods for safety-critical or mission-critical applications. The objective is to provide to the reader a guide to map a black-box model to a set of compatible post-hoc explanation methods.<a href="#ref-footnote"><sup>1</sup></a>
+
+\begin{figure}[h]
+\includegraphics[width=0.5\textwidth, center]{../images/explanation.svg}
+\caption{A pipeline for Post-hoc Explanation. The goal is to make the user understand the predictions of ML models, which is achieved through explanations. For this, we make use of an explanation method, which is nothing more than an algorithm that generates explanations.}
+\label{S-1}
+\end{figure}
+
+\section{Motivation}
+For commercial benefits, ethics concerns, or regulatory considerations, XAI is essential if users are to understand, appropriately trust, and effectively manage AI results.  When we talk about an explanation for a decision, we generally mean the need for reasons or justifications
+for that particular outcome, rather than a description of the inner workings or the logic of reasoning behind the decision-making process in general. Using XAI systems provides the required information to justify results, particularly when unexpected decisions are made. It also ensures that there is an auditable and provable way to defend algorithmic decisions as being fair and ethical, which leads to building trust. Explainability is not just important for justifying decisions. It can also help prevent things from going wrong. Indeed, understanding more about system behavior provides greater visibility over unknown vulnerabilities and flaws, and helps
+to rapidly identify and correct errors in low criticality situations (debugging). Thus enabling an enhanced control (<a href="#Adadi et al., 2018">Adadi et al., 2018</a>).
+
+\section{Approaches for Post-hoc Explanation}
+*Local explanations* focus on data and provide individual explanations, they provide trust
+to model outcomes. While *global explanations* focus on the model and provide an understanding of the decision process, it connotes some sense of understanding of the mechanism by which the model works. Post-hoc explanations are *model-agnostic* in nature, as these are not tied to a particular type of ML model and separates prediction from explanation.
+
+\begin{figure}[h]
+\includegraphics[width=0.5\textwidth, center]{../images/explanation-types.svg}
+\caption{List of popular approaches for Post-hoc Explanation.}
+\label{S-2}
+\end{figure}
+
+Popular approaches with examples for post-hoc explainability:
++ Feature Importance Based Explanations
+    - LIME (<a href="#Ribeiro et al., 2016">Ribeiro et al., 2016</a>) - explains the predictions of any classifier in an interpretable and faithful manner, by learning an interpretable model locally around the prediction.
+    - SHAP (<a href="#Lundberg et al., 2017">Lundberg et al., 2017</a>) - assigns each feature
+an importance value for a particular prediction and fairly attributes the prediction to all the features.
++ Rule-Based Explanations
+    - Anchors (<a href="#Ribeiro et al., 2018">Ribeiro et al., 2018</a>) - explains the behavior of complex models with high-precision rules, representing local, "sufficient" conditions for predictions.
+    - LORE (<a href="#Guidotti et al., 2018">Guidotti et al., 2018</a>) - learns a local interpretable predictor on a synthetic neighborhood generated by a genetic algorithm. Then, it derives from the logic of the local interpretable predictor a meaningful explanation consisting of a decision rule and a set of counterfactual rules.
+
+\section{Explanations in different data modalities}
+In many scientific problems, we have access to different modalities of data. Specifically, for this review, we consider the modalities -- tabular, text, image, and time-series data, to understand the need for explainability and recognize possibly unique challenges presented by them when constructing explanations in each of these cases. Figure \ref{S-3} provides a visual walkthrough of post-hoc explanations for different modalities.
+
+\begin{figure}[h]
+\includegraphics[width=1.\textwidth, center]{../images/modalities.svg}
+\caption{Examples of Post-hoc explanations for different modalities.}
+\label{S-3}
+\end{figure}
+
+## Tabular / Structured Data
+The majority of data in day-to-day life is in fact structured, tabular data, such as recommender systems, fraud detection, relational databases, etc. Depending on the task/domain, it could be either low or high dimensional and the gradients may not always be meaningful. In this section, we present select approaches used by explainers for explaining the decisions on tabular data.
+
+### Feature Importance Based Explanations
+(<a href="#Agarwal et al., 2020">Agarwal et al., 2020</a>) impose constraints on the structure of neural networks, resulting in a family of models known as Neural Additive Models (NAMs), which are inherently interpretable while exhibiting low prediction accuracy when applied to tabular data. Methodologically, NAMs belong to a larger model family called Generalized Additive Models (GAMs) (<a href="#Hastie et al., 1990">Hastie et al., 1990</a>). GAMs have the form:
+
+\begin{align}
+\underbrace{g(\mathbb{E}[y])}_{\color{magenta}\text{link function}}=\beta+\underbrace{f_{1}\left(x_{1}\right)+f_{2}\left(x_{2}\right)+\cdots+f_{K}\left(x_{K}\right)}_{\begin{subarray}{l}\color{magenta}\text{univariate shape function with $\mathbb{E}[f_i]= 0$}\\\color{magenta}\text{applied to the input with $K$ features}\end{subarray}}
+\label{eq:1}
+\end{align}
+
+NAMs learn a linear combination of networks that each attend to a single input feature: each $f_i$&nbsp; in \ref{eq:1} is parametrized by a neural network. These networks are trained jointly using backpropagation and can learn arbitrarily complex shape functions. Interpreting NAMs is easy as the impact of a feature on the prediction does not rely on the other features and can be understood by visualizing its corresponding shape function (e.g., plotting $f_i(x_i)$ &nbsp;vs.&nbsp; $x_i$).
+
+### Rule-Based Explanations
+(<a href="#Ribeiro et al., 2018">Ribeiro et al., 2018</a>) introduce model-agnostic explanations based on if-then rules, called anchors. An anchor explanation is a rule that sufficiently *anchors* the prediction locally, such that changes to the rest of the feature values of the instance do not matter. For instance, it is observed that anchors for a few predictions of 400 gradient boosted trees trained on balanced versions of the *adult* dataset give the following insight -- *Marital status appears in many different anchors for predicting whether a person makes > $50K annually*. It is to be noted that these are not exhaustive, since the models are complex, and these anchors explain their behavior on part of the input space but not all of it.
+(<a href="#Letham et al., 2015">Letham et al., 2015</a>) propose a model, Bayesian Rule Lists (BRL), that produces a posterior distribution over permutations of if ... then ... rules, starting from a large, pre-mined set of possible rules. The decision lists with high posterior probability tend to be both accurate and interpretable, where the interpretability comes from a hierarchical prior over permutations of rules.
+
+### Prototype-Based Explanations
+Rather than explaining which features led to a certain class being predicted, (<a href="#Tan et al., 2020">Tan et al., 2020</a>) propose to explain a prediction by presenting similar points that *represent* that class. Since these prototypes will be identified using distance functions derived from the tree ensemble, they call them tree space prototypes. They introduce two new prototype selection methods that exploit approximation guarantees for submodular objective functions, and one that tries to directly optimize for accuracy.
+To formalize the impact of a training point on a prediction, (<a href="#Koh et al., 2017">Koh et al., 2017</a>) ask the counterfactual: what would happen if we did not have this training point, or if the values of this
+training point were changed slightly? Answering this question by perturbing the data and retraining the model can be prohibitively expensive. To overcome this problem, they use influence functions, a classic technique from robust statistics that tells us how the model parameters change as we upweight a training point by an infinitesimal amount. This allows us to *differentiate through the training* to estimate in closed-form the effect of a variety of training perturbations.
+
+### Counterfactual Explanations
+(<a href="#Albini et al., 2020">Albini et al., 2020</a>) provide counterfactual explanations for generic Bayesian Classifiers (BCs), based on the causal reasoning underpinning them. The explanation method relies upon mapping the influences between a BC’s variables, e.g. between observations and classifications. From these influences, they extract two relations between variables deemed to be relevant to the Counterfactual explanation. These relations amount, respectively, to critical and potential influences, indicating (potentially) pivotal factors, whose absence would give rise to a different classification.
+(<a href="#Ustun et al., 2019">Ustun et al., 2019</a>) frame these issues in terms of recourse, which is defined as the ability of a person to change the decision of a model by altering actionable input variables (e.g., income vs. age or marital status). They present integer programming tools to ensure *recourse* in linear classification problems without interfering in model development.
+
+## Text
+Traditionally, Natural Language Processing (NLP) systems have been mostly based on techniques that are inherently explainable. Examples of such approaches, often referred to as white-box techniques, include rules, decision trees, hidden Markov models, logistic regressions, and others. Recent years, though, have brought the advent and popularity of black-box techniques, such as deep learning models and the use of language embeddings as features. While these methods in many cases substantially advance model quality, they come at the expense of models becoming less interpretable. A major challenge working with text is the difficulty in writing similarity/perturbation functions. This section covers some of the well-known explanation methods for handling textual data.
+
+### Saliency Map Visualization
+To interpret why the model made its prediction (not the ground-truth answer), (<a href="#Wallace et al., 2019">Wallace et al., 2019</a>) use the model’s own output in the loss calculation. For each method, they reduce each token’s gradient (which is the same dimension as the token embedding) to a single value by taking the L2 norm.
+To better understand Neural Machine Translation (NMT) behavior, (<a href="#Lee et al., 2017">Lee et al., 2017</a>) propose a tool that provides several methods to understand beam search and attention mechanism in an interactive way, by visualizing search tree and attention, expanding search tree manually, and changing attention weight either manually or automatically.
+
+### Input Reduction
+In existing interpretation methods for NLP, a word’s importance is determined by
+either input perturbation—measuring the decrease in model confidence when that word is
+removed or by the gradient with respect to that word. To understand the limitations of
+these methods, (<a href="#Feng et al., 2018">Feng et al., 2018</a>) use input reduction, which iteratively removes the least important word from the input. For each word in an input sentence, they measure its importance by the change in the confidence of the original prediction when that word is removed from the sentence.
+
+\begin{align}
+y&=\operatorname{argmax}_{y^{\prime}} f\left(y^{\prime} \mid \mathbf{x}\right)\\[10pt]
+\underbrace{g\left(x_{i} \mid \mathbf{x}\right)}_{\color{magenta}\text{importance}}&=\underbrace{f(y \mid \mathbf{x})}_{\begin{subarray}{l}\color{magenta}\text{predicted probability}\\\color{magenta}\text{of label $y$ given input $\mathbf{x}$}\end{subarray}}-f\left(y \mid \mathbf{x}_{-i}\right)
+\label{eq:3}
+\end{align}
+
+In Figure \ref{S-3}, input reduction shows that the words “named”, “at”,
+and “in downtown” are sufficient to predict the People, Organization, and Location tags, respectively.
+
+### Prototype-Based Explanations
+(<a href="#Han et al., 2020">Han et al., 2020</a>) explore the application of influence functions as a mechanism to reveal artifacts (or confounds) in training data that might be exploited by models and investigate the degree to which results from the influence function are consistent with insights gleaned from gradient-based saliency scores for representative NLP tasks.
+
+> How would the model’s predictions change if a training input were modified?
+
+A classic result (<a href="#Cook et al., 1982">Cook et al., 1982</a>)  tells us that the influence of upweighting $z$ &nbsp;on&nbsp;the parameters&nbsp;$\hat{\theta}$&nbsp;is given by:
+\begin{align}
+\left.\mathcal{I}_{\text {up,params }}(z) \stackrel{}{=} \frac{d \hat{\theta}_{\epsilon, z}}{d \epsilon}\right|_{\epsilon=0}&=-\underbrace{H_{\hat{\theta}}^{-1}}_{\color{magenta}\text{Hessian}} \underbrace{\nabla_{\theta}}_{\color{magenta}\text{ gradient}}\underbrace{L(z, \hat{\theta})}_{\color{magenta}\text{loss}}
+\label{eq:4}
+\end{align}
+
+Now, define $z=(x, y)$ &nbsp;and&nbsp; $z_δ = (x + δ, y)$.
+
+\begin{align}
+\underbrace{\hat{\theta}_{\epsilon, z_{\delta},-z}}_{\begin{subarray}{l}\color{magenta}\text{empirical risk minimizer}\\\color{magenta}\text{approximation from moving}\\\color{magenta}\text{$\epsilon$ mass from $z$ onto $z_δ$}\end{subarray}} &= \arg \min _{\theta \in \Theta} \underbrace{\frac{1}{n} \sum_{i=1}^{n} L\left(z_{i}, \theta\right)}_{\color{magenta}\text{empirical risk}}+\epsilon L\left(z_{\delta}, \theta\right)-\epsilon L(z, \theta)\\[10pt]
+\end{align}
+
+An analogous calculation to \ref{eq:4} yields:
+
+\begin{align}
+\left.\frac{d \hat{\theta}_{\epsilon, z_{\delta},-z}}{d \epsilon}\right|_{\epsilon=0} &=\mathcal{I}_{\text {up,params }}\underbrace{\left(z_{\delta}\right)}_{\color{magenta}\text{perturbation}}-\mathcal{I}_{\text {up,params }}\underbrace{(z)}_{\color{magenta}\text{training point}} \\[10pt]
+&=-H_{\hat{\theta}}^{-1}\left(\nabla_{\theta} L\left(z_{\delta}, \hat{\theta}\right)-\nabla_{\theta} L(z, \hat{\theta})\right)
+\end{align}
+
+While influence functions might appear to only work for infinitesimal (therefore continuous) perturbations, it is important to
+note that this approximation holds for arbitrary $\delta$:&nbsp; the $\epsilon-$
+upweighting scheme allows us to smoothly interpolate between $z$ &nbsp;and&nbsp;$z_\delta$. This is particularly useful for working with
+discrete data (e.g., in NLP) or with discrete label changes.
+
+## Image
+When we describe how we classify images, we might focus on parts of the image and compare them with prototypical parts of images from a given class. This method of reasoning is commonly used in difficult identification tasks: e.g., radiologists compare suspected tumors in X-ray scans with prototypical tumor images for diagnosis of cancer. The question is whether we can ask a machine learning model to imitate this way of thinking, and to explain its reasoning process in a human-understandable way. This section lists important explanation techniques commonly used in computer vision.
+
+### Saliency Map Visualization
+(<a href="#Simonyan et al., 2014">Simonyan et al., 2014</a>) propose a method for computing the spatial support of a given class in a given image (image-specific class saliency map) using a single back-propagation pass through a classification ConvNet. Such saliency maps can be used for weakly supervised object localisation.
+
+Consider the linear score model for the class $c$&nbsp;:
+
+\begin{align}
+\underbrace{S_{c}(I)}_{\begin{subarray}{l}\color{magenta}\text{class score}\\\color{magenta}\text{function}\end{subarray}} = \underbrace{{w_c}^{T}}_{\begin{subarray}{l}\color{magenta}\text{weight}\\\color{magenta}\text{vector}\end{subarray}}\underbrace{I}_{\color{magenta}\text{ image}} + \underbrace{b_c}_{\begin{subarray}{l}\color{magenta}\text{model}\\\color{magenta}\text{bias}\end{subarray}}
+\label{eq:8}
+\end{align}
+
+Given an image $I_0$&nbsp;, we can approximate $S_{c}(I)$&nbsp;with a linear function in the neighbourhood of $I_0$&nbsp;by computing the first-order Taylor expansion:
+
+\begin{align}
+S_{c}(I) \approx w^{T}I + b
+\label{eq:9}
+\end{align}
+
+where $w$&nbsp;is the derivative of $S_c$&nbsp;with respect to the image $I$&nbsp;at the point (image) $I_0$&nbsp;:
+
+\begin{align}
+w=\left.\frac{\partial S_{c}}{\partial I}\right|_{I_{0}}
+\label{eq:10}
+\end{align}
+
+Given an image $I_{0}$ (with&nbsp;$m$&nbsp;rows and&nbsp;$n$&nbsp;columns) and a class&nbsp;$c$&nbsp;, the class saliency map&nbsp;$M \in \mathcal{R}^{m \times n}$&nbsp;is computed as follows. First, the derivative $w$&nbsp;\ref{eq:10} is found by back-propagation. After that, the saliency map is obtained by rearranging the elements of the vector&nbsp;$w .$
+
+### Shapley Value Importance
+To quantify the contribution of each neuron to an arbitrary performance aspect of a network, (<a href="#Ghorbani et al., 2020">Ghorbani et al., 2020</a>) develop the Neuron Shapley framework. They introduce a new multi-arm bandit based algorithm that
+efficiently estimates Neuron Shapley values in large networks and their systematic experiments discover several interesting findings, including the phenomenon that a small number of neurons are critical to different aspects of a network’s performance, e.g. accuracy, fairness, robustness. This facilitates both model interpretation and repair. In Figure \ref{S-3}, removing filters with the highest class-specific Shapley
+values (blue dash) reduce the class prediction accuracy more effectively than removing filters identified by other approaches.
+
+### Concept Attribution
+The hallmark of concept attribution is that clinically relevant measures are directly used to produce explanations that match the semantics of the end-users. CNN decisions are explained by directly relating to well-known prognostic factors and clinical guidelines. This promotes a more intuitive interaction between the physicians and black-box systems aiding the diagnosis, with a consequent increase of confidence in automated support tools. Besides, concept attribution is a complementary technique to saliency heatmaps giving concept-based explanations rather than pixel-based ones (<a href="#Graziani et al., 2020">Graziani et al., 2020</a>).
+
+## Time-Series
+Multivariate time series data are being generated at an ever-increasing pace due to the ubiquity of sensors and the advancement of IoT technologies. Classifying these multivariate time series is crucial for utilising these data effectively, and is an important research topic in the machine learning community. In this section, we consolidate some of the important explanation techniques used in time-series data.
+
+### Relevance Heatmaps
+Similar to the saliency masks on images, a heatmap can be created based on the relevance produced by XAI methods. It is possible to create a visualization with this heatmap enriching a line plot of the original time series. Figure \ref{S-3} shows XAI methods shown with their relevance heatmaps are Saliency Maps, LRP, DeepLIFT, LIME, and SHAP. The blue rectangles display controversial parts of the time series for the XAI methods with red marking high importance for the classification which are, e.g., set to zero by verification methods (<a href="#Schlegel et al., 2019">Schlegel et al., 2019</a>).
+
+### Prototype-Based Explanations
+(<a href="#Gee et al., 2019">Gee et al., 2019</a>) introduce a prototype diversity penalty that explicitly accounts for prototype clustering and encourages the model to learn more diverse prototypes. These diverse prototypes will help focus on areas of the latent space where class separation is most difficult and least defined to improve classification accuracies. They show the utility of this approach on three tasks in two-dimensional time-series classification: (1) bradycardia from ECG; (2) apnea from respiration; and (3) spoken digits
+from audio waveforms.
+
+### Patch-Based Classification
+A data transformation approach for time-series that creates patches of different sizes and transforms them into a shape usable by every neural network. Therefore, we can interpret the fine-grained patches to understand the individual fine-grained blocks and their influence on the overall classification (<a href="#Mercier et al., 2021">Mercier et al., 2021</a>).
+
+\section{Evaluation Strategies}
+
+\begin{figure}[h]
+\includegraphics[width=1.\textwidth, center]{../images/evaluating-explanations.svg}
+\caption{Evaluating measures for different explanations. These evaluations can be group under the broader -- Processing, Representation, and Explanation Producing types.}
+\label{S-1}
+\end{figure}
+
+Most of the work surveyed conducts one of the
+following types of evaluation of their explanations (<a href="#Gilpin et al., 2018">Gilpin et al., 2018</a>).
+\begin{itemize}
+\item \textbf{Completeness compared to the original model:} A proxy
+model can be evaluated directly according to how closely
+it approximates the original model being explained (<a href="#Ribeiro et al., 2016">Ribeiro et al., 2016</a>).
+<br><br>
+\item \textbf{Disabling irrelevant hidden features:} (<a href="#Lertvittayakumjorn et al., 2020">Lertvittayakumjorn et al., 2020</a>) propose a technique to disable the learned
+features which are irrelevant or harmful to the classification task so as to improve the classifier. This technique and the word clouds form the human-debugging framework.
+<br><br>
+\item  \textbf{Human evaluation:} Humans can evaluate explanations
+for reasonableness, that is how well an explanation
+matches human expectations. Human evaluation can also
+evaluate completeness or substitute-task completeness
+from the point of view of enabling a person to predict
+behavior of the original model; or according to helpfulness in revealing model biases to a person (<a href="#Lai et al., 2019">Lai et al., 2019</a>).
+<br><br>
+\item \textbf{Completeness as measured on a substitute task:} Some
+explanations do not directly explain a model’s decisions,
+but rather some other attribute that can be evaluated.
+<br><br>
+\item \textbf{Ability to detect models with biases:} An explanation that
+reveals sensitivity to a specific phenomenon (such as
+a presence of a specific pattern in the input) can be
+tested for its ability to reveal models with the presence or
+absence of a relevant bias (such as reliance or ignorance
+of the specific pattern) (<a href="#Tong et al., 2020">Tong et al., 2020</a>).
+\end{itemize}
+
+\section{Current Limitations and Future Directions}
+
+## Limitations
+\begin{itemize}
+\item\textbf{Robustness:} Model-agnostic perturbation-based methods are (unsurprisingly) more prone to instability than their gradient-based counterparts (<a href="#Alvarez et al., 2018">Alvarez et al., 2018</a>). As a concrete example, consider an image classification model that places importance on both salient aspects of the input, i.e., those actually related to the ground-truth
+class and on background noise. Suppose, in addition, that those artifacts are not uniformly relevant for different inputs, while the *salient* aspects are. Should the explanation include the noisy pixels?
+<br><br>
+\item\textbf{Adversarial attacks:} By being able to differentiate between data points coming from the input distribution and instances generated via perturbation, an adversary can create an adversarial classifier (scaffolding) that behaves like the original classifier (perhaps be extremely discriminatory) on the input data points, but behaves arbitrarily differently (looks unbiased and fair) on the perturbed instances, thus effectively fooling LIME or SHAP into generating innocuous explanations (<a href="#Slack et al., 2020">Slack et al., 2020</a>).
+<br><br>
+\item\textbf{Manipulable:} Explanation maps can be changed to an *arbitrary target map* (<a href="#Dombrowski et al., 2019">Dombrowski et al., 2019</a>). This is
+done by applying a visually hardly perceptible perturbation to the input. This perturbation does not change the output of the neural network, i.e. in addition to the classification result also the vector of all class probabilities is (approximately) the same. This finding is clearly problematic if a user, say a medical doctor, is expecting a robustly interpretable explanation map to rely on in the clinical decision-making process.
+<br><br>
+\item\textbf{Unjustified Counterfactual Explanations:} (<a href="#Laugel et al., 2019">Laugel et al., 2019</a>) propose an intuitive desideratum for more relevant counterfactual explanations, based on ground-truth labelled data, that helps generating better explanations. THey design a test to highlight the risk of having undesirable counterfactual examples disturb the generation of counterfactual explanations and apply this test to several datasets and classifiers and show that the risk of generating undesirable counterfactual examples is high.
+<br><br>
+\item\textbf{Faithfulness:} Explainable ML methods provide explanations that are not faithful to what the original model computes. Explanations must be wrong. They cannot have perfect fidelity with respect to the original model. If the explanation was completely faithful to what the original model computes, the explanation would equal the original model, and one would not need the original model in the first place, only the explanation. An inaccurate (low-fidelity) explanation model limits trust in the explanation, and by extension, trust in the
+black box that it is trying to explain (<a href="#Rudin et al., 2019">Rudin et al., 2019</a>).
+\end{itemize}
+## Future Directions
++ It is tempting to use model explainability to gain insights into model fairness, however existing explainability tools do not reliably indicate whether a model is indeed fair (<a href="#Begley et al., 2020">Begley et al., 2020</a>).
+<br><br>
++ Estimate the causal effect of (the presence or absence of) a human-interpretable concept on a deep neural net's predictions. Identifying vulnerabilities in existing post hoc explanation Estimating such and effects is hard when we can't easily turn on/off given methods proposing
+approaches to address these concept in a data point (e.g., editing out eyeglasses from images)
+vulnerabilities is a critical research direction going forward (<a href="#Goyal et al., 2019">Goyal et al., 2019</a>)!
+
+
+\section{Conclusion}
+In this review, we have presented a comprehensive overview of methods proposed in the literature for explaining decision systems covering categorization based on the data modalities and explanation strategies. We reinforce the fact that there must be careful analysis and exposition of the limitations and vulnerabilities of the proposed explanation method. Wherever applicable, use quantitative metrics (and not anecdotal evidence) to make claims about post-hoc explainability.
+
+---
+## Footnotes
+
+<p id="ref-footnote" style="font-size:14px;"><sup>1</sup>
+A couple of recent (upto 2021) interesting talks on explanability:
+
+- [ALPS tutorial on Explainability for NLP](https://github.com/copenlu/ALPS_2021/blob/main/2021_ALPS_Talk.pdf)
+- [NeurIPS 2020 Tutorial](https://explainml-tutorial.github.io/)
+- [AACL 2020 Tutorial](https://www.youtube.com/watch?v=3tnrGe_JA0s&t=6290s)
+- [Explainability and Compositionality for Visual Recognition](https://www.youtube.com/watch?v=wQOkyxqXNhc)
+- [Explainable AI for Science and Medicine](https://www.youtube.com/watch?v=B-c8tIgchu0)
+</p>
+
+## References
+
+<p id="Agarwal et al., 2020" style="font-size:14px;">[1]
+Rishabh Agarwal and Nicholas Frosst and Xuezhou Zhang and Rich Caruana and Geoffrey E. Hinton (2020). Neural Additive Models: Interpretable Machine Learning with Neural Nets. CoRR, abs/2004.13912.
+</p>
+
+<p id="Hastie et al., 1990" style="font-size:14px;">[2]
+Trevor Hastie and Robert Tibshirani (1990). Generalized Additive Models. Chapman and Hall/CRC.
+</p>
+
+<p id="Ribeiro et al., 2018" style="font-size:14px;">[3]
+Marco Tulio Ribeiro and Sameer Singh and Carlos Guestrin (2018). Anchors: High-Precision Model-Agnostic Explanations. In AAAI (pp. 1527–1535). AAAI Press.
+</p>
+
+<p id="Tan et al., 2020" style="font-size:14px;">[4]
+Sarah Tan and Matvey Soloviev and Giles Hooker and Martin T. Wells (2020). Tree Space Prototypes: Another Look at Making Tree Ensembles Interpretable. In FODS (pp. 23–34). ACM.
+</p>
+
+<p id="Albini et al., 2020" style="font-size:14px;">[5]
+Emanuele Albini and Antonio Rago and Pietro Baroni and Francesca Toni (2020). Relation-Based Counterfactual Explanations for Bayesian Network Classifiers. In IJCAI (pp. 451–457). ijcai.org.
+</p>
+
+<p id="Koh et al., 2017" style="font-size:14px;">[6]
+Pang Wei Koh and Percy Liang (2017). Understanding Black-box Predictions via Influence Functions. In ICML (pp. 1885–1894). PMLR.
+</p>
+
+<p id="Letham et al., 2015" style="font-size:14px;">[7]
+Benjamin Letham and Cynthia Rudin and Tyler H. McCormick and David Madigan (2015). Interpretable classifiers using rules and Bayesian analysis: Building a better stroke prediction model. CoRR, abs/1511.01644.
+</p>
+
+<p id="Ustun et al., 2019" style="font-size:14px;">[8]
+Berk Ustun and Alexander Spangher and Yang Liu (2019). Actionable Recourse in Linear Classification. In FAT (pp. 10–19). ACM.
+</p>
+
+<p id="Wallace et al., 2019" style="font-size:14px;">[9]
+Eric Wallace and Jens Tuyls and Junlin Wang and Sanjay Subramanian and Matt Gardner and Sameer Singh (2019). AllenNLP Interpret: A Framework for Explaining Predictions of NLP Models. In EMNLP/IJCNLP (3) (pp. 7–12). Association for Computational Linguistics.
+</p>
+
+<p id="Lee et al., 2017" style="font-size:14px;">[10]
+Jaesong Lee and Joong-Hwi Shin and Jun-Seok Kim (2017). Interactive Visualization and Manipulation of Attention-based Neural Machine Translation. In EMNLP (System Demonstrations) (pp. 121–126). Association for Computational Linguistics.
+</p>
+
+<p id="Feng et al., 2018" style="font-size:14px;">[11]
+Feng, J. (2018). Pathologies of Neural Models Make Interpretations Difficult. In Proceedings of the 2018 Conference on Empirical Methods in Natural Language Processing (pp. 3719–3728). Association for Computational Linguistics.
+</p>
+
+<p id="Han et al., 2020" style="font-size:14px;">[12]
+Xiaochuang Han and Byron C. Wallace and Yulia Tsvetkov (2020). Explaining Black Box Predictions and Unveiling Data Artifacts through Influence Functions. In ACL (pp. 5553–5563). Association for Computational Linguistics.
+</p>
+
+<p id="Cook et al., 1982" style="font-size:14px;">[13]
+Cook, R. D. and Weisberg, S. Residuals (1982). influence in regression. New York: Chapman and Hall.
+</p>
+
+<p id="Simonyan et al., 2014" style="font-size:14px;">[14]
+Karen Simonyan and Andrea Vedaldi and Andrew Zisserman (2014). Deep Inside Convolutional Networks: Visualising Image Classification Models and Saliency Maps. In ICLR (Workshop Poster).
+</p>
+
+<p id="Ribeiro et al., 2016" style="font-size:14px;">[15]
+Marco Tulio Ribeiro and Sameer Singh and Carlos Guestrin (2016). "Why Should I Trust You?": Explaining the Predictions of Any Classifier. In KDD (pp. 1135–1144). ACM.
+</p>
+
+<p id="Ghorbani et al., 2020" style="font-size:14px;">[16]
+Amirata Ghorbani and James Y. Zou (2020). Neuron Shapley: Discovering the Responsible Neurons. In NeurIPS.
+</p>
+
+<p id="Mercier et al., 2021" style="font-size:14px;">[17]
+Dominique Mercier and Andreas Dengel and Sheraz Ahmed (2021). PatchX: Explaining Deep Models by Intelligible Pattern Patches for Time-series Classification. CoRR, abs/2102.05917.
+</p>
+
+<p id="Gee et al., 2019" style="font-size:14px;">[18]
+Alan H. Gee and Diego Garcia-Olano and Joydeep Ghosh and David Paydarfar (2019). Explaining Deep Classification of Time-Series Data with Learned Prototypes. CoRR, abs/1904.08935.
+</p>
+
+<p id="Schlegel et al., 2019" style="font-size:14px;">[19]
+Udo Schlegel and Hiba Arnout and Mennatallah El-Assady and Daniela Oelke and Daniel A. Keim (2019). Towards a Rigorous Evaluation of XAI Methods on Time Series. CoRR, abs/1909.07082.
+</p>
+
+<p id="Graziani et al., 2020" style="font-size:14px;">[20]
+Mara Graziani and Vincent Andrearczyk and Stéphane Marchand-Maillet and Henning Müller (2020). Concept attribution: Explaining CNN decisions to physicians. Comput. Biol. Medicine, 123, 103865.
+</p>
+
+<p id="Li et al., 2017" style="font-size:14px;">[21]
+Oscar Li and Hao Liu and Chaofan Chen and Cynthia Rudin (2017). Deep Learning for Case-based Reasoning through Prototypes: A Neural Network that Explains its Predictions. CoRR, abs/1710.04806.
+</p>
+
+<p id="Alvarez et al., 2018" style="font-size:14px;">[22]
+David Alvarez-Melis and Tommi S. Jaakkola (2018). On the Robustness of Interpretability Methods. CoRR, abs/1806.08049.
+</p>
+
+<p id="Slack et al., 2020" style="font-size:14px;">[23]
+Dylan Slack and Sophie Hilgard and Emily Jia and Sameer Singh and Himabindu Lakkaraju (2020). Fooling LIME and SHAP: Adversarial Attacks on Post hoc Explanation Methods. In AIES (pp. 180–186). ACM.
+</p>
+
+<p id="Dombrowski et al., 2019" style="font-size:14px;">[24]
+Ann-Kathrin Dombrowski and Maximilian Alber and Christopher J. Anders and Marcel Ackermann and Klaus-Robert Müller and Pan Kessel (2019). Explanations can be manipulated and geometry is to blame. In NeurIPS (pp. 13567–13578).
+</p>
+
+<p id="Gilpin et al., 2018" style="font-size:14px;">[25]
+Leilani H. Gilpin and David Bau and Ben Z. Yuan and Ayesha Bajwa and Michael Specter and Lalana Kagal (2018). Explaining Explanations: An Approach to Evaluating Interpretability of Machine Learning. CoRR, abs/1806.00069.
+</p>
+
+<p id="Lai et al., 2019" style="font-size:14px;">[26]
+Vivian Lai and Chenhao Tan (2019). On Human Predictions with Explanations and Predictions of Machine Learning Models: A Case Study on Deception Detection. In FAT (pp. 29–38). ACM.
+</p>
+
+<p id="Tong et al., 2020" style="font-size:14px;">[27]
+Schrasing Tong and Lalana Kagal (2020). Investigating Bias in Image Classification using Model Explanations. CoRR, abs/2012.05463.
+</p>
+
+<p id="Lertvittayakumjorn et al., 2020" style="font-size:14px;">[28]
+Piyawat Lertvittayakumjorn and Lucia Specia and Francesca Toni (2020). FIND: Human-in-the-Loop Debugging Deep Text Classifiers. In EMNLP (1) (pp. 332–348). Association for Computational Linguistics.
+</p>
+
+<p id="Laugel et al., 2019" style="font-size:14px;">[29]
+Thibault Laugel and Marie-Jeanne Lesot and Christophe Marsala and Xavier Renard and Marcin Detyniecki (2019). The Dangers of Post-hoc Interpretability: Unjustified Counterfactual Explanations. In IJCAI (pp. 2801–2807). ijcai.org.
+</p>
+
+<p id="Rudin et al., 2019" style="font-size:14px;">[30]
+Cynthia Rudin (2019). Stop explaining black box machine learning models for high stakes decisions and use interpretable models instead. Nature.
+</p>
+
+<p id="Adadi et al., 2018" style="font-size:14px;">[31]
+Amina Adadi and Mohammed Berrada (2018). Peeking Inside the Black-Box: A Survey on Explainable Artificial Intelligence (XAI). IEEE Access, 6, 52138–52160.
+</p>
+
+<p id="Carvalho et al., 2019" style="font-size:14px;">[32]
+D. V. Carvalho, E. M. Pereira, & Jaime S. Cardoso (2019). Machine Learning Interpretability: A Survey on Methods and Metrics. Electronics, 8, 832.
+</p>
+
+<p id="Lundberg et al., 2017" style="font-size:14px;">[33]
+Scott M. Lundberg and Su-In Lee (2017). A Unified Approach to Interpreting Model Predictions. In NIPS (pp. 4765–4774).
+</p>
+
+<p id="Guidotti et al., 2018" style="font-size:14px;">[34]
+Riccardo Guidotti and Anna Monreale and Salvatore Ruggieri and Dino Pedreschi and Franco Turini and Fosca Giannotti (2018). Local Rule-Based Explanations of Black Box Decision Systems. CoRR, abs/1805.10820.
+</p>
+
+<p id="Begley et al., 2020" style="font-size:14px;">[35]
+Tom Begley and Tobias Schwedes and Christopher Frye and Ilya Feige (2020). Explainability for fair machine learning. CoRR, abs/2010.07389.
+</p>
+
+<p id="Goyal et al., 2019" style="font-size:14px;">[36]
+Yash Goyal and Uri Shalit and Been Kim (2019). Explaining Classifiers with Causal Concept Effect (CaCE). CoRR, abs/1907.07165.
+</p>
