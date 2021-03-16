@@ -1,5 +1,5 @@
 ---
-title: Summary of Knowledge evolution in neural networks 
+title: Knowledge evolution in neural networks 
 author: Christopher Dzuwa
 ---
 
