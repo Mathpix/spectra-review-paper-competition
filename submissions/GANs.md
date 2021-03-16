@@ -73,7 +73,7 @@ While over-saturation can be controlled for (see above), several major training 
 3. training a GAN corresponds to finding a **Nash Equilibrium** of a non-convex game with continuous high dimensional parameters. Gradient descent, as a way to find a minimum in a loss / cost function, is only a rough approximation to the Nash Equilibrium [18, 19]
 4. D is too strong compared to G. It becomes too trivial for G to distinguish real from fake. D's gradients are close to zero and G is not provided with any more training guidance.
 
-The last point is a lot less common [42] and is thus not a major concern in later GAN iterations.
+The last point is a lot less common [42] and is thus not a major concern in later GAN iterations. The following section summarizes the different GAN variants that either tackled these challenges or addressed new ones.
 
 Kullback Leibler, Jensen Shannon. (FILL)
 
@@ -116,16 +116,11 @@ Other than labels, images are commonly added as conditional input to CGANs. pix2
 
 Style-based generator architectures (StyleGANs) represent the next iteration, where an intermediary latent space is used to scale and shift the normalized image for each convolution layer [34], closely followed by StyleGAN2 in 2019 [50]. StyleGAN2 is famously capable to produce high definition images of *fake* individuals.
 
-
-
-
-
-
 ## GANs catching on the recent trends
 
-Given their popularity, GANs are now predominantly coupled with other recent methods. In the case where less or no labels are available, self-supervision (BigBIGAN [32]) is now prevalent. On the other hand, attention-based models attribute importance to distanced features within an image to better contextualize representation (SAGAN [33, 39]). In February 2021, in the lineage of attention-based models, transGAN proposes to discard CNNs in order to replace them with two transformers for D and G and establishes new state-of-the-art results [52].
+Given their popularity, GANs are now predominantly coupled with other recent methods. In the case where less or no labels are available, self-supervision (BigBIGAN [32]) is now prevalent. On the other hand, attention-based models attribute importance to distanced features within an image to better contextualize representation (SAGAN [33, 39]). In February 2021, in the lineage of attention-based models, transGAN proposes to discard CNNs altogether and replace them with two transformers for D and G. transGAN establishes new state-of-the-art results [52].
 
-These GAN types are among the state-of-the-art in terms of performance. But performance is a non-trivial concept with GANs, as described in the following.
+These recent GAN types claim the state-of-the-art in terms of performance. But performance is a non-trivial concept with GANs, as described in the following.
 
 ![](https://i.imgur.com/4UFBpTp.jpg)
 
@@ -136,18 +131,18 @@ These GAN types are among the state-of-the-art in terms of performance. But perf
 
 As hinted at in the introduction, this is the most challenging task, since GANs have most often a creative downstream task (generating fake people, fake music, etc.). In other words, the loss function of GANs tell little about model performance linked to the creative downstream task. For classification, a low loss on a test set suggests an accurate model, but a low loss on D and G is only a sign that training has converged to a saddle point and has stopped.
 
-While asking humans to evaluate *reals* from *fakes* seems like a sensible idea (effectively with HYPE [35]), most common measures are Inception Score (higher is better), Fréchet Inception Distance (lower is better). Recently, Costa et. al. proposed to measure *quality diversity* [21].
+While asking humans to evaluate *reals* from *fakes* seems like a sensible idea (effectively with HYPE [35]), its is a costly and time-intensive process. Alternatively, an independent critique network can be trained from scratch at GAN evaluation time to compare a holdout set of groundtruth data with the GAN generated data [22, 23, 24]. 
 
-Alternatively, an independent critique network can be trained from scratch at GAN evaluation time to compare a holdout set of groundtruth data with the GAN generated data [22, 23, 24].
+Most common non-human evaluation metrics found in recent papers claiming the state-of-the-art are Inception Score (higher is better) and Fréchet Inception Distance (lower is better) [18, 54]. Both measures are criticized for focusing on *sample quality* without capturing *sample diversity* (in other words, the metrics are not capable of detecting a *mode collapse*, as described above) [55, 56]. Recently, Costa et. al. proposed to measure *quality diversity* [21], in reaction to high-performance GANs that optimize for both quality and diversity [53].
 
 # Outlook
 
-Over the course of this summary, we have seen how the original GAN was formulated and its associated drawbacks. While the subsequent GAN iterations partly tackled these original drawbacks, GANs started being used for different modes (image, text, sound, video) and for different tasks (image superresolution, image style transfer, etc.). Most recently, GANs was caught in the trends of transformers and self-supervision. In the domain of evaluation, progress has been slower in comparison, and a lot remains to be discovered.
+Over the course of this summary, we briefly formulated the original GAN and described its associated drawbacks. While the subsequent GAN iterations partly tackled these original challenges, GANs started being used for different modes (image, text, sound, video) and for different tasks (image superresolution, image style transfer, etc.). Most recently, GANs reached photo-realistic performance and was caught in the trends of transformers and self-supervision. GANs are now at a stage where a human can often not distinguish *fake* from *real*. The role of systematic quantitative GAN evaluation must be emphasized, but progress has been slower in comparison. This unbalance between creation and evaluation as a reality-check, relates to the more serious concerns of Deepfakes [57] or adversarial nets (GANs' close relatives) able to trump models and humans [58].
 
 ---
 
 
-For further in-depth reading and learning, see the coursera class [Generative Adversarial Networks (GANs) Specialization](https://www.coursera.org/specializations/generative-adversarial-networks-gans?ranMID=40328&ranEAID=SAyYsTvLiGQ&ranSiteID=SAyYsTvLiGQ-jsl.a4ThyS7B6Pg5_AQbMQ&siteID=SAyYsTvLiGQ-jsl.a4ThyS7B6Pg5_AQbMQ&utm_content=10&utm_medium=partners&utm_source=linkshare&utm_campaign=SAyYsTvLiGQ) from DeepLearning.AI (all assignments can be found [here](https://github.com/amanchadha/coursera-gan-specialization)) and the book [GANs in Action](https://www.manning.com/books/gans-in-action). 
+For further in-depth reading and learning, see the Coursera class [Generative Adversarial Networks (GANs) Specialization](https://www.coursera.org/specializations/generative-adversarial-networks-gans?ranMID=40328&ranEAID=SAyYsTvLiGQ&ranSiteID=SAyYsTvLiGQ-jsl.a4ThyS7B6Pg5_AQbMQ&siteID=SAyYsTvLiGQ-jsl.a4ThyS7B6Pg5_AQbMQ&utm_content=10&utm_medium=partners&utm_source=linkshare&utm_campaign=SAyYsTvLiGQ) from DeepLearning.AI (all assignments can be found [here](https://github.com/amanchadha/coursera-gan-specialization)) and the book [GANs in Action](https://www.manning.com/books/gans-in-action). 
 
 ## References
 
@@ -263,3 +258,15 @@ cross-domain relations with generative adversarial networks.
 [51] Zhiming Zhou, Jiadong Liang, Yuxuan Song, Lantao Yu, Hongwei Wang, Weinan Zhang, Yong Yu, Zhihua Zhang: “Lipschitz Generative Adversarial Nets”, 2019
 
 [52] Yifan Jiang, Shiyu Chang, Zhangyang Wang: “TransGAN: Two Transformers Can Make One Strong GAN”, 2021
+
+[53] Andrew Brock, Jeff Donahue, Karen Simonyan: “Large Scale GAN Training for High Fidelity Natural Image Synthesis”, 2018
+
+[54] M. Heusel, H. Ramsauer, T. Unterthiner, B. Nessler, G. Klambauer, S. Hochreiter. GANs Trained by a Two Time-Scale Update Rule Converge to a Nash Equilibrium, CoRR, Vol abs/1706.08500. 2017.
+
+[55] S. Barratt, R. Sharma., A Note on the Inception Score, 2018.
+
+[56] I. Gulrajani, C. Raffel, L. Metz., Towards GAN Benchmarks Which Require Generalization, International Conference on Learning Representations. 2019.
+
+[57] Thanh Thi Nguyen, Cuong M. Nguyen, Dung Tien Nguyen, Duc Thanh Nguyen, Saeid Nahavandi: “Deep Learning for Deepfakes Creation and Detection: A Survey”, 2019
+
+[58] Yang, L., Song, Q. & Wu, Y. Attacks on state-of-the-art face recognition using attentional adversarial attack generative network. Multimed Tools Appl 80, 855–875 (2021).
