@@ -63,15 +63,17 @@ def gen_loss(generated_output):
 ```
 
 In practice, the output being a binary indicator (encoding the real / fake nature of the data), the sigmoid activation function is used. Notably, the generator loss function ![min \log (1-D(G(\boldsymbol{z})))](https://render.githubusercontent.com/render/math?math=%5Ctextstyle+min+%5Clog+%281-D%28G%28%5Cboldsymbol%7Bz%7D%29%29%29)
- is formulated in its non-saturating form ![max \log D(G(\boldsymbol{z}))](https://render.githubusercontent.com/render/math?math=%5Ctextstyle+max+%5Clog+D%28G%28%5Cboldsymbol%7Bz%7D%29%29), as Goodfellow et. al. first proposed [1]. Saturation refers to the phenomenon where the optimization surface (sigmoid function here) is steep and estimates too quickly converge towards low or high extremes. At these extremes, the loss function is relatively flat and the gradient is close to zero, thus gradient descent only results in minimal steps.
+ is formulated in its non-saturating form ![max \log D(G(\boldsymbol{z}))](https://render.githubusercontent.com/render/math?math=%5Ctextstyle+max+%5Clog+D%28G%28%5Cboldsymbol%7Bz%7D%29%29), as Goodfellow et. al. first proposed [1]. Saturation refers to the phenomenon where the optimization surface (sigmoid function here) is steep and estimates too quickly converge towards low or high extremes. At these extremes, the loss function is relatively flat and the gradient is close to zero, thus gradient descent only results in minimal steps. 
 
+While over-saturation can be controlled for (see above), several major training challenges persist:
 
- While it can be solved with gradient-descent, several fallbacks exist. 
+1. **The Helvetica scenario** [1] G is trained too much without updating D. The latter is then unable to discriminate *real* from *fake* data, without G having learned to mimic the real data.
+2. **mode collapse** [3]. While D converges to he correct distribution, G learns probabilities over limited modes of the original data distribution, ![\min _{G} \max _{D} V(G, D) \neq \max _{D} \min _{G} V(G, D)](https://render.githubusercontent.com/render/math?math=%5Ctextstyle+%5Cmin+_%7BG%7D+%5Cmax+_%7BD%7D+V%28G%2C+D%29+%5Cneq+%5Cmax+_%7BD%7D+%5Cmin+_%7BG%7D+V%28G%2C+D%29)
+ [42]. It thus produces images from a certain set instead of a diversity of images (e.g. any bird created by the GAN is of the same species). Note that, in the context of creativity, it can be sometimes desirable to prioritize modes that guarantee very real-looking images over covering the entire distribution of groundtruth examples.
+3. training a GAN corresponds to finding a **Nash Equilibrium** of a non-convex game with continuous high dimensional parameters. Gradient descent, as a way to find a minimum in a loss / cost function, is only a rough approximation to the Nash Equilibrium [18, 19]
+4. D is too strong compared to G. It becomes too trivial for G to distinguish real from fake. D's gradients are close to zero and G is not provided with any more training guidance.
 
-1. **The Helvetica scenario** [1] G is trained too much without updating D. 
-2. D is too strong compared to G. It becomes too trivial for G to distinguish real from fake. D's gradients are close to zero and G is not provided with any more training guidance.
-3. **mode collapse** [3]. G learns probabilities over limited modes of the original data distribution. It thus produces images from a certain set instead of a diversity of images. In the context of creativity, it can be sometimes desirable to prioritize very real-looking images modes over covering the entire distribution of groundtruth examples.
-4. training a GAN corresponds to finding a **Nash Equilibrium** of a non-convex game with continuous high dimensional parameters. Gradient descent, as a way to find a minimum in a loss / cost function, is only a rough approximation to the Nash Equilibrium [18, 19]
+The last point is a lot less common [42] and is thus not a major concern in later GAN iterations.
 
 Kullback Leibler, Jensen Shannon. (FILL)
 
@@ -80,76 +82,55 @@ Kullback Leibler, Jensen Shannon. (FILL)
 
 [18] (FILL)
 
-a little outdated: https://github.com/soumith/ganhacks#authors
 
-
-[coulomb GAN](https://arxiv.org/pdf/1708.08819.pdf)
 [large scale GAN for image synthesis](https://openreview.net/pdf?id=B1xsqj09Fm)
 
-[transGAN](https://arxiv.org/pdf/2102.07074.pdf)
+
 
 different tasks, different modalities
 
 # GAN variants
 
-In order to tackle the several fallbacks from the vanilla GAN above, variants of GANs have been proposed. They propose to change the loss in D or G, but also often change the architecture of the model.
+In order to tackle the several challenges from the vanilla GAN above, variants of GANs have been proposed. They propose to change the loss in D or G, but also often change the architecture of the model. The descriptions below focus on GANs for images, because the most important findings emerged in that context. GANs are however capable of modeling various modalities, such as video and text, but also music (GANSynth [25]) or DNA [36].
+
+![](https://i.imgur.com/TzTKcEz.png)
+
+*(Most common GAN tasks, source: https://paperswithcode.com/method/patchgan)*
+
+### Changes in the loss function
+
+Instead of binary cross-entropy loss, some proposed to use least-square [4], f-divergence [5], hinge loss [6] and finally Wasserstein distance [7, 8, 20]. WassersteinGANs (WGANs) correct for mode collapse and for imbalances between D and G. WGANs creations also quickly became more convincing to the human eye, leading to a strong preference among researchers in the past years. In 2019, Lipschitz GANs (LGANs [51]) are shown to outperform WGANs.
+
+While the challenges of the *Helvetica scneario* and *mode collapse* (see above) are addressed, there is little work on tackling the *Nash Equilibrium* condition. The game theoretical aspect is found in certain versions of WGANs [38, 39, 40].
+
+Aside from dealing with the training challenges of GANs, other tasks emerged. Instead of the original task of distinguishing real from fake data, some proposed class prediction (CATGAN [9] or EBGAN [10] and BEGAN [11] with autoencoders) or latent representation (ALI [2], BiGAN [12], InfoGAN [13]).
 
 
-### L_D
+### Changes in the architecture
 
-Instead of binary cross-entropy loss, some proposed to use least-square [4], f-divergence [5], hinge loss [6] and finally Wasserstein distance [7, 8, 20]. Due to their capacity to correct for imbalances between D and G and for mode collapse and due to its more convincing creations, Wasserstein GANs are now broadly used.
+In an attempt to build meaningful latent representations as with ALI, the original feed-forward neural network for G, can be replaced with a variational autoencoder (VAEGAN [15]). Alternatively, both D and G can be replaced by CNNs, as they are specialized at modelling images (DCGANs [17]). Later on it is discovered that feeding patches of images as input to a GAN can sometimes outperform traditional CNN GANs (PatchGAN [16]). VEAGANs, DCGANs and PatchGANs are still very close to the original GAN in terms of the training task: creating fake images.
 
-Lipschitz continuity
+Quickly after its inception by Goodfellow et. al., researchers expressed the desire to see GAN perform other tasks than creation. Chronologically, the next proposed task is classification and relies on feeding auxiliary information to the network. This practice becomes known as Conditional GANs (CGANs). Multiple inputs allow CGANs to perform a multitude of tasks but can also at times improve the original creation task. Different from CGANs, where generation is conditioned on the label p(y|x), labels can also be concatenated to the data p(y,x) (e.g. ACGAN [14]). Humans found that p(y|x) and p(y,x) both outperformed the original GANs [18]. There are now three categories of models, namely GANs with no labels (unsupervised), GANs trained with labels (supervised) and CGANs trained conditioned on labels.
 
-Instead of the original task of distinguishing real from fake data, some proposed class prediction (CATGAN [9] or EBGAN [10] and BEGAN [11] with autoencoders), latent representation (ALI [2], BiGAN [12], InfoGAN [13]).
+Other than labels, images are commonly added as conditional input to CGANs. pix2pix is the first GAN image-to-image translation network [16]. It is followed by the task of image restauration and image segmentation [43], requiring aligned training pairs. CycleGANs relax the constraint by stitching two generators head-to-toe, so that images can be translated between two sets of unpaired samples [44, 45]. UNIT architectures propose an alternative for image-to-image translation, where two VEAGANs are combined sharing the same latent space [46]. A year later, it is improved on with style attributes (MUNIT [49]).
 
-ACGAN [14] proposes to concatenate class labels to the input to further improve performance with a cross entropy loss.
-
-### L_G
-
-The original feed-forward neural network for G, can be replaced with a variational autoencoder (VAEGAN [15])
-
-### conditional GAN
-
-Conditional GANs rely on feeding auxiliary information to the network. This can be an image (pix2pix)
-
-### different architectures
-
-The original GAN was a feed-forward neural network. Some proposed to use CNNs instead as they are specialized at modelling images (DCGANs [17])
-
-Game Theory for GANs [38, 39, 40]
+Style-based generator architectures (StyleGANs) represent the next iteration, where an intermediary latent space is used to scale and shift the normalized image for each convolution layer [34], closely followed by StyleGAN2 in 2019 [50]. StyleGAN2 is famously capable to produce high definition images of *fake* individuals.
 
 
-cycleGAN 
-
-style transfer (styleGAN [34])
-
-UNIT MUNIT CYCLEGAN
-
-PatchGAN
 
 
-## what if you have less labels: semi / self-supervision
 
-## enhance resolution
 
-## GANs for video
+## GANs catching on the recent trends
 
-## GANs for music
+Given their popularity, GANs are now predominantly coupled with other recent methods. In the case where less or no labels are available, self-supervision (BigBIGAN [32]) is now prevalent. On the other hand, attention-based models attribute importance to distanced features within an image to better contextualize representation (SAGAN [33, 39]). In February 2021, in the lineage of attention-based models, transGAN proposes to discard CNNs in order to replace them with two transformers for D and G and establishes new state-of-the-art results [52].
 
-GANSynth [25]
+These GAN types are among the state-of-the-art in terms of performance. But performance is a non-trivial concept with GANs, as described in the following.
 
-## GANs for DNA
+![](https://i.imgur.com/4UFBpTp.jpg)
 
-[36]
+*(Source: [3])*
 
-## build a representation
-
-VAE GANs VS ALI [2]
-
-## GANs catching the hype
-
-Given their popularity, GANs are now predominantly coupled with other recent methods. This includes self-supervision (BigBIGAN [32]), attention-based models (SAGAN [33, 39]). These GAN types are among the state-of-the-art in terms of performance. But performance is a non-trivial concept with GANs, as described in the following.
 
 # Evaluating GANs
 
@@ -260,3 +241,25 @@ with conditional adversarial networks.
 [40] Grnarova, P., Levy, K.Y., Lucchi, A., Hofmann, T. and Krause, A., An Online Learning Approach to Generative Adversarial Networks, 2017. CoRR, Vol abs/1706.03269.
 
 [41] Taesung Park, Ming-Yu Liu, Ting-Chun Wang, Jun-Yan Zhu, Semantic Image Synthesis with Spatially-Adaptive Normalization, CVPR 2019
+
+[42] Goodfellow, Ian, https://www.iangoodfellow.com/slides/2016-12-04-NIPS.pdf
+
+[43] Milletari, F., Navab, N., Ahmadi, S.A., 2016. V-net: Fully convolutional neural
+networks for volumetric medical image segmentation, in: 3D Vision (3DV),
+2016 Fourth International Conference on, IEEE. pp. 565–571.
+
+[44] Zhu, J.Y., Park, T., Isola, P., Efros, A.A., 2017. Unpaired image-to-image
+translation using cycle-consistent adversarial networks
+
+[45] Kim, T., Cha, M., Kim, H., Lee, J.K., Kim, J., 2017. Learning to discover
+cross-domain relations with generative adversarial networks.
+
+[46] Liu, M.Y., Breuel, T., Kautz, J., 2017a. Unsupervised image-to-image translation networks, in: Advances in Neural Information Processing Systems, pp. 700–708.
+
+[49] Xun Huang, Ming-Yu Liu, Serge Belongie, Jan Kautz: “Multimodal Unsupervised Image-to-Image Translation”, 2018
+
+[50] Tero Karras, Samuli Laine, Miika Aittala, Janne Hellsten, Jaakko Lehtinen, Timo Aila: “Analyzing and Improving the Image Quality of StyleGAN”, 2019
+
+[51] Zhiming Zhou, Jiadong Liang, Yuxuan Song, Lantao Yu, Hongwei Wang, Weinan Zhang, Yong Yu, Zhihua Zhang: “Lipschitz Generative Adversarial Nets”, 2019
+
+[52] Yifan Jiang, Shiyu Chang, Zhangyang Wang: “TransGAN: Two Transformers Can Make One Strong GAN”, 2021
