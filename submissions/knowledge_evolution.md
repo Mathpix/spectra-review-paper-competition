@@ -1,15 +1,16 @@
 ---
 title: Knowledge evolution in neural networks 
+description: Review of the knowledge evolution in neural networks.
 author: Christopher Dzuwa
 ---
 
 # Knowledge evolution in neural networks
 
-![main.png](./images/ke_main.png)
+![main.png](images/ke_main.png)
 
 *Nasa's Mars Rovers Family Portrait (Image credit: NASA/JPL-Caltech)*
 
-## 1.0 Introduction
+## Introduction
 
 In his book titled **The Mind’s Past (1998)**, Michael Gazzaniga wrote: “The baby does not learn trigonometry, but knows it; does not learn how to distinguish figure from ground, but knows it; does not need to learn, but knows, that when one object with mass hits another, it will move the object … The vast human cerebral cortex is chock full of specialized systems ready, willing, and able to be used for specific tasks. Moreover, the brain is built under tight genetic control … As soon as the brain is built, it starts to express what it knows, what it comes with from the factory. And the brain comes loaded. The number of special devices that are in place and active is staggering. Everything from perceptual phenomena to intuitive physics to social exchange rules comes with the brain. These things are not learned; they are innately structured. Each device solves a different problem … the multitude of devices we have for doing what we do are factory installed; by the time we know about an action, the devices have already performed it.” 
 
@@ -22,9 +23,9 @@ Gene transfer is the      passing on of genetic information (knowledge) from par
 
 *Figure 1: A split network illustration using a toy residual network. (Left) A convolutional filter F with $C_i=3$  input, $C_o=4$ output channels, and 2D kernels (e.g., $π ∈ R^{3×3}$ ). (Center-Right) A toy residual network N with a three-channel input (e.g., RGB image) and a five-logit output (C = 5). GAP denotes a global average pooling layer while $\oplus$ denotes the add operation. We split N into a fit-hypothesis $H^F$ (dark-blue) and a reset-hypothesis $H^R$ (gray). The fit-hypothesis $H^F$ is a slim network that can be extracted from the dense network N to perform inference efficiently. The paper appendix shows the dimensions of a fit-hypothesis in the ResNet18 architecture.*
 
-## 2.0 KE training and splitting 
+## KE training and splitting 
 
-### 2.1 Training
+### Training
 For a deep network N with L layers, F filters, Z Batch norms, and fully connected layers with weight W and Bias B, knowledge evolution starts by conceptually splitting the network into two subnetworks: the fit subnetwork($H^F$) and the reset subnetwork($H^R$). These hypotheses are outlined by a binary mask as shown below:
 
 ${M=\{1,0\}^{C_o\times k \times k \times C_i}}$
@@ -53,10 +54,10 @@ $F_l$ is a filter layer
 ${F_l}^T$ is a randomly initialized tensor
 
 
-#### 2.1.1 Hyperparameters
+#### Hyperparameters
 While training the network N, the hyperparameters (Learning rate, batch size, number of epochs) remain the same across all generations. It might be interesting to consider rescheduling the hyperparameters for future research works to check if convergence can be achieved in a relatively short training period for other generations.
 
-### 2. 2 Network splitting
+### Network splitting
 Network splitting is achieved using two different approaches;
 
 *  Individual weights are randomly split in each layer
@@ -109,7 +110,7 @@ The network architecture presented in Figure 6, highlights the KE + KELS techniq
 It’s very clear from the networks presented above that KE+KELS significantly reduces the number of parameters thereby      reducing the number of operations. But since the training has to be done for n generations, the training time might usually be more than that for the dense network. The      trade-off is that this gives a better inference cost.
 
 
-## 3.0 Key points from KE
+## Key points from KE
 
 * The binary mask is initialized once and for all.  The authors  iterated on the idea of having to modify the binary mask for each generation
 * The paper focuses on KE + KELS as this requires no specialized hardware or sparse linear algebra libraries
@@ -117,12 +118,12 @@ It’s very clear from the networks presented above that KE+KELS significantly r
 * Since the paper introduces KE and WELS, which themselves are variants of pruning techiques, the paper also disucess in detail how they relate to other pruning techniques.
 
 
-## 4.0 Conclusion 
+## Conclusion 
 
 KE may make it possible for deep learning practitioners to train deep networks on relatively small datasets. This makes Knowledge Evolution a potential strong option for medical or navigation applications; i.e. where datasets are expensive and hard to collect. KE chooses a random inferior network (fit hypothesis) and evolves its knowledge across multiple generations. To enhance performance (training and inference ), KE uses the KELS approach to      split the network into 2 subnetworks. An alternative generalized approach (WELS) exists but requires specialized hardware and linear algebra libraries for efficient training. KE works seamlessly with metric learning (regression) and classification tasks. KE therefore perfectly infuses Michael Gazzaniga idea of Gene transfer in Machine Learning by depending on a small dataset to evolve knowledge while preserving the quality of the model. 
 
 
-## 5.0 References
+## References
 
 [1] Taha,Shrivastava, Davis.Knowledge Evolution in Neural Networks.arXiv preprint arXiv :2103.05152, 2021
 
