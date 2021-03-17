@@ -11,8 +11,7 @@ Sketching is a natural and intuitive way to express our feelings and ideas. When
 
 Due to its openness to subjective interpretation, no standardized data collection method or format is determined. In the development process of different use-cases, researchers collect sketches in various forms and styles. Here, we present the most commonly used, large, and recent datasets in the field.
 
-![Michelson–Morley experiment](https://raw.githubusercontent.com/asabuncuoglu13/spectra-review-paper-competition/master/submissions/images/birds.png)
-
+![birds](images/birds.png)
 \subsection{Quick, Draw!}
 
 The most popular dataset is Quick, Draw! The dataset of vector drawings obtained from the online game shares the same name where the players are asked to draw objects belonging to a particular object class in less than 20 seconds. Google Creative Lab shares the raw data, simplified files, binary files, and NumPy bitmaps. The raw data contains the critical id, word name, recognized boolean, timestamp, country code, and drawing. 
@@ -77,14 +76,14 @@ In the SketchRNN model, the authors aim to develop a model that can draw and gen
 In the training process, they used a different format of Quick, Draw! representing a drawing as a set of pen stroke actions. In this data format, the initial absolute coordinate of the drawing is located at the origin. A sketch is a list of points, and each point is a vector consisting of 5 elements: (∆x, ∆y, p1, p2, p3). Each data represented as a sequence of motor actions controlling a pen: which direction to move (p1), when to lift the pen up (p2), and when to stop drawing (p3).
 
 \begin{figure}[h]
-\includegraphics[width=0.35\textwidth, center]{https://raw.githubusercontent.com/asabuncuoglu13/spectra-review-paper-competition/master/submissions/images/quickdraw-sketchrnn.png}
+\includegraphics[width=0.35\textwidth, center]{images/quickdraw-sketchrnn.png}
 \end{figure}
 
 Their model is a Sequence-to-sequence Variational Autoencoder (VAE), and the encoder part is a bidirectional RNN that takes the sketch input in an ordered and reversed format. The two encoding RNNs of the bidirectional RNN results in two final hidden states. These final states are concatenated to hidden state, h, and projected into two vectors μ and σ̂ using a fully connected layer. Under this encoding scheme, the latent vector z is not a deterministic output for a given input sketch but a random vector conditioned on the input sketch. 
 
 
 \begin{figure}[h]
-\includegraphics[width=0.5\textwidth, center]{https://raw.githubusercontent.com/asabuncuoglu13/spectra-review-paper-competition/master/submissions/images/sketchrnn.png}
+\includegraphics[width=0.5\textwidth, center]{images/sketchrnn.png}
 \end{figure}
 
 \subsection{Sketchformer (2020)}
@@ -96,7 +95,7 @@ Sketchformer presents two important features in their model: (1) They use a tran
 In the preprocessing step, dictionary-learning uses K code-words (K = 1000) to model the relative pen motion. 100K sketched pen movements are randomly selected to cluster via k-means. The sketch canvas is quantized into 100x100 square cells in the Spatial-Grid form, and a token in the dictionary represents each cell. These tokenization methods provide a more compact representation when the dictionary size is small; however, the quantization error accumulates when the sketches are long.
 
 \begin{figure}[h]
-\includegraphics[width=0.9\textwidth, center]{https://raw.githubusercontent.com/asabuncuoglu13/spectra-review-paper-competition/master/submissions/images/sketchformer.png}
+\includegraphics[width=0.9\textwidth, center]{images/sketchformer.png}
 \end{figure}
 
 \subsection{CoSE (2020)}
@@ -116,7 +115,7 @@ Previous models focus on object-level tasks such as auto-completion of a diagram
 Given a scene sketch, the object instances are first located and recognized by leveraging the sketch segmentation method. After that image content is generated for each foreground object instance (i.e., sketch instances belonging to the foreground categories) individually in random order by the foreground generation module. By taking background sketches and the generated foreground image as input, the final image is achieved by generating the background image in a single pass. The two modules are trained separately.
 
 \begin{figure}[h]
-\includegraphics[width=0.9\textwidth, center]{https://raw.githubusercontent.com/asabuncuoglu13/spectra-review-paper-competition/master/submissions/images/sketchcoco.png}
+\includegraphics[width=0.9\textwidth, center]{images/sketchcoco.png}
 \end{figure}
 
 \subsection{DoodlerGAN (2021)}
@@ -126,7 +125,7 @@ Given a scene sketch, the object instances are first located and recognized by l
 DoodlerGAN sequentially generates one part while ensuring that the parts and partial sketches’ appearance come from corresponding distributions observed in human sketches. The architecture contains two modules: the part generator and the part selector. Given a part-based representation of a partial sketch, the part selector predicts which part category to draw next. The part generator is a conditional GAN based on the StyleGAN2 architecture. The partial input sketch is represented by stacking each part along with a parallel channel for the entire sketch. They use a similar discriminator architecture with StyleGAN2. The discriminator accesses to the partial sketch and the corresponding part channels to distinguish fake sketches from real ones.  This way, the model learns the appropriate location relative to other parts (e.g., heads are often around the eyes).
 
 \begin{figure}[h]
-\includegraphics[width=0.9\textwidth, center]{https://raw.githubusercontent.com/asabuncuoglu13/spectra-review-paper-competition/master/submissions/images/doodlergan.png}
+\includegraphics[width=0.9\textwidth, center]{images/doodlergan.png}
 \end{figure}
 
 \subsection{Swire (2019)}
@@ -136,7 +135,7 @@ DoodlerGAN sequentially generates one part while ensuring that the parts and par
 Their encoding architecture is based on VGG-A Net, which consists of convolution and pooling layers. The dataset includes images of UI wireframes, and these drawings are not collected in vector form and are not annotated for component segmentation. These images are fed into a shallow variant of the VGG network that outputs a 64-dimension embedding. These latent vectors are used to query similar UI designs.
 
 \begin{figure}[h]
-\includegraphics[width=0.9\textwidth, center]{https://raw.githubusercontent.com/asabuncuoglu13/spectra-review-paper-competition/master/submissions/images/swire.png}
+\includegraphics[width=0.9\textwidth, center]{images/swire.png}
 \end{figure}
  
 \section{Discussion and Future of the Field}
