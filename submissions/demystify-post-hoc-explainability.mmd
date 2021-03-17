@@ -2,7 +2,7 @@
 title: Demystifying Post-hoc Explainability for ML models
 description: The widespread use of black-box models in AI has increased the need for explanation methods that reveal how these mysterious models arrive at concrete decisions. We will describe the problem, prominent solutions, and example applications for each of these approaches, as well as their vulnerabilities and flaws. We hope to have a enriching and an informative introduction to post-hoc machine learning explainability.
 author: Nickil Maveli
-images: https://spectra.pub/ml/images/explanation.svg
+image: https://spectra.pub/ml/images/explanation.svg
 ---
 \section{Introduction}
 As machine learning becomes more widely used in high-stakes situations that affect people's livelihoods, there have been increasing calls to "open the black-box" and make machine learning algorithms more understandable. The needs of end-users must be carefully considered when providing useful explanations. This has led to the emergence of a subfield in AI called \textit{eXplainable AI} (XAI). Rather than trying to create models that are inherently interpretable, there has been a recent explosion of work on "Explainable ML", where a second (post-hoc) model is created to explain the first black-box model -- one of the main criteria is intrinsic vs. post-hoc. This criterion is used for distinguishing whether interpretability is achieved through constraints imposed on the complexity of the ML model (intrinsic) or by applying methods that analyze the model after training (post-hoc) (<a href="#Carvalho et al., 2019">Carvalho et al., 2019</a>). If you can build an interpretable model which is also adequately
@@ -70,7 +70,7 @@ In many scientific problems, we have access to different modalities of data. Spe
 \label{S-3}
 \end{figure}
 
-> ## How do we provide explanations for Tabular / Structured Data?
+## How do we provide explanations for Tabular / Structured Data?
 The majority of data in day-to-day life is in fact structured, tabular data, such as recommender systems, fraud detection, relational databases, etc. Depending on the task/domain, it could be either low or high dimensional and the gradients may not always be meaningful. In this section, we present select approaches used by explainers for explaining the decisions on tabular data.
 
 ### Feature Importance Based Explanations
@@ -96,7 +96,7 @@ training point were changed slightly? Answering this question by perturbing the 
 (<a href="#Albini et al., 2020">Albini et al., 2020</a>) provide counterfactual explanations for generic Bayesian Classifiers (BCs), based on the causal reasoning underpinning them. The explanation method relies upon mapping the influences between a BC’s variables, e.g. between observations and classifications. From these influences, they extract two relations between variables deemed to be relevant to the Counterfactual explanation. These relations amount, respectively, to critical and potential influences, indicating (potentially) pivotal factors, whose absence would give rise to a different classification.
 (<a href="#Ustun et al., 2019">Ustun et al., 2019</a>) frame these issues in terms of recourse, which is defined as the ability of a person to change the decision of a model by altering actionable input variables (e.g., income vs. age or marital status). They present integer programming tools to ensure *recourse* in linear classification problems without interfering in model development.
 
-> ## How do we provide explanations for textual data?
+## How do we provide explanations for textual data?
 
 Traditionally, Natural Language Processing (NLP) systems have been mostly based on techniques that are inherently explainable. Examples of such approaches, often referred to as white-box techniques, include rules, decision trees, hidden Markov models, logistic regressions, and others. Recent years, though, have brought the advent and popularity of black-box techniques, such as deep learning models and the use of language embeddings as features. While these methods in many cases substantially advance model quality, they come at the expense of models becoming less interpretable. A major challenge working with text is the difficulty in writing similarity/perturbation functions. This section covers some of the well-known explanation methods for handling textual data.
 
@@ -122,7 +122,7 @@ and “in downtown” are sufficient to predict the People, Organization, and Lo
 ### Prototype-Based Explanations
 (<a href="#Han et al., 2020">Han et al., 2020</a>) explore the application of influence functions as a mechanism to reveal artifacts (or confounds) in training data that might be exploited by models and investigate the degree to which results from the influence function are consistent with insights gleaned from gradient-based saliency scores for representative NLP tasks.
 
-> How would the model’s predictions change if a training input were modified?
+How would the model’s predictions change if a training input were modified?
 
 A classic result (<a href="#Cook et al., 1982">Cook et al., 1982</a>)  tells us that the influence of upweighting $z$ &nbsp;on&nbsp;the parameters&nbsp;$\hat{\theta}$&nbsp;is given by:
 \begin{align}
@@ -148,7 +148,7 @@ note that this approximation holds for arbitrary $\delta$:&nbsp; the $\epsilon-$
 upweighting scheme allows us to smoothly interpolate between $z$ &nbsp;and&nbsp;$z_\delta$. This is particularly useful for working with
 discrete data (e.g., in NLP) or with discrete label changes.
 
-> ## How do we provide explanations for images?
+## How do we provide explanations for images?
 When we describe how we classify images, we might focus on parts of the image and compare them with prototypical parts of images from a given class. This method of reasoning is commonly used in difficult identification tasks: e.g., radiologists compare suspected tumors in X-ray scans with prototypical tumor images for diagnosis of cancer. The question is whether we can ask a machine learning model to imitate this way of thinking, and to explain its reasoning process in a human-understandable way. This section lists important explanation techniques commonly used in computer vision.
 
 ### Saliency Map Visualization
@@ -185,7 +185,7 @@ values (blue dash) reduce the class prediction accuracy more effectively than re
 ### Concept Attribution
 The hallmark of concept attribution is that clinically relevant measures are directly used to produce explanations that match the semantics of the end-users. CNN decisions are explained by directly relating to well-known prognostic factors and clinical guidelines. This promotes a more intuitive interaction between the physicians and black-box systems aiding the diagnosis, with a consequent increase of confidence in automated support tools. Besides, concept attribution is a complementary technique to saliency heatmaps giving concept-based explanations rather than pixel-based ones (<a href="#Graziani et al., 2020">Graziani et al., 2020</a>).
 
-> ## How do we provide explanations for time-series data?
+## How do we provide explanations for time-series data?
 Multivariate time series data are being generated at an ever-increasing pace due to the ubiquity of sensors and the advancement of IoT technologies. Classifying these multivariate time series is crucial for utilizing these data effectively, and is an important research topic in the machine learning community. In this section, we consolidate some of the important explanation techniques used in time-series data.
 
 ### Relevance Heatmaps
