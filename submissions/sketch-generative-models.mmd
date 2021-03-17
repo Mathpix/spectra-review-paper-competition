@@ -1,0 +1,164 @@
+---
+title: Deep Sketch Generation Models
+description: This article reviews the recent aproaches and datasets in the deep generative sketch modelling field that takes the human-machine creative collaboration one step closer.
+author: Alpay Sabuncuoğlu
+---
+
+Sketching is a natural and intuitive way to express our feelings and ideas. When learning a new concept, we use sketching to visualize it and discuss it with a friend. When thinking about creative ideas in a meeting, we doodle and collaboratively build a discussion around the sketches on the board. Although sketching is a common communication tool, we only scratched the surface to efficiently use this tool effectively in deep learning applications. Recently, generative neural networks such as Generative Adversarial Networks (GANs), Variational Inference (VI), and Autoregressive (AR) models show significant advancements in the image modeling area. Although humans have a much longer relationship with sketches in history, the progress is slow in the sketch domain due to its complex structure and ambiguous form. This review is a non-math practical overview that introduces open-source datasets and state-of-the-art models that accelerate the research on building generative sketch models.
+
+
+\section{Common Datasets}
+
+Due to its openness to subjective interpretation, no standardized data collection method or format is determined. In the development process of different use-cases, researchers collect sketches in various forms and styles. Here, we present the most commonly used, large, and recent datasets in the field.
+
+![Michelson–Morley experiment](https://raw.githubusercontent.com/asabuncuoglu13/spectra-review-paper-competition/master/submissions/images/birds.png)
+
+\subsection{Quick, Draw!}
+
+The most popular dataset is Quick, Draw! The dataset of vector drawings obtained from the online game shares the same name where the players are asked to draw objects belonging to a particular object class in less than 20 seconds. Google Creative Lab shares the raw data, simplified files, binary files, and NumPy bitmaps. The raw data contains the critical id, word name, recognized boolean, timestamp, country code, and drawing. 
+
+🔗 [Check their repository to get the data, learn more about data collection and preprocessing steps and see some example creations made with this dataset.](https://github.com/googlecreativelab/quickdraw-dataset)
+
+<details>
+
+<summary>
+Bonus: Creative Applications and Useful Gists
+</summary>
+
+I particularly find useful some creative applications to better understand the capabilities of the dataset. Here are some:
+- [A creative statistical analysis ~ Finding Bad Flamingos](http://colinmorris.github.io/blog/bad_flamingos)
+- [Part 1 of Exploring the Google QuickDraw Dataset with SketchRNN (Total of three Parts and a visualization experiment)](http://louistiao.me/notes/exploring-the-google-quickdraw-dataset-with-sketchrnn-part-1/)
+- [A cursed statistical analysis... Faces of Humanity](http://project.laboiteatortue.com/facesofhumanity/#/)
+
+</details>
+<br>
+
+\subsection{TU-Berlin - How Do Humans Sketch Objects?}
+
+They gathered 20K+ unique sketches evenly distributed over 250 object categories. These categories are organized in a 3-level hierarchy, containing six top-level and 27 second-level categories such as animals, buildings, and musical instruments. They open-sourced the drawings in png, SVG, and mat formats. 
+
+🔗 [Check their repository to get the data, see the helper methods and visualizations.](https://github.com/google-research/google-research/tree/master/didi_dataset)
+
+\subsection{DIDI}
+
+The dataset contains flowchart drawings that include 22K+ diagrams with textual labels and 36K+ diagrams without textual labels. In the data collection, randomly generated diagrams prompted the participants to show an image and draw the illustrated diagram over the image. The diagram components are box, oval, diamond, parallelogram, and octagon, and the shape count does not exceed ten blocks. In this sense, it is a synthetic dataset that does not reflect the real-world scenarios in the diagram drawing. However, it is one of the most extensive datasets in the field. 
+
+🔗 [Check their repository to get the data and see the helper notebooks.](https://github.com/google-research/google-research/tree/master/didi_dataset)
+
+\subsection{SketchyCOCO}
+
+SketchyCOCO dataset consists of two parts: Object-level and Scene-level data. Object-level data contains 20K+ triplets of foreground sketch, foreground image, and foreground edge map examples covering fourteen classes, 27K+ pairs of background sketch, and background image examples covering three classes. Scene-level data contains 14K+ pairs of foreground-background sketch and scene image examples, 14K+ pairs of scene sketch and scene image examples. Object-level examples include sketches from Quick, Draw!, TU-Berlin, and Sketchy datasets. The scene images are obtained from the COCO-Stuff dataset.
+
+🔗 [Check their repository to get the data.](https://github.com/sysu-imsl/SketchyCOCO#1)
+
+\subsection{Creative Sketch}
+
+The dataset contains two main creative sketches folders, Creative Birds and Creative Creatures, which are containing 10K+ sketches each along with part annotations. In the data collection phase, participants drew one part of the bird or creature at a time. Each part can be drawn using multiple strokes. The Creative Birds data includes 7 common parts of birds: Head, body, beak, tail, mouth, legs, wings. The Creative Creatures data includes 16 parts (e.g., paws, horn, fins, wings) and the categories cover terrestrial, aquatic, and aerial creatures. The sketches in the dataset represented as raster images.
+
+🔗 [Check their repository to get the data, see the notebooks and use the helper methods.](https://github.com/facebookresearch/DoodlerGAN)
+
+\subsection{Swire}
+
+Swire is a UI drawing dataset combined with the Rico dataset to create exciting mobile design applications. The dataset includes 3802 sketches of 2201 UI examples from 167 popular apps from the Google Play Store. Four mobile designers sketch the drawings. The dataset contains black and white wireframes in JPEG format.
+
+🔗 [Check their repository to get the data and see the helper notebooks.](https://github.com/huang4fstudio/swire)
+
+
+\section{Recent Models}
+
+Humans are good at recognizing the abstract nature of sketches, enabling us to communicate high-level ideas visually. This abstract and ambiguous form of sketch raises issues like developing different architectures for different forms of sketch data. In this part, we reviewed six models that use different architectures and datasets to achieve success in similar tasks. These models are open-source and still actively supported by the developers.
+
+\subsection{SketchRNN (2017)}
+
+[📝[Paper]](https://arxiv.org/pdf/1704.03477.pdf) [🖥️[Code]](https://github.com/magenta/magenta/tree/master/magenta/models/sketch_rnn)
+
+In the SketchRNN model, the authors aim to develop a model that can draw and generalize abstract concepts like humans. In the paper, they discuss the sketch classification, reconstruction, auto-completion, and interpolation tasks.
+
+In the training process, they used a different format of Quick, Draw! representing a drawing as a set of pen stroke actions. In this data format, the initial absolute coordinate of the drawing is located at the origin. A sketch is a list of points, and each point is a vector consisting of 5 elements: (∆x, ∆y, p1, p2, p3). Each data represented as a sequence of motor actions controlling a pen: which direction to move (p1), when to lift the pen up (p2), and when to stop drawing (p3).
+
+\begin{figure}[h]
+\includegraphics[width=0.35\textwidth, center]{https://raw.githubusercontent.com/asabuncuoglu13/spectra-review-paper-competition/master/submissions/images/quickdraw-sketchrnn.png}
+\end{figure}
+
+Their model is a Sequence-to-sequence Variational Autoencoder (VAE), and the encoder part is a bidirectional RNN that takes the sketch input in an ordered and reversed format. The two encoding RNNs of the bidirectional RNN results in two final hidden states. These final states are concatenated to hidden state, h, and projected into two vectors μ and σ̂ using a fully connected layer. Under this encoding scheme, the latent vector z is not a deterministic output for a given input sketch but a random vector conditioned on the input sketch. 
+
+
+\begin{figure}[h]
+\includegraphics[width=0.5\textwidth, center]{https://raw.githubusercontent.com/asabuncuoglu13/spectra-review-paper-competition/master/submissions/images/sketchrnn.png}
+\end{figure}
+
+\subsection{Sketchformer (2020)}
+
+[📝[Paper]](https://arxiv.org/pdf/2002.10381.pdf) [🖥️[Code]](https://github.com/leosampaio/sketchformer)
+
+Sketchformer presents two important features in their model: (1) They use a transformer-based architecture for encoding free-hand sketches (Quick, Draw!), (2) They experiment with dictionary-based tokenization methods to better benefit from transformer architecture. In addition to the tasks discussed in SketchRNN, they implemented image retrieval tasks that show promising results. 
+
+In the preprocessing step, dictionary-learning uses K code-words (K = 1000) to model the relative pen motion. 100K sketched pen movements are randomly selected to cluster via k-means. The sketch canvas is quantized into 100x100 square cells in the Spatial-Grid form, and a token in the dictionary represents each cell. These tokenization methods provide a more compact representation when the dictionary size is small; however, the quantization error accumulates when the sketches are long.
+
+\begin{figure}[h]
+\includegraphics[width=0.9\textwidth, center]{https://raw.githubusercontent.com/asabuncuoglu13/spectra-review-paper-competition/master/submissions/images/sketchformer.png}
+\end{figure}
+
+\subsection{CoSE (2020)}
+
+[📝[Paper]](https://arxiv.org/pdf/2006.09930.pdf) [🖥️[Code]](https://github.com/eth-ait/cose)
+
+In the “Compositional Stroke Embeddings” (CoSE) paper, authors treat drawings as a collection of strokes rather than sequentially ordered vectors. Putting this idea into the core of the article, they project variable-length strokes into fixed-dimensional latent space. They use these representations to create a relational model. In this paper, they focus on auto-completion of diagrams and use the DIDI dataset. 
+They encode a stroke by viewing it as a sequence of 2D points and generate the corresponding latent code with a transformer. The encoder outputs the starting position of a stroke and latent representation. The use of positional encoding induces a point ordering and emphasizes the geometry, where most sequence models focus strongly on capturing the drawing dynamics.
+
+
+\subsection{SketchyCOCO (2020)}
+
+[📝[Paper]](https://arxiv.org/pdf/2003.02683.pdf) [🖥️[Code]](https://github.com/sysu-imsl/EdgeGAN)
+
+Previous models focus on object-level tasks such as auto-completion of a diagram or interpolation between two objects. SketchyCOCO introduces an automatic image generation model from scene-level freehand sketches. Their approach mainly integrates two sequential modules, foreground and background generation. 
+
+Given a scene sketch, the object instances are first located and recognized by leveraging the sketch segmentation method. After that image content is generated for each foreground object instance (i.e., sketch instances belonging to the foreground categories) individually in random order by the foreground generation module. By taking background sketches and the generated foreground image as input, the final image is achieved by generating the background image in a single pass. The two modules are trained separately.
+
+\begin{figure}[h]
+\includegraphics[width=0.9\textwidth, center]{https://raw.githubusercontent.com/asabuncuoglu13/spectra-review-paper-competition/master/submissions/images/sketchcoco.png}
+\end{figure}
+
+\subsection{DoodlerGAN (2021)}
+
+[📝[Paper]](https://arxiv.org/pdf/2011.10039.pdf) [🖥️[Code]](https://github.com/facebookresearch/DoodlerGAN)
+
+DoodlerGAN sequentially generates one part while ensuring that the parts and partial sketches’ appearance come from corresponding distributions observed in human sketches. The architecture contains two modules: the part generator and the part selector. Given a part-based representation of a partial sketch, the part selector predicts which part category to draw next. The part generator is a conditional GAN based on the StyleGAN2 architecture. The partial input sketch is represented by stacking each part along with a parallel channel for the entire sketch. They use a similar discriminator architecture with StyleGAN2. The discriminator accesses to the partial sketch and the corresponding part channels to distinguish fake sketches from real ones.  This way, the model learns the appropriate location relative to other parts (e.g., heads are often around the eyes).
+
+\begin{figure}[h]
+\includegraphics[width=0.9\textwidth, center]{https://raw.githubusercontent.com/asabuncuoglu13/spectra-review-paper-competition/master/submissions/images/doodlergan.png}
+\end{figure}
+
+\subsection{Swire (2019)}
+
+[📝[Paper]](https://dl.acm.org/doi/fullHtml/10.1145/3290605.3300334) [🖥️[Code]](https://github.com/huang4fstudio/swire/)
+
+Their encoding architecture is based on VGG-A Net, which consists of convolution and pooling layers. The dataset includes images of UI wireframes, and these drawings are not collected in vector form and are not annotated for component segmentation. These images are fed into a shallow variant of the VGG network that outputs a 64-dimension embedding. These latent vectors are used to query similar UI designs.
+
+\begin{figure}[h]
+\includegraphics[width=0.9\textwidth, center]{https://raw.githubusercontent.com/asabuncuoglu13/spectra-review-paper-competition/master/submissions/images/swire.png}
+\end{figure}
+ 
+\section{Discussion and Future of the Field}
+
+Some challenge patterns are shared in these models: 
+
+- All these papers put significant work onto the approaches originated from the image and natural language domain. However, they do not put enough emphasis on accumulating knowledge in the sketch domain.
+- Unlike the other fields, most new datasets use a different data collection strategy and use different formats to represent their data.
+- A technical challenge is unbalanced probability distribution stroke events when they use a stroke-based representation. This unbalanced distribution makes the training process difficult. Most models use different weights for different stroke events to balance this distribution.
+
+This review covered the recent advances in generative sketch models, commonly used datasets, and techniques. Based on this review, I personally found three key issues to accelerate the research and improve the real-life applications: 
+
+\begin{enumerate}
+
+\item **Lack of real-life datasets:** The public open-datasets appear not to fulfill the needs of real-life applications. Quick, Draw! Dataset is large and has diverse categories of objects. However, the drawings are mainly isolated, and when humans draw a sketch in the scene or while communicating, they tend to draw these objects differently. Similarly, the DIDI dataset is randomly generated, which shows inconsistencies in the real-life scenarios. 
+
+\item **Integrating these datasets into a multimodal learning setting:** Training with image and text data significantly improves real-world understanding. Recent OpenAI models, DALL-E and CLIP, are trained with text-image pairs, which show significant success in few-shot learning and image generation tasks with their multimodal neuron structure. Like image-text pairs in their dataset, the following steps of human-computer interaction train these networks with image, sketch, and text trios. 
+
+\item **Focus on human-in-the-loop process:** We can promote this approach for all the data-driven fields. Despite its human nature of the sketch field, there is a significant need to understand how humans work with sketch data and how the data should be collected to improve real-life use-cases.
+
+\end{enumerate}
+
+\section{Next Steps}
+
+This review introduces the state-of-the-art models and recent datasets to a novice researcher. I am also new to the area and learning new concepts and techniques everyday. I would like to see contributions (pull requests) to this article and collaborate with other researchers to make it a more detailed and comprehensive overview of this exciting field!
