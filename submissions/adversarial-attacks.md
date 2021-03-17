@@ -1,8 +1,6 @@
 ---
 title: Adversarial attacks in deep learning: what can they teach us?
-
 description: Review of the major studies discussing adversarial attacks and defences
-
 author: Veronika Samborska
 ---
 
