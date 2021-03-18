@@ -1,3 +1,6 @@
+The contest is closed for submissions, thank you to all who participated! All articles can be read at https://spectra.pub 
+Winners will be announced on March 26th! 
+
 ![Logo](logo.png)
 
 ## Updates
