@@ -208,27 +208,24 @@ context of the explanation’s end tasks. The second evaluation approach is huma
 \label{S-4}
 \end{figure}
 
+
 Most of the work surveyed conducts one of the
 following types of evaluation of their explanations (<a href="#Gilpin et al., 2018">Gilpin et al., 2018</a>).
 \begin{itemize}
 \item \textbf{Completeness compared to the original model:} A proxy
 model can be evaluated directly according to how closely
 it approximates the original model being explained (<a href="#Ribeiro et al., 2016">Ribeiro et al., 2016</a>).
-<br><br>
 \item \textbf{Disabling irrelevant hidden features:} (<a href="#Lertvittayakumjorn et al., 2020">Lertvittayakumjorn et al., 2020</a>) propose a technique to disable the learned
 features which are irrelevant or harmful to the classification task so as to improve the classifier. This technique and the word clouds form the human-debugging framework.
-<br><br>
 \item  \textbf{Human evaluation:} Humans can evaluate explanations
 for reasonableness, that is how well an explanation
 matches human expectations. Human evaluation can also
 evaluate completeness or substitute-task completeness
 from the point of view of enabling a person to predict
 behavior of the original model; or according to helpfulness in revealing model biases to a person (<a href="#Lai et al., 2019">Lai et al., 2019</a>).
-<br><br>
 \item \textbf{Completeness as measured on a substitute task:} Some
 explanations do not directly explain a model’s decisions,
 but rather some other attribute that can be evaluated.
-<br><br>
 \item \textbf{Ability to detect models with biases:} An explanation that
 reveals sensitivity to a specific phenomenon (such as
 a presence of a specific pattern in the input) can be
@@ -245,25 +242,19 @@ We address some of the limitations arising from post-hoc explanations:
 \begin{itemize}
 \item\textbf{Robustness:} Model-agnostic perturbation-based methods are (unsurprisingly) more prone to instability than their gradient-based counterparts (<a href="#Alvarez et al., 2018">Alvarez et al., 2018</a>). As a concrete example, consider an image classification model that places importance on both salient aspects of the input, i.e., those actually related to the ground-truth
 class and on background noise. Suppose, in addition, that those artifacts are not uniformly relevant for different inputs, while the *salient* aspects are. Should the explanation include the noisy pixels?
-<br><br>
 \item\textbf{Adversarial attacks:} By being able to differentiate between data points coming from the input distribution and instances generated via perturbation, an adversary can create an adversarial classifier (scaffolding) that behaves like the original classifier (perhaps be extremely discriminatory) on the input data points, but behaves arbitrarily differently (looks unbiased and fair) on the perturbed instances, thus effectively fooling LIME or SHAP into generating innocuous explanations (<a href="#Slack et al., 2020">Slack et al., 2020</a>).
-<br><br>
 \item\textbf{Manipulable:} Explanation maps can be changed to an *arbitrary target map* (<a href="#Dombrowski et al., 2019">Dombrowski et al., 2019</a>). This is
 done by applying a visually hardly perceptible perturbation to the input. This perturbation does not change the output of the neural network, i.e. in addition to the classification result also the vector of all class probabilities is (approximately) the same. This finding is clearly problematic if a user, say a medical doctor, is expecting a robustly interpretable explanation map to rely on in the clinical decision-making process.
-<br><br>
 \item\textbf{Unjustified Counterfactual Explanations:} (<a href="#Laugel et al., 2019">Laugel et al., 2019</a>) propose an intuitive desideratum for more relevant counterfactual explanations, based on ground-truth labelled data, that helps generating better explanations. They design a test to highlight the risk of having undesirable counterfactual examples disturb the generation of counterfactual explanations and apply this test to several datasets and classifiers and show that the risk of generating undesirable counterfactual examples is high.
-<br><br>
+
 \item\textbf{Faithfulness:} Explainable ML methods provide explanations that are not faithful to what the original model computes. Explanations must be wrong. They cannot have perfect fidelity with respect to the original model. If the explanation was completely faithful to what the original model computes, the explanation would equal the original model, and one would not need the original model in the first place, only the explanation. An inaccurate (low-fidelity) explanation model limits trust in the explanation, and by extension, trust in the
 black box that it is trying to explain (<a href="#Rudin et al., 2019">Rudin et al., 2019</a>).
 \end{itemize}
 ## Future Directions
 XAI is a burgeoning field that has yet to solve many open challenges. We discuss some of the potential research directions likely to happen:
 + It is tempting to use model explainability to gain insights into model fairness, however existing explainability tools do not reliably indicate whether a model is indeed fair (<a href="#Begley et al., 2020">Begley et al., 2020</a>).
-<br><br>
 + Estimate the causal effect of (the presence or absence of) a human-interpretable concept on a deep neural net's predictions. Identifying vulnerabilities in existing post hoc explanations and proposing approaches to address these vulnerabilities is a critical research direction going forward (<a href="#Goyal et al., 2019">Goyal et al., 2019</a>)!
-<br><br>
 + Rigorous user studies and evaluations to ascertain the utility of different post-hoc explanation methods in various contexts are extremely critical for the progress of the field (<a href="#Bansal et al., 2020">Bansal et al., 2020</a>)!
-<br><br>
 + Exploring post-hoc explanations for complex ML tasks, besides the usual classification settings can be a good starting point for researchers.
 
 
