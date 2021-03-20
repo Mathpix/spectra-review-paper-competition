@@ -12,11 +12,11 @@ In 1925, Einstein predicted that a new quantum state of matter could condense ou
 
 # II. Motivation
 
-The standard method to reach ultracold temperatures is by collisional evaporative cooling<sup>1</sup>, which governs theduty cycle length. Evaporation requires the precise sequencing of time-varying magnetic and optical fields, parameterised by a time-specific value set for a given sequence. Although microscopic models exist to describe this process [14], such semi-classical theories can oversimplify dynamics, or miss non-intuitive yet more effective solutions [15] only discoverable through experimentation. For most applications, data acquisition for high-precision experiments require achieving the optimal measurement in a limited number of iterations. Given the large parameter space of a typical sequence, optimising experimental settings through exhaustive search is highly impractical. Instead, this discovery process is automated with machine-learning online<sup>2</sup> optimisation (MLOO). Isolating the atomic absorption signal from the noisy background is another prohibitive factor, which also benefits from the implementation of MLOO. In this review, two approaches to optimising cold-atom experiments are discussed: the first focusing on finding the optimal experimental settings, and the second on improving current absorption imaging techniques.
+The standard method to reach ultracold temperatures is by collisional evaporative cooling<sup>1</sup>, which governs the duty cycle length. Evaporation requires the precise sequencing of time-varying magnetic and optical fields, parameterised by a time-specific value set for a given sequence. Although microscopic models exist to describe this process [14], such semi-classical theories can oversimplify dynamics, or miss non-intuitive yet more effective solutions [15] only discoverable through experimentation. For most applications, data acquisition for high-precision experiments requires achieving the optimal measurement in a limited number of iterations. Given the large parameter space of a typical sequence, optimising experimental settings through exhaustive search is highly impractical. Instead, this discovery process is automated with machine-learning online<sup>2</sup> optimisation (MLOO). Isolating the atomic absorption signal from the noisy background is another prohibitive factor, which also benefits from the implementation of MLOO. In this review, two approaches to optimising cold-atom experiments are discussed: the first focusing on finding the optimal experimental settings, and the second on improving current absorption imaging techniques.
 
 <sup>1</sup> Ultracold temperatures are usually achieved through a combination of laser/optical and forced evaporative cooling.
 
-<sup>2</sup> Online, meaning optimisation that occurs in real time.
+<sup>2</sup> Online, meaning optimisation that occurs in real-time.
 
 
 # III. Evaporation Model
@@ -52,7 +52,7 @@ Concerning optical imaging, a double-exposure scheme is generally used and two i
 
 ![](images/coolramp.png)
 
-FIG. 1. The BEC evaporative cooling process of trapped atoms. In (a), high-energy atoms can move higher up the walls; (b) the walls are lowered and the most energetic atoms can spill over the walls and escape; (c) the remaining atoms rethermalize (collisionally). Steps (b) and (c) are repeated until the sample is sufficiently cold (determined by the critial temperature of a BEC). This diagram is based off of: https://coldatoms.physics.lsa.umich.edu/projects/bec/evaporation.html.
+FIG. 1. The BEC evaporative cooling process of trapped atoms. In (a), high-energy atoms can move higher up the walls; (b) the walls are lowered and the most energetic atoms can spill over the walls and escape; (c) the remaining atoms rethermalize (collisionally). Steps (b) and (c) are repeated until the sample is sufficiently cold (determined by the critical temperature of a BEC). This diagram is based on https://coldatoms.physics.lsa.umich.edu/projects/bec/evaporation.html.
 
 
 
@@ -60,7 +60,7 @@ FIG. 1. The BEC evaporative cooling process of trapped atoms. In (a), high-energ
 
 ## B. BEC Observation
 
-After switching off the trap, the condensate falls (gravity) and expands ballistically before an image is taken. Following this ‘time-of-flight’ (TOF) expansion, the cloud is illuminated by a collimated resonant laser beam and the imaging shadow is recorded by a CCD camera. As the expansion dynamics of a quantum gas is distinctly different from those of a thermal gas, a bimodal density distribution is observed. By measuring the width of the cloud, the density profiles can be distinguished: thermal clouds have broad edges; as the sample cools and condenses into a dense atomic ‘core’, these edges become sharper [20, 21]. Observation of this characteristic bimodal distribution is evidence that a BEC has been produced (see Fig. 2). 
+After switching off the trap, the condensate falls (gravity) and expands ballistically before an image is taken. Following this ‘time-of-flight’ (TOF) expansion, the cloud is illuminated by a collimated resonant laser beam and the imaging shadow is recorded by a CCD camera. As the expansion dynamics of a quantum gas are distinctly different from those of a thermal gas, a bimodal density distribution is observed. By measuring the width of the cloud, the density profiles can be distinguished: thermal clouds have broad edges; as the sample cools and condenses into a dense atomic ‘core’, these edges become sharper [20, 21]. Observation of this characteristic bimodal distribution is evidence that a BEC has been produced (see Fig. 2). 
 
 In this case, we define an optimised quantum gas experiment as one that minimizes atomic loss while increasing the elastic collision rate to achieve runaway evaporation. For [21], this is achieved by maximising the atom number; for [20], this is evaluated by the sharpness of the cloud edges, with the cost bounded by optical depth (the lower and upper thresholds are determined by noise and saturation level, respectively). As the OD is directly proportional to the collision rate [17], absorption imaging has become the standard practise for characterising cold atomic gases. An absorption image provides the optical depth as a function of space. A simple inspection of the trend in peak optical depth in a few absorption images is enough to determine if evaporation is efficient [17], and thus if the BEC phase transition is reached.
 
@@ -70,27 +70,25 @@ In this case, we define an optimised quantum gas experiment as one that minimize
 
 ![](images/NIST.png)
 
-FIG. 2. 3-dimensional velocity distribution for a gas of rubidium atoms, showing successive snapshots in time, from the first confirmed 1995 production of a BEC by [3]. Atoms
-condense from less dense red/yellow/green areas to significantly denser blue/white areas. The central image is just after the appearance of a BEC; the left is before (non condensed) and the right is a further evaporated, nearly pure condensate. Credit: NIST/JILA/CU-Boulder.
+FIG. 2. 3-dimensional velocity distribution for a gas of rubidium atoms, showing successive snapshots in time, from the first confirmed 1995 production of a BEC by [3]. Atoms condense from less dense red/yellow/green areas to significantly denser blue/white areas. The central image is just after the appearance of a BEC; the left is before (non-condensed) and the right is a further evaporated and nearly pure condensate. Credit: NIST/JILA/CU-Boulder.
 
 
 ## IV. Machine-learning Online Optimisation (MLOO)
 
-Let the parameter space be one that is spanned by M experimental settings (e.g. voltage, laser parameters, timing, field strength [22]). A point in this space is represented by a vector X ∈ R<sup>M</sup> . Each point has an associated cost Y = f(X) ∈ R, where minimising the cost function f(X) guides optimisation toward the global optimum [21]. However, f(X) is taken to be non-convex, thus it is possible that optimisation may converge to a local optimum. This can be rectified in part by increasing the number of optimisation cycles with varying initial conditions [21]. 
+Let the parameter space be spanned by M experimental settings (e.g. voltage, laser parameters, timing, field strength [22]). A point in this space is represented by a vector X ∈ R<sup>M</sup> . Each point has an associated cost Y = f(X) ∈ R, where minimising the cost function f(X) guides optimisation toward the global optimum [21]. However, f(X) is taken to be non-convex, thus it is possible that optimisation may converge to a local optimum. This can be rectified in part by increasing the number of optimisation cycles with varying initial conditions [21]. 
 
-The experimental apparatus and optimisation loop begin with the trapped atomic cloud. The machine learner is given an initial vector X<sub>0</sub> of experimental settings. The gas is transported into an ultra-high vacuum environment, where it is evaporatively cooled. Properties of the cloud (e.g. atom number [19] or width of cloud edges<sup>5</sup>[20]) are extracted from absorption images taken after TOF expansion, and are used in evaluation of the cost. A new set of experimental parameters X<sub>∗</sub> is calculated based on the cost Y<sub>0</sub>, to be used in the next sequence. Optimisation is terminated when there is no further improvement to the cost. Together, the experiment and learner form a closed loop. A diagram of this feedback loop can be found in Fig. 1 of [21] or [20]. 
+The experimental apparatus and optimisation loop begin with the trapped atomic cloud. The machine learner is given an initial vector X<sub>0</sub> of experimental settings. The gas is transported into an ultra-high vacuum environment, where it is evaporatively cooled. Properties of the cloud (e.g. atom number [19] or width of cloud edges<sup>5</sup>[20]) are extracted from absorption images taken after TOF expansion and are used in evaluation of the cost. A new set of experimental parameters X<sub>∗</sub> is calculated based on the cost Y<sub>0</sub>, to be used in the next sequence. Optimisation is terminated when there is no further improvement to the cost. Together, the experiment and learner form a closed loop. A diagram of this feedback loop can be found in Fig. 1 of [21] or [20]. 
 
-While other optimisation techniques exist, these are often sub-optimal as most require accurate charactersation of the cloud (e.g. trap geometry, loss mechanisms) and/or apply over-simplifying assumptions (e.g. a highly truncated distribution<sup>6</sup>, adiabaticity) [23] which may not necessarily hold for all instances. These procedures are often inflexible for special cases, such as dynamical traps [9] or the presence of dipolar interactions [24, 25]. Thus, most groups adopt a stepwise optimisation procedure, introducing incremental adjustments to parameters at each time step. 
+While other optimisation techniques exist, these are often sub-optimal as most require accurate characterisation of the cloud (e.g. trap geometry, loss mechanisms) and/or apply over-simplifying assumptions (e.g. a highly truncated distribution<sup>6</sup>, adiabaticity) [23] which may not necessarily hold for all instances. These procedures are often inflexible for special cases, such as dynamical traps [9] or the presence of dipolar interactions [24, 25]. Thus, most groups adopt a stepwise optimisation procedure, introducing incremental adjustments to parameters at each time step. 
 
-The following sections discuss various optimisation schemes, as examples of online optimisation (OO) in the context of BEC formation in cold-atom experiments. In order of appearance, the main papers referenced are: [21], [20], and [19].
+The following sections discuss various optimisation schemes, as examples of online optimisation (OO) in the context of BEC formation in cold-atom experiments. In order of appearance, the main papers referenced are [21], [20], and [19].
 
 <sup>5</sup>[20] argues that atom number and temperature are inadequate measures, as accurately determining these quantities near condensation becomes challenging with very few runs per parameter set. Instead, the width and sharpness of the edges of the cloud are measured from the optical depth as a function of space. 
 
 <sup>6</sup>The truncation parameter, η, assumes atoms with E > ηk<sub>B</sub>T evaporate instantly.
 
 ### A. Differential Evolution
-Inspired by biological evolution, differential evolutionary (DE) algorithms assess a population of candidate solutions based on their fitness. If M-dimensional vectors
-X<sub>i</sub> (individuals) represent n sets of experimental settings − in the randomised set comprising the initial population, {X<sub>1</sub> , . . . , X<sub>N</sub>} − the fitness of each settings vector is the experimentally-determined associated cost, Y<sub>i</sub>. Random variations are introduced by mutation, and new vector candidates are generated by crossover (mixing) features of pre-existing individuals [21, 26]. 
+Inspired by biological evolution, differential evolutionary (DE) algorithms assess a population of candidate solutions based on their fitness. If M-dimensional vectors X<sub>i</sub> (individuals) represent n sets of experimental settings − in the randomised set comprising the initial population, {X<sub>1</sub> , . . . , X<sub>N</sub>} − the fitness of each settings vector is the experimentally-determined associated cost, Y<sub>i</sub>. Random variations are introduced by mutation, and new vector candidates are generated by crossover (mixing) features of pre-existing individuals [21, 26]. 
 
 In [21], a new, mutated vector appears as V = X<sub>k</sub> + (X<sub>i</sub> − X<sub>j</sub>), where vectors X<sub>i</sub> , X<sub>j</sub> , and X<sub>k</sub> are randomly chosen. A new candidate vector X<sub>∗</sub> is produced by randomly picking elements from either X<sub>i</sub> or V. This crossover moves X<sub>i</sub> to a new position in the search space, described by {X<sub>∗</sub>, Y<sub>∗</sub>}. If X<sub>i</sub> is an improved solution (i.e. Y<sub>∗</sub><Y<sub>i</sub>) then X<sub>∗</sub> replaces X<sub>i</sub>; else, it is discarded. The process repeats until a global minimum is found.
 
@@ -101,7 +99,7 @@ Bayesian optimisation uses statistical models to predict optimal parameters, whe
 
 The most common and well-studied<sup>7</sup> class of surrogate models are Gaussian Process (GP) models. These models are favoured for their strong generalisability, tractability, and flexible non-parametric inference [32], making them suitable for treating complex regression problems such as small samples and non-linearities [33]. A GP infers a probability distribution in function space, rather than over individual (function) parameters. Based on new data, GP regression uses Bayes’ rule to update the hypothesised prior distribution. To choose the next point of interest (POI), a predictive posterior distribution can be computed from both the prior and dataset.
 
-<sup>7</sup>The use of GP priors is well-established, dating back to the 60-70’s [28–30]. As such, only a brief review is provided here. For a more thorough introduction, the reader is directed to [31].
+<sup>7</sup>The use of GP priors is well-established, dating back to the '60-'70s [28–30]. As such, only a brief review is provided here. For a more thorough introduction, the reader is directed to [31].
 
 
 ### 1. Covariance Function
@@ -130,13 +128,13 @@ Points may be selected on the basis of maximising the UCB [31]:
 \mathrm{UCB}(\mathbf{X})=\mu(\mathbf{X})+\kappa \sigma(\mathbf{X})
 \end{equation}
 
-where κ may be tuned to balance exploration versus exploitation. The learner explores actions with high uncertainty, and exploits actions with the highest reward. To optimise the evaporative cooling of thulium atoms, [23] employed this method to achieve BEC efficiently. 
+where κ may be tuned to balance exploration versus exploitation. The learner explores actions with high uncertainty and exploits actions with the highest reward. To optimise the evaporative cooling of thulium atoms, [23] employed this method to achieve BEC efficiently. 
 
 Other choices of acquisition functions exist, such as the instantaneous regret function [36], knowledge-gradient [37, 38], or (predictive [39]) entropy search [40], etc., but are not mentioned here.
 
 
 ## C. Artificial Neural Network
-As a black-box function approximator, an Artificial Neural Network (ANN) provides a mapping between an input, in this case X settings vectors, and an output – the associated costs Y. In [21], the activation function for each node was selected to be the Gaussian Error Linear Unit (GELU). A suitable choice of the structure and scale of the ANN should consider the complexity and size of the vector inputs, while maintaining computational efficiency. The ANN utilised by [21] consisted of 3 hidden layers of 8 fully-connected neurons. To update the ANN, the Adam algorithm for stochastic optimisation was chosen. Again, the system is trained with 2M settings generated by DE, and iterates through a maximum of 35 sequences.
+As a black-box function approximator, an Artificial Neural Network (ANN) provides a mapping between an input – in this case, X settings vectors – and an output, the associated costs Y. In [21], the activation function for each node was selected to be the Gaussian Error Linear Unit (GELU). A suitable choice of the structure and scale of the ANN should consider the complexity and size of the vector inputs while maintaining computational efficiency. The ANN utilised by [21] consisted of 3 hidden layers of 8 fully-connected neurons. To update the ANN, the Adam algorithm for stochastic optimisation was chosen. Again, the system is trained with 2M settings generated by DE, and iterates through a maximum of 35 sequences.
 
 
 ### 1. Gaussian Error Linear Units
@@ -170,7 +168,7 @@ if speed is favoured over accuracy. Other CDFs may be used, for example: the sta
 1. Use an optimiser with momentum, as is the standard practise for training DNN.
 2. When using a different CDF, the approximation must be close to the CDF of a Gaussian distribution. If the closeness is insufficient, performance will be negatively impacted.
 
-The code repository is provided by D. Hendrycks (while at TTIC), and is available at https://github.com/hendrycks/GELUs.
+The code repository is provided by D. Hendrycks (while at TTIC) and is available at https://github.com/hendrycks/GELUs.
 
 ![](images/RELUandGELU.png)
 
@@ -180,7 +178,7 @@ FIG. 3. Plot of ReLU and GELU near x=0. ([43], CC BY-SA 4.0)
 
 ### 2. Adam Optimisation
 
-Adam (adaptive moment estimation) [44] merges the advantages of two popular optimisation methods: (i) AdaGrad [45], which handles sparse gradients and (ii) RMSProp [46], which deals with non-stationary objectives and excels in online settings. The result is a computationally efficient and effective algorithm for gradientbased optimisation of noisy cost functions. Adam is well suited for solving problems with large amounts of data and/or parameters, and a wide range of non-convex problems quickly with comparatively fewer resources than other methods. As adaptive methods based on exponential moving averages (EMA), like RMSProp or Adam, are very popular methods for training deep neural networks, the reader is directed to [44], [32], and [47] for review.
+Adam (adaptive moment estimation) [44] merges the advantages of two popular optimisation methods: (i) AdaGrad [45], which handles sparse gradients and (ii) RMSProp [46], which deals with non-stationary objectives and excels in online settings. The result is a computationally efficient and effective algorithm for gradient-based optimisation of noisy cost functions. Adam is well suited for solving problems with large amounts of data and/or parameters, and a wide range of non-convex problems quickly with comparatively fewer resources than other methods. As adaptive methods based on exponential moving averages (EMA), like RMSProp or Adam, are very popular methods for training deep neural networks, the reader is directed to [44], [32], and [47] for review.
 
 
 ## D. MLOO Performance
@@ -253,9 +251,9 @@ For all three ramps, [20] used complex parameterisation (Eqn. 13), and also incl
 TABLE I. Experimental results from the first implementation of MLOO by creators [20] in ultra-cold atom experiments. Both the NM and MLOO optimisers were trained for 20 runs using a common set of parameters.
 
 
-Compared to the NM solver (Table I), the learner discovered BEC ramps in only a few experimental runs. This was achieved by: (a) using only the best hypothesis set (P = 1) to update the model and (b) prioritise fitting H for each of the 3 most important parameters (end points of ramps). However, a drawback is the poor fitting of the other correlation lengths, leading to uninformed estimates and unreliable predictions. 
+Compared to the NM solver (Table I), the learner discovered BEC ramps in only a few experimental runs. This was achieved by (a) using only the best hypothesis set (P = 1) to update the model and (b) prioritise fitting H for each of the 3 most important parameters (end points of ramps). However, a drawback is the poor fitting of the other correlation lengths, leading to uninformed estimates and unreliable predictions. 
 
-Another trade-off is to improve estimations of correlation lengths by increasing the particle number (to P = 16) [54], but also seeing an increase run time. This can be compensated for by using the simple parameterisation of ramps and about half as many parameters (a total of 7). In obtaining a more reliable estimate, the convergence rate is slowed. However, it is still faster than the NM optimiser (see Figure 2 of [20]). The least sensitive of the 7 parameters has no influence on BEC production; it was identified by the learner and removed from the experimental design. With 6 parameters, the learner performs better than the 7 parameter case, converging faster and producing a higher quality BEC [20]. From the results of [20], lower parameter searches converged to similar solutions, while higher dimensional searches led to noticeably different optima. A simple summary of the three optimisation runs (out of a total of 5) can be found in Table II.
+Another trade-off is to improve estimations of correlation lengths by increasing the particle number (to P = 16) [54], but also seeing an increase run time. This can be compensated for by using the simple parameterisation of ramps and about half as many parameters (a total of 7). In obtaining a more reliable estimate, the convergence rate is slowed. However, it is still faster than the NM optimiser (see Figure 2 of [20]). The least sensitive of the 7 parameters does not influence BEC production; it was identified by the learner and removed from the experimental design. With 6 parameters, the learner performs better than the 7 parameter case, converging faster and producing a higher quality BEC [20]. From the results of [20], lower parameter searches converged to similar solutions, while higher dimensional searches led to noticeably different optima. A simple summary of the three optimisation runs (out of a total of 5) can be found in Table II.
 
 \begin{tabular}{c|c|c}
 \hline Particles & Parameters & Optimisation Strategy \\
@@ -292,7 +290,7 @@ Instead of NM, a baseline for comparison is established by choosing randomised i
 TABLE III. Comparison of convergence rates between methods. DE did not converge (DNC) within the time limit of roughly 3 hours (or a maximum of 180 sequences). The convergence rate of ANN is between those of GP and DE. For both GP and DE, the quoted number omits the DE-generated training set of 2M = 70 sequences.
 
 
-When the cost function drops below roughly 9.2, a bimodal density distribution is observed in the cloud – a signature of BEC. The experimental convergence rates of each method is presented in Table IV. The relative convergence rates appear as:
+When the cost function drops below roughly 9.2, a bimodal density distribution is observed in the cloud – a signature of BEC. The experimental convergence rates of each method are presented in Table IV. The relative convergence rates appear as:
 
 * GP (fastest): while it is the most rapidly converging of the 3 methods tested, the number of sequences (and thus time) increases with the number of parameters; fitting multiple GPs is computationally expensive.
 * ANN (slower): the relative slowness of ANN compared to the GP method can be attributed to the large datasets needed to train a fully-connected network.
@@ -317,7 +315,7 @@ In contrast with the MLOO methods discussed previously, which prioritised optimi
 
 ## A. Extracting Observables
 
-The experimental procedure for cooling in [19] is the same as those used by [55] (to optimise optical transfer of atoms) and [56] (RF spectroscopy sensitivity). Images acquired and used in both the conventional and singleshot techniques are presented in Table V.
+The experimental procedure for cooling in [19] is the same as those used by [55] (to optimise optical transfer of atoms) and [56] (RF spectroscopy sensitivity). Images acquired and used in both the conventional and single-shot techniques are presented in Table V.
 
 \begin{tabular}{c|l|c}
 \hline Frame Types & \multicolumn{1}{|c|} { Use in Experiment } & Imaging Procedure \\
@@ -328,7 +326,7 @@ The experimental procedure for cooling in [19] is the same as those used by [55]
 \hline
 \end{tabular}
 
-TABLE V. List of acquired images and the associated applied imaging technique. In [19], the first image was illuminated by a 80 µs pulse. The second (reference) exposure was taken 50 ms later, after the atoms have moved out of the CCD field of view. Note that the 2nd exposure is only needed for comparison to the conventional method and is in no way used in the DNN technique. Images were recorded with a 14-bit CCD camera.
+TABLE V. List of acquired images and the associated applied imaging technique. In [19], the first image was illuminated by an 80 µs pulse. The second (reference) exposure was taken 50 ms later, after the atoms have moved out of the CCD field of view. Note that the 2nd exposure is only needed for comparison to the conventional method and is in no way used in the DNN technique. Images were recorded with a 14-bit CCD camera.
 
 The two observables of interest, the atom number N and temperature T, are controlled by the final trap depth of the ramp and extracted from the momentum distribution. The distinct difference in expansion dynamics between a quantum versus thermal gas is seen in the resulting BEC signature (bimodal) density distribution (see §III B) after TOF expansion. For [19], the OD images are fitted with [57]
 
@@ -338,14 +336,14 @@ The two observables of interest, the atom number N and temperature T, are contro
 \end{equation}
 
 
-where Li<sub>n</sub>(z) is the polylogarithm (Jonquière’s function), B is residual background, and z = e<sup>µ/k_BT</sup> is the fugacity, from which the T is obtained. Integrating over the fitted momentum distribution gives N [19]. This can be seen in the physical interpretation of the cost function from [21], where the number of atoms with momentum close to zero increases as BEC production improves.
+where Li<sub>n</sub>(z) is the polylogarithm (Jonquière’s function), B is the residual background, and z = e<sup>µ/k_BT</sup> is the fugacity, from which the T is obtained. Integrating over the fitted momentum distribution gives N [19]. This can be seen in the physical interpretation of the cost function from [21], where the number of atoms with momentum close to zero increases as BEC production improves.
 
 
 
 
 ## B. DNN Architecture, Training, and Optimisation
 
-A summary of the image transformation process and DNN pipeline is provided in Fig. 4. From the masked OD image (input), a DNN prediction is made through transformed and transposed convolutions. Since recovery of the spatial density profile from the masked region is of interest, the goal of the U-Net [58] convolutional network is to optimise noise-pattern reconstruction. As an unsupervised learner, the baseline or “ground truth” is established by using images without atoms. Reconstruction is achieved by minimising differences between the ground truth and the network’s prediction or equivalently, by minimising the mean squared error (RMSE) loss function. By comparing predictions to the ground truth values at each step and adjusting the weights accordingly, an optimised model is produced [19]. 
+A summary of the image transformation process and DNN pipeline is provided in Fig. 4. From the masked OD image (input), a DNN prediction is made through transformed and transposed convolutions. Since recovering the spatial density profile from the masked region is of interest, the goal of the U-Net [58] convolutional network is to optimise noise-pattern reconstruction. As an unsupervised learner, the baseline or “ground truth” is established by using images without atoms. Reconstruction is achieved by minimising differences between the ground truth and the network’s prediction or equivalently, by minimising the mean squared error (RMSE) loss function. By comparing predictions to the ground truth values at each step and adjusting the weights accordingly, an optimised model is produced [19]. 
 
 ![](images/flowchart.png)
 
@@ -380,13 +378,13 @@ In imaging a degenerate Fermi gas of 40 K, the DNN technique was able to remove 
 
 In extracting physical observables, namely atom number and temperature, the DNN method did not introduce any new sources of systematic error. In fact, the uncertainty in extracting both N and T was found to be smaller by ∼17% using the new method. It should be noted that this improvement in RMSE extract error is compared using an average error over 10 experimental runs using 5 different trap depths [19]. A method based on Bayesian inference has been proposed by [34] for quantum systems with poor statistics (and where the Gaussian noise assumption is inappropriate), even in the limit of single-shot measurements like absorption imaging. 
 
-The open-source Python software package and MATLAB script can be found at https://absdl.github.io/, and is easily implemented on any imaging apparatus (after training).
+The open-source Python software package and MATLAB script can be found at https://absdl.github.io/ and is easily implemented on any imaging apparatus (after training).
 
 
 # VI. DISCUSSION AND FUTURE OUTLOOK
-Many optimisation strategies exist for optimising ultra-cold atom experiments with quantum degenerate gases. The focus of the optimisation however, may vary from case to case. For example, the methods described in §IV prioritise fast convergence rates and thus search for optimal experimental settings. The motivation for achieving BEC in only a few runs may differ as well, with some aiming to minimise temperature, while others evaluate based on the atom number [21] or the width of cloud edges [20]. Different stages of the cooling sequence may be examined as well, such as optimising data acquisition [20, 21, 23] or signal processing [19]. These often require implementing different procedures, using MLOO or DNNs to update a predictive model of the optimal system.
+Many optimisation strategies exist for optimising ultra-cold atom experiments with quantum degenerate gases. The focus of the optimisation, however, may vary from case to case. For example, the methods described in §IV prioritise fast convergence rates and thus search for optimal experimental settings. The motivation for achieving BEC in only a few runs may differ as well, with some aiming to minimise temperature, while others evaluate based on the atom number [21] or the width of cloud edges [20]. Different stages of the cooling sequence may be examined as well, such as optimising data acquisition [20, 21, 23] or signal processing [19]. These often require implementing different procedures, using MLOO or DNNs to update a predictive model of the optimal system.
 
-For all of these optimisation techniques, online optimisation can offer improvements in many different respects. As an example and potential extension, the model from the DNN-based single-shot method may be continuously updated as new images arrive with online optimisation. When compared with other machine learning algorithms – Nelder-Mead [20], differential evolution, GP regression and ANNs – those employing MLOO consistently achieved better results (e.g. in BEC quality and production speed) than previously established approaches. The advantage of MLOO largely comes from building an internal model for inference, which dramatically decreases system characterisation and analysis overhead in optimisation. An extension to the use of MLOO can be found in almost any high-precision experiment, where having precise control over quantum systems is imperative. Optimisation of quantum control has traditionally relied on theoretical modeling. However, with the growing complexity of quantum systems, it becomes more and more difficult or unrealistic to produce an accurate theoretical model. As such, the relevance and usefulness of optimised quantum control that is updated by experimental data has become increasingly apparent.
+For all of these optimisation techniques, online optimisation can offer improvements in many different respects. As an example and potential extension, the model from the DNN-based single-shot method may be continuously updated as new images arrive with online optimisation. When compared with other machine learning algorithms – Nelder-Mead [20], differential evolution, GP regression and ANNs – those employing MLOO consistently achieved better results (e.g. in BEC quality and production speed) than previously established approaches. The advantage of MLOO largely comes from building an internal model for inference, which dramatically decreases system characterisation and analysis overhead in optimisation. An extension to the use of MLOO can be found in almost any high-precision experiment, where having precise control over quantum systems is imperative. Optimisation of quantum control has traditionally relied on theoretical modelling. However, with the growing complexity of quantum systems, it becomes more and more difficult or unrealistic to produce an accurate theoretical model. As such, the relevance and usefulness of optimised quantum control that is updated by experimental data have become increasingly apparent.
 
 
 
