@@ -103,6 +103,7 @@ In the preprocessing step, dictionary-learning uses K code-words (K = 1000) to m
 [📝[Paper]](https://arxiv.org/pdf/2006.09930.pdf) [🖥️[Code]](https://github.com/eth-ait/cose)
 
 In the “Compositional Stroke Embeddings” (CoSE) paper, authors treat drawings as a collection of strokes rather than sequentially ordered vectors. Putting this idea into the core of the article, they project variable-length strokes into fixed-dimensional latent space. They use these representations to create a relational model. In this paper, they focus on auto-completion of diagrams and use the DIDI dataset. 
+
 They encode a stroke by viewing it as a sequence of 2D points and generate the corresponding latent code with a transformer. The encoder outputs the starting position of a stroke and latent representation. The use of positional encoding induces a point ordering and emphasizes the geometry, where most sequence models focus strongly on capturing the drawing dynamics.
 
 
