@@ -16,8 +16,8 @@ Through this review paper I propose to discuss about domain adaptation for the i
 ## 1 - Framework & Objective
 ---
 Let's say that we have two picture datasets coming from different but related distributions. 
-- One is labelled and will be used for training an image classifier. We will called it the **Source dataset**. 
--  The other is non-labelled and will be used in inference phase. We will called it the **Target dataset**. 
+- One labelled dataset that we will call the **Source dataset**. 
+- One non-labelled  dataset that we will call the **Target dataset**. 
 
 <p align="center">
 <img src="https://i.imgur.com/eFFKMno.png" width="500">
@@ -49,7 +49,7 @@ In 2015, a research team from Russia <a href='http://proceedings.mlr.press/v37/g
 
 So that they could extract relevant features from the input images they proposed to use convolutions for instance since it's a very powerful tool for extracting patterns in images. Then, on top of having a part in their architecture dedicated to the classification of the observations based on these extracted features, they proposed also to add a part dedicated to the discrimination between the source and the target based on these same features.
 
-Basically they considered a domain classifier which had for role to identify which observation was coming from the source and which observation was coming from the target based on the extracted features.  What they proposed is simply to maximize the loss of this domain classifier during the learning phase so that, they end up with a feature representation of the input images where it can't separate easily the source from the target images hopefully because they are too close.
+Basically they considered a domain classifier which had for role to identify which observation was coming from the source and which observation was coming from the target based on the extracted features.  What they proposed is simply to maximize the loss of this domain classifier during the learning phase so that, they end up with a feature representation of the input images where it can't separate easily the source from the target distributions hopefully because they are too close.
 
 Hence, to foster the creation of a feature space relevant for the image classification and the domain adaptation, they proposed to train their model using a loss function of that form :
 
@@ -85,7 +85,7 @@ Now, one could think about generalizing this distance using a  "well-chosen" fun
 
 I precise well-chosen because there is no guarantee that for any  candidate function space, that distance will be minimized precisely when the two distributions are equal. Proposing G={1|(X<t), t real} we end up with the first distance based on the c.d.f. and we know that this is a relevant choice. We could also think about proposing G={exp(Xt), t real} that leads to the supremum of the difference between the moment generating function of our two distributions. When it exists, the moment generating function characterizes completely the distribution to which it is associated and hence this choice is also relevant for assessing the proximity between two distributions.
 
-What is the link with kernels ? Kernels enable to go from a feature space to an Hilbert space of function H. 
+What is the link with kernels ? Positive semi-definite kernels enable to go from a feature space to an Hilbert space of function H. 
 
 <p align="center">
 <img src="https://i.imgur.com/0x9k2g1.png" width="700">
@@ -118,9 +118,12 @@ The two strategies described before revealed to be rather satisfying for achievi
 
 - In healthcare, when we are trying to detect diseases or fractures using scans, we struggle to build a relevant model working for all the hospitals. Why ? Simply because each hospital has its own scanning devices and MRI protocols and hence, in some sense, we can consider that each hospital is producing scans from a specific distribution different from the distributions of all the others. Hence, training a predictive model based on scans from a single hospital will work only for that specific hospital.  However, there is no tremendous variation between the scans distributions of hospitals and it is in fact practicable to use a domain adaptative strategy for solving that problem.  The french start-up [Azmed](https://azmed.co/)  already uses that kind of strategy in order to propose a model able to detect fractures in radiography which works for every radiography center.
 
+
 - When we are doing topic identification with images, we typically use a dataset made of pictures about a specific field. For instance, we can construct a dataset of movie posters or a dataset of video games posters. Now, a model trained on movie posters may not perform well on video games posters and yet, the elements in the posters may be close or the same. In that kind of situation, using a domain adaptative strategy can help to transfer the knowledge from the movie posters to the video game posters.
 
+
 - Today, we are familiar with the generation of fake contents that look genuine.  With [thispersondoesnotexist](http://thispersondoesnotexist.com) you can generate as many artifical faces as you want and they look real. Since the generation of realistic fake contents brings a lot of concerns, it could be interesting to design a fake detector for spotting them. However, this is not possible to construct a database with all the kind of artificial contents and hence we can't a priori develop a detector that can detect all the artificial pictures. In that situation domain adaptative strategies could help to mitigate this problem. For example, if you are training a fake detector with fake faces from [thispersondoesnotexist](http://thispersondoesnotexist.com) , it is likely to be inefficient to detect fake cats from  [thiscatdoesnotexist](http://thiscatdoesnotexist.com). Nevertheless, using a domain adaptative strategy we may solve that issue since human and cat faces share common features.
+
 
 - Sometimes, if we train a ML model with a certain base and we evaluate it with a noisy version of this base, it is already enough to disturb the model and making it inefficient on this noisy version. This scenario is classical in adversarial learning when we consider that an attacker wants precisely to perturb the prediction of a predictive model. In a case like that, domain adaptation could help to mitigate this attack.
 
