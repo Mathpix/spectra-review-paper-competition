@@ -2,6 +2,7 @@
 title: Handwriting Text Recognition
 description: This review introduces Handwriting Text Recognition (HTR), then mentions the different group of approaches for HTR, and finally summarizes the latest research in OCR techniques for offline handwritten recognition on documents.
 author: Devi Sandeep Endluri, Chinmayee Rane
+image: https://spectra.pub/ml/images/seq2seq.png
 ---
 
 <div style='text-align: justify;'>
