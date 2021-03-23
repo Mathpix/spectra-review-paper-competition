@@ -3,6 +3,7 @@ title: Generative Adversarial Networks
 description: Generative Adversarial Networks, their variants and their evaluation 
 author: Gabriel Bénédict
 breaks: false
+image: https://pbs.twimg.com/media/Dw6ZIOlX4AMKL9J?format=jpg&name=small
 ---
 
 > 4.5 years of GAN progress on face generation.  
