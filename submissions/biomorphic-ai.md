@@ -3,6 +3,7 @@ title: Biomorphic AI
 description: In this chapter, we analyze current advances in AI development and their biological implications. I believe that it will be possible not only to convey information more easily, but also to create new ideas of improvement of modern algorithms using AI.
 author: CHERHYKALO DENYS
 breaks: false
+image: https://spectra.pub/ml/images/Dropout.jpeg
 ---
 
 # Biomorphic AI
