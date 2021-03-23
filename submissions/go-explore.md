@@ -2,6 +2,7 @@
 title: "Go-Explore: Reinforcement Learning Algorithms Tackling Hard-Explore Tasks"
 description: A new family of reinforcement learning algorithms, Go-Explore, surpasses all previous approaches on hard-explore Atari games by addressing detachment and derailment.
 author: Guy Leroy
+image: https://spectra.pub/ml/images/detachment_v4.png
 ---
 
 # Summary
