@@ -2,6 +2,7 @@
 title: Knowledge evolution in neural networks 
 description: 'Deep learning relies on the availability of a large corpus of data (labeled or unlabeled). Thus, one challenging unsettled question is: how to train a deep network on a relatively small dataset? To tackle this question, Ahmed Taha, Abhinav Shrivastava, Larry Davis proposed an evolution-inspired training approach to boost performance on relatively small datasets. This article gives a detailed summary of their paper, “Knowledge evolution in neural networks”'
 author: Christopher Dzuwa
+image: https://spectra.pub/ml/images/ke_1.png
 ---
 
 ![main.png](./images/ke_main.png)
