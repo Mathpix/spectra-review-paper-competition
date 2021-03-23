@@ -2,6 +2,7 @@
 title: "Adversarial attacks in deep learning: what can they teach us?"
 description: Review of the major studies discussing adversarial attacks and defences
 author: Veronika Samborska
+image: https://spectra.pub/ml/images/adversarial_attacks_1.png
 ---
 
 A tutorial accompanying this review can be found [here](https://github.com/veronikasamborska1994/adversarial_attacks).
