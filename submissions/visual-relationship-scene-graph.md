@@ -3,6 +3,7 @@ title: Visual Relationship Detection using Scene Graphs - A Survey
 description: This review gives an introduction to Scene Graphs and their usage in various downstream tasks. Many of the recent methods for its generation have been discussed here in detail along with a detailed comparison between them.
 author: Aniket Agarwal*, Ayush Mangal*, Vipul*
 breaks: false
+image: https://spectra.pub/ml/images/scene_graph/image_retrieval_paper.png
 ---
 
 ## 1. Introduction
