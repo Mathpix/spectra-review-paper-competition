@@ -3,6 +3,7 @@ title: Causal Machine Learning in Healthcare
 description: This review gives an introduction to Causal Machine Learning with a focus on healthcare and the issues that are faced there. Several recent papers and research ideas in this area are presented. 
 author: Roman Böhringer
 breaks: false
+image: https://spectra.pub/ml/images/causalml.png
 ---
 
 # Introduction
