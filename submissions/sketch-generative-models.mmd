@@ -72,7 +72,7 @@ Humans are good at recognizing the abstract nature of sketches, enabling us to c
 
 [📝[Paper]](https://arxiv.org/pdf/1704.03477.pdf) [🖥️[Code]](https://github.com/magenta/magenta/tree/master/magenta/models/sketch_rnn)
 
-In the SketchRNN model, the authors aim to develop a model that can draw and generalize abstract concepts like humans. In the paper, they discuss the sketch classification, reconstruction, auto-completion, and interpolation tasks.
+In the SketchRNN model, the authors aim to develop a model that can draw and generalize abstract concepts like humans. In the paper, they discuss the sketch classification, reconstruction, auto-completion, and interpolation tasks. They introduce two types of generation models: Conditional and unconditional. In the conditional generation, they explore the latent space to represent the vector images. Unconditional generation only trains the decoder.
 
 In the training process, they used a different format of Quick, Draw! representing a drawing as a set of pen stroke actions. In this data format, the initial absolute coordinate of the drawing is located at the origin. A sketch is a list of points, and each point is a vector consisting of 5 elements: (∆x, ∆y, p1, p2, p3). Each data represented as a sequence of motor actions controlling a pen: which direction to move (p1), when to lift the pen up (p2), and when to stop drawing (p3).
 
@@ -98,6 +98,8 @@ In the preprocessing step, dictionary-learning uses K code-words (K = 1000) to m
 \begin{figure}[h]
 \includegraphics[width=0.9\textwidth, center]{https://raw.githubusercontent.com/asabuncuoglu13/spectra-review-paper-competition/master/submissions/images/sketchformer.png}
 \end{figure}
+
+After processing, they feed the input to a transformer based architecture. Then, they use the sketch embedding for reconstruction , classification and sketch-based retrival. The retrival task utilizes CNNs and feeds the raster images to create the embedding space.
 
 \subsection{CoSE (2020)}
 
@@ -128,6 +130,8 @@ DoodlerGAN sequentially generates one part while ensuring that the parts and par
 \begin{figure}[h]
 \includegraphics[width=0.9\textwidth, center]{https://raw.githubusercontent.com/asabuncuoglu13/spectra-review-paper-competition/master/submissions/images/doodlergan.png}
 \end{figure}
+
+In the inference phase, they use an autoreggressive approach to create relational parts.
 
 \subsection{Swire (2019)}
 
